@@ -1,0 +1,21 @@
+---
+import ContactFooter from '../components/ContactFooter.astro';
+import Hero from '../components/Hero.astro';
+import Navigation from '../components/Navigation.astro';
+import VertexFeature from '../components/VertexFeature.astro';
+import { projectBySlug } from '../content/projects';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <main id="main-content">
+    <section class="studio" aria-label="Ahmed Hossam portfolio">
+      <div class="studio-wrap">
+        <Navigation />
+        <Hero />
+        <VertexFeature project={projectBySlug.vertex} />
+        <ContactFooter />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

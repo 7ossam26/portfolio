@@ -1,0 +1,73 @@
+---
+import type { ProjectContent } from '../content/projects';
+
+interface Props {
+  project: ProjectContent;
+}
+
+const { project } = Astro.props;
+const featuredStack = project.stack
+  .filter((item) => item !== 'Vite')
+  .map((item) => item === 'Node.js / Express' ? 'Node.js' : item);
+---
+
+<div class="section-heading" id="selected-work">
+  <h2>Selected work <span>01—04</span></h2>
+  <p>Four systems, built for real operations.</p>
+</div>
+
+<article class="featured-project" aria-labelledby="vertex-heading">
+  <div class="feature-topline">
+    <span class="eyebrow">01 / RETAIL &amp; OPERATIONS</span>
+    <span class="production-label">In production</span>
+  </div>
+  <div class="feature-layout">
+    <div class="feature-copy">
+      <h3 id="vertex-heading">{project.name}</h3>
+      <p class="project-deck">From the cash register{' '}<br />to production costing.</p>
+      <p class="project-description">{project.summary}</p>
+      <dl class="project-evidence">
+        {project.capabilities.slice(1).map((capability) => (
+          <div><dt>{capability.label}</dt><dd>{capability.detail}</dd></div>
+        ))}
+      </dl>
+      <p class="tech-line">
+        {featuredStack.map((item, index) => (
+          <>{index > 0 && <span aria-hidden="true">·</span>}{item}</>
+        ))}
+      </p>
+      <div class="project-actions">
+        <a class="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+          View repository
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <figure class="workflow-figure">
+      <div class="workflow-heading">
+        <span class="vertex-mark" aria-hidden="true">v<span>:</span></span>
+        <div><span class="eyebrow">VERTEX ERP</span><p>Inside a production workflow</p></div>
+      </div>
+      <ol class="workflow-list" aria-label="Production workflow">
+        <li>
+          <span class="workflow-index">01</span>
+          <div><h4>Raw materials</h4><p>Available quantities and unit costs</p></div>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4v10l-9 4-9-4ZM3 7l9 4 9-4M12 11v10M7.5 5l9 4"></path></svg>
+        </li>
+        <li class="workflow-current">
+          <span class="workflow-index">02</span>
+          <div><h4>Bill-of-materials production</h4><p>Consume materials against a recipe</p></div>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 21V9l6 3V7l6 3V3h4v18ZM8 17h1m4 0h1m4 0h1"></path></svg>
+        </li>
+        <li>
+          <span class="workflow-index">03</span>
+          <div><h4>Finished stock</h4><p>Updated quantities and production cost</p></div>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v16H4ZM8 12l3 3 6-6"></path></svg>
+        </li>
+      </ol>
+      <div class="workflow-outcome"><span>Connected records</span><p>Materials <span aria-hidden="true">/</span> Stock <span aria-hidden="true">/</span> Cost</p></div>
+      <figcaption>Workflow diagram · The original application UI will appear only when its demo is ready.</figcaption>
+    </figure>
+  </div>
+</article>

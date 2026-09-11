@@ -7,8 +7,8 @@ Last updated: 11 September 2026
 - Planning package: prepared.
 - Visual direction: Studio Dark, accepted by Ahmed.
 - Design reference: approved private Site snapshot and separate portable source export.
-- Current implementation phase: 00, complete.
-- Next prompt: `docs/portfolio/prompts/01-foundation.md`.
+- Current implementation phase: 01, complete.
+- Next prompt: `docs/portfolio/prompts/02-portfolio.md`.
 - Actual original-UI demos: none implemented.
 - Public production domain: unresolved.
 
@@ -19,14 +19,14 @@ Last updated: 11 September 2026
 - Approved design source passed static asset/reference, JavaScript syntax, and selected numerical contrast checks.
 - Studio Dark export files were hash-verified; the two-page CV was parsed, rendered, and visually inspected in Phase 00.
 - Ramex's pinned source supports whole-roll sales only. D16 replaces the earlier partial-roll fixture for Phase 07.
-- No browser QA or runtime performance results exist for that reference.
+- The Phase 01 Astro shell now has limited headed-Chromium evidence at 1440×1000 and 390×844, plus initial-request, link, focus, and reduced-motion checks. This is implementation evidence, not full Phase 08 browser coverage.
 
 ## Phase tracking
 
 | Phase | Status | Evidence |
 | --- | --- | --- |
 | 00 — audit | Complete | `docs/portfolio/source-audit.md`; `docs/portfolio/validation/phase-00.md` |
-| 01 — foundation | Not started | — |
+| 01 — foundation | Complete | `docs/portfolio/validation/phase-01.md` |
 | 02 — portfolio | Not started | — |
 | 03 — demo host | Not started | — |
 | 04 — Vertex | Not started | — |
@@ -38,8 +38,8 @@ Last updated: 11 September 2026
 
 ## Open items
 
-- The new portfolio directory currently has no `.git` metadata; initialize/version it only as part of an authorized implementation step.
-- Implement and validate the Astro foundation in Phase 01 using the audited Node 22 compatibility band and current stable package metadata.
+- Use Node `22.23.2` for repository work. The workstation's default Node `22.12.0` is below the actual locked `undici@8.10.2` engine floor; D17 records the supported range as `>=22.19.0 <23`.
+- Build the remaining homepage project rows and shareable case-study routes in Phase 02; no case-study route or runnable demo is claimed yet.
 - Omit AutoZain's exact role until confirmed; other content can proceed.
 - Use safe synthetic assets until any specific client media/branding permission is established.
 - Preserve source provenance. Vertex and AutoZain are explicitly proprietary; Roya and Ramex have no root license/notice file.
@@ -48,13 +48,13 @@ Last updated: 11 September 2026
 
 ## Most recent execution
 
-- Phase: 00 — source audit.
-- Files changed: created `docs/portfolio/source-audit.md` and `docs/portfolio/validation/phase-00.md`; updated this state file and appended D16 to `DECISIONS.md`.
-- Checks: verified Studio Dark assets and hashes; parsed and rendered both CV pages; confirmed all four ledger commits against remote `main`; inspected selected UI, imports, providers, styles, routing, API/auth boundaries, backend rules, package locks, assets, and notices; confirmed all final source worktrees clean.
-- Source revisions: Vertex `7254e34b49acfbe394da3a889abe6e458084cb38`; AutoZain `768e1de94464fc5dd0f401ce19b81bfec452e818`; Roya `aaf1112b2deb32dbf6c3540e7eb1748abc87bbae`; Ramex `0857f27ae4b9b327fb7f24cd83de038bb0b2ac86`.
-- Validation: `docs/portfolio/validation/phase-00.md`.
-- Blockers: none for Phase 00 or Phase 01 foundation. Deferred public-claim, licensing/media, and release-host decisions remain listed above.
-- Next action: run `docs/portfolio/prompts/01-foundation.md` only when explicitly requested.
+- Phase: 01 — foundation.
+- Files/behavior changed: created the npm workspace, Astro/TypeScript shell, Studio Dark layout/components/tokens, typed four-project content and build-only evidence sources, unchanged public CV/favicon, reserved demo boundaries, and atomic build/staging/preview/check scripts; recorded D17.
+- Checks: verified registry metadata; installed a locked dependency tree with no reported vulnerabilities; passed Astro typechecking and a clean static build under Node `22.23.2`/npm `11.1.0`; hash-verified assets; checked generated metadata and evidence isolation; served the merged output and inspected desktop/mobile Chromium renders, focus, reduced motion, essential links, console, and startup requests.
+- Build output: one static page, 0 initial JavaScript, 12,796-byte CSS (3,328 gzip), local CV/favicon, and no `/demos/` output or startup request.
+- Validation: `docs/portfolio/validation/phase-01.md`.
+- Blockers: none for Phase 01. AutoZain role, client asset permissions, complete cross-browser/quality coverage, demo implementation, and the final host/domain remain deferred to their planned phases.
+- Next action: run `docs/portfolio/prompts/02-portfolio.md` only when explicitly requested.
 
 ## Update format
 

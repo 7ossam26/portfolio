@@ -1,0 +1,26 @@
+{
+  "name": "ahmed-hossam-portfolio",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Ahmed Hossam's static portfolio and isolated project demos.",
+  "packageManager": "npm@11.1.0",
+  "engines": {
+    "node": ">=22.19.0 <23",
+    "npm": ">=11 <12"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @portfolio/site",
+    "typecheck": "npm run check --workspace @portfolio/site",
+    "check:assets": "node scripts/check-assets.mjs",
+    "build:shell": "npm run build --workspace @portfolio/site",
+    "stage": "node scripts/stage-static.mjs",
+    "check:static": "node scripts/check-static.mjs",
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run check:assets && npm run build:shell && npm run stage && npm run check:static",
+    "preview:all": "node scripts/preview-static.mjs"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "browserArtifactSha256": "5a442bea5afc754481fffb891c23c805b1d6ce76f3760c890bdb34b51f9c9695",
+  "finalArtifactSha256": "2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340",
+  "outputEqual": true,
+  "nginxConfigurationEqual": true,
+  "nginxConfigurationSha256": "9b7acc374308cbe5c83a4bef9cddfb7a31544810546b9ac46721a118df0db882"
+}

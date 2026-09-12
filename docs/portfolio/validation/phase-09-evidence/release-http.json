@@ -1,0 +1,385 @@
+{
+  "scope": "local-native-nginx-only",
+  "origin": "http://127.0.0.1:63340",
+  "artifactSha256": "2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340",
+  "node": "v22.23.2",
+  "checks": [
+    {
+      "id": "file/404.html",
+      "passed": true
+    },
+    {
+      "id": "file/Ahmed_Hossam_CV.pdf",
+      "passed": true
+    },
+    {
+      "id": "file/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+      "passed": true
+    },
+    {
+      "id": "file/_assets/projects.D6wMW53C.css",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-arabic-400-CyU-ddYS.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-arabic-500-C4MQITzh.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-arabic-600-0pRdybE_.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-arabic-700-DrtBj6UE.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-latin-400-Bo5KPYvw.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-latin-500-Cd6jVIg7.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-latin-600-KrqB56Mw.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/ibm-plex-sans-arabic-latin-700-BzSf6GNr.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/index-Bl9yPL6S.js",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/assets/index-C7GBj70s.css",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/favicon.svg",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/vehicles/blue-hatchback.webp",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/vehicles/graphite-crossover.webp",
+      "passed": true
+    },
+    {
+      "id": "file/demos/autozain/vehicles/pearl-sedan.webp",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-400-normal-CAYwymWN.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-400-normal-DN15VWMM.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-500-normal-BADfnM6v.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-500-normal-DDl0i4Xv.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-600-normal-B3EOalmC.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-600-normal-rkrvveqO.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-700-normal-CyOqhaeK.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-arabic-700-normal-D3nDedWX.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-400-normal-Dh7otpdh.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-400-normal-b1R3q6Pf.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-500-normal-D-WQsSKQ.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-500-normal-DkdkMETP.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-600-normal-buYOP1M3.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-600-normal-mGS0uvCM.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-700-normal-6fcUy4Rc.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-700-normal-C3GYtKbV.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-400-normal-C_BIE9Qe.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-400-normal-xCL67Y2R.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-500-normal-De4OTi8O.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-500-normal-DxXN6Mb5.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-600-normal-DAfLYaOC.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-600-normal-DuRnqffh.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-700-normal-Cscux539.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/cairo-latin-ext-700-normal-htXca11Z.woff",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/index-By0paZg1.js",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/assets/index-CXMqQ9sx.css",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/favicon.svg",
+      "passed": true
+    },
+    {
+      "id": "file/demos/ramex/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/demos/roya/assets/index-ceGnapZo.js",
+      "passed": true
+    },
+    {
+      "id": "file/demos/roya/assets/index-yTOFgVnJ.css",
+      "passed": true
+    },
+    {
+      "id": "file/demos/roya/favicon.svg",
+      "passed": true
+    },
+    {
+      "id": "file/demos/roya/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/demos/vertex/assets/Cairo-Regular-DN15VWMM.woff2",
+      "passed": true
+    },
+    {
+      "id": "file/demos/vertex/assets/index-CfSBHhd0.js",
+      "passed": true
+    },
+    {
+      "id": "file/demos/vertex/assets/index-Dc3iM6Rv.css",
+      "passed": true
+    },
+    {
+      "id": "file/demos/vertex/favicon.svg",
+      "passed": true
+    },
+    {
+      "id": "file/demos/vertex/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/favicon.svg",
+      "passed": true
+    },
+    {
+      "id": "file/images/autozain/contact-outcome-1440x900.png",
+      "passed": true
+    },
+    {
+      "id": "file/images/ramex/roll-stock-result-1440x900.png",
+      "passed": true
+    },
+    {
+      "id": "file/images/roya/shooting-weeks-impact-1440x900.png",
+      "passed": true
+    },
+    {
+      "id": "file/images/vertex/production-result-1440x900.png",
+      "passed": true
+    },
+    {
+      "id": "file/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/robots.txt",
+      "passed": true
+    },
+    {
+      "id": "file/work/autozain/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/work/ramex/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/work/roya/index.html",
+      "passed": true
+    },
+    {
+      "id": "file/work/vertex/index.html",
+      "passed": true
+    },
+    {
+      "id": "direct//",
+      "passed": true
+    },
+    {
+      "id": "direct//work/vertex/",
+      "passed": true
+    },
+    {
+      "id": "direct//work/autozain/",
+      "passed": true
+    },
+    {
+      "id": "direct//work/roya/",
+      "passed": true
+    },
+    {
+      "id": "direct//work/ramex/",
+      "passed": true
+    },
+    {
+      "id": "direct//demos/vertex/",
+      "passed": true
+    },
+    {
+      "id": "direct//demos/autozain/",
+      "passed": true
+    },
+    {
+      "id": "direct//demos/roya/",
+      "passed": true
+    },
+    {
+      "id": "direct//demos/ramex/",
+      "passed": true
+    },
+    {
+      "id": "contact-and-cv-links",
+      "passed": true
+    },
+    {
+      "id": "html-revalidation",
+      "passed": true
+    },
+    {
+      "id": "stale-content-validator",
+      "passed": true
+    },
+    {
+      "id": "timestamps-cannot-hide-a-release",
+      "passed": true
+    },
+    {
+      "id": "gzip-and-content-validator",
+      "passed": true
+    },
+    {
+      "id": "immutable-revalidation",
+      "passed": true
+    },
+    {
+      "id": "static-only-methods",
+      "passed": true
+    },
+    {
+      "id": "directory-redirect",
+      "passed": true
+    },
+    {
+      "id": "cv-head",
+      "passed": true
+    },
+    {
+      "id": "cv-range",
+      "passed": true
+    },
+    {
+      "id": "missing//missing-page/",
+      "passed": true
+    },
+    {
+      "id": "missing//_assets/missing.js",
+      "passed": true
+    },
+    {
+      "id": "missing//demos/vertex/assets/missing.css",
+      "passed": true
+    },
+    {
+      "id": "missing//source.tar.gz",
+      "passed": true
+    },
+    {
+      "id": "missing//release.json",
+      "passed": true
+    },
+    {
+      "id": "missing//.env",
+      "passed": true
+    },
+    {
+      "id": "publication-mode",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "total": 93,
+    "passed": 93,
+    "failed": 0
+  }
+}

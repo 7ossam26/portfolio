@@ -1,0 +1,404 @@
+{
+  "scope": "local-native-nginx-chromium-only",
+  "browserArtifactSha256": "5a442bea5afc754481fffb891c23c805b1d6ce76f3760c890bdb34b51f9c9695",
+  "finalArtifactSha256": "2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340",
+  "outputEqual": true,
+  "nginxConfigurationEqual": true,
+  "nginxConfigurationSha256": "9b7acc374308cbe5c83a4bef9cddfb7a31544810546b9ac46721a118df0db882",
+  "suites": [
+    {
+      "suite": "demo-journeys",
+      "total": 47,
+      "passed": 47,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "lifecycle/vertex",
+          "passed": true
+        },
+        {
+          "id": "lifecycle-console/vertex",
+          "passed": true
+        },
+        {
+          "id": "lifecycle/autozain",
+          "passed": true
+        },
+        {
+          "id": "lifecycle-console/autozain",
+          "passed": true
+        },
+        {
+          "id": "lifecycle/roya",
+          "passed": true
+        },
+        {
+          "id": "lifecycle-console/roya",
+          "passed": true
+        },
+        {
+          "id": "lifecycle/ramex",
+          "passed": true
+        },
+        {
+          "id": "lifecycle-console/ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/vertex-keyboard-disclosure",
+          "passed": true
+        },
+        {
+          "id": "scenario/vertex-production",
+          "passed": true
+        },
+        {
+          "id": "scenario/vertex-reset",
+          "passed": true
+        },
+        {
+          "id": "scenario/vertex-insufficient-stock",
+          "passed": true
+        },
+        {
+          "id": "scenario/autozain-request-created",
+          "passed": true
+        },
+        {
+          "id": "scenario/autozain-accept-complete",
+          "passed": true
+        },
+        {
+          "id": "scenario/autozain-continuity",
+          "passed": true
+        },
+        {
+          "id": "scenario/autozain-reset",
+          "passed": true
+        },
+        {
+          "id": "scenario/roya-impact",
+          "passed": true
+        },
+        {
+          "id": "scenario/roya-cap-warning",
+          "passed": true
+        },
+        {
+          "id": "scenario/roya-no-mutation",
+          "passed": true
+        },
+        {
+          "id": "scenario/ramex-invalid-precision",
+          "passed": true
+        },
+        {
+          "id": "scenario/ramex-valid-price-enables",
+          "passed": true
+        },
+        {
+          "id": "scenario/ramex-invoice-snapshot",
+          "passed": true
+        },
+        {
+          "id": "scenario/ramex-independent-rolls",
+          "passed": true
+        },
+        {
+          "id": "scenario/ramex-reset",
+          "passed": true
+        },
+        {
+          "id": "failure/loading-immediate",
+          "passed": true
+        },
+        {
+          "id": "failure/timeout-recovery",
+          "passed": true
+        },
+        {
+          "id": "failure/timeout-threshold",
+          "passed": true
+        },
+        {
+          "id": "failure/retry-succeeds",
+          "passed": true
+        },
+        {
+          "id": "failure/portfolio-survives",
+          "passed": true
+        },
+        {
+          "id": "failure/child-error",
+          "passed": true
+        },
+        {
+          "id": "failure/stale-and-forged-messages",
+          "passed": true
+        },
+        {
+          "id": "history/one-entry-per-open",
+          "passed": true
+        },
+        {
+          "id": "history/back-closes",
+          "passed": true
+        },
+        {
+          "id": "history/forward-reopens",
+          "passed": true
+        },
+        {
+          "id": "history/no-duplicate-frames",
+          "passed": true
+        },
+        {
+          "id": "history/direct-entry",
+          "passed": true
+        },
+        {
+          "id": "history/direct-close-stays",
+          "passed": true
+        },
+        {
+          "id": "history/unknown-slug:not-a-demo",
+          "passed": true
+        },
+        {
+          "id": "history/unknown-slug:host-harness",
+          "passed": true
+        },
+        {
+          "id": "history/unknown-slug:../../etc/passwd",
+          "passed": true
+        },
+        {
+          "id": "history/unknown-slug:https://example.com",
+          "passed": true
+        },
+        {
+          "id": "escape/inner-overlay-first",
+          "passed": true
+        },
+        {
+          "id": "escape/closes-host",
+          "passed": true
+        },
+        {
+          "id": "focus/returns-to-trigger",
+          "passed": true
+        },
+        {
+          "id": "focus/scroll-restored",
+          "passed": true
+        },
+        {
+          "id": "focus/close-button-restores",
+          "passed": true
+        },
+        {
+          "id": "lifecycle/single-active-demo",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "suite": "network-isolation",
+      "total": 46,
+      "passed": 46,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "cold-entry/no-demo-assets/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/no-demo-assets/work/vertex/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/work/vertex/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/no-demo-assets/work/autozain/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/work/autozain/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/no-demo-assets/work/roya/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/work/roya/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/no-demo-assets/work/ramex/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/work/ramex/",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/no-demo-assets/404.html",
+          "passed": true
+        },
+        {
+          "id": "cold-entry/same-origin-only/404.html",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-demo-requests-before-activation:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/same-origin-only:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-client-services:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-failed-requests:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/quiet-after-close:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/clean-console:vertex",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-demo-requests-before-activation:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/same-origin-only:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-client-services:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-failed-requests:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/quiet-after-close:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/clean-console:autozain",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-demo-requests-before-activation:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/same-origin-only:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-client-services:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-failed-requests:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/quiet-after-close:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/clean-console:roya",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-demo-requests-before-activation:ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/same-origin-only:ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-client-services:ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/no-failed-requests:ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/quiet-after-close:ramex",
+          "passed": true
+        },
+        {
+          "id": "scenario/clean-console:ramex",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-live-channels:vertex",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-persistent-storage:vertex",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-live-channels:autozain",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-persistent-storage:autozain",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-live-channels:roya",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-persistent-storage:roya",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-live-channels:ramex",
+          "passed": true
+        },
+        {
+          "id": "runtime/no-persistent-storage:ramex",
+          "passed": true
+        },
+        {
+          "id": "unsupported/no-fallthrough",
+          "passed": true
+        },
+        {
+          "id": "allow-list/local-only",
+          "passed": true
+        }
+      ],
+      "conditions": {
+        "browser": "Chromium 153.0.8010.12",
+        "origin": "http://127.0.0.1:56223",
+        "note": "All requests are served from the local production dist/ over loopback HTTP.",
+        "startedAt": "2026-09-12T08:39:28.620Z"
+      }
+    }
+  ]
+}

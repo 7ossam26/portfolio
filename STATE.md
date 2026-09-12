@@ -1,16 +1,16 @@
 # Portfolio implementation state
 
-Last updated: 12 September 2026 (Phase 08)
+Last updated: 12 September 2026 (Phase 09 preparation)
 
 ## Current position
 
 - Planning package: prepared.
 - Visual direction: Studio Dark, accepted by Ahmed.
 - Design reference: approved private Site snapshot and separate portable source export.
-- Current implementation phase: 08, complete.
-- Next prompt: `docs/portfolio/prompts/09-release.md`.
+- Current implementation phase: 09 — preparation complete; public publication blocked.
+- Remaining prompt: resume deployment/handoff steps in `docs/portfolio/prompts/09-release.md` after Ahmed supplies the target/access. There is no next feature phase.
 - Actual original-UI demos: Vertex, AutoZain, Roya, and Ramex ready.
-- Release-candidate status: **validated but incomplete.** Every check this environment can run passes — 435 in total across six suites. Four gaps remain open and are listed under Open items: Firefox/WebKit, deployed-host headers, field metrics, and the pinned Node version. Do not describe the release as complete until those are closed or explicitly accepted.
+- Release status: **prepared, not deployed.** Four actual demos are ready. Phase 08 Chromium/lab evidence remains valid for unchanged static bytes; Phase 09 adds 93 local HTTP, 47 journey, 46 network, 27 domain, and focused origin checks. The pinned-runtime and reproducible build gaps are closed. Public-host verification and Firefox/WebKit remain open; field metrics remain unavailable before traffic. Do not call the portfolio live or the release complete.
 - Public production domain: unresolved. The build now accepts it through `PORTFOLIO_SITE_URL` (D20); with the variable unset the artifact stays `noindex` with a `Disallow: /` robots.txt and no sitemap.
 
 ## Existing evidence
@@ -28,6 +28,7 @@ Last updated: 12 September 2026 (Phase 08)
 - The Phase 07 Ramex demo now provides the source-derived Arabic roll POS, exact-cash payment, invoice snapshot, and stock result on one deterministic local service. It truthfully replaces the unsupported partial-roll illustration with a complete `30.000 meter` sale: invoice total EGP 5,550, selected `RMX-M-0701` becomes sold, and same-fabric `RMX-M-0702` remains available at `24.750 meter`. Chromium evidence covers the complete path, invalid price precision, RTL/mobile internal table scrolling, standalone/host reset, nested Escape, lazy mount, three close/reopen cycles, console/network isolation, and a `303.46 KiB` raw browser-loaded payload.
 - Phase 08 ran the consolidated release-candidate matrix in Chromium against the production `dist/`: 415 browser checks across five suites plus 20 Lighthouse checks, all passing. Coverage includes five viewports × six routes, 200% text and zoom-equivalent reflow, measured contrast, axe across 13 scopes, keyboard order and modal focus containment, reduced motion, RTL/LTR, no-JavaScript, three lifecycle cycles per demo, all four domain scenarios, the real 12-second timeout with retry, forged frame messages, history and focus/scroll restoration, complete request capture, and measured payloads and timings. Eighteen product defects were found and fixed.
 - Measured against the project budgets: initial JS `2.94 KiB` gzip of a 45 KiB budget, CSS `5.73 KiB` of 45 KiB, homepage transfer `97.63 KiB` of 450 KiB, zero demo requests before activation, first demo payload `53.40–58.13 KiB` gzip of an 800 KiB target, click-to-ready medians `651/748/685/912 ms` against a 3,000 ms target, and Lighthouse performance `100` on all five public routes. All lab, not field.
+- Phase 09 rebuilt under checksum-verified Node `22.23.2` / npm `11.1.0`. An independent clean install/build from the exact source snapshot reproduces all 67 static files byte for byte. Generated Nginx CSP/cache/embedding policies pass native local HTTP and Chromium demo/network gates. The prepared immutable preview archive, exact source/tree hashes, retained pre-phase baseline, and rollback handoff are recorded in `docs/portfolio/release.md`.
 
 ## Phase tracking
 
@@ -42,16 +43,17 @@ Last updated: 12 September 2026 (Phase 08)
 | 06 — Roya | Complete | `docs/portfolio/validation/phase-06.md`; `docs/portfolio/source-audit.md` |
 | 07 — Ramex | Complete | `docs/portfolio/validation/phase-07.md`; `docs/portfolio/source-audit.md` |
 | 08 — quality | Complete, with four recorded gaps | `docs/portfolio/validation/phase-08.md`; `validation/performance.md`; `validation/network.md`; `docs/portfolio/maintenance.md` |
-| 09 — release | Not started | — |
+| 09 — release | Prepared; publication blocked by target/access; no public URL verified | `docs/portfolio/validation/phase-09.md`; `docs/portfolio/release.md` |
 
 ## Open items
 
 ### Release-candidate gaps (block calling the release complete)
 
-- **Firefox and WebKit are unverified.** Phase 08 ran Chromium only under D19. Close with `npx playwright install firefox webkit` then `npm run verify`.
+- **Firefox and WebKit are unverified.** Phases 08/09 ran Chromium. Existing suites explicitly launch Chromium, so merely installing the other engines does not close this gap. Run actual equivalent reflow/keyboard/journey checks in those engines, record Ahmed's manual results, or obtain an explicit exception.
 - **Nothing is verified against a deployed host.** Effective CSP, `frame-ancestors`, `connect-src`, caching headers, TLS, and a fresh unauthenticated visit are unchecked. Requirements are written in `docs/portfolio/maintenance.md` §7; Phase 09 must inspect the real responses rather than assume the config applied.
 - **No field metrics.** LCP/INP/CLS at the 75th percentile need real traffic. Everything recorded is a lab proxy from one Windows workstation.
-- **The release candidate was not built on the pinned Node version.** Only `22.12.0` is installed; the repository declares `>=22.19.0 <23` and `.nvmrc` pins `22.23.2`. Builds and measurements succeeded with `EBADENGINE` warnings. Phase 07 recorded builds under `22.23.2`, but that runtime is not present now and the claim could not be reproduced — install `22.23.2` and rebuild before release.
+- **Pinned-runtime build gap closed in Phase 09.** Portable Node `22.23.2` is installed locally and checksum-verified, and clean install/build/type/domain gates pass with npm `11.1.0`. System Node remains older; maintenance §0 gives the exact release commands.
+- **Publication is blocked.** Ahmed's actual public HTTPS origin, selected hosting service/portfolio service, and available deployment access are absent. Current archive is explicitly a preview with noindex, no sitemap, and no invented final canonical. No private review Site audience, client service, DNS, or external account was changed.
 
 ### Standing constraints
 
@@ -60,16 +62,17 @@ Last updated: 12 September 2026 (Phase 08)
 - Preserve source provenance. Vertex and AutoZain are explicitly proprietary; Roya and Ramex have no root license/notice file.
 - Do not implement Ramex partial-roll quantity entry unless a later audited source revision actually supports it.
 - Resolve the final deployment domain/service/access during release preparation, then build with `PORTFOLIO_SITE_URL` set (D20).
-- D18 still applies after Phase 08: do not run browser automation in Phase 09 unless Ahmed asks again.
+- D21 records Ahmed's explicit Phase 09 browser/HTTP request. It does not authorize publication to an unspecified host or reopen browser testing for unrelated future work.
 
 ## Most recent execution
 
-- Phase: 08 — release-candidate validation.
-- Files/behavior changed: fixed a reproducible Windows build failure in `scripts/stage-static.mjs`; fixed six reflow and overflow defects that only appeared at 200% text enlargement; closed a modal focus-containment hole where Tab escaped the dialog past the iframe; made Vertex's production-order disclosure keyboard-operable; replaced invalid ARIA table roles in Roya's budget list; raised all demo text to an 11px floor and darkened four colour tokens to clear WCAG AA; added a visible reason for Ramex's disabled pay control; defaulted Vertex's single-option warehouse selects; added bilingual no-JavaScript fallbacks to all four demos and to the `Try demo` triggers; corrected a duplicated primary action and a stretched capture backplate; expanded the 404 with case-study shortcuts; added `PORTFOLIO_SITE_URL` metadata/sitemap/robots plumbing with build-time verification of both modes; regenerated the four case-study captures so they match the shipped demos; and added six re-runnable verification suites under `tests/phase-08/`.
-- Checks: `npm run build` clean; `npm run verify` 415 browser checks across five suites, all passing; Lighthouse 20 checks, all passing — performance/accessibility/best-practices `100` on all five public routes; `npm audit` and `npm audit --omit=dev` both 0. Built and verified in both publication modes, and a non-https `PORTFOLIO_SITE_URL` is rejected at build time. Node `22.12.0`/npm `11.1.0` — below the pinned runtime, see the gap above.
-- Validation: `docs/portfolio/validation/phase-08.md`, `validation/performance.md`, `validation/network.md`, and `docs/portfolio/maintenance.md`, with 63 artifacts under `output/playwright/phase-08/`.
-- Blockers: no agreed demo is blocked; all four are ready and were exercised end to end. The four release-candidate gaps above remain open, so the release is validated but not complete.
-- Next action: run `docs/portfolio/prompts/09-release.md` only when explicitly requested. Stop before deploying.
+- Phase: 09 — release preparation and handoff, publication pending.
+- Files/behavior changed: enforced root HTTPS origins and removed invented sitemap build dates; added deterministic immutable release/source archives, exact content manifests, generated narrowly hashed CSP and cache/embedding Nginx configuration, content ETags/304/error behavior, native HTTP verification, and an external-origin option for existing browser suites. Added release/validation handoff and updated maintenance/demo wording. Dependencies/lockfile/CV and the 67 preview static files are unchanged.
+- Checks: exact Node `22.23.2` / npm `11.1.0` clean `npm ci`, full build/demo typechecks, Astro check 0 diagnostics, 27 existing domain tests, one origin test, production audit 0 vulnerabilities. Final archive: 93 native local HTTP checks. New headers: 47 Chromium journey + 46 network checks. Public metadata fixture: 88 local HTTP checks, explicitly test-only. Independent source snapshot build reproduces exact static bytes; retained Phase 08 output is identical. No public-host, TLS, cross-engine, field, or container verification is claimed.
+- Prepared archive: `output/releases/portfolio-2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340.tar.gz`; base revision `0fe076bc3f6c24c5e890af5399a83b262076a70c` plus exact uncommitted source tree/snapshot hashes in `docs/portfolio/release.md`.
+- Validation: `docs/portfolio/validation/phase-09.md`, `docs/portfolio/release.md`; local machine evidence under `output/phase-09/`; immutable archives/baseline under `output/releases/`.
+- Blockers: actual public origin/host/service/access missing; public deployment verification pending; Firefox/WebKit unverified; field metrics unavailable until traffic. All four demos remain ready. No unrelated target or client service was changed.
+- Next action: receive Ahmed's deployment-specific target/access, then resume only the remaining Phase 09 steps. No new feature phase.
 
 ## Update format
 

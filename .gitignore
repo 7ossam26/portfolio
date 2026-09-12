@@ -5,3 +5,6 @@ apps/*/dist/
 output/playwright/*/.playwright-cli/
 .playwright-cli/
 *.log
+.local-tools/
+output/releases/
+output/phase-09/

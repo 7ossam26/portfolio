@@ -1,0 +1,10 @@
+{
+  "artifactSha256": "2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340",
+  "sourceTreeSha256": "48500d9d1a91a3c712cd448436acc16b59188736f9c2a6be3ba41695c23fc321",
+  "node": "v22.23.2",
+  "npm": "11.1.0",
+  "expected": "1d102ade406b63c4f3566cfc0b48f25254c5ec1f47f88d4f1b461da95394d8f4",
+  "actual": "1d102ade406b63c4f3566cfc0b48f25254c5ec1f47f88d4f1b461da95394d8f4",
+  "files": 67,
+  "passed": true
+}

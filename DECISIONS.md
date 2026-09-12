@@ -22,6 +22,8 @@
 | D18 | Defer further browser testing to Ahmed's manual review after all phases; do not run browser automation again unless he explicitly requests it | Confirmed by Ahmed on 12 September 2026 |
 | D19 | Phase 08 is re-authorised to run browser testing, Chromium only; Firefox/WebKit stay an open gap | Confirmed by Ahmed on 12 September 2026; narrows D18 for this phase only |
 | D20 | The public origin is supplied at build time through `PORTFOLIO_SITE_URL`; no domain is hard-coded | Implementation of D14 during Phase 08 |
+| D21 | Phase 09 explicitly requests browser and HTTP release verification; final-host checks require the selected target. Local checks of the new serving policy are permitted within this phase | Ahmed's Phase 09 request, 12 September 2026; scoped exception to D18 |
+| D22 | Prepare a deterministic static bundle, exact build-source snapshot, content-hash validators, and generated Nginx per-path policy while hosting remains unselected | Phase 09 preparation, 12 September 2026; does not select a host or publish the private review Site |
 
 ### D16 evidence and impact
 

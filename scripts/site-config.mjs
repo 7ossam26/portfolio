@@ -28,9 +28,10 @@ export function resolveSiteUrl(environment = process.env) {
   if (parsed.search !== '' || parsed.hash !== '') {
     throw new Error(`${SITE_URL_VARIABLE} must not carry a query string or fragment: "${raw}"`);
   }
-
-  const pathname = parsed.pathname.replace(/\/+$/, '');
-  return `${parsed.origin}${pathname}`;
+  if (parsed.username || parsed.password || parsed.pathname !== '/') {
+    throw new Error(`${SITE_URL_VARIABLE} must be an origin without credentials or a path.`);
+  }
+  return parsed.origin;
 }
 
 /** Public routes that belong in a sitemap. Demo routes are deliberately excluded. */

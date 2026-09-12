@@ -29,7 +29,9 @@
     "verify:network": "node tests/phase-08/network-isolation.mjs",
     "verify:performance": "node tests/phase-08/performance.mjs",
     "verify:lighthouse": "node tests/phase-08/lighthouse-audit.mjs",
-    "verify": "node tests/phase-08/run-all.mjs"
+    "verify": "node tests/phase-08/run-all.mjs",
+    "release:prepare": "node scripts/prepare-release.mjs",
+    "release:verify": "node tests/phase-09/release-http.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.2",

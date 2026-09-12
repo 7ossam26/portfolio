@@ -1,7 +1,7 @@
 # Maintenance guide
 
 How to keep this portfolio current without re-reading every phase document. Written
-12 September 2026 at the end of Phase 08.
+12 September 2026, updated during Phase 09 release preparation.
 
 ## 0. Prerequisites
 
@@ -9,12 +9,23 @@ How to keep this portfolio current without re-reading every phase document. Writ
 | --- | --- |
 | Node | `>=22.19.0 <23`; `.nvmrc` pins `22.23.2` (DECISIONS.md D17) |
 | npm | `>=11 <12`; the repository is pinned to `npm@11.1.0` |
-| Install | `npm install` at the repository root — it is an npm workspace, do not install inside `apps/*` |
+| Install | `npm ci` at the repository root — it is an npm workspace, do not install inside `apps/*` |
 
-Node v22.12.0 is currently installed on the workstation, which is **below** the
-declared floor. Builds succeed but npm emits `EBADENGINE` warnings. Install
-`22.23.2` before cutting a release so the artifact matches the declared support
-range.
+Phase 09 uses checksum-verified Node `22.23.2` paired with the already-installed
+npm `11.1.0` in `.local-tools/release-toolchain/`. This directory copies the verified
+Node binary and npm package without altering the system runtime or original download.
+The system Node remains `22.12.0`; the portable runtime's bundled npm is `10.9.8`.
+Neither is the release toolchain. On this workstation use PowerShell:
+
+```powershell
+$env:PATH = "$((Resolve-Path '.local-tools/release-toolchain').Path);$env:PATH"
+npm.cmd ci
+npm.cmd run release:prepare
+```
+
+Elsewhere install the pinned Node and npm versions, verify `node --version` and
+`npm --version`, then use normal `npm ci` / `npm run release:prepare` commands.
+Local tool downloads are ignored and are not included in the served output.
 
 ## 1. Everyday commands
 
@@ -150,7 +161,9 @@ still describes what the new image actually shows.
 
 ## 7. Deployment requirements
 
-The public domain is **unresolved** (D14). Nothing in the artifact names a host.
+The public domain, hosting service, and access remain **unresolved** (D14).
+The private review Site is not the production target. See `release.md` for the
+prepared artifact and exact remaining gates.
 
 ### Publishing
 
@@ -168,24 +181,65 @@ PORTFOLIO_SITE_URL="https://your-domain.example" npm run build
 | `robots.txt` | `Disallow: /` | `Allow: /`, `Disallow: /demos/`, plus a `Sitemap:` line |
 | `sitemap.xml` | not emitted | the five public routes; demo and 404 routes excluded |
 
-The value must be an absolute `https` URL with no query or fragment; anything else
-fails the build. `check:static` verifies both modes, so a half-configured build cannot
-ship.
+The value must be a root `https` origin without credentials, a path, query, or
+fragment. Root-relative asset paths make subpath hosting unsupported. The sitemap
+has no build-time `lastmod`; it does not invent a content modification date and its
+bytes are reproducible. `check:static` verifies both modes.
+
+### Immutable release bundle
+
+`npm run release:prepare` enforces the pinned Node/npm versions and performs the
+complete build. It creates `output/releases/portfolio-<sha256>.tar.gz` and a checksum
+sidecar without replacing prior archives. The companion
+`output/phase-09/prepared-release.json` identifies the current prepared bundle.
+
+The bundle contains `html/` (the complete static site), `nginx.conf`, `release.json`,
+`source-manifest.json`, and an exact `source.tar.gz` build-source snapshot. Only
+`html/` is a document root. Source/provenance files stay outside it. The snapshot
+includes the two approved reference assets used by the asset gate; it includes no
+old Site hosting identity. Documentation and historical QA output are maintained
+in Git separately. A base Git revision plus the source-tree hash identifies the
+uncommitted Phase 09 changes precisely; do not label it a deployment of just the
+base revision.
+
+After receiving the selected origin, rebuild with that value and retain the preview
+archive. The test-only `PORTFOLIO_RELEASE_TEST=1` labels a metadata fixture as
+`test-fixture-not-for-deployment`; leave it unset for real preparation.
+
+### Optional separate Nginx static service
+
+The generated configuration is a portable serving option, not a selected host.
+It listens on service port `8080`, serves `html/` relative to its own prefix, and
+uses only its own logs/temp paths. After extracting into a new immutable release
+directory, create `logs/`, then run `nginx -p <absolute-release-directory>/ -c
+nginx.conf -t`. A selected VPS/Dokploy service must use that artifact/configuration
+independently of client services. Its reverse proxy supplies the confirmed public
+hostname and TLS. Do not publish service port 8080 directly without the intended
+proxy/audience configuration.
+
+For another static host, translate the manifest's exact document policies, route
+rules, and cache classes into its supported settings and verify real responses.
+For Sites, load the Sites hosting instructions and use the new portfolio's identity.
+No container or remote service has been created or tested in Phase 09.
 
 ### Headers the host must set
 
-Not yet verified against any host. Inspect the effective response headers after the
-first deploy — writing a config file is not evidence it was applied.
+Generated Nginx policies were exercised over local native HTTP. Final-host responses
+are still unverified. `release.json` contains the actual per-document policy and
+asset hashes; regenerate it whenever built inline content changes.
 
 | Path | Header | Value |
 | --- | --- | --- |
-| All | `Content-Security-Policy` | `default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; frame-ancestors 'self'` |
+| All | `Content-Security-Policy` | `default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-ancestors 'self'` |
 | `/` and `/work/*` | `frame-src` | `'self'` — the portfolio embeds only its own demos |
 | `/demos/*` | `frame-ancestors` | `'self'` plus a matching `X-Frame-Options: SAMEORIGIN` |
 | `/demos/*` | `connect-src` | `'none'` — the demos bundle their fixtures and make no data requests. Verify against the built bundles before enforcing |
-| All | `img-src` | `'self' data:` — the demos use inline SVG data URIs |
+| All | `img-src` | `'self'` — built CSS/selected components require no `data:` or `blob:` images |
 | All | `font-src` | `'self'` — every font file is self-hosted |
-| All | `style-src` | `'self' 'unsafe-inline'` only if the copied apps need it; check first and prefer dropping it |
+| All | `script-src` / `script-src-attr` | Local scripts plus exact built inline hashes / `'none'`; no `unsafe-eval` |
+| All | `style-src` | Local styles plus exact `<style>` hashes when present; no `unsafe-inline` |
+| Demo HTML | `style-src-attr` | `'unsafe-hashes'` and the exact hash of the existing bilingual noscript paragraph style; no runtime JSX style props were found |
+| Portfolio | `style-src-attr` | `'none'` |
 | All | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | All | `X-Content-Type-Options` | `nosniff` |
 
@@ -206,11 +260,37 @@ A missing `.js`/`.css` must return a real error status, not an HTML page with st
 404 while unknown page paths get the styled 404 document, both with status 404.
 Confirm the deployed host does the same.
 
+Validators are weak content-SHA-256 ETags (compatible with gzip representations),
+with exact matching GET/HEAD conditional requests returning 304. Archive mtimes are
+fixed for reproducibility, so `if_modified_since off` prevents timestamp-based stale
+304s. Error responses are `no-store`; non-GET/HEAD methods return 405. Check cache
+and policy headers on 304 and missing assets too.
+
 ### Rollback
 
-Keep the previous `dist/` artifact and the commit it was built from. Rolling back is
-redeploying that artifact; there is no server state, database, or migration to undo.
-Record the deployed commit, artifact hash, and target URL in `docs/portfolio/release.md`.
+Keep both the previous deployed archive and its effective host configuration. Roll
+back the separate portfolio service by restarting/redeploying that exact archive
+and configuration, then repeat HTTP and fresh-browser checks. A prior source rebuild
+is not a rollback artifact. There is no database or migration. Phase 09 retains the
+pre-phase static output as a development baseline; it is not a previous public
+deployment. Exact commands for the chosen service can be recorded only after it is
+selected. See `release.md`.
+
+### Verify the extracted serving contract
+
+```powershell
+$env:PORTFOLIO_NGINX = (Resolve-Path '.local-tools/nginx-1.30.4/nginx.exe').Path
+$env:PORTFOLIO_VERIFY_BROWSER = '1'
+npm.cmd run release:verify
+```
+
+Without `PORTFOLIO_VERIFY_ORIGIN`, this starts only a loopback Nginx instance,
+checks the archive/configuration and every served file, and stops it. The optional
+browser flag reruns existing journey/network suites against those headers, keeping
+Phase 08 evidence separate. To verify a deployed artifact, set
+`PORTFOLIO_VERIFY_ORIGIN` to its exact selected public origin; no local Nginx is needed
+in that mode. The native host's deployment/TLS/status checks and fresh unauthenticated
+browser review remain mandatory. Never count a local pass as a public deployment pass.
 
 ## 8. Regression checks before any release
 
@@ -242,9 +322,11 @@ compared against ASCII — correct the test and say so in the validation report.
 
 ### Known coverage gaps
 
-- **Firefox and WebKit are unverified.** Only Chromium is installed. `npx playwright
-  install firefox webkit` (~250 MB) then re-run `npm run verify` to close this.
+- **Firefox and WebKit are unverified.** Current suites explicitly launch Chromium.
+  Installing other engines and rerunning the same command does not close this gap;
+  drive equivalent journeys/reflow/keyboard checks in those engines or record Ahmed's
+  manual results/explicit exception.
 - **No deployed-host verification.** Headers, caching, TLS, and a fresh
   unauthenticated visit remain unchecked until a target exists.
 - **No field metrics.** See `docs/portfolio/validation/performance.md` §8.
-- **Not built on the pinned Node version.** See §0.
+- The pinned-runtime build gap is closed in Phase 09; see §0 and `validation/phase-09.md`.

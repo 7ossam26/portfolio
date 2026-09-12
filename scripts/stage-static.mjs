@@ -84,11 +84,9 @@ try {
   const siteUrl = resolveSiteUrl();
 
   if (siteUrl) {
-    const lastModified = new Date().toISOString().slice(0, 10);
     const urls = indexableRoutes.map((route) => [
       '  <url>',
       `    <loc>${siteUrl}${route.path}</loc>`,
-      `    <lastmod>${lastModified}</lastmod>`,
       `    <changefreq>${route.changefreq}</changefreq>`,
       `    <priority>${route.priority}</priority>`,
       '  </url>',

@@ -16,7 +16,9 @@ export const repositoryRoot = path.resolve(
   '..',
 );
 export const staticRoot = path.join(repositoryRoot, 'dist');
-export const artifactRoot = path.join(repositoryRoot, 'output', 'playwright', 'phase-08');
+export const artifactRoot = process.env.PORTFOLIO_VERIFY_ARTIFACT_ROOT
+  ? path.resolve(process.env.PORTFOLIO_VERIFY_ARTIFACT_ROOT)
+  : path.join(repositoryRoot, 'output', 'playwright', 'phase-08');
 
 const mimeTypes = new Map([
   ['.css', 'text/css; charset=utf-8'],
@@ -40,6 +42,10 @@ const assetExtensions = new Set(['.css', '.js', '.json', '.woff', '.woff2', '.pn
  * a real 404 status for unknown paths, and a non-HTML body for missing assets.
  */
 export async function startStaticServer() {
+  if (process.env.PORTFOLIO_VERIFY_ORIGIN) {
+    const origin = new URL(process.env.PORTFOLIO_VERIFY_ORIGIN).origin;
+    return { origin, close: async () => {} };
+  }
   const server = createServer(async (request, response) => {
     const url = new URL(request.url ?? '/', 'http://127.0.0.1');
     const decodedPath = decodeURIComponent(url.pathname);

@@ -6,7 +6,7 @@ A demo is a bounded, functional copy of selected original frontend screens conne
 
 It is not the client website, a browser pointed at production, a full duplicate backend, a screenshot with pretend controls, or a freshly invented replacement dashboard. Those distinctions define implementation scope; the public UI only needs a clear Sample data label and simple guidance.
 
-No demo exists yet. The approved design's Preview demo is a presentation preview. Readiness can become true only after the corresponding scenario and quality gates pass.
+The approved design's Preview demo is a presentation preview. All four implemented original-UI demos now have exercised scenario evidence in the Phase 04–08 validation reports. Readiness is tied to those flows; public-host verification remains a separate release gate.
 
 ## 2. Extraction contract
 

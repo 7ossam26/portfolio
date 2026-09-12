@@ -1,0 +1,774 @@
+{
+  "axe": [
+    {
+      "scope": "route:home",
+      "violations": []
+    },
+    {
+      "scope": "route:work-vertex",
+      "violations": []
+    },
+    {
+      "scope": "route:work-autozain",
+      "violations": []
+    },
+    {
+      "scope": "route:work-roya",
+      "violations": []
+    },
+    {
+      "scope": "route:work-ramex",
+      "violations": []
+    },
+    {
+      "scope": "route:not-found",
+      "violations": []
+    },
+    {
+      "scope": "standalone:vertex",
+      "violations": []
+    },
+    {
+      "scope": "standalone:autozain",
+      "violations": []
+    },
+    {
+      "scope": "standalone:roya",
+      "violations": []
+    },
+    {
+      "scope": "standalone:ramex",
+      "violations": []
+    },
+    {
+      "scope": "embedded:vertex",
+      "violations": []
+    },
+    {
+      "scope": "embedded:autozain",
+      "violations": []
+    },
+    {
+      "scope": "embedded:roya",
+      "violations": []
+    },
+    {
+      "scope": "embedded:ramex",
+      "violations": []
+    }
+  ],
+  "keyboard": [
+    {
+      "scope": "home",
+      "order": [
+        {
+          "tag": "a",
+          "text": "Skip to portfolio",
+          "href": "#main-content",
+          "top": 16,
+          "left": 16,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "ah.Ahmed HossamSoftware engineer",
+          "href": "/",
+          "top": 22,
+          "left": 65,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Selected work 04",
+          "href": "/#selected-work",
+          "top": 31,
+          "left": 1074,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Get in touch",
+          "href": "mailto:hossam.working1@gmail.com",
+          "top": 30,
+          "left": 1223,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Explore my work",
+          "href": "#selected-work",
+          "top": 393,
+          "left": 992,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Download CV",
+          "href": "/Ahmed_Hossam_CV.pdf",
+          "top": 393,
+          "left": 1181,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Try demo",
+          "href": "#demo=vertex",
+          "top": 1277,
+          "left": 109,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Read case study",
+          "href": "/work/vertex/",
+          "top": 1277,
+          "left": 252,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "View repository",
+          "href": "https://github.com/7ossam26/ERP-V2",
+          "top": 1277,
+          "left": 436,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "02Automotive marketplace & operation",
+          "href": "/work/autozain/",
+          "top": 1388,
+          "left": 65,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "03Film & TV production financeRoyaPr",
+          "href": "/work/roya/",
+          "top": 1557,
+          "left": 65,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "04Fabric retail & inventoryRamexA sa",
+          "href": "/work/ramex/",
+          "top": 1726,
+          "left": 65,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Let’s talk.",
+          "href": "mailto:hossam.working1@gmail.com",
+          "top": 2042,
+          "left": 65,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "hossam.working1@gmail.com",
+          "href": "mailto:hossam.working1@gmail.com",
+          "top": 1967,
+          "left": 1175,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Download CV",
+          "href": "/Ahmed_Hossam_CV.pdf",
+          "top": 2019,
+          "left": 1252,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "GitHub",
+          "href": "https://github.com/7ossam26",
+          "top": 2071,
+          "left": 1292,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        },
+        {
+          "tag": "a",
+          "text": "Skip to portfolio",
+          "href": "#main-content",
+          "top": 20,
+          "left": 16,
+          "outlineWidth": "2px",
+          "outlineStyle": "solid",
+          "outlineColor": "rgb(232, 176, 154)"
+        }
+      ]
+    }
+  ],
+  "reducedMotion": [
+    {
+      "scrollBehavior": "auto",
+      "buttonTransitionDuration": "0s",
+      "spinnerAnimation": "none",
+      "matches": true,
+      "beforeScroll": 0,
+      "immediatelyAfter": 513,
+      "settled": 513
+    }
+  ],
+  "direction": [
+    {
+      "slug": "vertex",
+      "host": "ltr",
+      "guidance": "Use the prepared recipe to inspect material consumption, fin"
+    },
+    {
+      "slug": "autozain",
+      "host": "ltr",
+      "guidance": "Follow one fictional buyer request from vehicle selection to"
+    },
+    {
+      "slug": "roya",
+      "host": "ltr",
+      "guidance": "Preview how a fictional shooting-week change affects eligibl"
+    },
+    {
+      "slug": "ramex",
+      "host": "ltr",
+      "guidance": "Complete a fictional whole-roll sale and inspect its invento"
+    },
+    {
+      "slug": "roya-toggle",
+      "arabic": {
+        "dir": "rtl",
+        "lang": "ar"
+      },
+      "english": {
+        "dir": "ltr",
+        "lang": "en"
+      }
+    }
+  ],
+  "noJs": [
+    {
+      "route": "home",
+      "heading": "From business rulesto workingsoftware.",
+      "cv": true,
+      "email": true,
+      "workLinks": 4,
+      "noscriptCount": 1
+    },
+    {
+      "route": "work-vertex",
+      "heading": "Vertex ERP",
+      "cv": true,
+      "email": true,
+      "workLinks": 0,
+      "noscriptCount": 1
+    },
+    {
+      "route": "work-autozain",
+      "heading": "AutoZain",
+      "cv": true,
+      "email": true,
+      "workLinks": 0,
+      "noscriptCount": 1
+    },
+    {
+      "route": "work-roya",
+      "heading": "Roya",
+      "cv": true,
+      "email": true,
+      "workLinks": 0,
+      "noscriptCount": 1
+    },
+    {
+      "route": "work-ramex",
+      "heading": "Ramex",
+      "cv": true,
+      "email": true,
+      "workLinks": 0,
+      "noscriptCount": 1
+    },
+    {
+      "demo": "vertex",
+      "present": true,
+      "text": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript.\n        ارجع إلى دراسة حالة Vertex ERP لقراءة نفس السيناريو بالتفصيل.\n      This interactive sample needs Java",
+      "rendered": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Vertex ERP لقراءة نفس السيناريو بالتفصيل.\n\nThis interactive sample needs JavaScript enable"
+    },
+    {
+      "demo": "autozain",
+      "present": true,
+      "text": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript.\n        ارجع إلى دراسة حالة أوتوزين لقراءة نفس السيناريو بالتفصيل.\n      This interactive sample needs JavaScr",
+      "rendered": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة أوتوزين لقراءة نفس السيناريو بالتفصيل.\n\nThis interactive sample needs JavaScript enabled. "
+    },
+    {
+      "demo": "roya",
+      "present": true,
+      "text": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript.\n        ارجع إلى دراسة حالة Roya لقراءة نفس السيناريو بالتفصيل.\n      This interactive sample needs JavaScript",
+      "rendered": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Roya لقراءة نفس السيناريو بالتفصيل.\n\nThis interactive sample needs JavaScript enabled. Ret"
+    },
+    {
+      "demo": "ramex",
+      "present": true,
+      "text": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript.\n        ارجع إلى دراسة حالة Ramex لقراءة نفس السيناريو بالتفصيل.\n      This interactive sample needs JavaScrip",
+      "rendered": "هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Ramex لقراءة نفس السيناريو بالتفصيل.\n\nThis interactive sample needs JavaScript enabled. Re"
+    }
+  ],
+  "standalone": [
+    {
+      "slug": "vertex",
+      "sampleLabel": true,
+      "backHref": "/work/vertex/",
+      "resetLabel": "إعادة الضبط",
+      "artifact": "output/playwright/phase-08/standalone/vertex.png"
+    },
+    {
+      "slug": "autozain",
+      "sampleLabel": true,
+      "backHref": "/work/autozain/",
+      "resetLabel": "Reset",
+      "artifact": "output/playwright/phase-08/standalone/autozain.png"
+    },
+    {
+      "slug": "roya",
+      "sampleLabel": true,
+      "backHref": "/work/roya/",
+      "resetLabel": "إعادة الضبط",
+      "artifact": "output/playwright/phase-08/standalone/roya.png"
+    },
+    {
+      "slug": "ramex",
+      "sampleLabel": true,
+      "backHref": "/work/ramex/",
+      "resetLabel": "Reset",
+      "artifact": "output/playwright/phase-08/standalone/ramex.png"
+    }
+  ],
+  "summary": {
+    "label": "accessibility-keyboard",
+    "total": 62,
+    "passed": 62,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "axe/home",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/work-vertex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/work-autozain",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/work-roya",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/work-ramex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/not-found",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/standalone-vertex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/standalone-autozain",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/standalone-roya",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/standalone-ramex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations",
+        "artifacts": []
+      },
+      {
+        "id": "axe/embedded-vertex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations across host + frame",
+        "artifacts": []
+      },
+      {
+        "id": "axe/embedded-autozain",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations across host + frame",
+        "artifacts": []
+      },
+      {
+        "id": "axe/embedded-roya",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations across host + frame",
+        "artifacts": []
+      },
+      {
+        "id": "axe/embedded-ramex",
+        "passed": true,
+        "detail": "no WCAG 2.1 A/AA violations across host + frame",
+        "artifacts": []
+      },
+      {
+        "id": "keyboard/skip-link-first",
+        "passed": true,
+        "detail": "first Tab stop: \"Skip to portfolio\" (skip-link)",
+        "artifacts": [
+          "output/playwright/phase-08/keyboard/skip-link-focused.png"
+        ]
+      },
+      {
+        "id": "keyboard/visual-order",
+        "passed": true,
+        "detail": "15 tab stops advance down the page within each column (\"ah.Ahmed HossamSoftware engineer\" → \"Selected work 04\" → \"Get in touch\" → \"Explore my work\" → \"Download CV\" → \"Try demo\" → \"Read case study\" → \"View repository\" → \"02Automotive marketplace & operation\" → \"03Film & TV production financeRoyaPr\" → \"04Fabric retail & inventoryRamexA sa\" → \"Let’s talk.\" → \"hossam.working1@gmail.com\" → \"Download CV\" → \"GitHub\")",
+        "artifacts": []
+      },
+      {
+        "id": "keyboard/focus-visible",
+        "passed": true,
+        "detail": "all 15 tab stops render a focus outline",
+        "artifacts": []
+      },
+      {
+        "id": "links/native-anchors",
+        "passed": true,
+        "detail": "case-study anchors: /work/vertex/, /work/autozain/, /work/roya/, /work/ramex/; nested interactive controls: 0",
+        "artifacts": []
+      },
+      {
+        "id": "links/new-tab-rel",
+        "passed": true,
+        "detail": "[{\"href\":\"https://github.com/7ossam26/ERP-V2\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer\"},{\"href\":\"https://github.com/7ossam26\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer\"}]",
+        "artifacts": []
+      },
+      {
+        "id": "links/cv-and-email",
+        "passed": true,
+        "detail": "CV: [{\"href\":\"/Ahmed_Hossam_CV.pdf\",\"download\":true},{\"href\":\"/Ahmed_Hossam_CV.pdf\",\"download\":true}]; email: mailto:hossam.working1@gmail.com, mailto:hossam.working1@gmail.com, mailto:hossam.working1@gmail.com",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/named-vertex",
+        "passed": true,
+        "detail": ":modal=true, accessible name=\"Vertex ERP\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/frame-title-vertex",
+        "passed": true,
+        "detail": "iframe title=\"Vertex ERP sample-data production demo\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/background-inert-vertex",
+        "passed": true,
+        "detail": "focus stayed within the dialog or its frame across 40 Tab presses (button, iframe)",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/close-reachable-vertex",
+        "passed": true,
+        "detail": "Close button focusable: true",
+        "artifacts": []
+      },
+      {
+        "id": "direction/vertex",
+        "passed": true,
+        "detail": "child <html dir=rtl lang=ar computed=rtl; host dialog direction=ltr; child demo control bar=rtl",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/named-autozain",
+        "passed": true,
+        "detail": ":modal=true, accessible name=\"AutoZain\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/frame-title-autozain",
+        "passed": true,
+        "detail": "iframe title=\"AutoZain sample-data contact workflow demo\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/background-inert-autozain",
+        "passed": true,
+        "detail": "focus stayed within the dialog or its frame across 40 Tab presses (button, iframe)",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/close-reachable-autozain",
+        "passed": true,
+        "detail": "Close button focusable: true",
+        "artifacts": []
+      },
+      {
+        "id": "direction/autozain",
+        "passed": true,
+        "detail": "child <html dir=rtl lang=ar computed=rtl; host dialog direction=ltr; child demo control bar=ltr",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/named-roya",
+        "passed": true,
+        "detail": ":modal=true, accessible name=\"Roya\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/frame-title-roya",
+        "passed": true,
+        "detail": "iframe title=\"Roya sample-data budget impact demo\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/background-inert-roya",
+        "passed": true,
+        "detail": "focus stayed within the dialog or its frame across 40 Tab presses (button, iframe)",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/close-reachable-roya",
+        "passed": true,
+        "detail": "Close button focusable: true",
+        "artifacts": []
+      },
+      {
+        "id": "direction/roya",
+        "passed": true,
+        "detail": "child <html dir=rtl lang=ar computed=rtl; host dialog direction=ltr; child demo control bar=ltr",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/named-ramex",
+        "passed": true,
+        "detail": ":modal=true, accessible name=\"Ramex\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/frame-title-ramex",
+        "passed": true,
+        "detail": "iframe title=\"Ramex sample-data roll sale demo\"",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/background-inert-ramex",
+        "passed": true,
+        "detail": "focus stayed within the dialog or its frame across 40 Tab presses (button, iframe)",
+        "artifacts": []
+      },
+      {
+        "id": "dialog/close-reachable-ramex",
+        "passed": true,
+        "detail": "Close button focusable: true",
+        "artifacts": []
+      },
+      {
+        "id": "direction/ramex",
+        "passed": true,
+        "detail": "child <html dir=rtl lang=ar computed=rtl; host dialog direction=ltr; child demo control bar=ltr",
+        "artifacts": []
+      },
+      {
+        "id": "direction/roya-toggle",
+        "passed": true,
+        "detail": "Arabic {\"dir\":\"rtl\",\"lang\":\"ar\"} → English {\"dir\":\"ltr\",\"lang\":\"en\"}",
+        "artifacts": [
+          "output/playwright/phase-08/direction/roya-standalone-ar.png",
+          "output/playwright/phase-08/direction/roya-standalone-en.png"
+        ]
+      },
+      {
+        "id": "reduced-motion/preference-detected",
+        "passed": true,
+        "detail": "prefers-reduced-motion matched: true",
+        "artifacts": []
+      },
+      {
+        "id": "reduced-motion/no-smooth-scroll",
+        "passed": true,
+        "detail": "documentElement scroll-behavior: auto",
+        "artifacts": []
+      },
+      {
+        "id": "reduced-motion/transitions-off",
+        "passed": true,
+        "detail": "button transition-duration: 0s",
+        "artifacts": []
+      },
+      {
+        "id": "reduced-motion/animations-off",
+        "passed": true,
+        "detail": "host spinner animation-name: none",
+        "artifacts": []
+      },
+      {
+        "id": "reduced-motion/jump-scroll",
+        "passed": true,
+        "detail": "scrollY 0 → 513 after 60ms → 513 after 600ms (no animated interpolation)",
+        "artifacts": []
+      },
+      {
+        "id": "reduced-motion/contrast-case",
+        "passed": true,
+        "detail": "with no-preference the root scroll-behavior is \"smooth\", so the reduce rule is what removes it",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/home",
+        "passed": true,
+        "detail": "heading=\"From business rulesto workingsoftware.\", CV link=true, email link=true, work links=4",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/work-vertex",
+        "passed": true,
+        "detail": "heading=\"Vertex ERP\", CV link=true, email link=true, work links=0",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/work-autozain",
+        "passed": true,
+        "detail": "heading=\"AutoZain\", CV link=true, email link=true, work links=0",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/work-roya",
+        "passed": true,
+        "detail": "heading=\"Roya\", CV link=true, email link=true, work links=0",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/work-ramex",
+        "passed": true,
+        "detail": "heading=\"Ramex\", CV link=true, email link=true, work links=0",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/home-capture",
+        "passed": true,
+        "detail": "captured the homepage with scripting disabled",
+        "artifacts": [
+          "output/playwright/phase-08/no-js/home-no-js.png"
+        ]
+      },
+      {
+        "id": "no-js/demo-vertex",
+        "passed": true,
+        "detail": "fallback shown: \"هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Vertex ERP لقراءة نفس السيناريو بالتفصيل. This interactive sample needs JavaScript enable\"",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/demo-autozain",
+        "passed": true,
+        "detail": "fallback shown: \"هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة أوتوزين لقراءة نفس السيناريو بالتفصيل. This interactive sample needs JavaScript enabled. \"",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/demo-roya",
+        "passed": true,
+        "detail": "fallback shown: \"هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Roya لقراءة نفس السيناريو بالتفصيل. This interactive sample needs JavaScript enabled. Ret\"",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/demo-ramex",
+        "passed": true,
+        "detail": "fallback shown: \"هذه التجربة التفاعلية تحتاج إلى تفعيل JavaScript. ارجع إلى دراسة حالة Ramex لقراءة نفس السيناريو بالتفصيل. This interactive sample needs JavaScript enabled. Re\"",
+        "artifacts": []
+      },
+      {
+        "id": "no-js/demo-capture",
+        "passed": true,
+        "detail": "captured a demo route with scripting disabled",
+        "artifacts": [
+          "output/playwright/phase-08/no-js/demo-ramex-no-js.png"
+        ]
+      },
+      {
+        "id": "standalone/vertex",
+        "passed": true,
+        "detail": "sample label=true, back=\"/work/vertex/\", reset=\"إعادة الضبط\"",
+        "artifacts": [
+          "output/playwright/phase-08/standalone/vertex.png"
+        ]
+      },
+      {
+        "id": "standalone/autozain",
+        "passed": true,
+        "detail": "sample label=true, back=\"/work/autozain/\", reset=\"Reset\"",
+        "artifacts": [
+          "output/playwright/phase-08/standalone/autozain.png"
+        ]
+      },
+      {
+        "id": "standalone/roya",
+        "passed": true,
+        "detail": "sample label=true, back=\"/work/roya/\", reset=\"إعادة الضبط\"",
+        "artifacts": [
+          "output/playwright/phase-08/standalone/roya.png"
+        ]
+      },
+      {
+        "id": "standalone/ramex",
+        "passed": true,
+        "detail": "sample label=true, back=\"/work/ramex/\", reset=\"Reset\"",
+        "artifacts": [
+          "output/playwright/phase-08/standalone/ramex.png"
+        ]
+      }
+    ]
+  }
+}

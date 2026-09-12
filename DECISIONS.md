@@ -20,6 +20,8 @@
 | D16 | Ramex V1 demonstrates a complete selected-roll sale, not a partial-roll quantity decrement | Changed 11 September 2026 after pinned-source audit; supersedes the partial-quantity detail proposed under D12 |
 | D17 | Support Node `>=22.19.0 <23` and pin `22.23.2` for builds | Changed 11 September 2026 after Phase 01 dependency resolution |
 | D18 | Defer further browser testing to Ahmed's manual review after all phases; do not run browser automation again unless he explicitly requests it | Confirmed by Ahmed on 12 September 2026 |
+| D19 | Phase 08 is re-authorised to run browser testing, Chromium only; Firefox/WebKit stay an open gap | Confirmed by Ahmed on 12 September 2026; narrows D18 for this phase only |
+| D20 | The public origin is supplied at build time through `PORTFOLIO_SITE_URL`; no domain is hard-coded | Implementation of D14 during Phase 08 |
 
 ### D16 evidence and impact
 
@@ -41,5 +43,19 @@
 - Evidence: Ahmed explicitly asked Codex not to run another browser test after Phase 03 because he will manually test the portfolio after all phases and report any problems.
 - Affected work: Phases 04–09 and any phase prompt or acceptance item that otherwise asks Codex to open a browser, run Playwright, capture browser screenshots, or claim browser coverage.
 - Reason: browser review is reserved for Ahmed's final manual pass. Codex should continue non-browser typechecking, production builds, static/asset checks, and focused domain tests, and must record browser gates as deferred rather than passed. A later explicit instruction from Ahmed can re-authorize a specific browser check.
+
+### D19 evidence and impact
+
+- Date: 12 September 2026.
+- Evidence: the Phase 08 prompt states that the phase "explicitly requests full visual, keyboard, accessibility, and end-to-end browser testing". This directly contradicts D18, which was written to override exactly that kind of phase instruction. The conflict was raised before work started and Ahmed chose to run the tests with Chromium only, and to record the two missing engines as a gap rather than download roughly 250 MB of additional browser binaries.
+- Affected work: Phase 08 only. D18 still governs Phase 09 and any later phase unless Ahmed re-authorises again.
+- Reason: the Phase 08 exit gate is unreachable without a browser, and D18's own text allows a later explicit instruction to re-authorise a specific check. Chromium-only keeps the cost proportionate; Firefox and WebKit are recorded as unverified in `docs/portfolio/validation/phase-08.md` §10, not as passed.
+
+### D20 evidence and impact
+
+- Date: 12 September 2026.
+- Evidence: D14 leaves the deployment target unselected, but Phase 08 required production metadata, sitemap, and robots behaviour. Hard-coding any placeholder domain would put a false canonical URL into the artifact.
+- Affected work: `scripts/site-config.mjs`, `apps/portfolio/astro.config.mjs`, `apps/portfolio/src/layouts/BaseLayout.astro`, `scripts/stage-static.mjs`, `scripts/check-static.mjs`.
+- Reason: with `PORTFOLIO_SITE_URL` unset the build stays in preview mode — `noindex,nofollow` on every page, no canonical, no social metadata, a `Disallow: /` robots.txt, and no sitemap. Supplying a valid https origin switches the five public routes to `index,follow` with canonical URLs and emits a sitemap that excludes demo and 404 routes. `check:static` verifies whichever mode is configured, so a half-configured build cannot ship. Demo documents stay `noindex` in both modes. This resolves how the domain is applied; it does not resolve which domain, which stays open under D14.
 
 When a decision changes, append its date, evidence, affected files/phases, and reason. Retain the previous rationale where it helps explain the change. Do not use this document to silently overrule a newer user instruction.

@@ -23,9 +23,9 @@ export function BudgetView({ budget, language }: { budget: BudgetSnapshot; langu
         <strong className="section-total">{formatPiastres(budget.totalPlannedPiastres)}</strong>
       </header>
 
-      <div className="budget-table" role="table" aria-label={copy(language, 'budget')}>
+      <div className="budget-table" role="list" aria-label={copy(language, 'budget')}>
         {budget.lines.map((line) => (
-          <article className="budget-row" role="row" key={line.id} data-line-id={line.id}>
+          <article className="budget-row" role="listitem" key={line.id} data-line-id={line.id}>
             <div className="line-number" aria-hidden="true">{String(line.lineNumber).padStart(2, '0')}</div>
             <div className="line-copy">
               <span className="department-name">

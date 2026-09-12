@@ -20,10 +20,14 @@ export function ExecuteProductionModal({
   onClose,
   onSuccess,
 }: Props) {
+  // The sample branch has a single warehouse, so an empty default would make the
+  // visitor resolve a one-option choice before the guided flow can proceed. The
+  // control and its validation are unchanged; only the starting value is filled.
+  const onlyWarehouseId = warehouses.length === 1 ? String(warehouses[0].id) : '';
   const [targetQty, setTargetQty] = useState('');
   const [actualQty, setActualQty] = useState('');
-  const [sourceWarehouseId, setSourceWarehouseId] = useState('');
-  const [destWarehouseId, setDestWarehouseId] = useState('');
+  const [sourceWarehouseId, setSourceWarehouseId] = useState(onlyWarehouseId);
+  const [destWarehouseId, setDestWarehouseId] = useState(onlyWarehouseId);
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -112,10 +116,10 @@ export function ExecuteProductionModal({
             <div className="bg-green-100 p-2.5 rounded-xl text-green-600"><Icon name="factory" className="size-6" /></div>
             <div>
               <h2 id="execute-production-title" className="text-lg font-bold text-text-light">تنفيذ إنتاج</h2>
-              <p className="text-sm text-gray-500">{bom.name}</p>
+              <p className="text-sm text-gray-600">{bom.name}</p>
             </div>
           </div>
-          <button type="button" onClick={onClose} disabled={loading} aria-label="إغلاق نافذة تنفيذ الإنتاج" className="icon-button text-gray-500">
+          <button type="button" onClick={onClose} disabled={loading} aria-label="إغلاق نافذة تنفيذ الإنتاج" className="icon-button text-gray-600">
             <Icon name="close" className="size-5" />
           </button>
         </div>
@@ -132,7 +136,7 @@ export function ExecuteProductionModal({
             </label>
             <div className="space-y-1.5">
               <span className="block text-sm font-bold text-gray-700">الهالك (تلقائي)</span>
-              <div className={`rounded-xl border py-2.5 px-4 text-center font-bold ${wasteQty > 0 ? 'border-red-300 bg-red-50 text-red-600' : 'border-gray-200 bg-gray-50 text-gray-400'}`}>
+              <div className={`rounded-xl border py-2.5 px-4 text-center font-bold ${wasteQty > 0 ? 'border-red-300 bg-red-50 text-red-600' : 'border-gray-200 bg-gray-50 text-gray-500'}`}>
                 {wasteQty > 0 ? wasteQty.toFixed(3) : '—'}
               </div>
             </div>
@@ -159,12 +163,12 @@ export function ExecuteProductionModal({
             <span className="block text-sm font-bold text-gray-700">المواد الخام المستهلكة</span>
             <div className="rounded-xl border border-gray-200 overflow-x-auto">
               <table className="w-full min-w-[34rem] text-sm" data-testid="material-review">
-                <thead className="bg-gray-50 text-gray-500"><tr><th className="text-right py-2 px-3">المادة</th><th className="text-center py-2 px-3">الكمية المطلوبة</th><th className="text-center py-2 px-3">الرصيد المتاح</th><th className="text-center py-2 px-3">الحالة</th></tr></thead>
+                <thead className="bg-gray-50 text-gray-600"><tr><th className="text-right py-2 px-3">المادة</th><th className="text-center py-2 px-3">الكمية المطلوبة</th><th className="text-center py-2 px-3">الرصيد المتاح</th><th className="text-center py-2 px-3">الحالة</th></tr></thead>
                 <tbody>{materialRows.map((row) => (
                   <tr key={row.itemId} className="border-t border-gray-100">
                     <td className="py-2.5 px-3 font-medium text-text-light">{row.itemName}</td>
-                    <td className="py-2.5 px-3 text-center font-bold text-primary" data-testid={`required-${row.itemId}`}>{targetQty ? row.required.toFixed(4) : '—'} <small className="text-gray-400">{row.unit}</small></td>
-                    <td className="py-2.5 px-3 text-center">{row.stock.toFixed(4)} <small className="text-gray-400">{row.unit}</small></td>
+                    <td className="py-2.5 px-3 text-center font-bold text-primary" data-testid={`required-${row.itemId}`}>{targetQty ? row.required.toFixed(4) : '—'} <small className="text-gray-500">{row.unit}</small></td>
+                    <td className="py-2.5 px-3 text-center">{row.stock.toFixed(4)} <small className="text-gray-500">{row.unit}</small></td>
                     <td className="py-2.5 px-3 text-center">{targetQty ? (
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${row.insufficient ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
                         {row.insufficient ? 'رصيد غير كافٍ' : 'متاح'}

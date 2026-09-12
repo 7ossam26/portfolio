@@ -1,0 +1,583 @@
+{
+  "lifecycle": [
+    {
+      "slug": "vertex",
+      "cycles": [
+        {
+          "cycle": 1,
+          "readyMs": 134,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 2,
+          "readyMs": 122,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 3,
+          "readyMs": 128,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "autozain",
+      "cycles": [
+        {
+          "cycle": 1,
+          "readyMs": 169,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 2,
+          "readyMs": 172,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 3,
+          "readyMs": 166,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "roya",
+      "cycles": [
+        {
+          "cycle": 1,
+          "readyMs": 155,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 2,
+          "readyMs": 171,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 3,
+          "readyMs": 179,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        }
+      ],
+      "errors": []
+    },
+    {
+      "slug": "ramex",
+      "cycles": [
+        {
+          "cycle": 1,
+          "readyMs": 174,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 2,
+          "readyMs": 172,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        },
+        {
+          "cycle": 3,
+          "readyMs": 180,
+          "sessionChanged": true,
+          "dialogOpen": false,
+          "frames": 0,
+          "hash": "",
+          "htmlLocked": false
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "scenarios": [
+    {
+      "slug": "vertex",
+      "totalCost": "120.00 ج.م",
+      "unitCost": "30.00 ج.م",
+      "inventory": "الصنف التصنيف الكمية المتاحة سعر التكلفة (الأخير) إجمالي التكلفة الحالة خامة تجريبية أ DEMO-MAT-A مواد خام تجريبية 92 kg 10.00 ج.م 920.00 ج.م متوفر خامة تجريبية",
+      "inventoryAfterReset": "الصنف التصنيف الكمية المتاحة سعر التكلفة (الأخير) إجمالي التكلفة الحالة خامة تجريبية أ DEMO-MAT-A مواد خام تجريبية 100 kg 10.00 ج.م 1000.00 ج.م متوفر خامة تجريب"
+    },
+    {
+      "slug": "autozain",
+      "buyerStatus": "pending",
+      "acceptedStatus": "accepted",
+      "completedStatus": "completed",
+      "buyerAfter": "completed",
+      "afterReset": "none"
+    },
+    {
+      "slug": "roya",
+      "savedWeeksBefore": "4",
+      "savedWeeksAfter": "4",
+      "impact": "تعديل أسابيع التصوير اعرض البنود التي سيُعاد حسابها قبل الحفظ. × الحالي 4 القيمة الجديدة معاينة التأثير قبل 40,000 EGP بعد 50,000 EGP Δ +10,000 EGP الإجمالي الجديد يتجاوز حد ميزانية المشروع. البند الح"
+    },
+    {
+      "slug": "ramex",
+      "invoice": "R Ramex فاتورة بيع — بيانات عينة رقم الفاتورة DEMO-2026-0701 12/09/2026 · 10:30 العميل عميل نقدي — بيانات عينة كود العميل CUS-DEMO-041 الكاشير مريم حسن — عينة الوردية #707 الصنف رقم التوب الكمية المحف",
+      "stock": "سجل الأتواب المخزن: المحل · بيانات تجريبية 2 سجلات التوب القماش / اللون الوحدة الكمية السعر المرجعي المخزن الحالة RMX-M-0701 DEMO0701001 كتان سادة رملي · SND-12 متر 30.000 185.00 المحل مباع · غير متاح",
+      "afterReset": "seed"
+    }
+  ],
+  "failure": [
+    {
+      "loadingImmediately": "loading",
+      "errorState": {
+        "title": "The sample could not be prepared.",
+        "copy": "The application did not become ready within the expected time.",
+        "retryVisible": true,
+        "closeVisible": true,
+        "frames": 0,
+        "spinnerStillShown": false
+      },
+      "demoRequests": 6
+    },
+    {
+      "probes": [
+        {
+          "name": "stale-session",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "wrong-demo-id",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "wrong-channel",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "wrong-version",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "unknown-type",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "not-an-envelope",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "oversized-guidance",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        },
+        {
+          "name": "foreign-window",
+          "state": "ready",
+          "guidanceChanged": false,
+          "frames": 1
+        }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "historyBefore": 2,
+      "historyAfterOpen": {
+        "length": 3,
+        "hash": "#demo=roya"
+      },
+      "afterBack": {
+        "open": false,
+        "hash": "",
+        "frames": 0
+      },
+      "afterForward": {
+        "open": true,
+        "hash": "#demo=roya"
+      },
+      "afterDouble": {
+        "length": 3,
+        "frames": 1
+      }
+    }
+  ],
+  "focus": [
+    {
+      "scrollBefore": 3465,
+      "hostOpen": false,
+      "scrollY": 3465,
+      "activeText": "Try Ramex demo",
+      "activeIsTrigger": true
+    },
+    {
+      "scrollBeforeClose": 3465,
+      "scrollY": 3465,
+      "activeIsTrigger": true
+    }
+  ],
+  "summary": {
+    "label": "demo-journeys",
+    "total": 47,
+    "passed": 47,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "lifecycle/vertex",
+        "passed": true,
+        "detail": "3 cycles: #1 ready 134ms, new session true, frames after close 0, hash \"\", scroll lock false | #2 ready 122ms, new session true, frames after close 0, hash \"\", scroll lock false | #3 ready 128ms, new session true, frames after close 0, hash \"\", scroll lock false",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle-console/vertex",
+        "passed": true,
+        "detail": "no console errors across three cycles",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle/autozain",
+        "passed": true,
+        "detail": "3 cycles: #1 ready 169ms, new session true, frames after close 0, hash \"\", scroll lock false | #2 ready 172ms, new session true, frames after close 0, hash \"\", scroll lock false | #3 ready 166ms, new session true, frames after close 0, hash \"\", scroll lock false",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle-console/autozain",
+        "passed": true,
+        "detail": "no console errors across three cycles",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle/roya",
+        "passed": true,
+        "detail": "3 cycles: #1 ready 155ms, new session true, frames after close 0, hash \"\", scroll lock false | #2 ready 171ms, new session true, frames after close 0, hash \"\", scroll lock false | #3 ready 179ms, new session true, frames after close 0, hash \"\", scroll lock false",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle-console/roya",
+        "passed": true,
+        "detail": "no console errors across three cycles",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle/ramex",
+        "passed": true,
+        "detail": "3 cycles: #1 ready 174ms, new session true, frames after close 0, hash \"\", scroll lock false | #2 ready 172ms, new session true, frames after close 0, hash \"\", scroll lock false | #3 ready 180ms, new session true, frames after close 0, hash \"\", scroll lock false",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle-console/ramex",
+        "passed": true,
+        "detail": "no console errors across three cycles",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/vertex-keyboard-disclosure",
+        "passed": true,
+        "detail": "Enter on the production-order disclosure collapsed it (true) and Enter again reopened it",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/vertex-production",
+        "passed": true,
+        "detail": "total cost \"120.00 ج.م\", unit cost \"30.00 ج.م\"; stock row text contains 92 / 48 / 4 → true",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/vertex-production-result.png"
+        ]
+      },
+      {
+        "id": "scenario/vertex-reset",
+        "passed": true,
+        "detail": "stock after reset contains the 100 / 50 seed: true",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/vertex-insufficient-stock",
+        "passed": true,
+        "detail": "requesting 900 units marks the materials short (المادة الكمية المطلوبة الرصيد المتاح الحالة خامة تجريبية أ 1800.0000 kg 100.0000), the execute control is disabled (true), and stock is still the 100 / 50 seed (true)",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/vertex-insufficient-stock.png"
+        ]
+      },
+      {
+        "id": "scenario/autozain-request-created",
+        "passed": true,
+        "detail": "buyer view request status after submit: \"pending\"",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/autozain-buyer-pending.png"
+        ]
+      },
+      {
+        "id": "scenario/autozain-accept-complete",
+        "passed": true,
+        "detail": "pending → \"accepted\" → \"completed\"",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/autozain-staff-outcome.png"
+        ]
+      },
+      {
+        "id": "scenario/autozain-continuity",
+        "passed": true,
+        "detail": "buyer view reports the same completed state: \"completed\"",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/autozain-reset",
+        "passed": true,
+        "detail": "request status after reset: \"none\"",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/roya-impact",
+        "passed": true,
+        "detail": "preview shows the weekly line 20,000 → 30,000, the total 40,000 → 50,000, and the fixed line unchanged: true",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/roya-impact-preview.png"
+        ]
+      },
+      {
+        "id": "scenario/roya-cap-warning",
+        "passed": true,
+        "detail": "the preview warns that the new total exceeds the cap, and the project cap reads 48,000 (true)",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/roya-no-mutation",
+        "passed": true,
+        "detail": "saved weeks 4 → 4; budget table identical after cancel: true",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/ramex-invalid-precision",
+        "passed": true,
+        "detail": "payment disabled=true with the visible reason \"أدخل سعرًا صحيحًا بدقة قرشين، مثل 185.00\" (line total \"إجمالي السطر — EGP\")",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/ramex-invalid-price.png"
+        ]
+      },
+      {
+        "id": "scenario/ramex-valid-price-enables",
+        "passed": true,
+        "detail": "restoring a two-decimal price clears the message and re-enables payment",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/ramex-invoice-snapshot",
+        "passed": true,
+        "detail": "invoice preserves 30.000 and totals EGP 5,550: true — \"R Ramex فاتورة بيع — بيانات عينة رقم الفاتورة DEMO-2026-0701 12/09/2026 · 10:30 العميل عميل نقدي — بيانات عينة كود العمي\"",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/ramex-invoice.png"
+        ]
+      },
+      {
+        "id": "scenario/ramex-independent-rolls",
+        "passed": true,
+        "detail": "the untouched RMX-M-0702 roll still reads 24.750: true",
+        "artifacts": [
+          "output/playwright/phase-08/journeys/ramex-stock-result.png"
+        ]
+      },
+      {
+        "id": "scenario/ramex-reset",
+        "passed": true,
+        "detail": "sale state after reset: \"seed\"",
+        "artifacts": []
+      },
+      {
+        "id": "failure/loading-immediate",
+        "passed": true,
+        "detail": "the host enters \"loading\" on click, before any readiness message",
+        "artifacts": []
+      },
+      {
+        "id": "failure/timeout-recovery",
+        "passed": true,
+        "detail": "after 12019ms the host showed \"The sample could not be prepared.\" / \"The application did not become ready within the expected time.\" with Retry visible=true, torn-down frames=0",
+        "artifacts": [
+          "output/playwright/phase-08/failure/timeout-error.png"
+        ]
+      },
+      {
+        "id": "failure/timeout-threshold",
+        "passed": true,
+        "detail": "the documented 12-second readiness threshold fired at 12019ms",
+        "artifacts": []
+      },
+      {
+        "id": "failure/retry-succeeds",
+        "passed": true,
+        "detail": "Retry started a fresh session that reached ready",
+        "artifacts": [
+          "output/playwright/phase-08/failure/retry-recovered.png"
+        ]
+      },
+      {
+        "id": "failure/portfolio-survives",
+        "passed": true,
+        "detail": "after the failure the page still renders \"Roya\" and the dialog is closed",
+        "artifacts": []
+      },
+      {
+        "id": "failure/child-error",
+        "passed": true,
+        "detail": "host surfaced the child's safe message: \"The local sample data could not be prepared.\"",
+        "artifacts": [
+          "output/playwright/phase-08/failure/child-error.png"
+        ]
+      },
+      {
+        "id": "failure/stale-and-forged-messages",
+        "passed": true,
+        "detail": "all 8 invalid envelopes were ignored: stale-session=ready, wrong-demo-id=ready, wrong-channel=ready, wrong-version=ready, unknown-type=ready, not-an-envelope=ready, oversized-guidance=ready, foreign-window=ready",
+        "artifacts": []
+      },
+      {
+        "id": "history/one-entry-per-open",
+        "passed": true,
+        "detail": "history 2 → 3, hash \"#demo=roya\"",
+        "artifacts": []
+      },
+      {
+        "id": "history/back-closes",
+        "passed": true,
+        "detail": "Back closed the demo and removed the hash: open=false, hash=\"\", frames=0",
+        "artifacts": []
+      },
+      {
+        "id": "history/forward-reopens",
+        "passed": true,
+        "detail": "Forward reopened it: open=true, hash=\"#demo=roya\"",
+        "artifacts": []
+      },
+      {
+        "id": "history/no-duplicate-frames",
+        "passed": true,
+        "detail": "after a repeated activation there is still exactly 1 frame (history 3 → 3)",
+        "artifacts": []
+      },
+      {
+        "id": "history/direct-entry",
+        "passed": true,
+        "detail": "a direct #demo=ramex URL opened the demo: true",
+        "artifacts": [
+          "output/playwright/phase-08/history/direct-entry.png"
+        ]
+      },
+      {
+        "id": "history/direct-close-stays",
+        "passed": true,
+        "detail": "closing direct entry stayed on /work/ramex/ (\"Ramex\") and removed the hash",
+        "artifacts": []
+      },
+      {
+        "id": "history/unknown-slug:not-a-demo",
+        "passed": true,
+        "detail": "\"not-a-demo\" showed ordinary page content (\"Ramex\") with no frame",
+        "artifacts": []
+      },
+      {
+        "id": "history/unknown-slug:host-harness",
+        "passed": true,
+        "detail": "\"host-harness\" showed ordinary page content (\"Ramex\") with no frame",
+        "artifacts": []
+      },
+      {
+        "id": "history/unknown-slug:../../etc/passwd",
+        "passed": true,
+        "detail": "\"../../etc/passwd\" showed ordinary page content (\"Ramex\") with no frame",
+        "artifacts": []
+      },
+      {
+        "id": "history/unknown-slug:https://example.com",
+        "passed": true,
+        "detail": "\"https://example.com\" showed ordinary page content (\"Ramex\") with no frame",
+        "artifacts": []
+      },
+      {
+        "id": "escape/inner-overlay-first",
+        "passed": true,
+        "detail": "inner overlay open=true; after Escape inner=false, host still open=true",
+        "artifacts": [
+          "output/playwright/phase-08/focus/after-inner-escape.png"
+        ]
+      },
+      {
+        "id": "escape/closes-host",
+        "passed": true,
+        "detail": "a second Escape closed the host: open=false",
+        "artifacts": []
+      },
+      {
+        "id": "focus/returns-to-trigger",
+        "passed": true,
+        "detail": "focus returned to the opener (\"Try Ramex demo\"): true",
+        "artifacts": []
+      },
+      {
+        "id": "focus/scroll-restored",
+        "passed": true,
+        "detail": "scrollY 3465 before opening → 3465 after closing",
+        "artifacts": []
+      },
+      {
+        "id": "focus/close-button-restores",
+        "passed": true,
+        "detail": "Close returned focus to the trigger (true) and scroll 3465 → 3465",
+        "artifacts": []
+      },
+      {
+        "id": "lifecycle/single-active-demo",
+        "passed": true,
+        "detail": "switching demos by hash leaves 1 frame(s); host title \"Ramex\"",
+        "artifacts": []
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Roll, SalePreview } from '../domain/types';
-import { formatMoney, formatQuantity, unitLabel } from '../format';
+import { formatMoney, formatQuantity, parseMoneyToPiastres, unitLabel } from '../format';
 
 interface Props {
   rolls: readonly Roll[];
@@ -14,6 +14,9 @@ interface Props {
 
 export function PosView({ rolls, selectedRoll, price, preview, onPriceChange, onSelectRoll, onPay }: Props) {
   const [query, setQuery] = useState('');
+  // The pay control is disabled while the price is unparseable; say why instead of
+  // leaving the visitor with a dead button and an em dash line total.
+  const priceInvalid = selectedRoll !== null && parseMoneyToPiastres(price) === null;
   const shownRolls = rolls.filter((roll) => roll.status === 'in_stock' && `${roll.fabricNameAr} ${roll.rollSerial} ${roll.barcode}`.toLowerCase().includes(query.trim().toLowerCase()));
 
   return (
@@ -52,7 +55,8 @@ export function PosView({ rolls, selectedRoll, price, preview, onPriceChange, on
             <div className="cart-line-heading"><div><h3>{selectedRoll.fabricNameAr}</h3><p>{selectedRoll.brandAr}</p></div><span dir="ltr">{selectedRoll.rollSerial}</span></div>
             <div className="chips"><span>{selectedRoll.colorAr}</span><span>{selectedRoll.widthCm} سم</span></div>
             <div className="locked-quantity"><span><b>الكمية المباعة</b><small>مأخوذة من التوب الكامل</small></span><strong dir="ltr">{formatQuantity(selectedRoll.quantityMilliunits)} {unitLabel(selectedRoll.unit)}</strong><i aria-label="للقراءة فقط">قفل</i></div>
-            <label className="field-label">السعر النهائي / {unitLabel(selectedRoll.unit)}<input dir="ltr" inputMode="decimal" value={price} onChange={(event) => onPriceChange(event.target.value)} aria-label={`السعر النهائي لكل ${unitLabel(selectedRoll.unit)}`} /></label>
+            <label className="field-label">السعر النهائي / {unitLabel(selectedRoll.unit)}<input dir="ltr" inputMode="decimal" value={price} onChange={(event) => onPriceChange(event.target.value)} aria-label={`السعر النهائي لكل ${unitLabel(selectedRoll.unit)}`} aria-invalid={priceInvalid} aria-describedby={priceInvalid ? 'price-format-error' : undefined} /></label>
+            {priceInvalid ? <p className="field-error" id="price-format-error" role="alert">أدخل سعرًا صحيحًا بدقة قرشين، مثل 185.00</p> : null}
             <div className="line-total"><span>إجمالي السطر</span><strong dir="ltr">{preview ? formatMoney(preview.totalPiastres) : '—'} EGP</strong></div>
           </article>
         </>}

@@ -5,12 +5,23 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  /** Case studies and the homepage are indexable; 404 and previews never are. */
+  indexable?: boolean;
 }
 
 const {
   title = 'Ahmed Hossam — Software Engineer',
   description = 'Ahmed Hossam — full-stack software engineer. Selected work in retail operations, automotive marketplaces, production finance, and inventory.',
+  indexable = true,
 } = Astro.props;
+
+// Astro.site is only set once a real PORTFOLIO_SITE_URL is supplied. Until then the
+// build stays in preview mode: no canonical URL, no social metadata, always noindex.
+const siteUrl = Astro.site;
+// A non-indexable page (the 404) gets neither a canonical URL nor social metadata:
+// it is an error response, not a destination worth sharing.
+const canonical = siteUrl && indexable ? new URL(Astro.url.pathname, siteUrl).href : null;
+const robots = siteUrl && indexable ? 'index,follow' : 'noindex,nofollow';
 ---
 
 <!doctype html>
@@ -21,8 +32,22 @@ const {
     <meta name="theme-color" content="#111516" />
     <meta name="color-scheme" content="dark" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content={robots} />
     <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && (
+      <>
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Ahmed Hossam" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:locale" content="en" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+      </>
+    )}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>

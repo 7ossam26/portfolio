@@ -63,6 +63,9 @@ const serializedTargets = JSON.stringify(hostTargets).replaceAll('<', '\\u003c')
       </div>
       <div class="demo-host-frame-region" data-demo-frame-region></div>
     </div>
+    <!-- Tabbing out of the same-origin frame drops focus onto the parent document
+         instead of wrapping inside the modal, so the cycle is closed explicitly. -->
+    <div class="demo-host-focus-guard" tabindex="0" data-demo-focus-guard="end" aria-hidden="true"></div>
   </div>
 </dialog>
 
@@ -111,9 +114,10 @@ const serializedTargets = JSON.stringify(hostTargets).replaceAll('<', '\\u003c')
   const closeButton = dialog.querySelector<HTMLButtonElement>('[data-demo-close]');
   const resetButton = dialog.querySelector<HTMLButtonElement>('[data-demo-reset]');
   const retryButton = dialog.querySelector<HTMLButtonElement>('[data-demo-retry]');
+  const endFocusGuard = dialog.querySelector<HTMLElement>('[data-demo-focus-guard="end"]');
 
   if (!titleElement || !guidanceElement || !stateLabel || !stateTitle || !stateCopy
-    || !frameRegion || !closeButton || !resetButton || !retryButton) {
+    || !frameRegion || !closeButton || !resetButton || !retryButton || !endFocusGuard) {
     throw new Error('Demo host controls are incomplete.');
   }
 
@@ -398,6 +402,19 @@ const serializedTargets = JSON.stringify(hostTargets).replaceAll('<', '\\u003c')
     );
     opener = trigger;
     openHost(target, { mode, historyKey: key, trigger });
+  });
+
+  // Closing the focus cycle: Tab past the frame lands on the guard, which sends
+  // focus back to Close. A focusin fallback catches anything that still escapes.
+  endFocusGuard.addEventListener('focus', () => {
+    if (dialog.open) closeButton.focus();
+  });
+
+  document.addEventListener('focusin', (event) => {
+    if (!dialog.open) return;
+    const target = event.target;
+    if (target instanceof Node && dialog.contains(target)) return;
+    closeButton.focus();
   });
 
   closeButton.addEventListener('click', requestClose);

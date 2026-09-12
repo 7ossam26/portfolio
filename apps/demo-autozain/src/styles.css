@@ -76,7 +76,7 @@
   --surface: #ffffff;
   --text-primary: #1a1a2e;
   --text-secondary: #5f6774;
-  --text-muted: #7b8492;
+  --text-muted: #69707c;
   --border: #dfe3e8;
   --error: #d52f38;
 }
@@ -199,7 +199,7 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 .car-card:hover .car-card-image > img { transform: scale(1.025); }
 .favorite-button { position: absolute; top: 12px; left: 12px; width: 42px; height: 42px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.76); border-radius: 999px; color: var(--text-secondary); background: rgba(255,255,255,.9); box-shadow: 0 2px 7px rgba(17,24,39,.14); }
 .favorite-button.static { position: static; flex: 0 0 auto; border-color: var(--border); box-shadow: none; }
-.sample-image-tag { position: absolute; right: 10px; bottom: 10px; padding: 4px 8px; border-radius: 999px; color: #fff; background: rgba(17,21,22,.74); font-size: 10px; }
+.sample-image-tag { position: absolute; right: 10px; bottom: 10px; padding: 4px 8px; border-radius: 999px; color: #fff; background: rgba(17,21,22,.74); font-size: 11px; }
 .car-card-body { display: flex; flex-direction: column; flex: 1; padding: 17px; }
 .car-card h2 { margin: 0; font-size: 18px; }
 .price { margin: 5px 0 0; color: var(--primary-dark); font-size: 21px; font-weight: 700; }
@@ -235,7 +235,7 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 .specs h2, .additional-info h2, .history-card h2, .event-card h2 { margin: 0 0 14px; font-size: 17px; }
 .spec-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .spec-grid span { display: grid; gap: 3px; padding: 12px; color: var(--text-primary); background: var(--background); border-radius: 8px; font-weight: 600; }
-.spec-grid small { color: var(--text-muted); font-size: 10px; font-weight: 500; }
+.spec-grid small { color: var(--text-muted); font-size: 11px; font-weight: 500; }
 .additional-info p { margin: 0; color: var(--text-secondary); line-height: 1.8; }
 .contact-card { position: sticky; top: 136px; display: grid; justify-items: start; gap: 10px; padding: 22px; }
 .contact-card > svg { width: 34px; height: 34px; color: var(--primary); }
@@ -318,7 +318,7 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 .request-history-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; background: var(--background); border-radius: 8px; }
 .request-history-row > div { display: grid; min-width: 0; }
 .request-history-row span { color: var(--text-muted); font-size: 11px; }
-.request-badge { flex: 0 0 auto; padding: 5px 8px; border-radius: 999px; color: var(--text-secondary); background: #e8eaed; font-size: 10px; font-weight: 700; }
+.request-badge { flex: 0 0 auto; padding: 5px 8px; border-radius: 999px; color: var(--text-secondary); background: #e8eaed; font-size: 11px; font-weight: 700; }
 .request-badge.completed, .request-badge.accepted { color: var(--primary-dark); background: var(--primary-light); }
 .request-badge.rejected, .request-badge.expired { color: var(--error); background: #fff0f1; }
 .event-card ol { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }

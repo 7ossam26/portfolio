@@ -44,7 +44,7 @@ const featuredMedia = project.media?.[0];
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
           </a>
         )}
-        <a class="button button-primary" href={`/work/${project.slug}/`}>
+        <a class="button button-secondary" href={`/work/${project.slug}/`}>
           Read case study
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
         </a>
@@ -53,6 +53,9 @@ const featuredMedia = project.media?.[0];
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
         </a>
       </div>
+      <noscript>
+        <p class="demo-noscript">The interactive sample needs JavaScript. The case study describes the same scenario without it.</p>
+      </noscript>
     </div>
 
     {featuredMedia ? (

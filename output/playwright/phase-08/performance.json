@@ -1,0 +1,861 @@
+{
+  "conditions": {
+    "browser": "Chromium 153.0.8010.12 (Playwright 1.63.0, headless shell)",
+    "node": "v22.12.0",
+    "platform": "win32 x64",
+    "artifact": "production dist/ served over loopback HTTP",
+    "commitAtMeasurement": "bfab0c802c8a7bc6106fa3bd537e0397c99b5cea",
+    "network": "10 Mbps down/up, 80 ms added latency (CDP Network.emulateNetworkConditions)",
+    "cpu": "4x slowdown (CDP Emulation.setCPUThrottlingRate)",
+    "cache": "cold — a fresh browser context per run, no service worker",
+    "runs": 3,
+    "measuredAt": "2026-09-12T07:27:33.058Z",
+    "caveat": "Lab measurements on one Windows workstation. They are not field data and not a substitute for real-user metrics."
+  },
+  "budgets": {
+    "initialJsGzipKiB": 45,
+    "initialCssGzipKiB": 45,
+    "initialTransferKiB": 450,
+    "demoAssetsBeforeOpen": 0,
+    "firstDemoPayloadGzipKiB": 800,
+    "clickToReadyMs": 3000
+  },
+  "emitted": {
+    "fileCount": 67,
+    "totalKiB": 1929.59,
+    "byArea": {
+      "shell": 402.28,
+      "demos/autozain": 631.95,
+      "demos/ramex": 517.34,
+      "demos/roya": 169.44,
+      "demos/vertex": 208.59
+    }
+  },
+  "startup": [
+    {
+      "route": "/",
+      "requests": 4,
+      "jsGzipKiB": 2.94,
+      "jsRawKiB": 7.57,
+      "cssGzipKiB": 5.73,
+      "cssRawKiB": 25.52,
+      "totalTransferKiB": 97.63,
+      "demoRequests": 0,
+      "breakdown": [
+        {
+          "path": "/",
+          "type": "document",
+          "rawKiB": 9.75,
+          "gzipKiB": 3.29
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "rawKiB": 25.52,
+          "gzipKiB": 5.73
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "rawKiB": 7.57,
+          "gzipKiB": 2.94
+        },
+        {
+          "path": "/images/vertex/production-result-1440x900.png",
+          "type": "image",
+          "rawKiB": 54.78,
+          "gzipKiB": 49.94
+        }
+      ]
+    },
+    {
+      "route": "/work/vertex/",
+      "requests": 4,
+      "jsGzipKiB": 2.94,
+      "jsRawKiB": 7.57,
+      "cssGzipKiB": 5.73,
+      "cssRawKiB": 25.52,
+      "totalTransferKiB": 98.55,
+      "demoRequests": 0,
+      "breakdown": [
+        {
+          "path": "/work/vertex/",
+          "type": "document",
+          "rawKiB": 10.68,
+          "gzipKiB": 3.85
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "rawKiB": 25.52,
+          "gzipKiB": 5.73
+        },
+        {
+          "path": "/images/vertex/production-result-1440x900.png",
+          "type": "image",
+          "rawKiB": 54.78,
+          "gzipKiB": 49.94
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "rawKiB": 7.57,
+          "gzipKiB": 2.94
+        }
+      ]
+    },
+    {
+      "route": "/work/autozain/",
+      "requests": 4,
+      "jsGzipKiB": 2.94,
+      "jsRawKiB": 7.57,
+      "cssGzipKiB": 5.73,
+      "cssRawKiB": 25.52,
+      "totalTransferKiB": 87.92,
+      "demoRequests": 0,
+      "breakdown": [
+        {
+          "path": "/work/autozain/",
+          "type": "document",
+          "rawKiB": 10.22,
+          "gzipKiB": 3.75
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "rawKiB": 25.52,
+          "gzipKiB": 5.73
+        },
+        {
+          "path": "/images/autozain/contact-outcome-1440x900.png",
+          "type": "image",
+          "rawKiB": 44.62,
+          "gzipKiB": 40.18
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "rawKiB": 7.57,
+          "gzipKiB": 2.94
+        }
+      ]
+    },
+    {
+      "route": "/work/roya/",
+      "requests": 4,
+      "jsGzipKiB": 2.94,
+      "jsRawKiB": 7.57,
+      "cssGzipKiB": 5.73,
+      "cssRawKiB": 25.52,
+      "totalTransferKiB": 141.7,
+      "demoRequests": 0,
+      "breakdown": [
+        {
+          "path": "/work/roya/",
+          "type": "document",
+          "rawKiB": 10.66,
+          "gzipKiB": 3.87
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "rawKiB": 25.52,
+          "gzipKiB": 5.73
+        },
+        {
+          "path": "/images/roya/shooting-weeks-impact-1440x900.png",
+          "type": "image",
+          "rawKiB": 97.96,
+          "gzipKiB": 95.88
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "rawKiB": 7.57,
+          "gzipKiB": 2.94
+        }
+      ]
+    },
+    {
+      "route": "/work/ramex/",
+      "requests": 4,
+      "jsGzipKiB": 2.94,
+      "jsRawKiB": 7.57,
+      "cssGzipKiB": 5.73,
+      "cssRawKiB": 25.52,
+      "totalTransferKiB": 111.53,
+      "demoRequests": 0,
+      "breakdown": [
+        {
+          "path": "/work/ramex/",
+          "type": "document",
+          "rawKiB": 10.75,
+          "gzipKiB": 3.9
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "rawKiB": 25.52,
+          "gzipKiB": 5.73
+        },
+        {
+          "path": "/images/ramex/roll-stock-result-1440x900.png",
+          "type": "image",
+          "rawKiB": 67.68,
+          "gzipKiB": 62.98
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "rawKiB": 7.57,
+          "gzipKiB": 2.94
+        }
+      ]
+    }
+  ],
+  "demoPayloads": [
+    {
+      "slug": "vertex",
+      "run": 1,
+      "jsCssGzipKiB": 58.13,
+      "jsCssRawKiB": 194.04,
+      "totalRawKiB": 208.37,
+      "requests": 4,
+      "assets": [
+        {
+          "path": "/demos/vertex/",
+          "type": "document",
+          "rawKiB": 1.35,
+          "gzipKiB": 0.72
+        },
+        {
+          "path": "/demos/vertex/assets/index-CfSBHhd0.js",
+          "type": "script",
+          "rawKiB": 171.05,
+          "gzipKiB": 52.73
+        },
+        {
+          "path": "/demos/vertex/assets/index-Dc3iM6Rv.css",
+          "type": "stylesheet",
+          "rawKiB": 22.98,
+          "gzipKiB": 5.4
+        },
+        {
+          "path": "/demos/vertex/assets/Cairo-Regular-DN15VWMM.woff2",
+          "type": "font",
+          "rawKiB": 12.98,
+          "gzipKiB": 13
+        }
+      ]
+    },
+    {
+      "slug": "autozain",
+      "run": 1,
+      "jsCssGzipKiB": 57.79,
+      "jsCssRawKiB": 188.93,
+      "totalRawKiB": 380.34,
+      "requests": 6,
+      "assets": [
+        {
+          "path": "/demos/autozain/",
+          "type": "document",
+          "rawKiB": 1.31,
+          "gzipKiB": 0.7
+        },
+        {
+          "path": "/demos/autozain/assets/index-Bl9yPL6S.js",
+          "type": "script",
+          "rawKiB": 168.71,
+          "gzipKiB": 53.24
+        },
+        {
+          "path": "/demos/autozain/assets/index-C7GBj70s.css",
+          "type": "stylesheet",
+          "rawKiB": 20.22,
+          "gzipKiB": 4.55
+        },
+        {
+          "path": "/demos/autozain/vehicles/graphite-crossover.webp",
+          "type": "image",
+          "rawKiB": 74.79,
+          "gzipKiB": 74.83
+        },
+        {
+          "path": "/demos/autozain/vehicles/pearl-sedan.webp",
+          "type": "image",
+          "rawKiB": 52.6,
+          "gzipKiB": 52.64
+        },
+        {
+          "path": "/demos/autozain/vehicles/blue-hatchback.webp",
+          "type": "image",
+          "rawKiB": 62.72,
+          "gzipKiB": 62.76
+        }
+      ]
+    },
+    {
+      "slug": "roya",
+      "run": 1,
+      "jsCssGzipKiB": 53.4,
+      "jsCssRawKiB": 167.89,
+      "totalRawKiB": 169.15,
+      "requests": 3,
+      "assets": [
+        {
+          "path": "/demos/roya/",
+          "type": "document",
+          "rawKiB": 1.25,
+          "gzipKiB": 0.68
+        },
+        {
+          "path": "/demos/roya/assets/index-ceGnapZo.js",
+          "type": "script",
+          "rawKiB": 156,
+          "gzipKiB": 50.04
+        },
+        {
+          "path": "/demos/roya/assets/index-yTOFgVnJ.css",
+          "type": "stylesheet",
+          "rawKiB": 11.89,
+          "gzipKiB": 3.36
+        }
+      ]
+    },
+    {
+      "slug": "ramex",
+      "run": 1,
+      "jsCssGzipKiB": 57.21,
+      "jsCssRawKiB": 189.69,
+      "totalRawKiB": 205.88,
+      "requests": 4,
+      "assets": [
+        {
+          "path": "/demos/ramex/",
+          "type": "document",
+          "rawKiB": 1.26,
+          "gzipKiB": 0.68
+        },
+        {
+          "path": "/demos/ramex/assets/index-By0paZg1.js",
+          "type": "script",
+          "rawKiB": 163.75,
+          "gzipKiB": 51.77
+        },
+        {
+          "path": "/demos/ramex/assets/index-CXMqQ9sx.css",
+          "type": "stylesheet",
+          "rawKiB": 25.95,
+          "gzipKiB": 5.44
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-700-normal-C3GYtKbV.woff2",
+          "type": "font",
+          "rawKiB": 14.93,
+          "gzipKiB": 14.95
+        }
+      ]
+    }
+  ],
+  "clickToReady": [
+    {
+      "slug": "vertex",
+      "runs": [
+        614,
+        632,
+        658
+      ],
+      "medianMs": 632,
+      "worstMs": 658
+    },
+    {
+      "slug": "autozain",
+      "runs": [
+        770,
+        680,
+        746
+      ],
+      "medianMs": 746,
+      "worstMs": 770
+    },
+    {
+      "slug": "roya",
+      "runs": [
+        768,
+        694,
+        743
+      ],
+      "medianMs": 743,
+      "worstMs": 768
+    },
+    {
+      "slug": "ramex",
+      "runs": [
+        856,
+        846,
+        815
+      ],
+      "medianMs": 846,
+      "worstMs": 856
+    }
+  ],
+  "labTimings": [
+    {
+      "scenario": "home-unthrottled",
+      "route": "/",
+      "throttled": false,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "runs": [
+        {
+          "domContentLoaded": 15,
+          "loadEvent": 17,
+          "responseEnd": 3,
+          "firstPaint": 64,
+          "firstContentfulPaint": 64,
+          "largestContentfulPaint": 68,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 50,
+          "loadEvent": 50,
+          "responseEnd": 3,
+          "firstPaint": 60,
+          "firstContentfulPaint": 60,
+          "largestContentfulPaint": 72,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 52,
+          "loadEvent": 52,
+          "responseEnd": 4,
+          "firstPaint": 64,
+          "firstContentfulPaint": 64,
+          "largestContentfulPaint": 72,
+          "cumulativeLayoutShift": 0
+        }
+      ],
+      "median": {
+        "firstContentfulPaint": 64,
+        "largestContentfulPaint": 72,
+        "domContentLoaded": 50,
+        "loadEvent": 50,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "scenario": "home-throttled",
+      "route": "/",
+      "throttled": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "runs": [
+        {
+          "domContentLoaded": 435,
+          "loadEvent": 437,
+          "responseEnd": 96,
+          "firstPaint": 452,
+          "firstContentfulPaint": 452,
+          "largestContentfulPaint": 592,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 439,
+          "loadEvent": 439,
+          "responseEnd": 101,
+          "firstPaint": 460,
+          "firstContentfulPaint": 460,
+          "largestContentfulPaint": 600,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 467,
+          "loadEvent": 467,
+          "responseEnd": 106,
+          "firstPaint": 476,
+          "firstContentfulPaint": 476,
+          "largestContentfulPaint": 632,
+          "cumulativeLayoutShift": 0
+        }
+      ],
+      "median": {
+        "firstContentfulPaint": 460,
+        "largestContentfulPaint": 600,
+        "domContentLoaded": 439,
+        "loadEvent": 439,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "scenario": "case-study-throttled",
+      "route": "/work/vertex/",
+      "throttled": true,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "runs": [
+        {
+          "domContentLoaded": 487,
+          "loadEvent": 488,
+          "responseEnd": 107,
+          "firstPaint": 504,
+          "firstContentfulPaint": 504,
+          "largestContentfulPaint": 520,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 490,
+          "loadEvent": 493,
+          "responseEnd": 94,
+          "firstPaint": 512,
+          "firstContentfulPaint": 512,
+          "largestContentfulPaint": 524,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 483,
+          "loadEvent": 483,
+          "responseEnd": 97,
+          "firstPaint": 500,
+          "firstContentfulPaint": 500,
+          "largestContentfulPaint": 512,
+          "cumulativeLayoutShift": 0
+        }
+      ],
+      "median": {
+        "firstContentfulPaint": 504,
+        "largestContentfulPaint": 520,
+        "domContentLoaded": 487,
+        "loadEvent": 488,
+        "cumulativeLayoutShift": 0
+      }
+    },
+    {
+      "scenario": "home-mobile-throttled",
+      "route": "/",
+      "throttled": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "runs": [
+        {
+          "domContentLoaded": 246,
+          "loadEvent": 446,
+          "responseEnd": 95,
+          "firstPaint": 460,
+          "firstContentfulPaint": 460,
+          "largestContentfulPaint": 460,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 432,
+          "loadEvent": 433,
+          "responseEnd": 103,
+          "firstPaint": 436,
+          "firstContentfulPaint": 436,
+          "largestContentfulPaint": 436,
+          "cumulativeLayoutShift": 0
+        },
+        {
+          "domContentLoaded": 441,
+          "loadEvent": 441,
+          "responseEnd": 103,
+          "firstPaint": 444,
+          "firstContentfulPaint": 444,
+          "largestContentfulPaint": 444,
+          "cumulativeLayoutShift": 0
+        }
+      ],
+      "median": {
+        "firstContentfulPaint": 444,
+        "largestContentfulPaint": 444,
+        "domContentLoaded": 432,
+        "loadEvent": 441,
+        "cumulativeLayoutShift": 0
+      }
+    }
+  ],
+  "shellAssets": [
+    {
+      "name": "DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+      "rawKiB": 7.57,
+      "gzipKiB": 2.94
+    },
+    {
+      "name": "projects.D6wMW53C.css",
+      "rawKiB": 25.52,
+      "gzipKiB": 5.73
+    },
+    {
+      "name": "index.html",
+      "rawKiB": 9.75,
+      "gzipKiB": 3.29
+    }
+  ],
+  "summary": {
+    "label": "performance",
+    "total": 42,
+    "passed": 42,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "artifact/emitted-size",
+        "passed": true,
+        "detail": "dist/ holds 67 files totalling 1929.59 KiB (shell 402.28 KiB, demos/autozain 631.95 KiB, demos/ramex 517.34 KiB, demos/roya 169.44 KiB, demos/vertex 208.59 KiB)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-js/",
+        "passed": true,
+        "detail": "2.94 KiB gzip of JavaScript (7.57 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-css/",
+        "passed": true,
+        "detail": "5.73 KiB gzip of CSS (25.52 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-transfer/",
+        "passed": true,
+        "detail": "97.63 KiB across 4 requests against a 450 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/no-demo-assets/",
+        "passed": true,
+        "detail": "0 demo requests before activation (budget 0)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-js/work/vertex/",
+        "passed": true,
+        "detail": "2.94 KiB gzip of JavaScript (7.57 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-css/work/vertex/",
+        "passed": true,
+        "detail": "5.73 KiB gzip of CSS (25.52 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-transfer/work/vertex/",
+        "passed": true,
+        "detail": "98.55 KiB across 4 requests against a 450 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/no-demo-assets/work/vertex/",
+        "passed": true,
+        "detail": "0 demo requests before activation (budget 0)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-js/work/autozain/",
+        "passed": true,
+        "detail": "2.94 KiB gzip of JavaScript (7.57 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-css/work/autozain/",
+        "passed": true,
+        "detail": "5.73 KiB gzip of CSS (25.52 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-transfer/work/autozain/",
+        "passed": true,
+        "detail": "87.92 KiB across 4 requests against a 450 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/no-demo-assets/work/autozain/",
+        "passed": true,
+        "detail": "0 demo requests before activation (budget 0)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-js/work/roya/",
+        "passed": true,
+        "detail": "2.94 KiB gzip of JavaScript (7.57 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-css/work/roya/",
+        "passed": true,
+        "detail": "5.73 KiB gzip of CSS (25.52 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-transfer/work/roya/",
+        "passed": true,
+        "detail": "141.7 KiB across 4 requests against a 450 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/no-demo-assets/work/roya/",
+        "passed": true,
+        "detail": "0 demo requests before activation (budget 0)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-js/work/ramex/",
+        "passed": true,
+        "detail": "2.94 KiB gzip of JavaScript (7.57 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-css/work/ramex/",
+        "passed": true,
+        "detail": "5.73 KiB gzip of CSS (25.52 KiB raw) against a 45 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/initial-transfer/work/ramex/",
+        "passed": true,
+        "detail": "111.53 KiB across 4 requests against a 450 KiB budget",
+        "artifacts": []
+      },
+      {
+        "id": "budget/no-demo-assets/work/ramex/",
+        "passed": true,
+        "detail": "0 demo requests before activation (budget 0)",
+        "artifacts": []
+      },
+      {
+        "id": "budget/click-to-ready:vertex",
+        "passed": true,
+        "detail": "median 632 ms, worst 658 ms across runs [614, 632, 658] against a 3000 ms target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/first-demo-payload:vertex",
+        "passed": true,
+        "detail": "58.13 KiB gzip of JS+CSS (194.04 KiB raw; 208.37 KiB including fonts and images across 4 requests) against a 800 KiB target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/click-to-ready:autozain",
+        "passed": true,
+        "detail": "median 746 ms, worst 770 ms across runs [770, 680, 746] against a 3000 ms target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/first-demo-payload:autozain",
+        "passed": true,
+        "detail": "57.79 KiB gzip of JS+CSS (188.93 KiB raw; 380.34 KiB including fonts and images across 6 requests) against a 800 KiB target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/click-to-ready:roya",
+        "passed": true,
+        "detail": "median 743 ms, worst 768 ms across runs [768, 694, 743] against a 3000 ms target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/first-demo-payload:roya",
+        "passed": true,
+        "detail": "53.4 KiB gzip of JS+CSS (167.89 KiB raw; 169.15 KiB including fonts and images across 3 requests) against a 800 KiB target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/click-to-ready:ramex",
+        "passed": true,
+        "detail": "median 846 ms, worst 856 ms across runs [856, 846, 815] against a 3000 ms target",
+        "artifacts": []
+      },
+      {
+        "id": "budget/first-demo-payload:ramex",
+        "passed": true,
+        "detail": "57.21 KiB gzip of JS+CSS (189.69 KiB raw; 205.88 KiB including fonts and images across 4 requests) against a 800 KiB target",
+        "artifacts": []
+      },
+      {
+        "id": "lab/home-unthrottled",
+        "passed": true,
+        "detail": "median FCP 64 ms, LCP 72 ms, DCL 50 ms, load 50 ms, worst CLS 0",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-unthrottled-lcp",
+        "passed": true,
+        "detail": "lab LCP 72 ms against the 2,500 ms good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-unthrottled-cls",
+        "passed": true,
+        "detail": "worst observed CLS 0 against the 0.1 good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab/home-throttled",
+        "passed": true,
+        "detail": "median FCP 460 ms, LCP 600 ms, DCL 439 ms, load 439 ms, worst CLS 0",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-throttled-lcp",
+        "passed": true,
+        "detail": "lab LCP 600 ms against the 2,500 ms good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-throttled-cls",
+        "passed": true,
+        "detail": "worst observed CLS 0 against the 0.1 good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab/case-study-throttled",
+        "passed": true,
+        "detail": "median FCP 504 ms, LCP 520 ms, DCL 487 ms, load 488 ms, worst CLS 0",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/case-study-throttled-lcp",
+        "passed": true,
+        "detail": "lab LCP 520 ms against the 2,500 ms good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/case-study-throttled-cls",
+        "passed": true,
+        "detail": "worst observed CLS 0 against the 0.1 good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab/home-mobile-throttled",
+        "passed": true,
+        "detail": "median FCP 444 ms, LCP 444 ms, DCL 432 ms, load 441 ms, worst CLS 0",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-mobile-throttled-lcp",
+        "passed": true,
+        "detail": "lab LCP 444 ms against the 2,500 ms good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "lab-proxy/home-mobile-throttled-cls",
+        "passed": true,
+        "detail": "worst observed CLS 0 against the 0.1 good field threshold (lab proxy, not field data)",
+        "artifacts": []
+      },
+      {
+        "id": "artifact/shell-assets",
+        "passed": true,
+        "detail": "DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js 7.57 KiB raw / 2.94 KiB gzip; projects.D6wMW53C.css 25.52 KiB raw / 5.73 KiB gzip; index.html 9.75 KiB raw / 3.29 KiB gzip",
+        "artifacts": []
+      }
+    ]
+  }
+}

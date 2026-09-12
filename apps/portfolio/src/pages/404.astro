@@ -2,9 +2,14 @@
 import ContactFooter from '../components/ContactFooter.astro';
 import Navigation from '../components/Navigation.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../content/projects';
 ---
 
-<BaseLayout title="Page not found — Ahmed Hossam" description="The requested portfolio page could not be found. Return to Ahmed Hossam's selected software engineering work.">
+<BaseLayout
+  title="Page not found — Ahmed Hossam"
+  description="The requested portfolio page could not be found. Return to Ahmed Hossam's selected software engineering work."
+  indexable={false}
+>
   <main id="main-content">
     <section class="studio" aria-label="Page not found">
       <div class="studio-wrap">
@@ -17,6 +22,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             Return to selected work
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
           </a>
+
+          <nav class="not-found-routes" aria-label="Case studies">
+            <p class="eyebrow">OR GO STRAIGHT TO A CASE STUDY</p>
+            <ul>
+              {projects.map((project) => (
+                <li>
+                  <a href={`/work/${project.slug}/`}>
+                    <span>{project.name}</span>
+                    <small>{project.domain}</small>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </section>
         <ContactFooter />
       </div>

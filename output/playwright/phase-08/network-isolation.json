@@ -1,0 +1,1058 @@
+{
+  "conditions": {
+    "browser": "Chromium 153.0.8010.12",
+    "origin": "http://127.0.0.1:52222",
+    "note": "All requests are served from the local production dist/ over loopback HTTP.",
+    "startedAt": "2026-09-12T07:26:52.633Z"
+  },
+  "coldEntry": [
+    {
+      "route": "/",
+      "total": 4,
+      "inventory": [
+        {
+          "path": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 9988
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        },
+        {
+          "path": "/images/vertex/production-result-1440x900.png",
+          "type": "image",
+          "status": 200,
+          "bytes": 56097
+        }
+      ]
+    },
+    {
+      "route": "/work/vertex/",
+      "total": 4,
+      "inventory": [
+        {
+          "path": "/work/vertex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 10934
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/images/vertex/production-result-1440x900.png",
+          "type": "image",
+          "status": 200,
+          "bytes": 56097
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        }
+      ]
+    },
+    {
+      "route": "/work/autozain/",
+      "total": 4,
+      "inventory": [
+        {
+          "path": "/work/autozain/",
+          "type": "document",
+          "status": 200,
+          "bytes": 10462
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/images/autozain/contact-outcome-1440x900.png",
+          "type": "image",
+          "status": 200,
+          "bytes": 45686
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        }
+      ]
+    },
+    {
+      "route": "/work/roya/",
+      "total": 4,
+      "inventory": [
+        {
+          "path": "/work/roya/",
+          "type": "document",
+          "status": 200,
+          "bytes": 10911
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/images/roya/shooting-weeks-impact-1440x900.png",
+          "type": "image",
+          "status": 200,
+          "bytes": 100306
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        }
+      ]
+    },
+    {
+      "route": "/work/ramex/",
+      "total": 4,
+      "inventory": [
+        {
+          "path": "/work/ramex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 11008
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/images/ramex/roll-stock-result-1440x900.png",
+          "type": "image",
+          "status": 200,
+          "bytes": 69308
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        }
+      ]
+    },
+    {
+      "route": "/404.html",
+      "total": 3,
+      "inventory": [
+        {
+          "path": "/404.html",
+          "type": "document",
+          "status": 200,
+          "bytes": 5864
+        },
+        {
+          "path": "/_assets/projects.D6wMW53C.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26137
+        },
+        {
+          "path": "/_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 7749
+        }
+      ]
+    }
+  ],
+  "demoRuns": [
+    {
+      "slug": "vertex",
+      "counts": {
+        "beforeActivation": 4,
+        "afterReady": 8,
+        "afterScenario": 8,
+        "afterReset": 12,
+        "afterClose": 12
+      },
+      "demoAssets": [
+        {
+          "path": "/demos/vertex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1383,
+          "gzipBytes": 738
+        },
+        {
+          "path": "/demos/vertex/assets/index-CfSBHhd0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 175156,
+          "gzipBytes": 53995
+        },
+        {
+          "path": "/demos/vertex/assets/index-Dc3iM6Rv.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 23536,
+          "gzipBytes": 5532
+        },
+        {
+          "path": "/demos/vertex/assets/Cairo-Regular-DN15VWMM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 13292,
+          "gzipBytes": 13315
+        },
+        {
+          "path": "/demos/vertex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1383,
+          "gzipBytes": 738
+        },
+        {
+          "path": "/demos/vertex/assets/index-CfSBHhd0.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 175156,
+          "gzipBytes": 53995
+        },
+        {
+          "path": "/demos/vertex/assets/index-Dc3iM6Rv.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 23536,
+          "gzipBytes": 5532
+        },
+        {
+          "path": "/demos/vertex/assets/Cairo-Regular-DN15VWMM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        }
+      ],
+      "external": [],
+      "forbidden": []
+    },
+    {
+      "slug": "autozain",
+      "counts": {
+        "beforeActivation": 4,
+        "afterReady": 16,
+        "afterScenario": 16,
+        "afterReset": 28,
+        "afterClose": 28
+      },
+      "demoAssets": [
+        {
+          "path": "/demos/autozain/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1338,
+          "gzipBytes": 716
+        },
+        {
+          "path": "/demos/autozain/assets/index-Bl9yPL6S.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 172759,
+          "gzipBytes": 54517
+        },
+        {
+          "path": "/demos/autozain/assets/index-C7GBj70s.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 20703,
+          "gzipBytes": 4655
+        },
+        {
+          "path": "/demos/autozain/vehicles/graphite-crossover.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76580,
+          "gzipBytes": 76623
+        },
+        {
+          "path": "/demos/autozain/vehicles/pearl-sedan.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 53862,
+          "gzipBytes": 53900
+        },
+        {
+          "path": "/demos/autozain/vehicles/blue-hatchback.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 64224,
+          "gzipBytes": 64262
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-400-Bo5KPYvw.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 19164,
+          "gzipBytes": 19192
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-700-BzSf6GNr.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 19504,
+          "gzipBytes": 19532
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-600-KrqB56Mw.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 20500,
+          "gzipBytes": 20528
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-700-DrtBj6UE.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 44280,
+          "gzipBytes": 44308
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-400-CyU-ddYS.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 42848,
+          "gzipBytes": 42875
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-600-0pRdybE_.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 45688,
+          "gzipBytes": 45721
+        },
+        {
+          "path": "/demos/autozain/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1338,
+          "gzipBytes": 716
+        },
+        {
+          "path": "/demos/autozain/assets/index-Bl9yPL6S.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 172759,
+          "gzipBytes": 54517
+        },
+        {
+          "path": "/demos/autozain/assets/index-C7GBj70s.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 20703,
+          "gzipBytes": 4655
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-400-CyU-ddYS.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-600-0pRdybE_.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-arabic-700-DrtBj6UE.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-400-Bo5KPYvw.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-600-KrqB56Mw.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/assets/ibm-plex-sans-arabic-latin-700-BzSf6GNr.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/autozain/vehicles/graphite-crossover.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76580,
+          "gzipBytes": 76623
+        },
+        {
+          "path": "/demos/autozain/vehicles/pearl-sedan.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 53862,
+          "gzipBytes": 53900
+        },
+        {
+          "path": "/demos/autozain/vehicles/blue-hatchback.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 64224,
+          "gzipBytes": 64262
+        }
+      ],
+      "external": [],
+      "forbidden": []
+    },
+    {
+      "slug": "roya",
+      "counts": {
+        "beforeActivation": 4,
+        "afterReady": 7,
+        "afterScenario": 7,
+        "afterReset": 10,
+        "afterClose": 10
+      },
+      "demoAssets": [
+        {
+          "path": "/demos/roya/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1285,
+          "gzipBytes": 692
+        },
+        {
+          "path": "/demos/roya/assets/index-ceGnapZo.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 159743,
+          "gzipBytes": 51237
+        },
+        {
+          "path": "/demos/roya/assets/index-yTOFgVnJ.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 12179,
+          "gzipBytes": 3444
+        },
+        {
+          "path": "/demos/roya/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1285,
+          "gzipBytes": 692
+        },
+        {
+          "path": "/demos/roya/assets/index-ceGnapZo.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 159743,
+          "gzipBytes": 51237
+        },
+        {
+          "path": "/demos/roya/assets/index-yTOFgVnJ.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 12179,
+          "gzipBytes": 3444
+        }
+      ],
+      "external": [],
+      "forbidden": []
+    },
+    {
+      "slug": "ramex",
+      "counts": {
+        "beforeActivation": 4,
+        "afterReady": 15,
+        "afterScenario": 15,
+        "afterReset": 26,
+        "afterClose": 26
+      },
+      "demoAssets": [
+        {
+          "path": "/demos/ramex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1294,
+          "gzipBytes": 697
+        },
+        {
+          "path": "/demos/ramex/assets/index-By0paZg1.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 167675,
+          "gzipBytes": 53017
+        },
+        {
+          "path": "/demos/ramex/assets/index-CXMqQ9sx.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26568,
+          "gzipBytes": 5567
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-700-normal-C3GYtKbV.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 15284,
+          "gzipBytes": 15307
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-400-normal-Dh7otpdh.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 15016,
+          "gzipBytes": 15039
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-600-normal-mGS0uvCM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 15280,
+          "gzipBytes": 15303
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-500-normal-DDl0i4Xv.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 13892,
+          "gzipBytes": 13915
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-500-normal-D-WQsSKQ.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 15236,
+          "gzipBytes": 15259
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-700-normal-D3nDedWX.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 13952,
+          "gzipBytes": 13975
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-400-normal-DN15VWMM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 13292,
+          "gzipBytes": 13315
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-600-normal-rkrvveqO.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": 13896,
+          "gzipBytes": 13919
+        },
+        {
+          "path": "/demos/ramex/",
+          "type": "document",
+          "status": 200,
+          "bytes": 1294,
+          "gzipBytes": 697
+        },
+        {
+          "path": "/demos/ramex/assets/index-By0paZg1.js",
+          "type": "script",
+          "status": 200,
+          "bytes": 167675,
+          "gzipBytes": 53017
+        },
+        {
+          "path": "/demos/ramex/assets/index-CXMqQ9sx.css",
+          "type": "stylesheet",
+          "status": 200,
+          "bytes": 26568,
+          "gzipBytes": 5567
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-400-normal-DN15VWMM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-400-normal-Dh7otpdh.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-500-normal-DDl0i4Xv.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-500-normal-D-WQsSKQ.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-600-normal-rkrvveqO.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-600-normal-mGS0uvCM.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-arabic-700-normal-D3nDedWX.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        },
+        {
+          "path": "/demos/ramex/assets/cairo-latin-700-normal-C3GYtKbV.woff2",
+          "type": "font",
+          "status": 200,
+          "bytes": null,
+          "gzipBytes": null
+        }
+      ],
+      "external": [],
+      "forbidden": []
+    }
+  ],
+  "storage": [
+    {
+      "slug": "vertex",
+      "localStorageKeys": [],
+      "sessionStorageKeys": [],
+      "cookies": "",
+      "indexedDb": true,
+      "serviceWorkers": "api present",
+      "websockets": [],
+      "eventSources": [],
+      "notifications": 0,
+      "geolocation": 0,
+      "workers": [],
+      "beacons": [],
+      "serviceWorkerRegistrations": []
+    },
+    {
+      "slug": "autozain",
+      "localStorageKeys": [],
+      "sessionStorageKeys": [],
+      "cookies": "",
+      "indexedDb": true,
+      "serviceWorkers": "api present",
+      "websockets": [],
+      "eventSources": [],
+      "notifications": 0,
+      "geolocation": 0,
+      "workers": [],
+      "beacons": [],
+      "serviceWorkerRegistrations": []
+    },
+    {
+      "slug": "roya",
+      "localStorageKeys": [],
+      "sessionStorageKeys": [],
+      "cookies": "",
+      "indexedDb": true,
+      "serviceWorkers": "api present",
+      "websockets": [],
+      "eventSources": [],
+      "notifications": 0,
+      "geolocation": 0,
+      "workers": [],
+      "beacons": [],
+      "serviceWorkerRegistrations": []
+    },
+    {
+      "slug": "ramex",
+      "localStorageKeys": [],
+      "sessionStorageKeys": [],
+      "cookies": "",
+      "indexedDb": true,
+      "serviceWorkers": "api present",
+      "websockets": [],
+      "eventSources": [],
+      "notifications": 0,
+      "geolocation": 0,
+      "workers": [],
+      "beacons": [],
+      "serviceWorkerRegistrations": []
+    }
+  ],
+  "forbidden": [
+    {
+      "scope": "unsupported-operation",
+      "newRequests": []
+    }
+  ],
+  "allowList": [
+    "document /",
+    "document /404.html",
+    "document /demos/autozain/",
+    "document /demos/ramex/",
+    "document /demos/roya/",
+    "document /demos/vertex/",
+    "document /work/autozain/",
+    "document /work/ramex/",
+    "document /work/roya/",
+    "document /work/vertex/",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-arabic-400-CyU-ddYS.woff2",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-arabic-600-0pRdybE_.woff2",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-arabic-700-DrtBj6UE.woff2",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-latin-400-Bo5KPYvw.woff2",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-latin-600-KrqB56Mw.woff2",
+    "font /demos/autozain/assets/ibm-plex-sans-arabic-latin-700-BzSf6GNr.woff2",
+    "font /demos/ramex/assets/cairo-arabic-400-normal-DN15VWMM.woff2",
+    "font /demos/ramex/assets/cairo-arabic-500-normal-DDl0i4Xv.woff2",
+    "font /demos/ramex/assets/cairo-arabic-600-normal-rkrvveqO.woff2",
+    "font /demos/ramex/assets/cairo-arabic-700-normal-D3nDedWX.woff2",
+    "font /demos/ramex/assets/cairo-latin-400-normal-Dh7otpdh.woff2",
+    "font /demos/ramex/assets/cairo-latin-500-normal-D-WQsSKQ.woff2",
+    "font /demos/ramex/assets/cairo-latin-600-normal-mGS0uvCM.woff2",
+    "font /demos/ramex/assets/cairo-latin-700-normal-C3GYtKbV.woff2",
+    "font /demos/vertex/assets/Cairo-Regular-DN15VWMM.woff2",
+    "image /demos/autozain/vehicles/blue-hatchback.webp",
+    "image /demos/autozain/vehicles/graphite-crossover.webp",
+    "image /demos/autozain/vehicles/pearl-sedan.webp",
+    "image /images/autozain/contact-outcome-1440x900.png",
+    "image /images/ramex/roll-stock-result-1440x900.png",
+    "image /images/roya/shooting-weeks-impact-1440x900.png",
+    "image /images/vertex/production-result-1440x900.png",
+    "script /_assets/DemoHost.astro_astro_type_script_index_0_lang.Cvflz-a0.js",
+    "script /demos/autozain/assets/index-Bl9yPL6S.js",
+    "script /demos/ramex/assets/index-By0paZg1.js",
+    "script /demos/roya/assets/index-ceGnapZo.js",
+    "script /demos/vertex/assets/index-CfSBHhd0.js",
+    "stylesheet /_assets/projects.D6wMW53C.css",
+    "stylesheet /demos/autozain/assets/index-C7GBj70s.css",
+    "stylesheet /demos/ramex/assets/index-CXMqQ9sx.css",
+    "stylesheet /demos/roya/assets/index-yTOFgVnJ.css",
+    "stylesheet /demos/vertex/assets/index-Dc3iM6Rv.css"
+  ],
+  "summary": {
+    "label": "network-isolation",
+    "total": 46,
+    "passed": 46,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "cold-entry/no-demo-assets/",
+        "passed": true,
+        "detail": "4 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/no-demo-assets/work/vertex/",
+        "passed": true,
+        "detail": "4 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/work/vertex/",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/no-demo-assets/work/autozain/",
+        "passed": true,
+        "detail": "4 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/work/autozain/",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/no-demo-assets/work/roya/",
+        "passed": true,
+        "detail": "4 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/work/roya/",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/no-demo-assets/work/ramex/",
+        "passed": true,
+        "detail": "4 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/work/ramex/",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/no-demo-assets/404.html",
+        "passed": true,
+        "detail": "3 requests, none from any demo application",
+        "artifacts": []
+      },
+      {
+        "id": "cold-entry/same-origin-only/404.html",
+        "passed": true,
+        "detail": "every request stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-demo-requests-before-activation:vertex",
+        "passed": true,
+        "detail": "4 requests on the hosting page, 0 of them from the demo",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/same-origin-only:vertex",
+        "passed": true,
+        "detail": "all 12 requests across open → scenario → reset → close stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-client-services:vertex",
+        "passed": true,
+        "detail": "no client API, socket, CDN, font, or telemetry host was contacted; every one of the 12 requests resolved to 127.0.0.1:52222",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-failed-requests:vertex",
+        "passed": true,
+        "detail": "0 failed requests, 0 responses >= 400",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/quiet-after-close:vertex",
+        "passed": true,
+        "detail": "no further requests after Close (12 → 12)",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/clean-console:vertex",
+        "passed": true,
+        "detail": "no console errors during the full scenario",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-demo-requests-before-activation:autozain",
+        "passed": true,
+        "detail": "4 requests on the hosting page, 0 of them from the demo",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/same-origin-only:autozain",
+        "passed": true,
+        "detail": "all 28 requests across open → scenario → reset → close stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-client-services:autozain",
+        "passed": true,
+        "detail": "no client API, socket, CDN, font, or telemetry host was contacted; every one of the 28 requests resolved to 127.0.0.1:52222",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-failed-requests:autozain",
+        "passed": true,
+        "detail": "0 failed requests, 0 responses >= 400",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/quiet-after-close:autozain",
+        "passed": true,
+        "detail": "no further requests after Close (28 → 28)",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/clean-console:autozain",
+        "passed": true,
+        "detail": "no console errors during the full scenario",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-demo-requests-before-activation:roya",
+        "passed": true,
+        "detail": "4 requests on the hosting page, 0 of them from the demo",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/same-origin-only:roya",
+        "passed": true,
+        "detail": "all 10 requests across open → scenario → reset → close stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-client-services:roya",
+        "passed": true,
+        "detail": "no client API, socket, CDN, font, or telemetry host was contacted; every one of the 10 requests resolved to 127.0.0.1:52222",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-failed-requests:roya",
+        "passed": true,
+        "detail": "0 failed requests, 0 responses >= 400",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/quiet-after-close:roya",
+        "passed": true,
+        "detail": "no further requests after Close (10 → 10)",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/clean-console:roya",
+        "passed": true,
+        "detail": "no console errors during the full scenario",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-demo-requests-before-activation:ramex",
+        "passed": true,
+        "detail": "4 requests on the hosting page, 0 of them from the demo",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/same-origin-only:ramex",
+        "passed": true,
+        "detail": "all 26 requests across open → scenario → reset → close stayed on the portfolio origin",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-client-services:ramex",
+        "passed": true,
+        "detail": "no client API, socket, CDN, font, or telemetry host was contacted; every one of the 26 requests resolved to 127.0.0.1:52222",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/no-failed-requests:ramex",
+        "passed": true,
+        "detail": "0 failed requests, 0 responses >= 400",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/quiet-after-close:ramex",
+        "passed": true,
+        "detail": "no further requests after Close (26 → 26)",
+        "artifacts": []
+      },
+      {
+        "id": "scenario/clean-console:ramex",
+        "passed": true,
+        "detail": "no console errors during the full scenario",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-live-channels:vertex",
+        "passed": true,
+        "detail": "websockets=[], eventSources=[], workers=[], beacons=[], notification prompts=0, geolocation=0, service worker registrations=[]",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-persistent-storage:vertex",
+        "passed": true,
+        "detail": "localStorage keys=[], sessionStorage keys=[], cookies=\"\"",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-live-channels:autozain",
+        "passed": true,
+        "detail": "websockets=[], eventSources=[], workers=[], beacons=[], notification prompts=0, geolocation=0, service worker registrations=[]",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-persistent-storage:autozain",
+        "passed": true,
+        "detail": "localStorage keys=[], sessionStorage keys=[], cookies=\"\"",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-live-channels:roya",
+        "passed": true,
+        "detail": "websockets=[], eventSources=[], workers=[], beacons=[], notification prompts=0, geolocation=0, service worker registrations=[]",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-persistent-storage:roya",
+        "passed": true,
+        "detail": "localStorage keys=[], sessionStorage keys=[], cookies=\"\"",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-live-channels:ramex",
+        "passed": true,
+        "detail": "websockets=[], eventSources=[], workers=[], beacons=[], notification prompts=0, geolocation=0, service worker registrations=[]",
+        "artifacts": []
+      },
+      {
+        "id": "runtime/no-persistent-storage:ramex",
+        "passed": true,
+        "detail": "localStorage keys=[], sessionStorage keys=[], cookies=\"\"",
+        "artifacts": []
+      },
+      {
+        "id": "unsupported/no-fallthrough",
+        "passed": true,
+        "detail": "re-selecting a sold roll produced 0 requests and zero xhr/fetch/socket calls; the UI responded locally (card removed from the sellable list)",
+        "artifacts": []
+      },
+      {
+        "id": "allow-list/local-only",
+        "passed": true,
+        "detail": "42 distinct local paths were requested across every run; no absolute off-origin URL appears",
+        "artifacts": []
+      }
+    ]
+  }
+}

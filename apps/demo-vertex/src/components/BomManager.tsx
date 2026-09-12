@@ -42,13 +42,13 @@ export function BomManager({ boms, inventory, warehouses, service, onSuccess, on
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
           <div className="bg-primary/10 p-3 rounded-full text-primary"><Icon name="recipe" className="size-7" /></div>
-          <div><h1 id="bom-heading" className="text-2xl sm:text-3xl font-bold text-text-light">وصفات التصنيع</h1><p className="text-sm text-gray-500">إدارة قوائم المواد (BOM)</p></div>
+          <div><h1 id="bom-heading" className="text-2xl sm:text-3xl font-bold text-text-light">وصفات التصنيع</h1><p className="text-sm text-gray-600">إدارة قوائم المواد (BOM)</p></div>
         </div>
         <button type="button" onClick={onShowHistory} className="action-secondary text-green-700 border-green-300"><Icon name="history" className="size-5" />سجل الإنتاج</button>
       </div>
 
       <div className="mb-6 relative">
-        <Icon name="search" className="size-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
+        <Icon name="search" className="size-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" />
         <input type="search" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="ابحث باسم الوصفة أو المنتج أو المكوّنات..." className="w-full bg-white border border-border-light rounded-xl py-3 pr-12 pl-4 focus:ring-2 focus:ring-primary" />
       </div>
 
@@ -62,7 +62,7 @@ export function BomManager({ boms, inventory, warehouses, service, onSuccess, on
                   <div className="bg-green-100 text-green-600 p-2.5 rounded-xl"><Icon name="recipe" className="size-5" /></div>
                   <div className="min-w-0">
                     <h2 className="font-bold text-lg text-text-light">{bom.name}</h2>
-                    <div className="flex flex-wrap items-center gap-2 mt-1 text-sm text-gray-500">
+                    <div className="flex flex-wrap items-center gap-2 mt-1 text-sm text-gray-600">
                       <span>المنتج: {bom.outputItemName}</span><span>•</span><span>{bom.items.length} مادة خام</span><span className="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-medium">مفعّل</span>
                     </div>
                     <p className="mt-2 text-sm text-green-700 font-bold">إمكانية الإنتاج: {Number(maxProduction(bom).toFixed(2))} وحدة</p>
@@ -70,18 +70,18 @@ export function BomManager({ boms, inventory, warehouses, service, onSuccess, on
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <button data-testid="open-production" type="button" onClick={(event) => { event.stopPropagation(); setExecutingBom(bom); }} title="تنفيذ إنتاج" aria-label={`تنفيذ إنتاج ${bom.name}`} className="icon-button text-green-600"><Icon name="factory" className="size-5" /></button>
-                  <Icon name="chevron" className={`size-5 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+                  <Icon name="chevron" className={`size-5 text-gray-500 transition-transform ${expanded ? 'rotate-180' : ''}`} />
                 </div>
               </div>
               {expanded && (
                 <div className="border-t border-gray-100 p-4 bg-gray-50/50 overflow-x-auto">
-                  <table className="w-full min-w-[34rem] text-sm"><thead><tr className="text-xs text-gray-500 border-b border-gray-200"><th className="text-right py-2 px-3">#</th><th className="text-right py-2 px-3">المادة الخام</th><th className="text-right py-2 px-3">الكمية المطلوبة</th><th className="text-center py-2 px-3">الرصيد المتاح</th><th className="text-right py-2 px-3">ملاحظات</th></tr></thead>
+                  <table className="w-full min-w-[34rem] text-sm"><thead><tr className="text-xs text-gray-600 border-b border-gray-200"><th className="text-right py-2 px-3">#</th><th className="text-right py-2 px-3">المادة الخام</th><th className="text-right py-2 px-3">الكمية المطلوبة</th><th className="text-center py-2 px-3">الرصيد المتاح</th><th className="text-right py-2 px-3">ملاحظات</th></tr></thead>
                     <tbody>{bom.items.map((item, index) => {
                       const stock = stockFor(item.itemId);
-                      return <tr key={item.id} className="border-b border-gray-100 last:border-0"><td className="py-2.5 px-3 text-gray-400 font-mono">{index + 1}</td><td className="py-2.5 px-3 font-medium">{item.itemName}</td><td className="py-2.5 px-3 font-bold text-primary">{item.quantity}</td><td className="py-2.5 px-3 text-center"><b className={stock < item.quantity ? 'text-red-500' : 'text-green-600'}>{stock.toFixed(2)}</b><small className="block text-gray-400">يكفي {Number((stock / item.quantity).toFixed(2))}</small></td><td className="py-2.5 px-3 text-gray-500">{item.notes ?? '—'}</td></tr>;
+                      return <tr key={item.id} className="border-b border-gray-100 last:border-0"><td className="py-2.5 px-3 text-gray-500 font-mono">{index + 1}</td><td className="py-2.5 px-3 font-medium">{item.itemName}</td><td className="py-2.5 px-3 font-bold text-primary">{item.quantity}</td><td className="py-2.5 px-3 text-center"><b className={stock < item.quantity ? 'text-red-500' : 'text-green-600'}>{stock.toFixed(2)}</b><small className="block text-gray-500">يكفي {Number((stock / item.quantity).toFixed(2))}</small></td><td className="py-2.5 px-3 text-gray-600">{item.notes ?? '—'}</td></tr>;
                     })}</tbody>
                   </table>
-                  {bom.notes && <p className="mt-3 text-sm text-gray-500 bg-yellow-50 p-3 rounded-lg">{bom.notes}</p>}
+                  {bom.notes && <p className="mt-3 text-sm text-gray-600 bg-yellow-50 p-3 rounded-lg">{bom.notes}</p>}
                 </div>
               )}
             </article>

@@ -22,6 +22,17 @@
     "check:static": "node scripts/check-static.mjs",
     "clean": "node scripts/clean.mjs",
     "build": "npm run check:assets && npm run build:shell && npm run build:demos && npm run stage && npm run check:static",
-    "preview:all": "node scripts/preview-static.mjs"
+    "preview:all": "node scripts/preview-static.mjs",
+    "verify:visual": "node tests/phase-08/visual-responsive.mjs",
+    "verify:a11y": "node tests/phase-08/accessibility-keyboard.mjs",
+    "verify:journeys": "node tests/phase-08/demo-journeys.mjs",
+    "verify:network": "node tests/phase-08/network-isolation.mjs",
+    "verify:performance": "node tests/phase-08/performance.mjs",
+    "verify:lighthouse": "node tests/phase-08/lighthouse-audit.mjs",
+    "verify": "node tests/phase-08/run-all.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.2",
+    "playwright": "1.63.0"
   }
 }

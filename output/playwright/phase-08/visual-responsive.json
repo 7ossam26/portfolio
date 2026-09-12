@@ -1,0 +1,2340 @@
+{
+  "conditions": {
+    "browser": "Chromium 153.0.8010.12",
+    "playwright": "1.63.0",
+    "origin": "http://127.0.0.1:61907",
+    "startedAt": "2026-09-12T07:24:42.559Z"
+  },
+  "routes": [
+    {
+      "route": "home",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": [
+        "output/playwright/phase-08/visual/home-360x780.png"
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": [
+        "output/playwright/phase-08/visual/work-vertex-360x780.png"
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "360x780",
+      "scrollWidth": 345,
+      "clientWidth": 360,
+      "bodyScrollWidth": 345,
+      "artifacts": [
+        "output/playwright/phase-08/visual/not-found-360x780.png"
+      ]
+    },
+    {
+      "route": "home",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": [
+        "output/playwright/phase-08/visual/home-390x844.png"
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": [
+        "output/playwright/phase-08/visual/work-vertex-390x844.png"
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "390x844",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifacts": [
+        "output/playwright/phase-08/visual/not-found-390x844.png"
+      ]
+    },
+    {
+      "route": "home",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": [
+        "output/playwright/phase-08/visual/home-768x1024.png"
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": [
+        "output/playwright/phase-08/visual/work-vertex-768x1024.png"
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "768x1024",
+      "scrollWidth": 753,
+      "clientWidth": 768,
+      "bodyScrollWidth": 753,
+      "artifacts": [
+        "output/playwright/phase-08/visual/not-found-768x1024.png"
+      ]
+    },
+    {
+      "route": "home",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": [
+        "output/playwright/phase-08/visual/home-1024x768.png"
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": [
+        "output/playwright/phase-08/visual/work-vertex-1024x768.png"
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "clientWidth": 1024,
+      "bodyScrollWidth": 1009,
+      "artifacts": [
+        "output/playwright/phase-08/visual/not-found-1024x768.png"
+      ]
+    },
+    {
+      "route": "home",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": [
+        "output/playwright/phase-08/visual/home-1440x900.png"
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": [
+        "output/playwright/phase-08/visual/work-vertex-1440x900.png"
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifacts": [
+        "output/playwright/phase-08/visual/not-found-1440x900.png"
+      ]
+    }
+  ],
+  "enlargement": [
+    {
+      "name": "text-200-1440",
+      "width": 1440,
+      "height": 900,
+      "rootFontPercent": 200,
+      "path": "/",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifact": "output/playwright/phase-08/enlargement/text-200-1440.png",
+      "clipped": []
+    },
+    {
+      "name": "text-200-390",
+      "width": 390,
+      "height": 844,
+      "rootFontPercent": 200,
+      "path": "/",
+      "scrollWidth": 375,
+      "clientWidth": 390,
+      "bodyScrollWidth": 375,
+      "artifact": "output/playwright/phase-08/enlargement/text-200-390.png",
+      "clipped": []
+    },
+    {
+      "name": "text-200-work-vertex-1440",
+      "width": 1440,
+      "height": 900,
+      "rootFontPercent": 200,
+      "path": "/work/vertex/",
+      "scrollWidth": 1425,
+      "clientWidth": 1440,
+      "bodyScrollWidth": 1425,
+      "artifact": "output/playwright/phase-08/enlargement/text-200-work-vertex-1440.png",
+      "clipped": []
+    },
+    {
+      "name": "zoom-200-equivalent-640x360",
+      "width": 640,
+      "height": 360,
+      "rootFontPercent": null,
+      "path": "/",
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "bodyScrollWidth": 625,
+      "artifact": "output/playwright/phase-08/enlargement/zoom-200-equivalent-640x360.png",
+      "clipped": []
+    },
+    {
+      "name": "zoom-200-equivalent-work-ramex-640x360",
+      "width": 640,
+      "height": 360,
+      "rootFontPercent": null,
+      "path": "/work/ramex/",
+      "scrollWidth": 625,
+      "clientWidth": 640,
+      "bodyScrollWidth": 625,
+      "artifact": "output/playwright/phase-08/enlargement/zoom-200-equivalent-work-ramex-640x360.png",
+      "clipped": []
+    }
+  ],
+  "demoLayout": [
+    {
+      "slug": "vertex",
+      "viewport": "390x844",
+      "frame": {
+        "width": 390,
+        "height": 666
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 12
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/vertex-390x844.png"
+    },
+    {
+      "slug": "autozain",
+      "viewport": "390x844",
+      "frame": {
+        "width": 390,
+        "height": 666
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/autozain-390x844.png"
+    },
+    {
+      "slug": "roya",
+      "viewport": "390x844",
+      "frame": {
+        "width": 390,
+        "height": 666
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/roya-390x844.png"
+    },
+    {
+      "slug": "ramex",
+      "viewport": "390x844",
+      "frame": {
+        "width": 390,
+        "height": 666
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/ramex-390x844.png"
+    },
+    {
+      "slug": "vertex",
+      "viewport": "768x1024",
+      "frame": {
+        "width": 768,
+        "height": 866
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 12
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/vertex-768x1024.png"
+    },
+    {
+      "slug": "autozain",
+      "viewport": "768x1024",
+      "frame": {
+        "width": 768,
+        "height": 866
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/autozain-768x1024.png"
+    },
+    {
+      "slug": "roya",
+      "viewport": "768x1024",
+      "frame": {
+        "width": 768,
+        "height": 866
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/roya-768x1024.png"
+    },
+    {
+      "slug": "ramex",
+      "viewport": "768x1024",
+      "frame": {
+        "width": 768,
+        "height": 866
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 76,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 76,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/ramex-768x1024.png"
+    },
+    {
+      "slug": "vertex",
+      "viewport": "1440x900",
+      "frame": {
+        "width": 1352,
+        "height": 693
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 68,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 68,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 1352,
+        "clientWidth": 1352,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 12
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/vertex-1440x900.png"
+    },
+    {
+      "slug": "autozain",
+      "viewport": "1440x900",
+      "frame": {
+        "width": 1352,
+        "height": 693
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 68,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 68,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 1352,
+        "clientWidth": 1352,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/autozain-1440x900.png"
+    },
+    {
+      "slug": "roya",
+      "viewport": "1440x900",
+      "frame": {
+        "width": 1352,
+        "height": 693
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 68,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 68,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 1352,
+        "clientWidth": 1352,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/roya-1440x900.png"
+    },
+    {
+      "slug": "ramex",
+      "viewport": "1440x900",
+      "frame": {
+        "width": 1352,
+        "height": 693
+      },
+      "closeVisible": true,
+      "resetVisible": true,
+      "closeSize": {
+        "width": 68,
+        "height": 44
+      },
+      "resetSize": {
+        "width": 68,
+        "height": 44
+      },
+      "pageOverflow": false,
+      "child": {
+        "scrollWidth": 1352,
+        "clientWidth": 1352,
+        "innerScrollRegions": 0,
+        "smallestBodyFontPx": 11
+      },
+      "artifact": "output/playwright/phase-08/demo-layout/ramex-1440x900.png"
+    }
+  ],
+  "contrast": [
+    {
+      "route": "home",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "360x780",
+      "lowContrast": []
+    },
+    {
+      "route": "home",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "390x844",
+      "lowContrast": []
+    },
+    {
+      "route": "home",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "768x1024",
+      "lowContrast": []
+    },
+    {
+      "route": "home",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1024x768",
+      "lowContrast": []
+    },
+    {
+      "route": "home",
+      "viewport": "1440x900",
+      "lowContrast": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1440x900",
+      "lowContrast": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1440x900",
+      "lowContrast": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1440x900",
+      "lowContrast": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1440x900",
+      "lowContrast": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1440x900",
+      "lowContrast": []
+    }
+  ],
+  "touchTargets": [
+    {
+      "route": "home",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "360x780",
+      "smallTargets": []
+    },
+    {
+      "route": "home",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "390x844",
+      "smallTargets": []
+    },
+    {
+      "route": "home",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "768x1024",
+      "smallTargets": []
+    },
+    {
+      "route": "home",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1024x768",
+      "smallTargets": []
+    },
+    {
+      "route": "home",
+      "viewport": "1440x900",
+      "smallTargets": []
+    },
+    {
+      "route": "work-vertex",
+      "viewport": "1440x900",
+      "smallTargets": []
+    },
+    {
+      "route": "work-autozain",
+      "viewport": "1440x900",
+      "smallTargets": []
+    },
+    {
+      "route": "work-roya",
+      "viewport": "1440x900",
+      "smallTargets": []
+    },
+    {
+      "route": "work-ramex",
+      "viewport": "1440x900",
+      "smallTargets": []
+    },
+    {
+      "route": "not-found",
+      "viewport": "1440x900",
+      "smallTargets": []
+    }
+  ],
+  "summary": {
+    "label": "visual-responsive",
+    "total": 218,
+    "passed": 218,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "overflow/home@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": [
+          "output/playwright/phase-08/visual/home-360x780.png"
+        ]
+      },
+      {
+        "id": "bleed/home@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/home@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/home@360x780",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/home@360x780",
+        "passed": true,
+        "detail": "all 2 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-vertex@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": [
+          "output/playwright/phase-08/visual/work-vertex-360x780.png"
+        ]
+      },
+      {
+        "id": "bleed/work-vertex@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-vertex@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-vertex@360x780",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-vertex@360x780",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-autozain@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-autozain@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-autozain@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-autozain@360x780",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-autozain@360x780",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-roya@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-roya@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-roya@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-roya@360x780",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-roya@360x780",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-ramex@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-ramex@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-ramex@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-ramex@360x780",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-ramex@360x780",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/not-found@360x780",
+        "passed": true,
+        "detail": "documentElement scrollWidth 345 vs clientWidth 360",
+        "artifacts": [
+          "output/playwright/phase-08/visual/not-found-360x780.png"
+        ]
+      },
+      {
+        "id": "bleed/not-found@360x780",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/not-found@360x780",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/not-found@360x780",
+        "passed": true,
+        "detail": "all 12 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/not-found@360x780",
+        "passed": true,
+        "detail": "all 1 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "console/360x780",
+        "passed": true,
+        "detail": "no unexpected console errors across 6 routes (the deliberate 404 probe is excluded)",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/home@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": [
+          "output/playwright/phase-08/visual/home-390x844.png"
+        ]
+      },
+      {
+        "id": "bleed/home@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/home@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/home@390x844",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/home@390x844",
+        "passed": true,
+        "detail": "all 2 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-vertex@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": [
+          "output/playwright/phase-08/visual/work-vertex-390x844.png"
+        ]
+      },
+      {
+        "id": "bleed/work-vertex@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-vertex@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-vertex@390x844",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-vertex@390x844",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-autozain@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-autozain@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-autozain@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-autozain@390x844",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-autozain@390x844",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-roya@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-roya@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-roya@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-roya@390x844",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-roya@390x844",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-ramex@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-ramex@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-ramex@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-ramex@390x844",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-ramex@390x844",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/not-found@390x844",
+        "passed": true,
+        "detail": "documentElement scrollWidth 375 vs clientWidth 390",
+        "artifacts": [
+          "output/playwright/phase-08/visual/not-found-390x844.png"
+        ]
+      },
+      {
+        "id": "bleed/not-found@390x844",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/not-found@390x844",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/not-found@390x844",
+        "passed": true,
+        "detail": "all 12 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/not-found@390x844",
+        "passed": true,
+        "detail": "all 1 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "console/390x844",
+        "passed": true,
+        "detail": "no unexpected console errors across 6 routes (the deliberate 404 probe is excluded)",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/home@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": [
+          "output/playwright/phase-08/visual/home-768x1024.png"
+        ]
+      },
+      {
+        "id": "bleed/home@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/home@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/home@768x1024",
+        "passed": true,
+        "detail": "all 31 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/home@768x1024",
+        "passed": true,
+        "detail": "all 2 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-vertex@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": [
+          "output/playwright/phase-08/visual/work-vertex-768x1024.png"
+        ]
+      },
+      {
+        "id": "bleed/work-vertex@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-vertex@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-vertex@768x1024",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-vertex@768x1024",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-autozain@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-autozain@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-autozain@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-autozain@768x1024",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-autozain@768x1024",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-roya@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-roya@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-roya@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-roya@768x1024",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-roya@768x1024",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-ramex@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-ramex@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-ramex@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-ramex@768x1024",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-ramex@768x1024",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/not-found@768x1024",
+        "passed": true,
+        "detail": "documentElement scrollWidth 753 vs clientWidth 768",
+        "artifacts": [
+          "output/playwright/phase-08/visual/not-found-768x1024.png"
+        ]
+      },
+      {
+        "id": "bleed/not-found@768x1024",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/not-found@768x1024",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/not-found@768x1024",
+        "passed": true,
+        "detail": "all 13 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/not-found@768x1024",
+        "passed": true,
+        "detail": "all 1 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "console/768x1024",
+        "passed": true,
+        "detail": "no unexpected console errors across 6 routes (the deliberate 404 probe is excluded)",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/home@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": [
+          "output/playwright/phase-08/visual/home-1024x768.png"
+        ]
+      },
+      {
+        "id": "bleed/home@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/home@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/home@1024x768",
+        "passed": true,
+        "detail": "all 31 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/home@1024x768",
+        "passed": true,
+        "detail": "all 2 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-vertex@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": [
+          "output/playwright/phase-08/visual/work-vertex-1024x768.png"
+        ]
+      },
+      {
+        "id": "bleed/work-vertex@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-vertex@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-vertex@1024x768",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-vertex@1024x768",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-autozain@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-autozain@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-autozain@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-autozain@1024x768",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-autozain@1024x768",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-roya@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-roya@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-roya@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-roya@1024x768",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-roya@1024x768",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-ramex@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-ramex@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-ramex@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-ramex@1024x768",
+        "passed": true,
+        "detail": "all 29 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-ramex@1024x768",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/not-found@1024x768",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1009 vs clientWidth 1024",
+        "artifacts": [
+          "output/playwright/phase-08/visual/not-found-1024x768.png"
+        ]
+      },
+      {
+        "id": "bleed/not-found@1024x768",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/not-found@1024x768",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/not-found@1024x768",
+        "passed": true,
+        "detail": "all 13 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/not-found@1024x768",
+        "passed": true,
+        "detail": "all 1 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "console/1024x768",
+        "passed": true,
+        "detail": "no unexpected console errors across 6 routes (the deliberate 404 probe is excluded)",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/home@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": [
+          "output/playwright/phase-08/visual/home-1440x900.png"
+        ]
+      },
+      {
+        "id": "bleed/home@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/home@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/home@1440x900",
+        "passed": true,
+        "detail": "all 31 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/home@1440x900",
+        "passed": true,
+        "detail": "all 2 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-vertex@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": [
+          "output/playwright/phase-08/visual/work-vertex-1440x900.png"
+        ]
+      },
+      {
+        "id": "bleed/work-vertex@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-vertex@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-vertex@1440x900",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-vertex@1440x900",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-autozain@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-autozain@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-autozain@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-autozain@1440x900",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-autozain@1440x900",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-roya@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-roya@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-roya@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-roya@1440x900",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-roya@1440x900",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/work-ramex@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": []
+      },
+      {
+        "id": "bleed/work-ramex@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/work-ramex@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/work-ramex@1440x900",
+        "passed": true,
+        "detail": "all 30 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/work-ramex@1440x900",
+        "passed": true,
+        "detail": "all 3 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "overflow/not-found@1440x900",
+        "passed": true,
+        "detail": "documentElement scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": [
+          "output/playwright/phase-08/visual/not-found-1440x900.png"
+        ]
+      },
+      {
+        "id": "bleed/not-found@1440x900",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "clipped/not-found@1440x900",
+        "passed": true,
+        "detail": "no heading or control clips its own content",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-text/not-found@1440x900",
+        "passed": true,
+        "detail": "all 13 distinct text styles meet WCAG AA",
+        "artifacts": []
+      },
+      {
+        "id": "contrast-boundary/not-found@1440x900",
+        "passed": true,
+        "detail": "all 1 control boundaries meet 3:1",
+        "artifacts": []
+      },
+      {
+        "id": "console/1440x900",
+        "passed": true,
+        "detail": "no unexpected console errors across 6 routes (the deliberate 404 probe is excluded)",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-overflow/text-200-1440",
+        "passed": true,
+        "detail": "scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": [
+          "output/playwright/phase-08/enlargement/text-200-1440.png"
+        ]
+      },
+      {
+        "id": "enlarge-bleed/text-200-1440",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-clipped/text-200-1440",
+        "passed": true,
+        "detail": "no clipped headings or controls",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-overflow/text-200-390",
+        "passed": true,
+        "detail": "scrollWidth 375 vs clientWidth 390",
+        "artifacts": [
+          "output/playwright/phase-08/enlargement/text-200-390.png"
+        ]
+      },
+      {
+        "id": "enlarge-bleed/text-200-390",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-clipped/text-200-390",
+        "passed": true,
+        "detail": "no clipped headings or controls",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-overflow/text-200-work-vertex-1440",
+        "passed": true,
+        "detail": "scrollWidth 1425 vs clientWidth 1440",
+        "artifacts": [
+          "output/playwright/phase-08/enlargement/text-200-work-vertex-1440.png"
+        ]
+      },
+      {
+        "id": "enlarge-bleed/text-200-work-vertex-1440",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-clipped/text-200-work-vertex-1440",
+        "passed": true,
+        "detail": "no clipped headings or controls",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-overflow/zoom-200-equivalent-640x360",
+        "passed": true,
+        "detail": "scrollWidth 625 vs clientWidth 640",
+        "artifacts": [
+          "output/playwright/phase-08/enlargement/zoom-200-equivalent-640x360.png"
+        ]
+      },
+      {
+        "id": "enlarge-bleed/zoom-200-equivalent-640x360",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-clipped/zoom-200-equivalent-640x360",
+        "passed": true,
+        "detail": "no clipped headings or controls",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-overflow/zoom-200-equivalent-work-ramex-640x360",
+        "passed": true,
+        "detail": "scrollWidth 625 vs clientWidth 640",
+        "artifacts": [
+          "output/playwright/phase-08/enlargement/zoom-200-equivalent-work-ramex-640x360.png"
+        ]
+      },
+      {
+        "id": "enlarge-bleed/zoom-200-equivalent-work-ramex-640x360",
+        "passed": true,
+        "detail": "no non-scrollable element extends past the viewport",
+        "artifacts": []
+      },
+      {
+        "id": "enlarge-clipped/zoom-200-equivalent-work-ramex-640x360",
+        "passed": true,
+        "detail": "no clipped headings or controls",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/vertex@390x844",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/vertex-390x844.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/vertex@390x844",
+        "passed": true,
+        "detail": "host page horizontal overflow while the vertex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/vertex@390x844",
+        "passed": true,
+        "detail": "smallest rendered text inside the vertex frame: 12px (frame 390x666)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/vertex@390x844",
+        "passed": true,
+        "detail": "child body scrollWidth 390 vs 390; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/autozain@390x844",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/autozain-390x844.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/autozain@390x844",
+        "passed": true,
+        "detail": "host page horizontal overflow while the autozain dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/autozain@390x844",
+        "passed": true,
+        "detail": "smallest rendered text inside the autozain frame: 11px (frame 390x666)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/autozain@390x844",
+        "passed": true,
+        "detail": "child body scrollWidth 390 vs 390; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/roya@390x844",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/roya-390x844.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/roya@390x844",
+        "passed": true,
+        "detail": "host page horizontal overflow while the roya dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/roya@390x844",
+        "passed": true,
+        "detail": "smallest rendered text inside the roya frame: 11px (frame 390x666)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/roya@390x844",
+        "passed": true,
+        "detail": "child body scrollWidth 390 vs 390; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/ramex@390x844",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/ramex-390x844.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/ramex@390x844",
+        "passed": true,
+        "detail": "host page horizontal overflow while the ramex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/ramex@390x844",
+        "passed": true,
+        "detail": "smallest rendered text inside the ramex frame: 11px (frame 390x666)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/ramex@390x844",
+        "passed": true,
+        "detail": "child body scrollWidth 390 vs 390; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/vertex@768x1024",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/vertex-768x1024.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/vertex@768x1024",
+        "passed": true,
+        "detail": "host page horizontal overflow while the vertex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/vertex@768x1024",
+        "passed": true,
+        "detail": "smallest rendered text inside the vertex frame: 12px (frame 768x866)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/vertex@768x1024",
+        "passed": true,
+        "detail": "child body scrollWidth 768 vs 768; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/autozain@768x1024",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/autozain-768x1024.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/autozain@768x1024",
+        "passed": true,
+        "detail": "host page horizontal overflow while the autozain dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/autozain@768x1024",
+        "passed": true,
+        "detail": "smallest rendered text inside the autozain frame: 11px (frame 768x866)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/autozain@768x1024",
+        "passed": true,
+        "detail": "child body scrollWidth 768 vs 768; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/roya@768x1024",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/roya-768x1024.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/roya@768x1024",
+        "passed": true,
+        "detail": "host page horizontal overflow while the roya dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/roya@768x1024",
+        "passed": true,
+        "detail": "smallest rendered text inside the roya frame: 11px (frame 768x866)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/roya@768x1024",
+        "passed": true,
+        "detail": "child body scrollWidth 768 vs 768; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/ramex@768x1024",
+        "passed": true,
+        "detail": "Close {\"width\":76,\"height\":44} visible=true; Reset {\"width\":76,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/ramex-768x1024.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/ramex@768x1024",
+        "passed": true,
+        "detail": "host page horizontal overflow while the ramex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/ramex@768x1024",
+        "passed": true,
+        "detail": "smallest rendered text inside the ramex frame: 11px (frame 768x866)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/ramex@768x1024",
+        "passed": true,
+        "detail": "child body scrollWidth 768 vs 768; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/vertex@1440x900",
+        "passed": true,
+        "detail": "Close {\"width\":68,\"height\":44} visible=true; Reset {\"width\":68,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/vertex-1440x900.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/vertex@1440x900",
+        "passed": true,
+        "detail": "host page horizontal overflow while the vertex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/vertex@1440x900",
+        "passed": true,
+        "detail": "smallest rendered text inside the vertex frame: 12px (frame 1352x693)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/vertex@1440x900",
+        "passed": true,
+        "detail": "child body scrollWidth 1352 vs 1352; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/autozain@1440x900",
+        "passed": true,
+        "detail": "Close {\"width\":68,\"height\":44} visible=true; Reset {\"width\":68,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/autozain-1440x900.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/autozain@1440x900",
+        "passed": true,
+        "detail": "host page horizontal overflow while the autozain dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/autozain@1440x900",
+        "passed": true,
+        "detail": "smallest rendered text inside the autozain frame: 11px (frame 1352x693)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/autozain@1440x900",
+        "passed": true,
+        "detail": "child body scrollWidth 1352 vs 1352; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/roya@1440x900",
+        "passed": true,
+        "detail": "Close {\"width\":68,\"height\":44} visible=true; Reset {\"width\":68,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/roya-1440x900.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/roya@1440x900",
+        "passed": true,
+        "detail": "host page horizontal overflow while the roya dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/roya@1440x900",
+        "passed": true,
+        "detail": "smallest rendered text inside the roya frame: 11px (frame 1352x693)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/roya@1440x900",
+        "passed": true,
+        "detail": "child body scrollWidth 1352 vs 1352; internal scroll regions: 0",
+        "artifacts": []
+      },
+      {
+        "id": "demo-controls/ramex@1440x900",
+        "passed": true,
+        "detail": "Close {\"width\":68,\"height\":44} visible=true; Reset {\"width\":68,\"height\":44} visible=true",
+        "artifacts": [
+          "output/playwright/phase-08/demo-layout/ramex-1440x900.png"
+        ]
+      },
+      {
+        "id": "demo-host-overflow/ramex@1440x900",
+        "passed": true,
+        "detail": "host page horizontal overflow while the ramex dialog is open: false",
+        "artifacts": []
+      },
+      {
+        "id": "demo-legibility/ramex@1440x900",
+        "passed": true,
+        "detail": "smallest rendered text inside the ramex frame: 11px (frame 1352x693)",
+        "artifacts": []
+      },
+      {
+        "id": "demo-child-reflow/ramex@1440x900",
+        "passed": true,
+        "detail": "child body scrollWidth 1352 vs 1352; internal scroll regions: 0",
+        "artifacts": []
+      }
+    ]
+  }
+}

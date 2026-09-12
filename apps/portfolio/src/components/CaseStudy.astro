@@ -118,6 +118,11 @@ const { project } = Astro.props;
             Try {project.name} demo
           </a>
         )}
+        {project.demoAvailable && (
+          <noscript>
+            <p class="demo-noscript">The interactive sample needs JavaScript. Everything above describes the same scenario without it.</p>
+          </noscript>
+        )}
       </div>
     </section>
   </div>

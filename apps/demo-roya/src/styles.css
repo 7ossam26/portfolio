@@ -391,7 +391,7 @@ html[dir='rtl'] .title-row h1 {
 
 .department-name {
   color: var(--primary);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -661,7 +661,7 @@ html[dir='rtl'] .preview-action {
 .impact-stats span {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -725,7 +725,7 @@ html[dir='rtl'] .preview-action {
 .impact-table th {
   color: var(--muted);
   background: #f1f5f9;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .impact-table td strong,
@@ -736,7 +736,7 @@ html[dir='rtl'] .preview-action {
 .impact-table td span {
   margin-top: 3px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .impact-table .positive {
@@ -933,7 +933,7 @@ html[dir='rtl'] .preview-action {
 
   .demo-control-bar {
     gap: 8px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .standalone-actions {

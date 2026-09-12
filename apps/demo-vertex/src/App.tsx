@@ -67,12 +67,12 @@ export default function App() {
   };
 
   if (loadError) return <main className="min-h-screen grid place-items-center p-6"><p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">{loadError}</p></main>;
-  if (!snapshot) return <main className="min-h-screen grid place-items-center p-6"><p className="text-gray-500">جاري تجهيز بيانات Vertex التجريبية…</p></main>;
+  if (!snapshot) return <main className="min-h-screen grid place-items-center p-6"><p className="text-gray-600">جاري تجهيز بيانات Vertex التجريبية…</p></main>;
 
   return (
     <div className="min-h-screen bg-background-light text-text-light font-body" dir="rtl">
       <header className="demo-toolbar">
-        <div className="flex items-center gap-3 min-w-0"><span className="vertex-logo">v:</span><div className="min-w-0"><p className="font-bold leading-tight">Vertex ERP</p><p className="text-xs text-gray-500 truncate">{snapshot.persona.name} · {snapshot.branch.name}</p></div></div>
+        <div className="flex items-center gap-3 min-w-0"><span className="vertex-logo">v:</span><div className="min-w-0"><p className="font-bold leading-tight">Vertex ERP</p><p className="text-xs text-gray-600 truncate">{snapshot.persona.name} · {snapshot.branch.name}</p></div></div>
         <div className="flex items-center gap-2 shrink-0"><span className="sample-badge">بيانات تجريبية</span>{!isEmbedded && <><button type="button" onClick={reset} className="toolbar-action">إعادة الضبط</button><a href="/work/vertex/" className="toolbar-action">العودة للملف</a></>}</div>
       </header>
 

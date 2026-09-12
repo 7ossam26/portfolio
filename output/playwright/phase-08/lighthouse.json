@@ -1,0 +1,429 @@
+{
+  "conditions": {
+    "chrome": "C:\\Users\\7OSS\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe",
+    "lighthouse": "13.2.0",
+    "preset": "default mobile emulation with simulated throttling",
+    "artifact": "production dist/ served over loopback HTTP",
+    "measuredAt": "2026-09-12T07:17:04.161Z"
+  },
+  "audits": [
+    {
+      "route": "home",
+      "path": "/",
+      "categories": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66
+      },
+      "metrics": {
+        "firstContentfulPaint": "0.9 s",
+        "largestContentfulPaint": "1.1 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.9 s"
+      },
+      "failedAudits": [
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "score": 0
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "score": 0
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "score": 0.5
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "score": 0.5
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "score": 0
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "work-vertex",
+      "path": "/work/vertex/",
+      "categories": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66
+      },
+      "metrics": {
+        "firstContentfulPaint": "0.9 s",
+        "largestContentfulPaint": "1.5 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.9 s"
+      },
+      "failedAudits": [
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "score": 0
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "score": 0
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "score": 0.5
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "score": 0
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "score": 0
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "work-autozain",
+      "path": "/work/autozain/",
+      "categories": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66
+      },
+      "metrics": {
+        "firstContentfulPaint": "0.9 s",
+        "largestContentfulPaint": "1.5 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.9 s"
+      },
+      "failedAudits": [
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "score": 0
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "score": 0
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "score": 0.5
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow",
+          "score": 0
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "score": 0
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "score": 0
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "score": 0
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "work-roya",
+      "path": "/work/roya/",
+      "categories": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66
+      },
+      "metrics": {
+        "firstContentfulPaint": "0.9 s",
+        "largestContentfulPaint": "1.8 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.9 s"
+      },
+      "failedAudits": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "score": 0.98
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "score": 0
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "score": 0
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "score": 0.5
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "score": 0
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "score": 0
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "work-ramex",
+      "path": "/work/ramex/",
+      "categories": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66
+      },
+      "metrics": {
+        "firstContentfulPaint": "0.9 s",
+        "largestContentfulPaint": "1.5 s",
+        "totalBlockingTime": "0 ms",
+        "cumulativeLayoutShift": "0",
+        "speedIndex": "0.9 s"
+      },
+      "failedAudits": [
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "score": 0.81
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "score": 0.5
+        },
+        {
+          "id": "is-crawlable",
+          "title": "Page is blocked from indexing",
+          "score": 0
+        },
+        {
+          "id": "document-latency-insight",
+          "title": "Document request latency",
+          "score": 0.5
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "score": 0
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree",
+          "score": 0
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "score": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "label": "lighthouse",
+    "total": 20,
+    "passed": 20,
+    "failed": 0,
+    "checks": [
+      {
+        "id": "lighthouse/performance:home",
+        "passed": true,
+        "detail": "performance 100 against a 95 target (FCP 0.9 s, LCP 1.1 s, TBT 0 ms, CLS 0)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/accessibility:home",
+        "passed": true,
+        "detail": "accessibility 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/best-practices:home",
+        "passed": true,
+        "detail": "best-practices 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/seo-recorded:home",
+        "passed": true,
+        "detail": "seo 66 (a noindex robots tag is intentional until a public domain is supplied)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/performance:work-vertex",
+        "passed": true,
+        "detail": "performance 100 against a 90 target (FCP 0.9 s, LCP 1.5 s, TBT 0 ms, CLS 0)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/accessibility:work-vertex",
+        "passed": true,
+        "detail": "accessibility 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/best-practices:work-vertex",
+        "passed": true,
+        "detail": "best-practices 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/seo-recorded:work-vertex",
+        "passed": true,
+        "detail": "seo 66 (a noindex robots tag is intentional until a public domain is supplied)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/performance:work-autozain",
+        "passed": true,
+        "detail": "performance 100 against a 90 target (FCP 0.9 s, LCP 1.5 s, TBT 0 ms, CLS 0)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/accessibility:work-autozain",
+        "passed": true,
+        "detail": "accessibility 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/best-practices:work-autozain",
+        "passed": true,
+        "detail": "best-practices 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/seo-recorded:work-autozain",
+        "passed": true,
+        "detail": "seo 66 (a noindex robots tag is intentional until a public domain is supplied)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/performance:work-roya",
+        "passed": true,
+        "detail": "performance 100 against a 90 target (FCP 0.9 s, LCP 1.8 s, TBT 0 ms, CLS 0)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/accessibility:work-roya",
+        "passed": true,
+        "detail": "accessibility 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/best-practices:work-roya",
+        "passed": true,
+        "detail": "best-practices 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/seo-recorded:work-roya",
+        "passed": true,
+        "detail": "seo 66 (a noindex robots tag is intentional until a public domain is supplied)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/performance:work-ramex",
+        "passed": true,
+        "detail": "performance 100 against a 90 target (FCP 0.9 s, LCP 1.5 s, TBT 0 ms, CLS 0)",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/accessibility:work-ramex",
+        "passed": true,
+        "detail": "accessibility 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/best-practices:work-ramex",
+        "passed": true,
+        "detail": "best-practices 100",
+        "artifacts": []
+      },
+      {
+        "id": "lighthouse/seo-recorded:work-ramex",
+        "passed": true,
+        "detail": "seo 66 (a noindex robots tag is intentional until a public domain is supplied)",
+        "artifacts": []
+      }
+    ]
+  }
+}

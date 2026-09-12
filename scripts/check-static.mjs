@@ -2,6 +2,7 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { SITE_URL_VARIABLE, indexableRoutes, resolveSiteUrl } from './site-config.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const staticRoot = path.join(repositoryRoot, 'dist');
@@ -27,8 +28,13 @@ const renderedPages = await Promise.all(pages.map(async ([label, relativePath, t
 })));
 const html = renderedPages[0].html;
 
+const siteUrl = resolveSiteUrl();
+const publishedRoutes = new Set(indexableRoutes.map((route) => route.path));
+const routeForPage = (relativePath) => (relativePath === 'index.html'
+  ? '/'
+  : `/${relativePath.replace(/index\.html$/, '')}`);
+
 const requirements = [
-  ['preview noindex metadata', /<meta name="robots" content="noindex,nofollow"\s*\/?\s*>/i],
   ['approved page title', /<title>Ahmed Hossam — Software Engineer<\/title>/i],
   ['local CV path', /href="\/Ahmed_Hossam_CV\.pdf"/i],
   ['local favicon path', /href="\/favicon\.svg"/i],
@@ -47,14 +53,69 @@ for (const page of renderedPages) {
   if (!/<meta name="description" content="[^"]+"\s*\/?\s*>/i.test(page.html)) {
     throw new Error(`Missing description for ${page.label}: ${page.relativePath}`);
   }
-  if (!/<meta name="robots" content="noindex,nofollow"\s*\/?\s*>/i.test(page.html)) {
-    throw new Error(`Preview indexing protection missing from ${page.relativePath}`);
+
+  const route = routeForPage(page.relativePath);
+  const shouldIndex = Boolean(siteUrl) && publishedRoutes.has(route);
+  const expectedRobots = shouldIndex ? 'index,follow' : 'noindex,nofollow';
+  if (!new RegExp(`<meta name="robots" content="${expectedRobots}"\\s*/?\\s*>`, 'i').test(page.html)) {
+    throw new Error(`Expected robots "${expectedRobots}" on ${page.relativePath}`);
   }
-  console.log(`Verified generated page: ${page.relativePath}`);
+
+  const hasCanonical = /<link[^>]+rel="canonical"/i.test(page.html);
+  if (shouldIndex) {
+    const expectedCanonical = `<link rel="canonical" href="${siteUrl}${route}">`;
+    if (!page.html.includes(expectedCanonical)) {
+      throw new Error(`Expected canonical ${expectedCanonical} on ${page.relativePath}`);
+    }
+  } else if (hasCanonical) {
+    throw new Error(
+      siteUrl
+        ? `A non-indexable page must not declare a canonical URL: ${page.relativePath}`
+        : `A canonical URL was generated before ${SITE_URL_VARIABLE} was supplied: ${page.relativePath}`,
+    );
+  }
+
+  console.log(`Verified generated page: ${page.relativePath} (robots ${expectedRobots}${shouldIndex ? ', canonical present' : ''})`);
 }
 
-if (renderedPages.some((page) => /<link[^>]+rel="canonical"/i.test(page.html))) {
-  throw new Error('A canonical URL was generated before a public domain was selected.');
+// Demo documents must never become search destinations, published or not.
+for (const entry of registry.filter((candidate) => candidate.available)) {
+  const demoHtml = await readFile(path.join(staticRoot, 'demos', entry.slug, 'index.html'), 'utf8');
+  if (!/<meta name="robots" content="noindex,nofollow"\s*\/?\s*>/i.test(demoHtml)) {
+    throw new Error(`Demo document is missing its noindex protection: demos/${entry.slug}/index.html`);
+  }
+  if (!/<noscript>/i.test(demoHtml)) {
+    throw new Error(`Demo document is missing a no-JavaScript fallback: demos/${entry.slug}/index.html`);
+  }
+  console.log(`Verified demo document: demos/${entry.slug}/index.html (noindex, noscript fallback)`);
+}
+
+// robots.txt and sitemap.xml must match the resolved publication mode.
+const robots = await readFile(path.join(staticRoot, 'robots.txt'), 'utf8');
+if (siteUrl) {
+  if (!robots.includes('Disallow: /demos/') || !robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) {
+    throw new Error('robots.txt does not disallow /demos/ or does not reference the sitemap.');
+  }
+  const sitemap = await readFile(path.join(staticRoot, 'sitemap.xml'), 'utf8');
+  for (const route of indexableRoutes) {
+    if (!sitemap.includes(`<loc>${siteUrl}${route.path}</loc>`)) {
+      throw new Error(`sitemap.xml is missing ${route.path}`);
+    }
+  }
+  if (/\/demos\//.test(sitemap)) throw new Error('sitemap.xml must not list demo routes.');
+  if (/404/.test(sitemap)) throw new Error('sitemap.xml must not list the 404 page.');
+  console.log(`Verified robots.txt and sitemap.xml for ${siteUrl}.`);
+} else {
+  if (!/^\s*Disallow:\s*\/\s*$/m.test(robots)) {
+    throw new Error('Without a public origin, robots.txt must disallow everything.');
+  }
+  try {
+    await access(path.join(staticRoot, 'sitemap.xml'), constants.R_OK);
+    throw new Error(`A sitemap was generated before ${SITE_URL_VARIABLE} was supplied.`);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  console.log(`Verified preview mode: disallow-all robots.txt and no sitemap (${SITE_URL_VARIABLE} unset).`);
 }
 
 const allHtml = renderedPages.map((page) => page.html).join('\n');

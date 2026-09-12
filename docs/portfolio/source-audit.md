@@ -321,7 +321,7 @@ The case-study evidence is `apps/portfolio/public/images/roya/shooting-weeks-imp
 
 ### Source correction: the sale unit is the whole roll
 
-The existing `demo-spec.md` describes entering `7.5 m` against a `30 m` roll and leaving `22.5 m`. That behavior does not exist at the pinned revision:
+The earlier `demo-spec.md` illustration described entering `7.5 m` against a `30 m` roll and leaving `22.5 m`. That behavior does not exist at the pinned revision, and Phase 07 corrected the spec:
 
 - `backend/src/domain/sales/sales.schemas.ts` accepts a roll ID and pricing/discount fields but no sale-quantity field.
 - `backend/src/domain/sales/lineQuantity.ts` resolves invoice quantity from the selected roll's complete `length_m` for meter fabrics or complete `weight_kg` for kilogram fabrics.
@@ -368,6 +368,25 @@ The V1 adapter is cash-only and whole-roll-only. It connects at the calls curren
 - Exclude the full app shell, connectivity polling/offline gate, auth/permissions, shift-opening workflow, accessories, returns, split/cheque/bank payment, labels/barcodes, PDF/export, printing/audit-reprint mutations, reports, and invoice-return actions.
 - Primary bundle risks: the approximately 3,200-line POS module, eager cross-feature imports, Framer Motion, barcode/PDF/chart libraries, query providers, and always-on health polling.
 
+### Phase 07 extraction and evidence provenance
+
+Phase 07 implemented the bounded application at `apps/demo-ramex/`. The audited ledger commit remains `0857f27ae4b9b327fb7f24cd83de038bb0b2ac86`; that object was not present in the later local source checkout. The available checkout at `C:\Users\7OSS\Desktop\projects\Ramex-Store` was inspected read-only at clean commit `20cedc5d340e61fff6e387b791f6e3e53994b282`. Its configured remote is a fork, not the ledger repository, so this revision is only a behavior cross-check and does not replace the pin. Its POS, stock, invoice, sale-schema, and invoice-service paths retain the audited whole-roll behavior. The checkout stayed clean. No source file, remote, service, database, or deployment was changed or contacted.
+
+| Source responsibility | Local implementation |
+| --- | --- |
+| `frontend/src/pages/pos/POS.tsx` — Arabic roll search/cards, selected cart line, fixed roll quantity/unit, final unit price, payment state, and open-shift guard | `apps/demo-ramex/src/components/PosView.tsx`, `PaymentModal.tsx`, and the sample persona/open shift in `domain/fixtures.ts` |
+| `frontend/src/pages/inventory/StockView.tsx` — per-roll inventory/status table | `apps/demo-ramex/src/components/StockView.tsx` with an internally scrollable RTL table |
+| `DraftInvoicePrintPage.tsx` and `DraftInvoiceDocument.tsx` — invoice/customer/cashier mapping and Arabic invoice presentation | `apps/demo-ramex/src/components/InvoiceView.tsx` |
+| Pinned `sales.schemas.ts`, `lineQuantity.ts`, `invoices.service.ts`, and migration `096_invoice_line_sold_quantity_snapshot.ts` — roll-ID input, whole-roll quantity derivation, immutable quantity/unit snapshot, validation, and atomic sold-state update | `apps/demo-ramex/src/domain/types.ts`, `domain/fixtures.ts`, and `services/ramexDemoService.ts` |
+| Source Warm Editorial/Tailwind/Cairo presentation | `apps/demo-ramex/src/styles.css` and package-local `@fontsource/cairo`; no remote font request |
+| Source auth/permissions, concurrent session, connectivity polling, router/providers, sales API, and database transaction | Excluded; `RamexDemoService` is the sole local boundary and has no network or persistence fallback |
+
+The fictional meter rolls `RMX-M-0701` and `RMX-M-0702` share fabric `88` but remain separate inventory records. Selling `RMX-M-0701` derives `30.000 meter` from its full roll quantity and uses EGP `185.00` per meter for EGP `5,550.00`. Invoice `DEMO-2026-0701` snapshots that quantity/unit and the selected roll becomes sold/unavailable. `RMX-M-0702` remains independently available at `24.750 meter`; no subtraction, shared-balance mutation, unit conversion, or kilogram fixture is involved.
+
+The adapter stores quantities as integer milliunits and money as integer piastres. It validates the source `decimal(10,3)` quantity ceiling, positive/whole milliunits, roll visibility/shop/status, duplicate IDs, exact cash payment, and one pending submit. It clones returned state and commits the invoice plus selected roll status together. Reset clears the invoice and restores both seed rolls. Focused tests cover each rule through the same service used by every displayed result.
+
+The case-study evidence is `apps/portfolio/public/images/ramex/roll-stock-result-1440x900.png`, captured from production-built standalone `/demos/ramex/` in Chromium after the fictional whole-roll sale. It is `1440×900`, `67,197` bytes, SHA-256 `A900C404E45D648CC5A302A88A04AC5722716F253B340FA7DCBFD457C5F85AFC`, and is duplicated at `output/playwright/phase-07/ramex-stock-result-1440x900.png`. Additional Phase 07 captures show the seed POS, the invoice snapshot, and the mobile stock-table scroller. All records are fictional.
+
 ## Explicit unknowns and deferred decisions
 
 These items are not audit failures and are not represented as verified facts:
@@ -376,7 +395,7 @@ These items are not audit failures and are not represented as verified facts:
 - The public production domain, host, deployment adapter, and access settings remain Phase 09 decisions.
 - Permission to publish specific client logos, uploaded imagery, or other branded media is unresolved. V1 uses synthetic/local assets.
 - Roya and Ramex have no source-level license/notice file; Vertex and AutoZain explicitly describe themselves as proprietary. The planned narrow code reuse has source provenance but does not confer a public open-source license.
-- Ramex browser behavior, keyboard traversal, mobile breakpoints, RTL layout, bundle budgets, network silence, and teardown have not been exercised. Vertex, AutoZain, and Roya now have their phase-specific Chromium evidence; broader accessibility and cross-browser gates remain Phase 08.
+- Ramex now has Phase 07 Chromium evidence for its complete scenario, nested Escape behavior, standalone/host reset, three close/reopen cycles, mobile RTL/internal table scrolling, payload, console, and same-origin-only requests. All four demos now have phase-specific Chromium evidence; broader accessibility, performance, and cross-browser gates remain Phase 08.
 - No source at the pinned Ramex revision supports a partial-roll sale. A later client-source change could be audited separately, but it must not be assumed.
 
 ## Phase 00 extraction verdict

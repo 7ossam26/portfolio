@@ -29,6 +29,6 @@
     "path": "/demos/ramex/",
     "frameTitle": "Ramex sample-data roll sale demo",
     "guidance": "Complete a fictional whole-roll sale and inspect its inventory and invoice snapshot.",
-    "available": false
+    "available": true
   }
 ]

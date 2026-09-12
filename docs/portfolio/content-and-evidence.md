@@ -105,9 +105,9 @@ Use a typed source of truth with fields such as slug, name, domain, summary, rol
 
 ### Ramex
 
-**Summary:** A fabric retail ERP designed around individual rolls, variable sale quantities, and invoice records.
+**Summary:** A fabric retail ERP designed around individual rolls, supported measurement units, and durable invoice records.
 
-**Problem framing:** Fabric stock cannot always be represented as interchangeable item counts. The selected roll, quantity, and unit matter during sale and later review.
+**Problem framing:** Fabric stock cannot always be represented as interchangeable item counts. The selected roll and its measured quantity/unit matter during sale and later review; the audited revision sells a complete roll rather than decrementing part of it.
 
 **Confirmed role:** System design and full-stack development, including requirements and architecture, as described in the current CV.
 

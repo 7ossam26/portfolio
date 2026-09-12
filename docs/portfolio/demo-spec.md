@@ -161,18 +161,18 @@ Required checks: only source-eligible lines change; the preview does not mutate 
 
 ### Goal
 
-Show per-roll inventory and the relationship between a sale's quantity/unit snapshot and remaining stock.
+Show per-roll inventory and the relationship between a whole-roll sale's quantity/unit snapshot and sellable stock. The pinned-source audit supersedes the earlier illustrative partial-roll fixture: this revision accepts a roll ID but no sale-quantity input.
 
-Reuse the original roll selection, quantity entry, invoice preview, and selected stock view. Seed fictional rolls with the fields that the actual source requires. For a simple length fixture, a roll starts at 30 meters; selling 7.5 meters leaves 22.5 meters. A second roll of the same fabric must remain unchanged. The resulting invoice preserves the selected quantity and sale unit.
+Reuse the original roll selection, fixed quantity/unit presentation, invoice view, and selected stock treatment. Seed two fictional meter rolls of the same fabric. The selected roll is 30.000 meters; completing the fully paid sale preserves `30.000 meter` on the invoice and changes that roll to sold/unavailable. The second 24.750-meter roll remains independently in stock.
 
-1. Select the specific roll and supported sale unit.
-2. Enter a valid quantity and complete a local sample sale using the source's relevant payment/shift context.
-3. Inspect the invoice snapshot and remaining quantity for that exact roll.
-4. Reset to the original stock.
+1. Select the identified 30.000-meter roll.
+2. Review its read-only complete quantity and editable per-meter price, then complete a local cash sale using the fixed sample customer and open shift.
+3. Inspect the immutable invoice quantity/unit snapshot and both roll statuses.
+4. Reset to remove the synthetic invoice and restore both rolls.
 
-Include a kilogram example only after verifying source semantics. Do not invent a meter-to-kilogram conversion formula from appearance or convenience.
+Do not add a quantity input or a kilogram fixture merely to satisfy the older illustration. A partial roll sale would require an audited client product change; a kilogram example is unnecessary to prove the selected path and no conversion behavior is implied.
 
-Required checks: invalid/excess quantity is rejected; only the selected roll changes; invoice values reconcile with source rules; reset restores both invoice and stock state. The original one-session policy is replaced by a local sample persona, never connected to real authentication.
+Required checks: source decimal quantity limits/precision, duplicate and already-sold rejection, one pending submission, exact payment/atomic failure, only the selected roll changing status, stable invoice values, internal table scrolling, and full reset. The original one-session policy is replaced by a local sample persona, never connected to real authentication.
 
 ## 9. Scope and fallback discipline
 

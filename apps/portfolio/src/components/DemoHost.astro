@@ -242,6 +242,7 @@ const serializedTargets = JSON.stringify(hostTargets).replaceAll('<', '\\u003c')
   const startSession = (initialState: 'loading' | 'resetting' = 'loading') => {
     if (!activeDemo) return;
     teardownSession();
+    guidanceElement.textContent = activeDemo.target.guidance;
     setHostState(initialState);
 
     const target = activeDemo.target;

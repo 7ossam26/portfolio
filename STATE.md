@@ -7,9 +7,9 @@ Last updated: 12 September 2026
 - Planning package: prepared.
 - Visual direction: Studio Dark, accepted by Ahmed.
 - Design reference: approved private Site snapshot and separate portable source export.
-- Current implementation phase: 06, complete.
-- Next prompt: `docs/portfolio/prompts/07-ramex.md`.
-- Actual original-UI demos: Vertex, AutoZain, and Roya ready; Ramex not implemented.
+- Current implementation phase: 07, complete.
+- Next prompt: `docs/portfolio/prompts/08-quality.md`.
+- Actual original-UI demos: Vertex, AutoZain, Roya, and Ramex ready.
 - Public production domain: unresolved.
 
 ## Existing evidence
@@ -24,6 +24,7 @@ Last updated: 12 September 2026
 - The Phase 04 Vertex demo now provides the source-derived Arabic BOM execution, inventory, and production-history UI on a typed local fixture. Four output units reconcile to 8 kg and 2 kg consumed, EGP 120 total/EGP 30 unit cost, ending stock 92/48/4, and one order; Chromium evidence covers rejection, repeat safety, reset, direct entry, keyboard/mobile behavior, network isolation, and a 471 ms median cold click-to-ready under the recorded throttle.
 - The Phase 05 AutoZain demo now provides the source-derived Arabic marketplace, buyer request, staff response/session, and history UI on typed local fixtures and simulated events. Chromium evidence covers buyer/staff continuity, accept/complete, reject, deterministic timeout, double activation, reset/teardown, direct entry, mobile RTL, network isolation, a Vertex-open regression, and a 1,056 ms median cold click-to-ready under the recorded throttle.
 - The Phase 06 Roya demo now provides the source-derived bilingual project, budget, settings, and shooting-weeks impact UI on a deterministic local fixture. Four-to-six weeks changes only the approved weekly camera line from EGP 20,000 to EGP 30,000, retains the EGP 20,000 fixed line, moves the approved total from EGP 40,000 to EGP 50,000, and warns against the EGP 48,000 cap. Chromium evidence covers Arabic/English direction switching, preview isolation, cancel/reset, lazy host lifecycle, direct/nested paths, mobile RTL, network silence, and a 1,044 ms median cold click-to-ready under the recorded throttle.
+- The Phase 07 Ramex demo now provides the source-derived Arabic roll POS, exact-cash payment, invoice snapshot, and stock result on one deterministic local service. It truthfully replaces the unsupported partial-roll illustration with a complete `30.000 meter` sale: invoice total EGP 5,550, selected `RMX-M-0701` becomes sold, and same-fabric `RMX-M-0702` remains available at `24.750 meter`. Chromium evidence covers the complete path, invalid price precision, RTL/mobile internal table scrolling, standalone/host reset, nested Escape, lazy mount, three close/reopen cycles, console/network isolation, and a `303.46 KiB` raw browser-loaded payload.
 
 ## Phase tracking
 
@@ -36,14 +37,14 @@ Last updated: 12 September 2026
 | 04 — Vertex | Complete | `docs/portfolio/validation/phase-04.md`; `docs/portfolio/source-audit.md` |
 | 05 — AutoZain | Complete | `docs/portfolio/validation/phase-05.md`; `docs/portfolio/source-audit.md` |
 | 06 — Roya | Complete | `docs/portfolio/validation/phase-06.md`; `docs/portfolio/source-audit.md` |
-| 07 — Ramex | Not started | — |
+| 07 — Ramex | Complete | `docs/portfolio/validation/phase-07.md`; `docs/portfolio/source-audit.md` |
 | 08 — quality | Not started | — |
 | 09 — release | Not started | — |
 
 ## Open items
 
 - Use Node `22.23.2` for repository work. The workstation's default Node `22.12.0` is below the actual locked `undici@8.10.2` engine floor; D17 records the supported range as `>=22.19.0 <23`.
-- Integrate the final audited original-UI scenario (Ramex) in Phase 07; Vertex, AutoZain, and Roya are ready proofs.
+- Run the consolidated quality, accessibility, performance, cross-browser, and regression pass in Phase 08; all four original-UI demos are ready for it.
 - Omit AutoZain's exact role until confirmed; other content can proceed.
 - Use safe synthetic assets until any specific client media/branding permission is established.
 - Preserve source provenance. Vertex and AutoZain are explicitly proprietary; Roya and Ramex have no root license/notice file.
@@ -52,12 +53,12 @@ Last updated: 12 September 2026
 
 ## Most recent execution
 
-- Phase: 06 — Roya original-UI demo.
-- Files/behavior changed: added the bounded React/Vite Roya application; a typed fictional film/project and approved budget; source-consistent integer-piastre cost/preview calculations; bilingual budget/settings/impact UI; explicit preview-only boundary; standalone controls/frame bridge; nested-base build/staging; registry/case-study integration; and actual six-week impact UI evidence.
-- Checks: 6 focused domain tests passed; Astro and demo TypeScript checks passed; the six-page plus Vertex/AutoZain/Roya production build and static checks passed under Node `22.23.2`/npm `11.1.0`; production and complete dependency audits are 0; source/built scans and observed requests show no client, API, socket, storage, finance-service, or third-party boundary. Chromium covered exact 4→6 arithmetic, unchanged fixed line, cap warning, Arabic/English paths, preview isolation, cancel/reset, three close/reopen cycles, direct/history entry, mobile RTL/overflow, and final console/network behavior. Complete emitted demo basis is `53.99 KiB`; throttled cold click-to-ready was 1,021–1,046 ms, median 1,044 ms.
-- Validation: `docs/portfolio/validation/phase-06.md` with captures under `output/playwright/phase-06/`; extraction and evidence provenance in `apps/demo-roya/SOURCE.md` and `docs/portfolio/source-audit.md`.
-- Blockers: none for Phase 06. Apply/save remains intentionally omitted because its source mutation/reason/audit rules are outside the bounded preview. The Phase 00 pinned commit was unavailable in the later checkout; the recorded audit was transparently cross-checked against the clean available revision. Firefox/WebKit, comprehensive accessibility and 200% text coverage, deployed headers, and the final host/domain remain deferred.
-- Next action: run `docs/portfolio/prompts/07-ramex.md` only when explicitly requested.
+- Phase: 07 — Ramex original-UI demo.
+- Files/behavior changed: added the bounded React/Vite Ramex application; fictional cashier/open shift/customer and two independent same-fabric rolls; source-correct whole-roll quantity and invoice-unit snapshot rules; exact-cash payment; selected-roll sold-state reconciliation; standalone/host lifecycle; nested-base staging; ready registry/case-study integration; and actual POS/invoice/stock UI evidence. Corrected the stale 7.5 m partial-roll illustration in the demo/content specs.
+- Checks: 10 focused service tests passed; demo and Astro TypeScript checks passed; the six-page plus all-four-demo production build/static checks passed under Node `22.23.2`/npm `11.1.0`; production and complete dependency audits are 0; source scans and browser requests show no client/API/socket/storage/third-party boundary. Chromium covered the exact 30.000 meter/EGP 5,550 path, untouched 24.750 meter roll, invoice snapshot, invalid price precision, standalone and host reset, nested Escape, three close/reopen cycles, mobile RTL/internal table scrolling, and clean console/network behavior. Browser-loaded raw payload is `303.46 KiB`; complete emitted directory is `516.35 KiB`.
+- Validation: `docs/portfolio/validation/phase-07.md` with captures under `output/playwright/phase-07/`; extraction and evidence provenance in `apps/demo-ramex/SOURCE.md` and `docs/portfolio/source-audit.md`.
+- Blockers: none for Phase 07. Partial-roll decrement, kilogram conversion, production auth/concurrent sessions, additional payment methods, factory shipments, and complete accounting remain intentionally outside this source-bounded scenario. The Phase 00 pin was unavailable in the current fork checkout; the recorded audit was transparently cross-checked against clean commit `20cedc5d340e61fff6e387b791f6e3e53994b282`. Firefox/WebKit, comprehensive accessibility, 200% text coverage, consolidated timing, deployed headers, and the final host/domain remain deferred.
+- Next action: run `docs/portfolio/prompts/08-quality.md` only when explicitly requested.
 
 ## Update format
 

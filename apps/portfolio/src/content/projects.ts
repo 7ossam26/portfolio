@@ -189,10 +189,19 @@ export const projects = [
       },
     ],
     flow: ['Select identified roll', 'Validate sellable state', 'Create whole-roll sale', 'Preserve invoice snapshot'],
-    demoSummary: 'The planned local scenario will sell one fictional 30 m roll, preserve a 30.000 meter invoice line, and leave a second roll unchanged. It is not available in this preview; there is no partial-roll control, backend, account, or live stock connection.',
+    demoSummary: 'Sell one fictional 30 m roll through the source-derived Arabic point of sale, preserve a 30.000 meter invoice snapshot, and confirm that a second roll of the same fabric remains independent and available. The quantity is deliberately read-only because the audited sale API accepts a roll ID, not a partial quantity. The bounded path is cash-only and uses one local sample cashier, customer, and open shift; no backend, auth, concurrent session, or live stock service is connected.',
     stack: ['React', 'TypeScript', 'Node.js / Express', 'PostgreSQL', 'Knex'],
     repositoryUrl: 'https://github.com/7ossam26/Ramex-Store',
-    demoAvailable: false,
+    demoAvailable: true,
+    media: [
+      {
+        src: '/images/ramex/roll-stock-result-1440x900.png',
+        width: 1440,
+        height: 900,
+        alt: 'Arabic Ramex roll inventory showing one fictional 30 meter roll sold and a second matching roll still available at 24.750 meters.',
+        caption: 'Original Ramex roll-stock treatment adapted to local fictional data: RMX-M-0701 is sold after its whole-roll invoice, while RMX-M-0702 remains independently available at 24.750 meters.',
+      },
+    ],
   },
 ] as const satisfies readonly ProjectContent[];
 

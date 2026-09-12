@@ -107,10 +107,19 @@ export const projects = [
       },
     ],
     flow: ['Vehicle discovery', 'Staff selection', 'Contact request', 'Tracked outcome'],
-    demoSummary: 'The planned local scenario will use fictional vehicles and personas to move one buyer request through staff acceptance and a safe outcome. It is not available in this preview; sockets, phone actions, uploads, and production services are not connected.',
+    demoSummary: 'Browse fictional local inventory, select a vehicle, and send a clearly fictional buyer request. Switch to the Staff persona to accept it, observe the employee become busy, record a source-supported outcome, and verify the same completed status from either view. A short deterministic timeout and Reset path are included. No socket, phone, message, notification, upload, login, or client service is connected.',
     stack: ['React', 'Vite', 'Node.js / Express', 'Socket.io', 'Prisma', 'PostgreSQL'],
     repositoryUrl: 'https://github.com/7ossam26/autozain-system',
-    demoAvailable: false,
+    demoAvailable: true,
+    media: [
+      {
+        src: '/images/autozain/contact-outcome-1440x900.png',
+        width: 1440,
+        height: 900,
+        alt: 'Arabic AutoZain staff interface showing one completed fictional contact request and its local event history.',
+        caption: 'Original AutoZain staff UI adapted to local fictional data: the accepted request records an interested outcome, the employee returns to available, and the simulated event history remains consistent.',
+      },
+    ],
   },
   {
     slug: 'roya',

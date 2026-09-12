@@ -193,6 +193,52 @@ The in-memory event bus may reproduce only the events the selected UI consumes: 
 - Exclude the full `App`, auth/refresh client, socket singleton, push registration, audio alerts, queue administration, uploads, dashboards, exports, and production contact actions. Replace the staff panel's `tel:` action with a disabled/demo-safe display so a visitor cannot call a real number.
 - Primary bundle/runtime risks: providers mounted for every route, Socket.IO startup, auth probing/refresh, push/audio behavior, external images/fonts, and sensitive car fields. XLSX/PapaParse and unrelated admin features are outside the extraction boundary.
 
+### Phase 05 extraction and asset provenance
+
+The Phase 05 implementation re-inspected the clean read-only checkout at the same pinned commit on 12 September 2026. The checkout remained on `main` at `768e1de94464fc5dd0f401ce19b81bfec452e818` with an empty status after implementation; no client repository file, remote, service, or deployment was changed.
+
+| Source path | Local path | Extraction/adaptation |
+| --- | --- | --- |
+| `frontend/src/pages/public/Cars.jsx`; `frontend/src/components/shared/{CarCard,FilterSidebar,SearchBar}.jsx` | `apps/demo-autozain/src/components/{MarketplaceView,CarCard}.tsx` | Preserved the Arabic marketplace heading, search, transmission filter, vehicle cards, price/spec presentation, favorite affordance, and responsive filter drawer. Inventory is three explicitly fictional local vehicles. |
+| `frontend/src/pages/public/CarDetail.jsx`; `frontend/src/components/shared/ImageGallery.jsx` | `apps/demo-autozain/src/components/CarDetail.tsx` | Preserved the vehicle detail hierarchy, image/specification panel, additional-information card, favorite affordance, and contact action. The single-image gallery is intentionally bounded to generated local media. |
+| `frontend/src/pages/public/Employees.jsx`; `frontend/src/components/shared/{ContactRequestModal,RequestConfirmation}.jsx` | `apps/demo-autozain/src/components/{MarketplaceView,ContactRequestModal,RequestConfirmation}.tsx` | Preserved available/busy staff cards, the buyer-data modal, request confirmation/countdown, and status feedback. Buyer/staff names, phone number, IDs, and records are synthetic; the form commits only to memory. |
+| `frontend/src/components/shared/{IncomingRequestOverlay,ActiveSessionPanel}.jsx`; `frontend/src/components/layout/DashboardLayout.jsx` | `apps/demo-autozain/src/components/{IncomingRequestOverlay,ActiveSessionPanel,StaffDashboard}.tsx` | Preserved the Arabic staff shell, incoming-request overlay, accept/reject actions, active-session panel, outcome selector, request history, and status summaries. The source phone action is rendered as a non-interactive demo-safe value. |
+| `frontend/src/styles/index.css`; `frontend/tailwind.config.js`; `frontend/index.html` | `apps/demo-autozain/src/styles.css`; `apps/demo-autozain/index.html` | Flattened only the selected source Tailwind/class treatment into local CSS while retaining RTL, IBM Plex Sans Arabic, the blue/teal marketplace palette, cards, overlays, desktop staff sidebar, and mobile reflow. No Tailwind runtime or remote font request is present. |
+| `frontend/src/services/publicApi.js`; `frontend/src/context/{AuthContext,SocketContext}.jsx`; `frontend/src/services/socket.js` | `apps/demo-autozain/src/services/autozainDemoService.ts`; `apps/demo-autozain/src/domain/{types,fixtures}.ts` | Replaced HTTP, auth probing/refresh, and Socket.IO with a typed cloned in-memory snapshot and a six-event local subscriber surface. There is no network fallback, token, browser storage, or simulated login. |
+| `backend/src/{controllers,services,repositories,routes}` request files and `backend/src/socket/index.js` | `apps/demo-autozain/src/services/autozainDemoService.ts`; `apps/demo-autozain/tests/autozainDemoService.test.ts` | Reproduced `pending → accepted/rejected/expired`, accepted-only completion, the four source outcomes, staff busy/available changes, deterministic expiry, and timer/listener cleanup. Invalid and repeated transitions fail before mutation. |
+| none — portfolio demo infrastructure | `apps/demo-autozain/src/App.tsx`; `apps/demo-autozain/src/frameBridge.ts`; `packages/demo-contract/demo-registry.json` | Added the explicit Buyer/Staff persona switch, visible simulation/sample label, shared READY/STEP_CHANGED/COMPLETE/REQUEST_CLOSE bridge, and standalone Reset/Back controls. Embedded Reset is owned by the host and replaces the whole frame/session. |
+
+The selected source uses React `18.3.1`; the extracted app retains that version. It uses the already locked workspace Vite `8.3.0`, React plugin `6.1.1`, and TypeScript `6.0.3` instead of carrying the source's older build toolchain into a new lock boundary. React Router, Axios, Socket.IO, Tailwind, toast, spreadsheet, and unrelated admin dependencies are not imported because the bounded state/view routing needs none of them.
+
+The adapter emits only `employee:status_changed`, `contact_request:new`, `contact_request:accepted`, `contact_request:rejected`, `contact_request:timeout`, and `session:ended`. Request `demo-request-001` starts pending, acceptance clears its timeout and marks sample staff `demo-staff-11` busy, and completion records one of `sold`, `interested`, `no_answer`, or `cancelled`. Staff returns to available only when no other accepted request remains. Reject and expiry do not create an active session. Reset cancels every pending handle, restores the fixed 12 September 2026 clock/sequence and seed, and keeps no state in storage.
+
+The dependency closure excludes the full `App.jsx`, React Router, `AuthProvider`, auth refresh/redirect behavior, `SocketProvider`, Socket.IO singleton, push notification registration, audio alerts, queue and administration screens, dashboards beyond the selected staff slice, Axios clients, uploads, external images/fonts, exports, and live phone/message actions. The production boundary scan found none of the corresponding client/API/socket/storage strings.
+
+#### Generated vehicle imagery
+
+Three unbranded fictional images were generated with the built-in image generation tool in default mode, then converted locally to `1024×768` WebP assets. The prompts requested: (1) a dark graphite compact crossover in a clean indoor showroom; (2) a pearl-white midsize sedan at a neutral outdoor dealership; and (3) a deep-blue hatchback in a contemporary urban showroom. Every prompt specified a realistic editorial vehicle photograph, `4:3` composition, no people, no logo/brand badge, no readable text, and no license plate. These assets do not depict source inventory or a client location.
+
+| Local asset | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `apps/demo-autozain/public/vehicles/graphite-crossover.webp` | 76,580 | `41545204ACA91E9FC1102192C77A6D1D7A10B0F771C7202418D2B3E7B68B36F3` |
+| `apps/demo-autozain/public/vehicles/pearl-sedan.webp` | 53,862 | `5D51ACCF04D487FC077526A5792741AE08F957F031BCA7642D1637096B5AFFE7` |
+| `apps/demo-autozain/public/vehicles/blue-hatchback.webp` | 64,224 | `C294CBEBBCD5499FF9E6B4ED8A3161749D7B39EC9718527C9B310016453E496B` |
+
+The source requested IBM Plex Sans Arabic from Google Fonts. Phase 05 reuses already self-hosted Arabic and Latin WOFF2 subsets from the local `hobz` workspace rather than making a remote request. The eight `400/500/600/700` subset files total `257,368` bytes. SHA-256 values:
+
+| Subset | SHA-256 |
+| --- | --- |
+| Arabic 400 | `6010E7FD0DCE5D527583951750728CBE3C895EFBD16AA0F809AB8C824878C9D8` |
+| Arabic 500 | `90AEF64FEA9794F232332E907D45810AB268D1A11721340025EBA2A2CDB36D5C` |
+| Arabic 600 | `16734A5ADB27B0F363E566CBBEACEC480DA0DC0BAA19C8F0053251C2E2BC0EAC` |
+| Arabic 700 | `04C730B4292731CCEDADD5BD80756124364AE4923895145D9CD7B1F28E443DE1` |
+| Latin 400 | `9ED8DCB02E6C7246DE4C120295FAFA39A7BB73085F4951A4524A07DC911069F2` |
+| Latin 500 | `BE6A3B2E37F3AD67AA822A55CE356D28C416331C97530A1EC076C2118240CA2D` |
+| Latin 600 | `63F4757271E403F7BAEC0862F284FFAA4560EA6096BA9FE8BC6E585CA656E724` |
+| Latin 700 | `AE2D59F91ECF9F7ED279E4A1FC1A9DA8170FB0CE5B9152917A8F759033F5777C` |
+
+The case-study evidence is `apps/portfolio/public/images/autozain/contact-outcome-1440x900.png`, captured from standalone `/demos/autozain/` in Chromium after the fictional request was accepted and completed as `interested`. It is `1440×900`, `44,220` bytes, SHA-256 `869A198F18CCC3114B1FE24773B53F0AD9D66F0E4552BB02D90BFB6CA27869FF`, and is duplicated at `output/playwright/phase-05/autozain-staff-outcome-1440x900.png`. Its caption identifies original AutoZain staff UI adapted to local fictional data; the exact AutoZain role line remains omitted.
+
 ## Roya — Film & TV production finance
 
 ### Revision and access
@@ -311,7 +357,7 @@ These items are not audit failures and are not represented as verified facts:
 - The public production domain, host, deployment adapter, and access settings remain Phase 09 decisions.
 - Permission to publish specific client logos, uploaded imagery, or other branded media is unresolved. V1 uses synthetic/local assets.
 - Roya and Ramex have no source-level license/notice file; Vertex and AutoZain explicitly describe themselves as proprietary. The planned narrow code reuse has source provenance but does not confer a public open-source license.
-- Browser behavior, keyboard traversal, mobile breakpoints, RTL layout, accessibility, bundle budgets, network silence, and teardown have not been exercised. Those gates belong to the implementation and quality phases.
+- Roya and Ramex browser behavior, keyboard traversal, mobile breakpoints, RTL/LTR layout, bundle budgets, network silence, and teardown have not been exercised. Vertex and AutoZain now have their phase-specific Chromium evidence; broader accessibility and cross-browser gates remain Phase 08.
 - No source at the pinned Ramex revision supports a partial-roll sale. A later client-source change could be audited separately, but it must not be assumed.
 
 ## Phase 00 extraction verdict

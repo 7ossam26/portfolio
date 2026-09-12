@@ -2,5 +2,23 @@
   "name": "@portfolio/demo-autozain",
   "version": "0.0.0",
   "private": true,
-  "description": "Reserved workspace boundary for the AutoZain original-UI demo."
+  "description": "Bounded AutoZain original-UI contact request demo with local simulated events.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "build": "npm run typecheck && vite build"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.27",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.0"
+  }
 }

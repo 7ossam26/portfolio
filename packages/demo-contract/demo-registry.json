@@ -13,7 +13,7 @@
     "path": "/demos/autozain/",
     "frameTitle": "AutoZain sample-data contact workflow demo",
     "guidance": "Follow one fictional buyer request from vehicle selection to a recorded staff outcome.",
-    "available": false
+    "available": true
   },
   {
     "slug": "roya",

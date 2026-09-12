@@ -99,7 +99,7 @@ Use a typed source of truth with fields such as slug, name, domain, summary, rol
 
 **Stack:** React, TypeScript, Node.js/Express, PostgreSQL, Kysely; Docker/deployment details can appear when relevant.
 
-**Interactive scope:** Start with shooting-week budget impact. Approvals/replay remain source-backed case-study evidence, with a possible second demo later.
+**Interactive scope:** The delivered local demo shows the original bilingual project/budget treatment, previews a four-to-six-week schedule change against fictional approved lines, exposes the exact affected-line and budget-cap impact, and cancels without changing the saved four-week sample. It deliberately has no apply/save path. Approvals, ledger/replay, payments, and scheduling remain source-backed case-study evidence rather than simulated interactions.
 
 **Do not claim:** Legal/accounting certification, a financial audit outcome, guaranteed compliance, or quantified production savings.
 

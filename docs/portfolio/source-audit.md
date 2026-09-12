@@ -286,10 +286,29 @@ The demo intentionally omits `patchProject`: the promised behavior is inspect, p
 ### Assets, layout, risk, and extraction boundary
 
 - The scenario needs no client imagery. Use fictional project, participant, and line names; all currency values are synthetic.
-- Preserve the source modal, project-settings surface, read-only budget line presentation, money formatting, and RTL/LTR direction-aware styles. Browser/mobile/RTL behavior has not run.
+- Preserve the source modal, project-settings surface, read-only budget line presentation, money formatting, and RTL/LTR direction-aware styles. Phase 06 exercised both directions and the responsive frame in Chromium; broader cross-browser and accessibility coverage remains Phase 08.
 - Self-host only the needed typefaces or use documented local fallbacks. Bundle only the selected `common`, `projects`, and error messages rather than all locale namespaces.
 - Exclude the full editable budget, reports, rich editor, charts, participants, payments, schedule, episodes, auth refresh, mutation/save path, and unrelated project tabs.
 - Primary bundle risks: eager `ProjectDetail` tab/report imports, broad i18n namespace loading, Tiptap/report/chart dependencies, auth refresh, and remote font requests.
+
+### Phase 06 extraction and evidence provenance
+
+Phase 06 implemented the bounded application at `apps/demo-roya/`. The audited ledger commit remains `aaf1112b2deb32dbf6c3540e7eb1748abc87bbae`; that object was no longer present in the later local working copy when this phase began. The available source checkout at `C:\Users\7OSS\Desktop\projects\Film-production-fin-system` was therefore inspected read-only at clean commit `310b1cbb5694d3ef8c1e08e5794a9b9e4961bd72`. Its relevant project-detail, budget, shared-rule, API-client, and preview-handler paths retain the behavior recorded by the Phase 00 pinned audit. The checkout stayed at that commit with an empty status after implementation. No source file, remote, service, or deployment was changed or contacted.
+
+| Source responsibility | Local implementation |
+| --- | --- |
+| `apps/web/src/features/projects/ProjectDetail.tsx` — project tabs, settings card, direction-aware `ShootingWeeksModal`, preview/cancel states | `apps/demo-roya/src/App.tsx`, `components/SettingsView.tsx`, and `components/ShootingWeeksModal.tsx` |
+| `apps/web/src/features/projects/BudgetTab.tsx` — budget version, line status, cost-strategy summary, and totals | `apps/demo-roya/src/components/BudgetView.tsx` |
+| `apps/api/src/projects/handlers.ts` — candidate selection, proportional recalculation, approved-only delta, positive-cap warning, and read-only preview | `apps/demo-roya/src/services/royaDemoService.ts` |
+| `packages/shared/src/projects.ts` — cost-strategy names, inputs, line-total rules, and project/preview shapes | `apps/demo-roya/src/domain/types.ts`, `domain/fixtures.ts`, and `services/royaDemoService.ts` |
+| Source i18n, global CSS, cards/buttons/number input, and money display | `apps/demo-roya/src/copy.ts`, `format.ts`, and `styles.css`; only the selected Arabic/English copy and system-font fallbacks are bundled |
+| Source auth bootstrap, TanStack Query, router, API client, and project patch mutation | Excluded; `RoyaDemoService` is the sole data boundary and has no network or persistence fallback |
+
+The fictional project is `Dawn Over Cairo` / `فجر القاهرة`, a four-week film with an EGP 48,000 cap. Its approved budget contains a weekly camera crew at EGP 5,000 × 4 = EGP 20,000 and a fixed equipment package of EGP 20,000. Contingency, producer margin, and VAT are explicitly zero. This matters because the source shooting-weeks handler starts from the approved budget-version total and does not separately recalculate those project setting fields.
+
+Previewing six weeks applies the source formula `Math.round((current total / old weeks) × new weeks)` in integer piastres to eligible `weekly_x_weeks` or opted-in `units_x_rate_x_duration` candidates. The weekly line becomes EGP 30,000, a +EGP 10,000 delta. The fixed lump-sum line remains EGP 20,000 and is displayed as unchanged. The approved total therefore moves from EGP 40,000 to EGP 50,000 and exceeds the positive EGP 48,000 cap. Only approved candidates contribute to aggregate totals, although all eligible candidates are returned for display. Cancel, close, and reset preserve the saved four-week/EGP 40,000 fixture. No apply/save control was extracted because the bounded demo does not implement the source patch and reason/audit path.
+
+The case-study evidence is `apps/portfolio/public/images/roya/shooting-weeks-impact-1440x900.png`, captured from production-built standalone `/demos/roya/` in Chromium with the Arabic/RTL preview open at six weeks. It is `1440×900`, `103,476` bytes, SHA-256 `1FC89B63E09A108803E768BC943C57FB416F4030C3B0A649BE17C7F70A6E2469`, and is duplicated at `output/playwright/phase-06/roya-impact-final-1440x900.png`. The image contains only the fictional project and budget values described above.
 
 ## Ramex Store — fabric ERP
 
@@ -357,7 +376,7 @@ These items are not audit failures and are not represented as verified facts:
 - The public production domain, host, deployment adapter, and access settings remain Phase 09 decisions.
 - Permission to publish specific client logos, uploaded imagery, or other branded media is unresolved. V1 uses synthetic/local assets.
 - Roya and Ramex have no source-level license/notice file; Vertex and AutoZain explicitly describe themselves as proprietary. The planned narrow code reuse has source provenance but does not confer a public open-source license.
-- Roya and Ramex browser behavior, keyboard traversal, mobile breakpoints, RTL/LTR layout, bundle budgets, network silence, and teardown have not been exercised. Vertex and AutoZain now have their phase-specific Chromium evidence; broader accessibility and cross-browser gates remain Phase 08.
+- Ramex browser behavior, keyboard traversal, mobile breakpoints, RTL layout, bundle budgets, network silence, and teardown have not been exercised. Vertex, AutoZain, and Roya now have their phase-specific Chromium evidence; broader accessibility and cross-browser gates remain Phase 08.
 - No source at the pinned Ramex revision supports a partial-roll sale. A later client-source change could be audited separately, but it must not be assumed.
 
 ## Phase 00 extraction verdict

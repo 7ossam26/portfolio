@@ -148,10 +148,19 @@ export const projects = [
       },
     ],
     flow: ['Current shooting plan', 'Weeks impact preview', 'Affected budget lines', 'Review without mutation'],
-    demoSummary: 'The planned local scenario will preview a fictional change from four to six shooting weeks, show the affected budget lines, and cancel without saving. It is not available in this preview; approvals, payments, reports, and project mutation remain outside that bounded view.',
+    demoSummary: 'The local sample previews a fictional change from four to six shooting weeks, recalculates the eligible weekly line, keeps the fixed line unchanged, and cancels without saving. Approvals, payments, reports, and project mutation remain outside this bounded view.',
     stack: ['React', 'TypeScript', 'Node.js / Express', 'PostgreSQL', 'Kysely'],
     repositoryUrl: 'https://github.com/7ossam26/Film-production-fin-system',
-    demoAvailable: false,
+    demoAvailable: true,
+    media: [
+      {
+        src: '/images/roya/shooting-weeks-impact-1440x900.png',
+        width: 1440,
+        height: 900,
+        alt: 'Roya bilingual project interface showing a fictional shooting-weeks budget impact preview with before, after, and affected-line totals.',
+        caption: 'Original Roya project and impact-preview UI adapted to local fictional data: the opted-in weekly crew line changes from four to six weeks while the fixed equipment line remains unchanged.',
+      },
+    ],
   },
   {
     slug: 'ramex',

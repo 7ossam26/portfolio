@@ -21,7 +21,7 @@
     "path": "/demos/roya/",
     "frameTitle": "Roya sample-data budget impact demo",
     "guidance": "Preview how a fictional shooting-week change affects eligible budget lines without saving it.",
-    "available": false
+    "available": true
   },
   {
     "slug": "ramex",

@@ -1,0 +1,31 @@
+---
+import CaseStudy from '../../components/CaseStudy.astro';
+import ContactFooter from '../../components/ContactFooter.astro';
+import Navigation from '../../components/Navigation.astro';
+import { projects, type ProjectContent } from '../../content/projects';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props {
+  project: ProjectContent;
+}
+
+const { project } = Astro.props;
+const title = `${project.name} case study — Ahmed Hossam`;
+const description = `${project.name}: ${project.distinction} Read the business context, verified contribution, capabilities, and source-grounded engineering decisions.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main id="main-content">
+    <section class="studio" aria-label={`${project.name} case study`}>
+      <div class="studio-wrap">
+        <Navigation />
+        <CaseStudy project={project} />
+        <ContactFooter />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

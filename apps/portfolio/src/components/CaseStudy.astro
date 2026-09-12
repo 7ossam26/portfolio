@@ -1,0 +1,120 @@
+---
+import type { ProjectContent } from '../content/projects';
+
+interface Props {
+  project: ProjectContent;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="case-study">
+  <a class="back-link" href="/#selected-work">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5m5-5-5 5 5 5"></path></svg>
+    Back to work
+  </a>
+
+  <header class="case-hero">
+    <div class="case-heading">
+      <p class="eyebrow">{project.domain.toUpperCase()}</p>
+      <h1>{project.name}</h1>
+      <p class="case-deck">{project.distinction}</p>
+    </div>
+    <dl class="case-meta">
+      <div><dt>Scope</dt><dd>{project.summary}</dd></div>
+      {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
+      <div><dt>Technology</dt><dd>{project.stack.join(' · ')}</dd></div>
+    </dl>
+  </header>
+
+  <figure class="system-diagram" aria-labelledby={`${project.slug}-diagram-title`}>
+    <div class="diagram-label">
+      <span class="eyebrow">SYSTEM FLOW DIAGRAM</span>
+      <p id={`${project.slug}-diagram-title`}>{project.name} · selected operational path</p>
+    </div>
+    <ol>
+      {project.flow.map((step, index) => (
+        <li>
+          <span>0{index + 1}</span>
+          <strong>{step}</strong>
+        </li>
+      ))}
+    </ol>
+    <figcaption>Explanatory system diagram based on the inspected source. This is not an application screenshot or a substitute demo.</figcaption>
+  </figure>
+
+  <div class="case-body">
+    <section class="case-section case-problem" aria-labelledby="problem-heading">
+      <p class="section-index">01</p>
+      <div>
+        <h2 id="problem-heading">The operational problem</h2>
+        <p>{project.problem}</p>
+      </div>
+    </section>
+
+    {project.contribution && (
+      <section class="case-section" aria-labelledby="contribution-heading">
+        <p class="section-index">02</p>
+        <div>
+          <h2 id="contribution-heading">Verified contribution</h2>
+          <p>{project.contribution}</p>
+        </div>
+      </section>
+    )}
+
+    <section class="case-section" aria-labelledby="capabilities-heading">
+      <p class="section-index">{project.contribution ? '03' : '02'}</p>
+      <div>
+        <h2 id="capabilities-heading">Selected capabilities</h2>
+        <div class="capability-list">
+          {project.capabilities.map((capability) => (
+            <div>
+              <h3>{capability.label}</h3>
+              <p>{capability.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="decisions-heading">
+      <p class="section-index">{project.contribution ? '04' : '03'}</p>
+      <div>
+        <h2 id="decisions-heading">Engineering decisions</h2>
+        <div class="decision-list">
+          {project.decisions.map((decision) => (
+            <article>
+              <h3>{decision.title}</h3>
+              <p>{decision.detail}</p>
+              <p class="tradeoff"><span>Tradeoff</span>{decision.tradeoff}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section demo-status" aria-labelledby="demo-status-heading">
+      <p class="section-index">{project.contribution ? '05' : '04'}</p>
+      <div>
+        <p class="eyebrow">INTERACTIVE VIEW · NOT YET AVAILABLE</p>
+        <h2 id="demo-status-heading">A bounded sample-data scenario</h2>
+        <p>{project.demoSummary}</p>
+      </div>
+    </section>
+  </div>
+
+  <aside class="case-next" aria-label="Project links">
+    <div>
+      <p class="eyebrow">SOURCE &amp; NEXT STEP</p>
+      <h2>Inspect the source or start a conversation.</h2>
+    </div>
+    <div class="case-actions">
+      <a class="button button-primary" href="mailto:hossam.working1@gmail.com">Email Ahmed</a>
+      <a class="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+        View repository
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
+      </a>
+      <a class="text-link" href="/Ahmed_Hossam_CV.pdf" download>Download CV</a>
+    </div>
+  </aside>
+</article>

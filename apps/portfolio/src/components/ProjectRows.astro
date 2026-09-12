@@ -1,0 +1,30 @@
+---
+import type { ProjectContent } from '../content/projects';
+
+interface Props {
+  projects: readonly ProjectContent[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="project-list" aria-label="More selected work">
+  {projects.map((project, index) => (
+    <article>
+      <a class="project-entry" href={`/work/${project.slug}/`} aria-label={`Read ${project.name} case study`}>
+        <span class="project-number" aria-hidden="true">0{index + 2}</span>
+        <div class="project-identity">
+          <p>{project.domain}</p>
+          <h3 id={`${project.slug}-title`}>{project.name}</h3>
+        </div>
+        <div class="project-context">
+          <p>{project.distinction}</p>
+          <span>Read case study</span>
+        </div>
+        <span class="project-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
+        </span>
+      </a>
+    </article>
+  ))}
+</div>

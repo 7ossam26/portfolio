@@ -44,7 +44,17 @@ const server = createServer(async (request, response) => {
         details = await stat(filePath);
       }
     } catch {
-      response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found');
+      const fallback = path.join(staticRoot, '404.html');
+      try {
+        const fallbackDetails = await stat(fallback);
+        response.writeHead(404, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Content-Length': fallbackDetails.size,
+        });
+        createReadStream(fallback).pipe(response);
+      } catch {
+        response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Not found');
+      }
       return;
     }
 

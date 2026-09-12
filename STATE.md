@@ -1,14 +1,14 @@
 # Portfolio implementation state
 
-Last updated: 11 September 2026
+Last updated: 12 September 2026
 
 ## Current position
 
 - Planning package: prepared.
 - Visual direction: Studio Dark, accepted by Ahmed.
 - Design reference: approved private Site snapshot and separate portable source export.
-- Current implementation phase: 01, complete.
-- Next prompt: `docs/portfolio/prompts/02-portfolio.md`.
+- Current implementation phase: 02, complete.
+- Next prompt: `docs/portfolio/prompts/03-demo-host.md`.
 - Actual original-UI demos: none implemented.
 - Public production domain: unresolved.
 
@@ -27,7 +27,7 @@ Last updated: 11 September 2026
 | --- | --- | --- |
 | 00 — audit | Complete | `docs/portfolio/source-audit.md`; `docs/portfolio/validation/phase-00.md` |
 | 01 — foundation | Complete | `docs/portfolio/validation/phase-01.md` |
-| 02 — portfolio | Not started | — |
+| 02 — portfolio | Complete | `docs/portfolio/validation/phase-02.md` |
 | 03 — demo host | Not started | — |
 | 04 — Vertex | Not started | — |
 | 05 — AutoZain | Not started | — |
@@ -39,7 +39,7 @@ Last updated: 11 September 2026
 ## Open items
 
 - Use Node `22.23.2` for repository work. The workstation's default Node `22.12.0` is below the actual locked `undici@8.10.2` engine floor; D17 records the supported range as `>=22.19.0 <23`.
-- Build the remaining homepage project rows and shareable case-study routes in Phase 02; no case-study route or runnable demo is claimed yet.
+- Build the lazy, history-aware demo host in Phase 03; no runnable demo is claimed yet.
 - Omit AutoZain's exact role until confirmed; other content can proceed.
 - Use safe synthetic assets until any specific client media/branding permission is established.
 - Preserve source provenance. Vertex and AutoZain are explicitly proprietary; Roya and Ramex have no root license/notice file.
@@ -48,13 +48,12 @@ Last updated: 11 September 2026
 
 ## Most recent execution
 
-- Phase: 01 — foundation.
-- Files/behavior changed: created the npm workspace, Astro/TypeScript shell, Studio Dark layout/components/tokens, typed four-project content and build-only evidence sources, unchanged public CV/favicon, reserved demo boundaries, and atomic build/staging/preview/check scripts; recorded D17.
-- Checks: verified registry metadata; installed a locked dependency tree with no reported vulnerabilities; passed Astro typechecking and a clean static build under Node `22.23.2`/npm `11.1.0`; hash-verified assets; checked generated metadata and evidence isolation; served the merged output and inspected desktop/mobile Chromium renders, focus, reduced motion, essential links, console, and startup requests.
-- Build output: one static page, 0 initial JavaScript, 12,796-byte CSS (3,328 gzip), local CV/favicon, and no `/demos/` output or startup request.
-- Validation: `docs/portfolio/validation/phase-01.md`.
-- Blockers: none for Phase 01. AutoZain role, client asset permissions, complete cross-browser/quality coverage, demo implementation, and the final host/domain remain deferred to their planned phases.
-- Next action: run `docs/portfolio/prompts/02-portfolio.md` only when explicitly requested.
+- Phase: 02 — portfolio and case studies.
+- Files/behavior changed: completed all four homepage project treatments; added four shareable static case studies, unique metadata, grounded decisions and tradeoffs, labeled system diagrams, complete CV/contact/repository paths, a useful static 404, and expanded generated-output checks. AutoZain role wording remains omitted and no demo action is exposed.
+- Checks: passed Astro typechecking and a clean six-page production build under Node `22.23.2`/npm `11.1.0`; hash-verified assets; checked route metadata, evidence isolation, demo absence, and local asset paths; browser-tested direct routes, 360/390/768/1024/1440 widths, 200% text enlargement, keyboard traversal, Back/Forward, reduced motion, and expected 404 behavior in headed Chromium.
+- Validation: `docs/portfolio/validation/phase-02.md` with captures under `output/playwright/phase-02/`.
+- Blockers: none for Phase 02. Safe original-UI media is still unavailable, so labeled diagrams remain; AutoZain role, complete cross-browser/quality coverage, demo implementation, and the final host/domain stay deferred.
+- Next action: run `docs/portfolio/prompts/03-demo-host.md` only when explicitly requested.
 
 ## Update format
 

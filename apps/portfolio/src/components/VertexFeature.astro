@@ -25,7 +25,7 @@ const featuredStack = project.stack
     <div class="feature-copy">
       <h3 id="vertex-heading">{project.name}</h3>
       <p class="project-deck">From the cash register{' '}<br />to production costing.</p>
-      <p class="project-description">{project.summary}</p>
+      <p class="project-description">{project.distinction}</p>
       <dl class="project-evidence">
         {project.capabilities.slice(1).map((capability) => (
           <div><dt>{capability.label}</dt><dd>{capability.detail}</dd></div>
@@ -37,6 +37,10 @@ const featuredStack = project.stack
         ))}
       </p>
       <div class="project-actions">
+        <a class="button button-primary" href={`/work/${project.slug}/`}>
+          Read case study
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
+        </a>
         <a class="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
           View repository
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>

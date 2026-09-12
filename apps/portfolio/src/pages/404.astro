@@ -1,0 +1,25 @@
+---
+import ContactFooter from '../components/ContactFooter.astro';
+import Navigation from '../components/Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found — Ahmed Hossam" description="The requested portfolio page could not be found. Return to Ahmed Hossam's selected software engineering work.">
+  <main id="main-content">
+    <section class="studio" aria-label="Page not found">
+      <div class="studio-wrap">
+        <Navigation />
+        <section class="not-found" aria-labelledby="not-found-heading">
+          <p class="eyebrow">404 · PAGE NOT FOUND</p>
+          <h1 id="not-found-heading">This path doesn’t lead to a project.</h1>
+          <p>The page may have moved, or the address may be incomplete. Ahmed’s selected work and contact details are still available from the portfolio.</p>
+          <a class="button button-primary" href="/#selected-work">
+            Return to selected work
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
+          </a>
+        </section>
+        <ContactFooter />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

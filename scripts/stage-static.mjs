@@ -1,4 +1,4 @@
-import { access, cp, mkdir, rename, rm } from 'node:fs/promises';
+import { access, cp, mkdir, readFile, rename, rm } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -7,12 +7,12 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const finalOutput = path.join(repositoryRoot, 'dist');
 const stagedOutput = path.join(repositoryRoot, `.dist-stage-${process.pid}`);
 const portfolioOutput = path.join(repositoryRoot, 'apps', 'portfolio', 'dist');
-const demos = [
-  ['vertex', path.join(repositoryRoot, 'apps', 'demo-vertex', 'dist')],
-  ['autozain', path.join(repositoryRoot, 'apps', 'demo-autozain', 'dist')],
-  ['roya', path.join(repositoryRoot, 'apps', 'demo-roya', 'dist')],
-  ['ramex', path.join(repositoryRoot, 'apps', 'demo-ramex', 'dist')],
-];
+const registry = JSON.parse(await readFile(path.join(
+  repositoryRoot,
+  'packages',
+  'demo-contract',
+  'demo-registry.json',
+), 'utf8'));
 
 const exists = async (target) => {
   try {
@@ -32,19 +32,20 @@ await rm(stagedOutput, { recursive: true, force: true });
 try {
   await cp(portfolioOutput, stagedOutput, { recursive: true, errorOnExist: true });
 
-  for (const [slug, demoOutput] of demos) {
-    if (!(await exists(demoOutput))) continue;
+  for (const entry of registry) {
+    if (!entry.available) continue;
+    const demoOutput = path.join(repositoryRoot, 'apps', `demo-${entry.slug}`, 'dist');
     if (!(await exists(path.join(demoOutput, 'index.html')))) {
-      throw new Error(`Demo output exists without an index: ${slug}`);
+      throw new Error(`Available demo output is missing its index: ${entry.slug}`);
     }
 
-    const demoDestination = path.join(stagedOutput, 'demos', slug);
+    const demoDestination = path.join(stagedOutput, 'demos', entry.slug);
     if (await exists(demoDestination)) {
-      throw new Error(`Static output collision at demos/${slug}.`);
+      throw new Error(`Static output collision at demos/${entry.slug}.`);
     }
     await mkdir(path.dirname(demoDestination), { recursive: true });
     await cp(demoOutput, demoDestination, { recursive: true, errorOnExist: true });
-    console.log(`Staged demo output: ${slug}`);
+    console.log(`Staged available demo output: ${entry.slug}`);
   }
 
   await rm(finalOutput, { recursive: true, force: true });

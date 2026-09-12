@@ -17,10 +17,11 @@
     "typecheck": "npm run check --workspace @portfolio/site",
     "check:assets": "node scripts/check-assets.mjs",
     "build:shell": "npm run build --workspace @portfolio/site",
+    "build:demos": "node scripts/build-demos.mjs",
     "stage": "node scripts/stage-static.mjs",
     "check:static": "node scripts/check-static.mjs",
     "clean": "node scripts/clean.mjs",
-    "build": "npm run check:assets && npm run build:shell && npm run stage && npm run check:static",
+    "build": "npm run check:assets && npm run build:shell && npm run build:demos && npm run stage && npm run check:static",
     "preview:all": "node scripts/preview-static.mjs"
   }
 }

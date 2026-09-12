@@ -28,7 +28,8 @@ body { min-width: 20rem; margin: 0; background: var(--bg); }
 h1, h2, h3, h4, p, figure, dl, dd { margin: 0; }
 a { color: inherit; text-decoration: none; }
 a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+a:focus-visible, button:focus-visible, iframe:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+button { font: inherit; }
 svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 ::selection { background: var(--accent); color: var(--accent-ink); }
 
@@ -60,12 +61,13 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .hero-intro { color: var(--muted); font-size: 1.0625rem; line-height: 1.8; text-wrap: pretty; }
 .hero-intro strong { color: var(--ink); font-weight: 450; }
 .hero-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.875rem; }
-.button { min-height: 3.125rem; display: inline-flex; justify-content: center; align-items: center; gap: 1rem; padding: .875rem 1.125rem; border: 1px solid transparent; border-radius: .375rem; font-size: .875rem; line-height: 1.4; font-weight: 550; }
+.button { min-height: 3.125rem; display: inline-flex; justify-content: center; align-items: center; gap: 1rem; padding: .875rem 1.125rem; border: 1px solid transparent; border-radius: .375rem; font-size: .875rem; line-height: 1.4; font-weight: 550; cursor: pointer; transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
 .button-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .button-secondary { background: transparent; color: var(--ink); border-color: var(--control); }
 .button-primary:hover { background: #f4c4b2; border-color: #f4c4b2; }
 .button-secondary:hover { background: var(--raised); border-color: #9aa7a9; }
 .button:active { transform: translateY(1px); }
+.button:disabled { opacity: .48; cursor: not-allowed; transform: none; }
 .button svg { width: 1.0625rem; height: 1.0625rem; }
 .location { margin-top: 1.5rem; color: var(--quiet); font: .75rem/1.6 var(--mono); }
 
@@ -165,6 +167,38 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .tradeoff span { display: block; margin-bottom: .4rem; color: var(--accent); font: .7rem/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .demo-status { margin-top: 1rem; padding-inline: clamp(1.25rem, 3vw, 2.25rem); background: #171c1d; border: 1px solid var(--line); border-radius: .5rem; }
 .demo-status .eyebrow { margin-bottom: .75rem; color: var(--accent); }
+.demo-status .demo-launch { width: fit-content; margin-top: 1.5rem; }
+
+html.demo-host-open { overflow: hidden; scrollbar-gutter: auto; }
+.demo-host { width: min(94vw, 87.5rem); height: min(90dvh, 56.25rem); max-width: none; max-height: none; padding: 0; color: var(--ink); background: var(--surface); border: 1px solid var(--control); border-radius: .75rem; overflow: hidden; }
+.demo-host::backdrop { background: rgb(5 8 9 / .82); backdrop-filter: blur(.25rem); }
+.demo-host-shell { height: 100%; min-height: 0; display: flex; flex-direction: column; }
+.demo-host-header { position: relative; z-index: 2; flex: 0 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; padding: 1rem clamp(1rem, 2vw, 1.75rem); background: var(--surface); border-bottom: 1px solid var(--line); }
+.demo-host-copy { min-width: 0; }
+.demo-host-copy .eyebrow { color: var(--accent); }
+.demo-host-copy h2 { margin-top: .25rem; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.25; font-weight: 550; }
+.demo-host-copy > p:last-child { max-width: 52rem; margin-top: .35rem; color: var(--muted); font-size: .875rem; line-height: 1.55; }
+.demo-host-actions { display: flex; align-items: center; gap: .625rem; }
+.demo-host-actions .button { min-height: 2.75rem; padding: .65rem 1rem; }
+.demo-host-app { position: relative; min-height: 0; flex: 1 1 auto; overflow: hidden; background: var(--bg); }
+.demo-host-frame-region { width: 100%; height: 100%; overflow: auto; }
+.demo-host-frame { width: 100%; height: 100%; min-height: 100%; display: block; background: #fff; border: 0; }
+.demo-host:not([data-state="ready"]) .demo-host-frame { visibility: hidden; pointer-events: none; }
+.demo-host-feedback { position: absolute; z-index: 1; inset: 0; display: grid; place-content: center; justify-items: center; gap: 0; padding: clamp(1.5rem, 5vw, 4rem); text-align: center; background: var(--bg); }
+.demo-host[data-state="ready"] .demo-host-feedback { display: none; }
+.demo-host-feedback .eyebrow { margin-top: 1.25rem; color: var(--accent); }
+.demo-host-feedback h3 { max-width: 34rem; margin-top: .5rem; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.25; font-weight: 500; letter-spacing: -.035em; }
+.demo-host-feedback > p:last-of-type { max-width: 35rem; margin-top: .75rem; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.demo-host-feedback .button { margin-top: 1.5rem; }
+.demo-host-spinner { width: 2rem; height: 2rem; border: .1875rem solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: demo-host-spin .8s linear infinite; }
+.demo-host[data-state="error"] .demo-host-spinner { display: none; }
+@keyframes demo-host-spin { to { transform: rotate(360deg); } }
+
+.demo-harness-panel { max-width: 90rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; padding: 1.5rem clamp(1.25rem, 4.5vw, 4.5rem); margin: 2rem auto; background: var(--surface); border: 1px dashed var(--accent); }
+.demo-harness-panel h2 { margin-top: .35rem; font-size: 1.5rem; }
+.demo-harness-panel > div > p:last-child { max-width: 38rem; margin-top: .5rem; color: var(--muted); line-height: 1.7; }
+.demo-harness-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .625rem; }
+.demo-harness-actions .button { min-height: 2.75rem; padding: .625rem .875rem; }
 .case-next { display: flex; justify-content: space-between; align-items: end; gap: 2rem; padding: clamp(2rem, 4vw, 3.5rem); margin-top: clamp(3rem, 7vw, 6rem); background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; }
 .case-next h2 { max-width: 34rem; margin-top: .75rem; font-size: clamp(1.65rem, 3vw, 2.5rem); line-height: 1.25; font-weight: 500; letter-spacing: -.035em; }
 .case-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .75rem; }
@@ -199,6 +233,14 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 }
 
 @media (max-width: 50rem) {
+  .demo-host { position: fixed; inset: 0; width: 100vw; height: 100dvh; margin: 0; border: 0; border-radius: 0; }
+  .demo-host-header { grid-template-columns: 1fr; gap: .75rem; padding: .875rem 1rem; }
+  .demo-host-copy { grid-row: 2; }
+  .demo-host-copy > p:last-child { font-size: .8125rem; }
+  .demo-host-actions { grid-row: 1; justify-self: end; }
+  .demo-host-actions .button { min-width: 4.75rem; }
+  .demo-harness-panel { grid-template-columns: 1fr; }
+  .demo-harness-actions { justify-content: flex-start; }
   .studio-nav nav { gap: 1.5rem; }
   .studio-hero { grid-template-columns: 1fr; gap: 2rem; padding-block: 3.5rem; }
   h1 { font-size: clamp(3.125rem, 8.2vw, 4.75rem); }

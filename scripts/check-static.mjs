@@ -1,10 +1,16 @@
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const staticRoot = path.join(repositoryRoot, 'dist');
+const registry = JSON.parse(await readFile(path.join(
+  repositoryRoot,
+  'packages',
+  'demo-contract',
+  'demo-registry.json',
+), 'utf8'));
 const pages = [
   ['home', 'index.html', 'Ahmed Hossam — Software Engineer'],
   ['Vertex', 'work/vertex/index.html', 'Vertex ERP case study — Ahmed Hossam'],
@@ -57,8 +63,23 @@ if (/(?:src|href)="[^"]*\/demos\//i.test(allHtml)) {
   throw new Error('The initial shell references demo assets before a demo can be opened.');
 }
 
-if (/Try demo|Preview demo|Project contribution details to confirm|\bTODO\b/i.test(allHtml)) {
-  throw new Error('Generated pages expose an unavailable demo action or internal placeholder copy.');
+if (/Preview demo|Project contribution details to confirm|\bTODO\b/i.test(allHtml)) {
+  throw new Error('Generated pages expose internal placeholder copy.');
+}
+
+for (const entry of registry) {
+  const triggerPattern = new RegExp(`data-demo-trigger=["']${entry.slug}["']`, 'i');
+  if (entry.available && !triggerPattern.test(allHtml)) {
+    throw new Error(`Available demo has no host trigger: ${entry.slug}`);
+  }
+  if (!entry.available && triggerPattern.test(allHtml)) {
+    throw new Error(`Unavailable demo exposes a host trigger: ${entry.slug}`);
+  }
+
+  if (entry.available) {
+    await access(path.join(staticRoot, 'demos', entry.slug, 'index.html'), constants.R_OK);
+    console.log(`Verified available demo entry: ${entry.slug}`);
+  }
 }
 
 const internalEvidenceMarkers = [
@@ -84,4 +105,26 @@ for (const assetPath of localAssetPaths) {
   console.log(`Verified local asset path: ${assetPath}`);
 }
 
-console.log('Verified no canonical URL, eager demo asset references, or internal evidence notes.');
+const listFiles = async (directory) => {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map((entry) => {
+    const target = path.join(directory, entry.name);
+    return entry.isDirectory() ? listFiles(target) : [target];
+  }));
+  return nested.flat();
+};
+
+for (const filePath of await listFiles(staticRoot)) {
+  const relativePath = path.relative(staticRoot, filePath).replaceAll('\\', '/');
+  if (relativePath.includes('__demo-host-harness')) {
+    throw new Error(`Internal harness file reached production output: ${relativePath}`);
+  }
+  if (/\.(?:html|js|css|json)$/i.test(filePath)) {
+    const contents = await readFile(filePath, 'utf8');
+    if (contents.includes('LOCAL VALIDATION ONLY') || contents.includes('host-harness')) {
+      throw new Error(`Internal harness marker reached production output: ${relativePath}`);
+    }
+  }
+}
+
+console.log('Verified registry availability, no canonical URL, no eager demo asset references, no harness output, and no internal evidence notes.');

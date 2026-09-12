@@ -37,6 +37,12 @@ const featuredStack = project.stack
         ))}
       </p>
       <div class="project-actions">
+        {project.demoAvailable && (
+          <a class="button button-primary" href={`#demo=${project.slug}`} data-demo-trigger={project.slug}>
+            Try demo
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
+          </a>
+        )}
         <a class="button button-primary" href={`/work/${project.slug}/`}>
           Read case study
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>

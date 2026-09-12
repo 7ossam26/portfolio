@@ -1,0 +1,417 @@
+---
+import { demoRegistry } from '@portfolio/demo-contract';
+
+const internalHarnessEnabled = import.meta.env.DEV
+  || import.meta.env.PORTFOLIO_INTERNAL_DEMO_HARNESS === '1';
+
+const hostTargets = [
+  ...demoRegistry
+    .filter((entry) => entry.available)
+    .map((entry) => ({ ...entry, timeoutMs: 12_000, internal: false })),
+  ...(internalHarnessEnabled ? [{
+    slug: 'host-harness',
+    name: 'Demo host harness',
+    path: '/__demo-host-harness/',
+    frameTitle: 'Internal demo host validation harness',
+    guidance: 'Internal sample-data child for validating the host lifecycle.',
+    available: true,
+    timeoutMs: 700,
+    internal: true,
+  }] : []),
+];
+
+const serializedTargets = JSON.stringify(hostTargets).replaceAll('<', '\\u003c');
+---
+
+{internalHarnessEnabled && (
+  <aside class="demo-harness-panel" aria-labelledby="demo-harness-heading">
+    <div>
+      <p class="eyebrow">LOCAL VALIDATION ONLY</p>
+      <h2 id="demo-harness-heading">Demo host harness</h2>
+      <p>This control panel and its child files are excluded from the production build.</p>
+    </div>
+    <div class="demo-harness-actions">
+      <a class="button button-secondary" href="#demo=host-harness" data-demo-trigger="host-harness" data-demo-mode="ready">Open ready child</a>
+      <a class="button button-secondary" href="#demo=host-harness" data-demo-trigger="host-harness" data-demo-mode="validation">Test invalid messages</a>
+      <a class="button button-secondary" href="#demo=host-harness" data-demo-trigger="host-harness" data-demo-mode="error">Open child error</a>
+      <a class="button button-secondary" href="#demo=host-harness" data-demo-trigger="host-harness" data-demo-mode="stall">Test timeout</a>
+    </div>
+  </aside>
+)}
+
+<dialog class="demo-host" data-demo-host aria-labelledby="demo-host-title">
+  <div class="demo-host-shell">
+    <header class="demo-host-header">
+      <div class="demo-host-copy">
+        <p class="eyebrow">INTERACTIVE VIEW · SAMPLE DATA</p>
+        <h2 id="demo-host-title" data-demo-title>Project demo</h2>
+        <p data-demo-guidance>Use the bounded sample scenario. Nothing here connects to a client service.</p>
+      </div>
+      <div class="demo-host-actions">
+        <button class="button button-secondary" type="button" data-demo-close autofocus>Close</button>
+        <button class="button button-secondary" type="button" data-demo-reset disabled>Reset</button>
+      </div>
+    </header>
+
+    <div class="demo-host-app" data-demo-app-region>
+      <div class="demo-host-feedback" data-demo-feedback role="status" aria-live="polite">
+        <span class="demo-host-spinner" aria-hidden="true"></span>
+        <p class="eyebrow" data-demo-state-label>LOADING SAMPLE</p>
+        <h3 data-demo-state-title>Preparing the demo…</h3>
+        <p data-demo-state-copy>The application is loaded only after you ask to open it.</p>
+        <button class="button button-primary" type="button" data-demo-retry hidden>Retry</button>
+      </div>
+      <div class="demo-host-frame-region" data-demo-frame-region></div>
+    </div>
+  </div>
+</dialog>
+
+<script type="application/json" id="demo-host-registry" set:html={serializedTargets} is:inline></script>
+
+<script>
+  import { isDemoEnvelope } from '@portfolio/demo-contract';
+
+  interface HostTarget {
+    readonly slug: string;
+    readonly name: string;
+    readonly path: string;
+    readonly frameTitle: string;
+    readonly guidance: string;
+    readonly available: boolean;
+    readonly timeoutMs: number;
+    readonly internal: boolean;
+  }
+
+  interface ActiveDemo {
+    readonly target: HostTarget;
+    readonly mode?: string;
+    readonly historyKey?: string;
+  }
+
+  interface DemoHistoryState {
+    readonly key: string;
+    readonly slug: string;
+    readonly mode?: string;
+    readonly previousUrl: string;
+  }
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-demo-host]');
+  const registryElement = document.querySelector<HTMLScriptElement>('#demo-host-registry');
+
+  if (!dialog || !registryElement) {
+    throw new Error('Demo host markup is incomplete.');
+  }
+
+  const titleElement = dialog.querySelector<HTMLElement>('[data-demo-title]');
+  const guidanceElement = dialog.querySelector<HTMLElement>('[data-demo-guidance]');
+  const stateLabel = dialog.querySelector<HTMLElement>('[data-demo-state-label]');
+  const stateTitle = dialog.querySelector<HTMLElement>('[data-demo-state-title]');
+  const stateCopy = dialog.querySelector<HTMLElement>('[data-demo-state-copy]');
+  const frameRegion = dialog.querySelector<HTMLElement>('[data-demo-frame-region]');
+  const closeButton = dialog.querySelector<HTMLButtonElement>('[data-demo-close]');
+  const resetButton = dialog.querySelector<HTMLButtonElement>('[data-demo-reset]');
+  const retryButton = dialog.querySelector<HTMLButtonElement>('[data-demo-retry]');
+
+  if (!titleElement || !guidanceElement || !stateLabel || !stateTitle || !stateCopy
+    || !frameRegion || !closeButton || !resetButton || !retryButton) {
+    throw new Error('Demo host controls are incomplete.');
+  }
+
+  const parsedTargets: unknown = JSON.parse(registryElement.textContent ?? '[]');
+  const targets = Array.isArray(parsedTargets)
+    ? parsedTargets.filter((candidate): candidate is HostTarget => {
+      if (typeof candidate !== 'object' || candidate === null) return false;
+      const target = candidate as Partial<HostTarget>;
+      if (typeof target.slug !== 'string' || typeof target.path !== 'string'
+        || typeof target.name !== 'string' || typeof target.frameTitle !== 'string'
+        || typeof target.guidance !== 'string' || target.available !== true
+        || typeof target.timeoutMs !== 'number' || typeof target.internal !== 'boolean') return false;
+
+      const trustedUrl = new URL(target.path, window.location.origin);
+      const expectedDemoPath = `/demos/${target.slug}/`;
+      const pathIsAllowed = target.internal
+        ? trustedUrl.pathname.startsWith('/__demo-')
+        : trustedUrl.pathname === expectedDemoPath;
+      return trustedUrl.origin === window.location.origin && pathIsAllowed;
+    })
+    : [];
+  const targetBySlug = new Map(targets.map((target) => [target.slug, target]));
+  const allowedHarnessModes = new Set(['ready', 'validation', 'error', 'stall']);
+
+  let activeDemo: ActiveDemo | null = null;
+  let activeFrame: HTMLIFrameElement | null = null;
+  let activeSessionId: string | null = null;
+  let readinessTimer: number | null = null;
+  let resetDelayTimer: number | null = null;
+  let viewportRestoreRequest: number | null = null;
+  let messageListener: ((event: MessageEvent) => void) | null = null;
+  let opener: HTMLElement | null = null;
+  let lockedScrollY = 0;
+
+  const createSessionId = () => (
+    typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${crypto.getRandomValues(new Uint32Array(2)).join('-')}`
+  );
+
+  const getDemoHistory = (): DemoHistoryState | null => {
+    const state: unknown = history.state;
+    if (typeof state !== 'object' || state === null || !('__demoHost' in state)) return null;
+    const value = (state as { __demoHost?: unknown }).__demoHost;
+    if (typeof value !== 'object' || value === null) return null;
+    const candidate = value as Partial<DemoHistoryState>;
+    return typeof candidate.key === 'string'
+      && typeof candidate.slug === 'string'
+      && typeof candidate.previousUrl === 'string'
+      ? candidate as DemoHistoryState
+      : null;
+  };
+
+  const setHostState = (state: 'loading' | 'ready' | 'resetting' | 'error', message?: string) => {
+    dialog.dataset.state = state;
+    retryButton.hidden = state !== 'error';
+    resetButton.disabled = state !== 'ready';
+
+    if (state === 'ready') {
+      stateLabel.textContent = 'SAMPLE READY';
+      stateTitle.textContent = 'The demo is ready.';
+      stateCopy.textContent = 'Keyboard focus can move into the application frame and back to the host controls.';
+      return;
+    }
+    if (state === 'resetting') {
+      stateLabel.textContent = 'RESETTING SAMPLE';
+      stateTitle.textContent = 'Restoring the original sample data…';
+      stateCopy.textContent = 'The existing frame and session have been removed.';
+      return;
+    }
+    if (state === 'error') {
+      stateLabel.textContent = 'DEMO UNAVAILABLE';
+      stateTitle.textContent = 'The sample could not be prepared.';
+      stateCopy.textContent = message ?? 'The portfolio is still available. Retry the sample or close this view.';
+      return;
+    }
+
+    stateLabel.textContent = 'LOADING SAMPLE';
+    stateTitle.textContent = 'Preparing the demo…';
+    stateCopy.textContent = 'The selected application is loading in a fresh, isolated session.';
+  };
+
+  const teardownSession = () => {
+    if (readinessTimer !== null) window.clearTimeout(readinessTimer);
+    if (resetDelayTimer !== null) window.clearTimeout(resetDelayTimer);
+    if (messageListener) window.removeEventListener('message', messageListener);
+    activeFrame?.remove();
+    readinessTimer = null;
+    resetDelayTimer = null;
+    messageListener = null;
+    activeFrame = null;
+    activeSessionId = null;
+    frameRegion.replaceChildren();
+  };
+
+  const showFailure = (message?: string) => {
+    teardownSession();
+    setHostState('error', message);
+  };
+
+  const safePayloadMessage = (payload: unknown): string | undefined => {
+    if (typeof payload !== 'object' || payload === null || !('message' in payload)) return undefined;
+    const message = (payload as { message?: unknown }).message;
+    return typeof message === 'string' && message.length <= 180 ? message : undefined;
+  };
+
+  const safePayloadGuidance = (payload: unknown): string | undefined => {
+    if (typeof payload !== 'object' || payload === null || !('guidance' in payload)) return undefined;
+    const guidance = (payload as { guidance?: unknown }).guidance;
+    return typeof guidance === 'string' && guidance.length <= 180 ? guidance : undefined;
+  };
+
+  const requestClose = () => {
+    const currentHistory = getDemoHistory();
+    if (activeDemo?.historyKey && currentHistory?.key === activeDemo.historyKey) {
+      history.back();
+      return;
+    }
+
+    const nextUrl = new URL(window.location.href);
+    nextUrl.hash = '';
+    history.replaceState(history.state, '', `${nextUrl.pathname}${nextUrl.search}`);
+    closeHost();
+  };
+
+  const startSession = (initialState: 'loading' | 'resetting' = 'loading') => {
+    if (!activeDemo) return;
+    teardownSession();
+    setHostState(initialState);
+
+    const target = activeDemo.target;
+    const sessionId = createSessionId();
+    const frame = document.createElement('iframe');
+    const sourceUrl = new URL(target.path, window.location.origin);
+    sourceUrl.searchParams.set('embedded', '1');
+    sourceUrl.searchParams.set('sessionId', sessionId);
+    if (target.internal && activeDemo.mode && allowedHarnessModes.has(activeDemo.mode)) {
+      sourceUrl.searchParams.set('mode', activeDemo.mode);
+    }
+
+    frame.title = target.frameTitle;
+    frame.className = 'demo-host-frame';
+    frame.referrerPolicy = 'same-origin';
+    frame.src = sourceUrl.href;
+    activeFrame = frame;
+    activeSessionId = sessionId;
+
+    messageListener = (event: MessageEvent) => {
+      if (!activeDemo || !activeFrame || !activeSessionId) return;
+      if (event.source !== activeFrame.contentWindow || event.origin !== window.location.origin) return;
+      if (!isDemoEnvelope(event.data, { demoId: target.slug, sessionId: activeSessionId })) return;
+
+      if (event.data.type === 'READY') {
+        if (readinessTimer !== null) window.clearTimeout(readinessTimer);
+        readinessTimer = null;
+        setHostState('ready');
+        return;
+      }
+      if (event.data.type === 'ERROR') {
+        showFailure(safePayloadMessage(event.data.payload));
+        return;
+      }
+      if (event.data.type === 'REQUEST_CLOSE') {
+        requestClose();
+        return;
+      }
+
+      const updatedGuidance = safePayloadGuidance(event.data.payload);
+      if (updatedGuidance) guidanceElement.textContent = updatedGuidance;
+    };
+
+    window.addEventListener('message', messageListener);
+    frame.addEventListener('error', () => showFailure('The application frame could not be loaded.'), { once: true });
+    frameRegion.append(frame);
+    readinessTimer = window.setTimeout(() => {
+      showFailure('The application did not become ready within the expected time.');
+    }, target.timeoutMs);
+  };
+
+  const lockPage = () => {
+    if (viewportRestoreRequest !== null) window.cancelAnimationFrame(viewportRestoreRequest);
+    viewportRestoreRequest = null;
+    lockedScrollY = window.scrollY;
+    document.documentElement.classList.add('demo-host-open');
+  };
+
+  const unlockPage = () => {
+    document.documentElement.classList.remove('demo-host-open');
+  };
+
+  const restoreViewport = (scrollY: number, focusTarget: HTMLElement | null) => {
+    const applyRestore = () => {
+      const previousBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, scrollY);
+      document.documentElement.style.scrollBehavior = previousBehavior;
+      focusTarget?.focus({ preventScroll: true });
+    };
+
+    applyRestore();
+    viewportRestoreRequest = window.requestAnimationFrame(() => {
+      viewportRestoreRequest = window.requestAnimationFrame(() => {
+        applyRestore();
+        viewportRestoreRequest = null;
+      });
+    });
+  };
+
+  const closeHost = () => {
+    if (!dialog.open && !activeDemo) return;
+    teardownSession();
+    if (dialog.open) dialog.close();
+    activeDemo = null;
+    unlockPage();
+    const focusTarget = opener;
+    opener = null;
+    restoreViewport(lockedScrollY, focusTarget);
+  };
+
+  const openHost = (target: HostTarget, options: { mode?: string; historyKey?: string; trigger?: HTMLElement | null } = {}) => {
+    if (dialog.open) closeHost();
+    opener = options.trigger ?? opener;
+    activeDemo = { target, mode: options.mode, historyKey: options.historyKey };
+    titleElement.textContent = target.name;
+    guidanceElement.textContent = target.guidance;
+    lockPage();
+    dialog.showModal();
+    closeButton.focus({ preventScroll: true });
+    startSession();
+  };
+
+  const slugFromHash = () => {
+    if (!window.location.hash.startsWith('#demo=')) return null;
+    try {
+      return decodeURIComponent(window.location.hash.slice('#demo='.length));
+    } catch {
+      return null;
+    }
+  };
+
+  const syncFromHistory = () => {
+    const slug = slugFromHash();
+    const target = slug ? targetBySlug.get(slug) : undefined;
+    if (!target) {
+      closeHost();
+      return;
+    }
+
+    const demoHistory = getDemoHistory();
+    const mode = target.internal && demoHistory?.mode && allowedHarnessModes.has(demoHistory.mode)
+      ? demoHistory.mode
+      : target.internal ? 'ready' : undefined;
+    const historyTrigger = demoHistory
+      ? Array.from(document.querySelectorAll<HTMLElement>('[data-demo-trigger]'))
+        .find((trigger) => trigger.dataset.demoTrigger === target.slug) ?? null
+      : null;
+    openHost(target, { mode, historyKey: demoHistory?.key, trigger: historyTrigger });
+  };
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target instanceof Element
+      ? event.target.closest<HTMLElement>('[data-demo-trigger]')
+      : null;
+    if (!trigger) return;
+
+    const slug = trigger.dataset.demoTrigger;
+    const target = slug ? targetBySlug.get(slug) : undefined;
+    if (!target) return;
+    event.preventDefault();
+
+    const requestedMode = trigger.dataset.demoMode;
+    const mode = target.internal && requestedMode && allowedHarnessModes.has(requestedMode)
+      ? requestedMode
+      : undefined;
+    const key = createSessionId();
+    const previousUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    history.pushState(
+      { __demoHost: { key, slug: target.slug, mode, previousUrl } satisfies DemoHistoryState },
+      '',
+      `${window.location.pathname}${window.location.search}#demo=${encodeURIComponent(target.slug)}`,
+    );
+    opener = trigger;
+    openHost(target, { mode, historyKey: key, trigger });
+  });
+
+  closeButton.addEventListener('click', requestClose);
+  resetButton.addEventListener('click', () => {
+    if (!activeDemo) return;
+    teardownSession();
+    setHostState('resetting');
+    resetDelayTimer = window.setTimeout(() => startSession('loading'), 120);
+  });
+  retryButton.addEventListener('click', () => startSession('loading'));
+  dialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    requestClose();
+  });
+  window.addEventListener('popstate', syncFromHistory);
+
+  syncFromHistory();
+</script>

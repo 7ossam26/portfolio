@@ -2,5 +2,7 @@
   "name": "@portfolio/demo-contract",
   "version": "0.0.0",
   "private": true,
-  "description": "Reserved framework-free boundary for later demo lifecycle contracts."
+  "description": "Framework-free lifecycle contracts and registry for isolated portfolio demos.",
+  "type": "module",
+  "exports": "./src/index.ts"
 }

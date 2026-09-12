@@ -96,9 +96,14 @@ const { project } = Astro.props;
     <section class="case-section demo-status" aria-labelledby="demo-status-heading">
       <p class="section-index">{project.contribution ? '05' : '04'}</p>
       <div>
-        <p class="eyebrow">INTERACTIVE VIEW · NOT YET AVAILABLE</p>
+        <p class="eyebrow">{project.demoAvailable ? 'INTERACTIVE VIEW · SAMPLE DATA' : 'INTERACTIVE VIEW · NOT YET AVAILABLE'}</p>
         <h2 id="demo-status-heading">A bounded sample-data scenario</h2>
         <p>{project.demoSummary}</p>
+        {project.demoAvailable && (
+          <a class="button button-primary demo-launch" href={`#demo=${project.slug}`} data-demo-trigger={project.slug}>
+            Try {project.name} demo
+          </a>
+        )}
       </div>
     </section>
   </div>

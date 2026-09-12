@@ -6,7 +6,10 @@ import path from 'node:path';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const staticRoot = path.join(repositoryRoot, 'dist');
+const harnessRoot = path.join(repositoryRoot, 'tests', 'fixtures', 'demo-host-harness');
 const previewArguments = process.argv.slice(2);
+const harnessEnabled = previewArguments.includes('--demo-harness');
+const harnessPrefix = '/__demo-host-harness/';
 const requestedPortIndex = previewArguments.indexOf('--port');
 const equalsPort = previewArguments.find((argument) => argument.startsWith('--port='));
 const requestedPortValue = requestedPortIndex >= 0
@@ -28,10 +31,17 @@ const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url ?? '/', 'http://localhost');
     const decodedPath = decodeURIComponent(url.pathname);
-    const relativePath = decodedPath.endsWith('/') ? `${decodedPath}index.html` : decodedPath;
-    let filePath = path.resolve(staticRoot, `.${relativePath}`);
+    const isHarnessRequest = harnessEnabled && decodedPath.startsWith(harnessPrefix);
+    const requestRoot = isHarnessRequest ? harnessRoot : staticRoot;
+    const rootRelativePath = isHarnessRequest
+      ? decodedPath.slice(harnessPrefix.length)
+      : decodedPath.slice(1);
+    const relativePath = rootRelativePath === '' || rootRelativePath.endsWith('/')
+      ? `${rootRelativePath}index.html`
+      : rootRelativePath;
+    let filePath = path.resolve(requestRoot, relativePath);
 
-    if (filePath !== staticRoot && !filePath.startsWith(staticRoot + path.sep)) {
+    if (filePath !== requestRoot && !filePath.startsWith(requestRoot + path.sep)) {
       response.writeHead(403).end('Forbidden');
       return;
     }

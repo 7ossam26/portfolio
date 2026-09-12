@@ -6,6 +6,10 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const generatedDirectories = [
   path.join(repositoryRoot, 'dist'),
   path.join(repositoryRoot, 'apps', 'portfolio', 'dist'),
+  path.join(repositoryRoot, 'apps', 'demo-vertex', 'dist'),
+  path.join(repositoryRoot, 'apps', 'demo-autozain', 'dist'),
+  path.join(repositoryRoot, 'apps', 'demo-roya', 'dist'),
+  path.join(repositoryRoot, 'apps', 'demo-ramex', 'dist'),
 ];
 
 for (const directory of generatedDirectories) {

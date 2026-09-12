@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "vertex",
+    "name": "Vertex ERP",
+    "path": "/demos/vertex/",
+    "frameTitle": "Vertex ERP sample-data production demo",
+    "guidance": "Use the prepared recipe to inspect material consumption, finished stock, and cost.",
+    "available": false
+  },
+  {
+    "slug": "autozain",
+    "name": "AutoZain",
+    "path": "/demos/autozain/",
+    "frameTitle": "AutoZain sample-data contact workflow demo",
+    "guidance": "Follow one fictional buyer request from vehicle selection to a recorded staff outcome.",
+    "available": false
+  },
+  {
+    "slug": "roya",
+    "name": "Roya",
+    "path": "/demos/roya/",
+    "frameTitle": "Roya sample-data budget impact demo",
+    "guidance": "Preview how a fictional shooting-week change affects eligible budget lines without saving it.",
+    "available": false
+  },
+  {
+    "slug": "ramex",
+    "name": "Ramex",
+    "path": "/demos/ramex/",
+    "frameTitle": "Ramex sample-data roll sale demo",
+    "guidance": "Complete a fictional whole-roll sale and inspect its inventory and invoice snapshot.",
+    "available": false
+  }
+]

@@ -112,6 +112,11 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .workflow-outcome p { color: #c6d0ce; font-size: .8125rem; }
 .workflow-outcome p > span { padding-inline: .375rem; color: #667577; }
 .workflow-figure figcaption { margin-top: 1.5rem; color: var(--quiet); font-size: .75rem; line-height: 1.6; }
+.application-capture, .case-capture { overflow: hidden; background: #f5f5f0; border: 1px solid var(--line); border-radius: .5rem; }
+.application-capture img, .case-capture img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.application-capture figcaption, .case-capture figcaption { padding: 1rem 1.125rem; color: var(--quiet); background: var(--surface); border-top: 1px solid var(--line); font-size: .75rem; line-height: 1.65; }
+.case-capture { margin-bottom: clamp(1rem, 2vw, 1.5rem); }
+.case-capture img { max-height: 52rem; }
 
 .project-list { margin-top: 1rem; border-top: 1px solid var(--line); }
 .project-list > article { border-bottom: 1px solid var(--line); }

@@ -27,6 +27,20 @@ const { project } = Astro.props;
     </dl>
   </header>
 
+  {project.media?.map((media) => (
+    <figure class="case-capture">
+      <img
+        src={media.src}
+        width={media.width}
+        height={media.height}
+        alt={media.alt}
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption>{media.caption}</figcaption>
+    </figure>
+  ))}
+
   <figure class="system-diagram" aria-labelledby={`${project.slug}-diagram-title`}>
     <div class="diagram-label">
       <span class="eyebrow">SYSTEM FLOW DIAGRAM</span>

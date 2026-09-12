@@ -38,10 +38,15 @@ for (const entry of availableEntries) {
     throw new Error(`Available demo has no build script: ${entry.slug}`);
   }
 
-  const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-  const result = spawnSync(npmCommand, ['run', 'build', '--workspace', workspace], {
+  const npmCli = process.env.npm_execpath;
+  const command = npmCli ? process.execPath : (process.platform === 'win32' ? 'npm.cmd' : 'npm');
+  const args = npmCli
+    ? [npmCli, 'run', 'build', '--workspace', workspace]
+    : ['run', 'build', '--workspace', workspace];
+  const result = spawnSync(command, args, {
     cwd: repositoryRoot,
     stdio: 'inherit',
   });
-  if (result.status !== 0) throw new Error(`Demo build failed: ${entry.slug}`);
+  if (result.error) throw result.error;
+  if (result.status !== 0) throw new Error(`Demo build failed: ${entry.slug} (exit ${result.status ?? 'unknown'}).`);
 }

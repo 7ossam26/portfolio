@@ -9,6 +9,7 @@ const { project } = Astro.props;
 const featuredStack = project.stack
   .filter((item) => item !== 'Vite')
   .map((item) => item === 'Node.js / Express' ? 'Node.js' : item);
+const featuredMedia = project.media?.[0];
 ---
 
 <div class="section-heading" id="selected-work">
@@ -54,7 +55,19 @@ const featuredStack = project.stack
       </div>
     </div>
 
-    <figure class="workflow-figure">
+    {featuredMedia ? (
+      <figure class="application-capture">
+        <img
+          src={featuredMedia.src}
+          width={featuredMedia.width}
+          height={featuredMedia.height}
+          alt={featuredMedia.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{featuredMedia.caption}</figcaption>
+      </figure>
+    ) : <figure class="workflow-figure">
       <div class="workflow-heading">
         <span class="vertex-mark" aria-hidden="true">v<span>:</span></span>
         <div><span class="eyebrow">VERTEX ERP</span><p>Inside a production workflow</p></div>
@@ -78,6 +91,6 @@ const featuredStack = project.stack
       </ol>
       <div class="workflow-outcome"><span>Connected records</span><p>Materials <span aria-hidden="true">/</span> Stock <span aria-hidden="true">/</span> Cost</p></div>
       <figcaption>Workflow diagram · The original application UI will appear only when its demo is ready.</figcaption>
-    </figure>
+    </figure>}
   </div>
 </article>

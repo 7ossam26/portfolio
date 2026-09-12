@@ -13,6 +13,14 @@ export interface EngineeringDecision {
   readonly tradeoff: string;
 }
 
+export interface ProjectMedia {
+  readonly src: string;
+  readonly width: number;
+  readonly height: number;
+  readonly alt: string;
+  readonly caption: string;
+}
+
 export interface ProjectContent {
   readonly slug: ProjectSlug;
   readonly name: string;
@@ -29,6 +37,7 @@ export interface ProjectContent {
   readonly stack: readonly string[];
   readonly repositoryUrl: string;
   readonly demoAvailable: boolean;
+  readonly media?: readonly ProjectMedia[];
 }
 
 export const projects = [
@@ -59,10 +68,19 @@ export const projects = [
       },
     ],
     flow: ['Bill of materials', 'Stock validation', 'Material consumption', 'Finished stock & cost'],
-    demoSummary: 'The planned local scenario will execute a fictional bill of materials, show the stock and cost result, and prove that insufficient stock changes nothing. It is not available in this preview; no production API or client data is connected.',
+    demoSummary: 'Execute a fictional bill of materials for four finished units, then reconcile the material usage, finished stock, and production cost. An excessive run is rejected without changing sample state. The bounded adapter is local only: no production API, login, realtime service, or client data is connected.',
     stack: ['React', 'Vite', 'Node.js / Express', 'Prisma', 'MySQL'],
     repositoryUrl: 'https://github.com/7ossam26/ERP-V2',
-    demoAvailable: false,
+    demoAvailable: true,
+    media: [
+      {
+        src: '/images/vertex/production-result-1440x900.png',
+        width: 1440,
+        height: 900,
+        alt: 'Arabic Vertex ERP production history showing the completed sample order, material quantities, and costs.',
+        caption: 'Original Vertex production-history UI running on local fictional data: four finished units consume 8 kg and 2 kg, with EGP 120 total material cost and EGP 30 unit cost.',
+      },
+    ],
   },
   {
     slug: 'autozain',

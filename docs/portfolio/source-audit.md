@@ -109,10 +109,34 @@ The adapter connects where `BOMManager.jsx` and `ProductionHistory.jsx` currentl
 
 ### Assets, layout, risk, and extraction boundary
 
-- Preserve the original Arabic/RTL component markup, controls, tables/cards, and feedback patterns. Responsive Tailwind classes are present, but mobile behavior has not run.
+- Preserve the original Arabic/RTL component markup, controls, tables/cards, and feedback patterns. The source had responsive Tailwind classes; Phase 04 records the extracted frame's mobile result below and in its validation report.
 - Self-host the existing Cairo font subset. Replace remote Material font/icon dependencies with the exact needed local/icon implementation; no Google requests.
 - Copy only the production list/card slice, execution modal, history view, `KgQuantityInput`, needed utilities, and required styles. Exclude BOM creation/edit routes, the full application shell, accounting/export/PDF/chart dependencies, auth, realtime, and unrelated service barrels.
 - Primary bundle risk: eager `App.jsx` imports and the eager `domainServices.js` barrel. Secondary risk: remote fonts and broad MUI/export dependencies if extraction crosses the selected boundary.
+
+### Phase 04 extraction and asset provenance
+
+The Phase 04 implementation re-inspected the clean read-only checkout at the same pinned commit on 12 September 2026. The checkout remained clean after implementation. The public ledger repository was not cloned into the portfolio and no source remote was changed or pushed.
+
+| Source path | Local path | Extraction/adaptation |
+| --- | --- | --- |
+| `frontend/src/pages/bom/BOMManager.jsx` | `apps/demo-vertex/src/components/BomManager.tsx`; `apps/demo-vertex/src/components/ExecuteProductionModal.tsx` | Preserved the Arabic BOM card, expanded material review, production modal, field order, stock badges, validation feedback, and production action. Removed create/edit/delete controls, router, toast library, auth calls, and broad service imports. |
+| `frontend/src/pages/bom/ProductionHistory.jsx` | `apps/demo-vertex/src/components/ProductionHistory.tsx` | Preserved the searchable order card, completion badge, target/actual/cost details, and consumed-material table; connected it to the local order snapshot. |
+| `frontend/src/pages/inventory/InventoryPage.jsx` | `apps/demo-vertex/src/components/InventoryView.tsx` | Retained the recognizable Arabic inventory heading, summary cards, item table, cost valuation, stock status, and branch context, limited to the three synthetic items. |
+| `frontend/src/components/ui/KgQuantityInput.jsx` and the quantity controls embedded in `BOMManager.jsx` | `apps/demo-vertex/src/components/ExecuteProductionModal.tsx` | Kept numeric target/actual entry and the source's decimal behavior needed by this bounded recipe; no shared application-form dependency was copied. |
+| `frontend/src/index.css`, `frontend/tailwind.config.js`, `frontend/index.html` | `apps/demo-vertex/src/styles.css`; `apps/demo-vertex/tailwind.config.js`; `apps/demo-vertex/index.html` | Preserved Cairo, RTL, the light ERP palette, rounded cards/tables, responsive breakpoints, and touch-sized controls. Remote Google font/icon requests were replaced by the source's local Cairo file and a small inline SVG icon set. |
+| `frontend/public/fonts/Cairo-Regular.woff2` | `apps/demo-vertex/src/assets/Cairo-Regular.woff2` | Byte-for-byte copy. SHA-256: `1B36945F5F6A3D1FED3783999B887D0C56CFD66A41A04212A28AA79ABBDFF0E1`. |
+| `frontend/src/services/bomService.js`, `inventoryService.js`, `warehouseService.js`, `itemService.js`, `categoryService.js` | `apps/demo-vertex/src/services/vertexDemoService.ts`; `apps/demo-vertex/src/domain/{types,fixtures}.ts` | Replaced all HTTP/auth behavior with a typed, cloned in-memory fixture and atomic commit boundary. There is no client-service fallback. |
+| `backend/lib/productionService.js`, `backend/routes/bom.js`, `backend/prisma/schema.prisma` | `apps/demo-vertex/src/services/vertexDemoService.ts`; `apps/demo-vertex/tests/vertexDemoService.test.ts` | Reproduced target-multiplier material use, six-decimal consumption, stock validation, source/destination warehouse handling, material cost, actual-output unit cost, finished-stock increment, output cost refresh, history creation, and all-or-nothing rejection. |
+| none — portfolio bridge | `apps/demo-vertex/src/frameBridge.ts`; `apps/demo-vertex/src/App.tsx` | Added the versioned READY/STEP_CHANGED/COMPLETE/ERROR/REQUEST_CLOSE bridge plus standalone sample/reset controls required by the portfolio host. |
+
+The selected source route requires `CREATES_PRODUCTION`; the fictional local persona carries `PRODUCTION` and `CREATES_PRODUCTION` in one fixed branch. The source requests the warehouse list globally but reads branch-scoped inventory; the sample therefore exposes only warehouse `101` in fictional branch `11` and rejects other warehouse IDs in the adapter. Source quantities are BOM `Decimal(10,4)`, inventory/material usage `Decimal(18,6)`, and production output `Decimal(10,4)`; costs are `Decimal(10,2)`. Material consumption follows target output, finished-stock addition and unit cost follow actual output, and waste is target minus actual output.
+
+The illustrative fixture required no arithmetic change: target/actual `4` consumes `8 kg` of material A and `2 kg` of material B; at EGP `10` and `20` per kg the total is EGP `120`, unit cost is EGP `30`, and ending quantities are `92`, `48`, and `4`. Money is stored as integer piasters locally so the two-decimal source boundary is deterministic. The source endpoint has no idempotency key and relies on the pending UI state; the demo retains that disabled state and adds one-operation single-flight/replay semantics so an accidental repeated submit cannot mutate the sample twice.
+
+The dependency closure intentionally excludes `App.jsx`, `domainServices.js`, `apiClient.js`, `AuthService`, branch/realtime providers, sockets, uploads, Google font/icon calls, BOM administration, cancellation/editing, export/PDF/chart modules, and all unrelated routes. The production build contains only the local adapter and frame bridge.
+
+The real sample-data UI capture is `apps/portfolio/public/images/vertex/production-result-1440x900.png`, captured from standalone `/demos/vertex/` in Chromium after the documented four-unit run. It is `1440×900`, `57,550` bytes, SHA-256 `ED1D14AAE1C953B46EA006D174E5B43A7F43DCF2B6E6876E46EAA86AC15C3287`, and is duplicated as browser evidence at `output/playwright/phase-04/vertex-production-result-1440x900.png`. Its project copy and case-study caption identify sample data and the exact reconciled quantities/cost. The existing labeled system diagram remains as supplementary architecture context, not as demo evidence.
 
 ## AutoZain
 

@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+@config '../tailwind.config.js';
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/Cairo-Regular.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { background: #f5f5f0; }
+  body { margin: 0; min-width: 320px; min-height: 100vh; font-family: 'Cairo', sans-serif; }
+  button, input, select, textarea { font: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #b67a52; outline-offset: 2px; }
+  th { font-weight: 700; }
+}
+
+@layer components {
+  .demo-toolbar { min-height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem clamp(1rem, 3vw, 2rem); background: #fff; border-bottom: 1px solid #e7e5e4; position: sticky; top: 0; z-index: 30; }
+  .vertex-logo { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; border-radius: .75rem; background: #6f4e37; color: white; font: 800 1.25rem/1 'Cairo', sans-serif; direction: ltr; }
+  .sample-badge { display: inline-flex; align-items: center; min-height: 2rem; padding: .25rem .7rem; border-radius: 999px; background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; font-size: .75rem; font-weight: 800; white-space: nowrap; }
+  .toolbar-action { min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; padding: .5rem .8rem; border-radius: .625rem; border: 1px solid #d6d3d1; background: white; color: #3e2723; font-size: .78rem; font-weight: 700; text-decoration: none; }
+  .view-nav { display: flex; align-items: center; gap: .25rem; padding: .5rem clamp(1rem, 3vw, 2rem); background: white; border-bottom: 1px solid #e7e5e4; overflow-x: auto; }
+  .view-nav button { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .45rem; padding: .55rem .85rem; border: 0; border-radius: .65rem; background: transparent; color: #6b7280; font-size: .84rem; font-weight: 700; white-space: nowrap; cursor: pointer; }
+  .view-nav button[aria-current='page'] { background: #6f4e37; color: white; }
+  .status-notice { max-width: 72rem; display: flex; align-items: center; gap: .65rem; margin: 1rem auto 0; padding: .75rem 1rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: .75rem; color: #047857; font-size: .875rem; font-weight: 700; }
+  .status-notice span { flex: 1; }
+  .status-notice button { width: 2.25rem; height: 2.25rem; display: grid; place-items: center; border: 0; border-radius: .5rem; background: transparent; color: currentColor; }
+  .icon-button { min-width: 2.75rem; min-height: 2.75rem; display: inline-grid; place-items: center; border: 0; border-radius: .5rem; background: transparent; cursor: pointer; }
+  .icon-button:hover { background: #f3f4f6; }
+  .action-secondary { min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .65rem 1rem; border-width: 1px; border-style: solid; border-radius: .75rem; background: white; font-size: .875rem; font-weight: 800; }
+  .field { width: 100%; min-height: 2.75rem; display: block; margin-top: .35rem; padding: .55rem .9rem; border: 1px solid #d6d3d1; border-radius: .75rem; background: #fff; color: #3e2723; }
+  .metric-card { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; background: white; border: 1px solid #e7e5e4; border-radius: 1rem; }
+  .metric-card span, .detail-card span { color: #6b7280; font-size: .75rem; }
+  .metric-card b { color: #3e2723; font-size: 1.05rem; }
+  .detail-card { display: flex; flex-direction: column; align-items: center; gap: .35rem; padding: .75rem; background: white; border: 1px solid #e7e5e4; border-radius: .75rem; text-align: center; }
+  .detail-card b { font-size: 1.05rem; }
+}
+
+@media (max-width: 40rem) {
+  .demo-toolbar { align-items: flex-start; }
+  .demo-toolbar > div:last-child { flex-direction: column; align-items: stretch; }
+  .toolbar-action { min-height: 2.25rem; }
+  main { padding-top: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}

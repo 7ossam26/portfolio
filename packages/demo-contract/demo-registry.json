@@ -5,7 +5,7 @@
     "path": "/demos/vertex/",
     "frameTitle": "Vertex ERP sample-data production demo",
     "guidance": "Use the prepared recipe to inspect material consumption, finished stock, and cost.",
-    "available": false
+    "available": true
   },
   {
     "slug": "autozain",

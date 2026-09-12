@@ -96,7 +96,7 @@ for (const marker of internalEvidenceMarkers) {
 
 
 const localAssetPaths = new Set();
-for (const match of allHtml.matchAll(/(?:src|href)="(\/[^"#?]+\.(?:css|js|pdf|svg|woff2))[^\"]*"/gi)) {
+for (const match of allHtml.matchAll(/(?:src|href)="(\/[^"#?]+\.(?:css|js|pdf|svg|woff2|png|webp|jpe?g))[^\"]*"/gi)) {
   localAssetPaths.add(match[1]);
 }
 

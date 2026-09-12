@@ -3,4 +3,5 @@ node_modules/
 dist/
 apps/*/dist/
 output/playwright/*/.playwright-cli/
+.playwright-cli/
 *.log

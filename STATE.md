@@ -1,6 +1,6 @@
 # Portfolio implementation state
 
-Last updated: 12 September 2026 (Phase 09 preparation)
+Last updated: 16 September 2026 (post-Phase 09 motion repair)
 
 ## Current position
 
@@ -10,7 +10,7 @@ Last updated: 12 September 2026 (Phase 09 preparation)
 - Current implementation phase: 09 — preparation complete; public publication blocked.
 - Remaining prompt: resume deployment/handoff steps in `docs/portfolio/prompts/09-release.md` after Ahmed supplies the target/access. There is no next feature phase.
 - Actual original-UI demos: Vertex, AutoZain, Roya, and Ramex ready.
-- Release status: **prepared, not deployed.** Four actual demos are ready. Phase 08 Chromium/lab evidence remains valid for unchanged static bytes; Phase 09 adds 93 local HTTP, 47 journey, 46 network, 27 domain, and focused origin checks. The pinned-runtime and reproducible build gaps are closed. Public-host verification and Firefox/WebKit remain open; field metrics remain unavailable before traffic. Do not call the portfolio live or the release complete.
+- Release status: **prepared baseline, not deployed.** Four actual demos are ready. A 16 September scroll-motion repair changes the portfolio shell after the prepared archive, so that archive is no longer the current release candidate and must be regenerated before publication. Public-host verification and Firefox/WebKit remain open; field metrics remain unavailable before traffic. Do not call the portfolio live or the release complete.
 - Public production domain: unresolved. The build now accepts it through `PORTFOLIO_SITE_URL` (D20); with the variable unset the artifact stays `noindex` with a `Disallow: /` robots.txt and no sitemap.
 
 ## Existing evidence
@@ -45,6 +45,19 @@ Last updated: 12 September 2026 (Phase 09 preparation)
 | 08 — quality | Complete, with four recorded gaps | `docs/portfolio/validation/phase-08.md`; `validation/performance.md`; `validation/network.md`; `docs/portfolio/maintenance.md` |
 | 09 — release | Prepared; publication blocked by target/access; no public URL verified | `docs/portfolio/validation/phase-09.md`; `docs/portfolio/release.md` |
 
+## Post-Phase 09 local repair — scroll motion
+
+- Added a progressive motion layer to the portfolio shell: repeatable viewport reveals, staggered entrance directions, a page progress line, scroll-linked image/diagram parallax, project-row progress treatment, section-line drawing, compact sticky navigation, and restrained button/link motion.
+- Added a layered scroll-reactive background with copper/blue ambient light, a masked technical grid, sparse light points, and a diagonal light sweep. It is driven by scroll progress rather than an infinite ornamental loop.
+- After Ahmed reported slow scrolling, replaced cascading root-variable/background-position updates and a large blurred fixed pseudo-element with isolated DOM layers updated only through compositor-friendly transforms. The progress indicator now uses `scaleX`; image zoom no longer repaints on every scroll frame.
+- D23 adds Ahmed's explicitly requested continuous homepage-hero motion: the two accent words float in alternating phases with transform/opacity underlines, and the eyebrow rule pulses. The effect is scoped to the hero and still respects reduced motion.
+- D24 adds an explicitly requested continuous Ambient Studio background. Nested light/grid surfaces drift independently inside scroll-transformed wrappers, plus one slow hairline orbit; this keeps continuous motion and scroll motion composited separately.
+- D25 replaces the rejected subtle grid/orbit treatment with a clearer restrained version: two larger copper/teal ambient fields and one softly moving diagonal beam. Grid, particles, mask, and orbit were removed.
+- Reveal classes are applied only after JavaScript starts; authored content stays visible without JavaScript. `prefers-reduced-motion` prevents the optional layer from starting.
+- Re-entry removes and reapplies the visible state, so motion is not limited to the first page load or first intersection.
+- Validation on system Node `24.11.1` / npm `11.6.2`: Astro check reports 0 diagnostics and the complete shell + four-demo build/static gate passes. This runtime is outside the repository's pinned Node 22 release range, so it is development evidence only.
+- Browser/visual QA was not run because D18 still reserves it for Ahmed unless explicitly re-authorized. The prepared Phase 09 archive predates this source change and must be regenerated with the pinned toolchain after review.
+
 ## Open items
 
 ### Release-candidate gaps (block calling the release complete)
@@ -66,13 +79,13 @@ Last updated: 12 September 2026 (Phase 09 preparation)
 
 ## Most recent execution
 
-- Phase: 09 — release preparation and handoff, publication pending.
-- Files/behavior changed: enforced root HTTPS origins and removed invented sitemap build dates; added deterministic immutable release/source archives, exact content manifests, generated narrowly hashed CSP and cache/embedding Nginx configuration, content ETags/304/error behavior, native HTTP verification, and an external-origin option for existing browser suites. Added release/validation handoff and updated maintenance/demo wording. Dependencies/lockfile/CV and the 67 preview static files are unchanged.
-- Checks: exact Node `22.23.2` / npm `11.1.0` clean `npm ci`, full build/demo typechecks, Astro check 0 diagnostics, 27 existing domain tests, one origin test, production audit 0 vulnerabilities. Final archive: 93 native local HTTP checks. New headers: 47 Chromium journey + 46 network checks. Public metadata fixture: 88 local HTTP checks, explicitly test-only. Independent source snapshot build reproduces exact static bytes; retained Phase 08 output is identical. No public-host, TLS, cross-engine, field, or container verification is claimed.
-- Prepared archive: `output/releases/portfolio-2d412b8331edab54b7ecacef7ed90ccc68bc9fa8bb1fe7d1ce5a20fcb20ed340.tar.gz`; base revision `0fe076bc3f6c24c5e890af5399a83b262076a70c` plus exact uncommitted source tree/snapshot hashes in `docs/portfolio/release.md`.
-- Validation: `docs/portfolio/validation/phase-09.md`, `docs/portfolio/release.md`; local machine evidence under `output/phase-09/`; immutable archives/baseline under `output/releases/`.
-- Blockers: actual public origin/host/service/access missing; public deployment verification pending; Firefox/WebKit unverified; field metrics unavailable until traffic. All four demos remain ready. No unrelated target or client service was changed.
-- Next action: receive Ahmed's deployment-specific target/access, then resume only the remaining Phase 09 steps. No new feature phase.
+- Phase: post-Phase 09 local repair — repeatable portfolio scroll motion.
+- Files/behavior changed: added `apps/portfolio/src/scripts/motion.ts`, loaded it from the base layout, and added progressive motion styling. Reveals replay on viewport re-entry; page progress, layered scroll-reactive background lighting/grid, scroll-linked parallax, project-row progression, section-line drawing, compact navigation, and control motion are included. No demo or content data changed.
+- Checks: system Node `24.11.1` / npm `11.6.2`; Astro check reports 0 diagnostics; complete `npm.cmd run build` passes the shell, four demo typechecks/builds, staging, assets, and static-output contract after the scroll-performance repair. Browser/visual/performance QA remains deferred under D18.
+- Release impact: the Phase 09 immutable archive remains historical evidence but predates this repair and is not the current source candidate. Regenerate it with pinned Node `22.23.2` / npm `11.1.0` after review.
+- Validation: appended to `docs/portfolio/validation/phase-09.md`.
+- Blockers: visual approval is pending Ahmed's manual review; public origin/host/access remain missing; public-host, Firefox/WebKit, and field checks remain open.
+- Next action: Ahmed manually reviews the motion. Apply any focused correction, then regenerate the pinned release artifact when deployment target/access are supplied.
 
 ## Update format
 

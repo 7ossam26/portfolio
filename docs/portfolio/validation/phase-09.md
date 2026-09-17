@@ -130,3 +130,66 @@ Ask one deployment-specific question only after this preparation/handoff is comp
 the selected public HTTPS origin, hosting service, and deployment access. Resume
 the remaining steps of `docs/portfolio/prompts/09-release.md` after that information
 arrives. There is no next feature phase.
+
+## Post-preparation repair — repeatable scroll motion (16 September 2026)
+
+Ahmed requested a new, richer scroll-motion layer after reporting that the earlier
+experiment ran only on initial page entry. The portfolio shell now applies repeatable
+IntersectionObserver states, page progress, scroll-linked image/diagram movement,
+project-row progression, section-line drawing, compact sticky navigation, and
+restrained control motion. Elements lose their visible state after leaving the
+viewport and animate again on re-entry. The feature does not add a mouse-following
+cursor or an infinite ornamental loop.
+
+The background now uses scroll-linked copper and blue ambient gradients, a masked
+technical grid, sparse points, and a diagonal light sweep at separate movement
+rates. These layers move only as scroll progress changes and are omitted when the
+visitor requests reduced motion; no video, canvas loop, or continuous animation was
+introduced.
+
+Ahmed then reported slow scrolling. Inspection identified the expensive path: a
+root-level custom property changed every frame while driving large fixed gradient
+background positions, a mask, image scaling, and a blurred oversized pseudo-element.
+The repair replaces that path with isolated decorative DOM layers whose already-
+rasterized surfaces move through `transform` only. The progress line uses `scaleX`,
+and the image zoom is no longer scroll-driven. The scroll handler remains coalesced
+through one `requestAnimationFrame`. Typecheck and the complete build/static gate
+passed again after this repair. Browser frame-time measurement remains deferred
+under D18 and is not claimed here.
+
+Ahmed subsequently requested continuous motion for the pictured homepage headline.
+D23 records this as a narrow exception to the earlier general prohibition on infinite
+ornamental motion. The two accent words use alternating transform-only float cycles,
+their one-pixel underline uses transform/opacity, and the small eyebrow rule pulses.
+The effect is scoped to `#studio-heading`, avoids page-wide paint properties, and is
+disabled by the existing reduced-motion media query.
+
+Ahmed then explicitly requested continuous background motion. D24 adds an Ambient
+Studio treatment: nested copper/blue light and grid/point surfaces drift at separate
+slow rates, while a hairline orbit rotates independently. The continuous animations
+run on inner compositor layers; scroll transforms remain on outer wrappers so the
+two motion sources do not overwrite each other. All use transform/opacity and the
+decorative nodes are not created when reduced motion is requested.
+
+Ahmed rejected that first continuous-background direction as both unclear and too
+busy. D25 replaces it rather than stacking more effects: the grid, point field,
+mask, and orbit are removed; two larger copper/teal ambient fields and one diagonal
+light beam remain. They use separated inner/outer transform layers, retain reduced-
+motion behavior, and are intentionally stronger in contrast while using fewer visual
+primitives.
+
+The authored page remains visible by default. Motion-only hiding is gated behind a
+runtime `motion-ready` class, and the module does not start when the visitor requests
+reduced motion. No demo code, fixture, API boundary, content claim, CV, or dependency
+was changed.
+
+Validation used the currently available system Node `24.11.1` and npm `11.6.2`:
+
+- `npm.cmd run typecheck`: 16 Astro files, 0 errors, warnings, or hints.
+- `npm.cmd run build`: asset checks, portfolio build, all four demo typechecks/builds,
+  staging, and the static-output contract passed.
+
+This runtime is outside the pinned Node 22 release range, so the result is local
+development evidence rather than a replacement for pinned release preparation.
+Browser/visual QA was not run under D18. The immutable archive documented above
+predates this repair and must be regenerated after Ahmed's review before publication.

@@ -393,7 +393,337 @@ html.demo-host-open { overflow: hidden; scrollbar-gutter: auto; }
   .case-actions .button { width: 100%; }
 }
 
+/* Scroll motion is progressively enabled by scripts/motion.ts. The selectors
+   are gated by .motion-ready so essential content remains visible without JS. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready body {
+    background:
+      linear-gradient(180deg, rgb(17 21 22 / .9), rgb(17 21 22 / .98)),
+      radial-gradient(circle at 50% 0%, #293236, var(--bg) 54%);
+  }
+
+  .motion-ready .studio {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    min-height: 100vh;
+  }
+
+  .motion-background {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    contain: strict;
+  }
+
+  .motion-background-light,
+  .motion-background-beam {
+    position: absolute;
+    inset: -34vh -28vw;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .motion-background-light-surface,
+  .motion-background-beam-surface {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  @keyframes ambient-light-drift {
+    0%, 100% { opacity: .88; transform: translate3d(-2vw, 1vh, 0) scale(1); }
+    32% { opacity: 1; transform: translate3d(3vw, -2vh, 0) scale(1.035); }
+    68% { opacity: .94; transform: translate3d(1vw, 3vh, 0) scale(.985); }
+  }
+
+  @keyframes ambient-beam-drift {
+    0%, 100% { opacity: .45; transform: translate3d(-7vw, 1vh, 0) rotate(-3deg); }
+    50% { opacity: .78; transform: translate3d(7vw, -2vh, 0) rotate(2deg); }
+  }
+
+  .motion-background-light-surface {
+    background:
+      radial-gradient(ellipse at 20% 24%, rgb(232 176 154 / .24) 0, rgb(232 176 154 / .11) 18rem, transparent 38rem),
+      radial-gradient(ellipse at 78% 62%, rgb(84 128 137 / .18) 0, rgb(84 128 137 / .075) 20rem, transparent 42rem);
+    animation: ambient-light-drift 18s ease-in-out infinite;
+  }
+
+  .motion-background-beam {
+    inset: -18rem;
+  }
+
+  .motion-background-beam-surface {
+    background:
+      linear-gradient(112deg,
+        transparent 34%,
+        rgb(232 176 154 / .025) 43%,
+        rgb(232 176 154 / .14) 49%,
+        rgb(240 241 237 / .075) 50%,
+        rgb(84 128 137 / .08) 54%,
+        transparent 65%);
+    animation: ambient-beam-drift 14s ease-in-out infinite;
+  }
+
+  .motion-ready .studio-wrap { position: relative; z-index: 1; }
+
+  .scroll-progress {
+    position: fixed;
+    z-index: 120;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #b87963, var(--accent), #f4c4b2);
+    box-shadow: 0 0 .75rem rgb(232 176 154 / .35);
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+  }
+
+  .motion-ready .studio-nav {
+    position: sticky;
+    z-index: 60;
+    top: 0;
+    transition: min-height 280ms ease, padding 280ms ease, background-color 280ms ease,
+      border-color 280ms ease, box-shadow 280ms ease, backdrop-filter 280ms ease;
+  }
+
+  .motion-ready .studio-nav[data-scrolled] {
+    min-height: 4.75rem;
+    padding-inline: clamp(.75rem, 2vw, 1.5rem);
+    background: rgb(17 21 22 / .84);
+    border-color: rgb(102 116 119 / .5);
+    border-radius: 0 0 .5rem .5rem;
+    box-shadow: 0 .75rem 2rem rgb(0 0 0 / .2);
+    backdrop-filter: blur(.9rem) saturate(125%);
+  }
+
+  .motion-ready .motion-reveal {
+    opacity: 0;
+    filter: blur(.35rem);
+    transform: translate3d(0, 2.25rem, 0) scale(.985);
+    transition: opacity 640ms cubic-bezier(.22, 1, .36, 1),
+      transform 720ms cubic-bezier(.22, 1, .36, 1),
+      filter 520ms ease;
+    transition-delay: var(--motion-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+
+  .motion-ready .motion-reveal[data-motion-direction="left"] {
+    transform: translate3d(-2.75rem, 0, 0) rotate(-.35deg);
+  }
+
+  .motion-ready .motion-reveal[data-motion-direction="right"] {
+    transform: translate3d(2.75rem, 0, 0) rotate(.35deg);
+  }
+
+  .motion-ready .motion-reveal[data-motion-direction="down"] {
+    transform: translate3d(0, -1.5rem, 0);
+  }
+
+  .motion-ready .motion-reveal[data-motion-direction="scale"] {
+    transform: translate3d(0, 1.5rem, 0) scale(.94);
+  }
+
+  .motion-ready .motion-reveal.motion-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .motion-ready .motion-line {
+    position: relative;
+    border-top-color: transparent;
+  }
+
+  .motion-ready .motion-line::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--line) 42%, transparent);
+    transition: width 900ms cubic-bezier(.22, 1, .36, 1) 100ms;
+  }
+
+  .motion-ready .motion-line.motion-visible::before,
+  .motion-ready .project-list:has(.motion-visible)::before {
+    width: 100%;
+  }
+
+  .motion-ready .hero-main h1 {
+    transform: translate3d(0, calc(var(--scroll-offset, 0) * -1.25rem), 0);
+    transition: transform 80ms linear;
+    will-change: transform;
+  }
+
+  .motion-ready #studio-heading > span {
+    transform-origin: left center;
+    transition: letter-spacing 420ms ease, color 420ms ease;
+  }
+
+  .motion-ready #studio-heading > span:hover {
+    letter-spacing: -.035em;
+  }
+
+  @keyframes hero-accent-float {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-.2deg); }
+    45% { transform: translate3d(0, -.1em, 0) rotate(.18deg); }
+    72% { transform: translate3d(.025em, -.035em, 0) rotate(0deg); }
+  }
+
+  @keyframes hero-accent-underline {
+    0%, 12%, 100% { opacity: .18; transform: scaleX(.08); }
+    48% { opacity: .78; transform: scaleX(1); }
+    76% { opacity: .36; transform: scaleX(.42); }
+  }
+
+  @keyframes hero-eyebrow-pulse {
+    0%, 100% { opacity: .52; transform: scaleX(.55); }
+    50% { opacity: 1; transform: scaleX(1); }
+  }
+
+  .motion-ready #studio-heading em {
+    position: relative;
+    display: inline-block;
+    transform-origin: 50% 78%;
+    animation: hero-accent-float 4.8s cubic-bezier(.45, 0, .3, 1) infinite;
+    will-change: transform;
+  }
+
+  .motion-ready #studio-heading > span:nth-child(3) em {
+    animation-delay: -2.4s;
+  }
+
+  .motion-ready #studio-heading em::after {
+    content: "";
+    position: absolute;
+    left: .08em;
+    right: .02em;
+    bottom: -.035em;
+    height: 1px;
+    opacity: .18;
+    background: linear-gradient(90deg, transparent, var(--accent) 18%, #f4c4b2 78%, transparent);
+    transform: scaleX(.08);
+    transform-origin: left center;
+    animation: hero-accent-underline 4.8s cubic-bezier(.22, 1, .36, 1) infinite;
+    pointer-events: none;
+  }
+
+  .motion-ready #studio-heading > span:nth-child(3) em::after {
+    animation-delay: -2.4s;
+  }
+
+  .motion-ready .hero-main > .eyebrow .small-rule {
+    transform-origin: left center;
+    animation: hero-eyebrow-pulse 3.2s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .motion-ready .application-capture,
+  .motion-ready .case-capture,
+  .motion-ready .system-diagram {
+    transform: translate3d(0, calc(var(--scroll-offset, 0) * -1.1rem), 0);
+    transition: transform 90ms linear, border-color 260ms ease, box-shadow 260ms ease;
+    will-change: transform;
+  }
+
+  .motion-ready .application-capture:hover,
+  .motion-ready .case-capture:hover,
+  .motion-ready .system-diagram:hover {
+    border-color: #68777a;
+    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / .28);
+  }
+
+  .motion-ready .application-capture img,
+  .motion-ready .case-capture img {
+    transform: scale(1.015);
+    transition: transform 300ms ease, filter 300ms ease;
+  }
+
+  .motion-ready .application-capture:hover img,
+  .motion-ready .case-capture:hover img {
+    transform: scale(1.025);
+  }
+
+  .motion-ready .project-entry {
+    position: relative;
+    background-position: calc(var(--row-progress, 0) * 100%) center;
+    transition: background-color 260ms ease, background-position 120ms linear;
+  }
+
+  .motion-ready .project-entry::before {
+    content: "";
+    position: absolute;
+    inset: .75rem 0;
+    z-index: 0;
+    opacity: calc(.08 + var(--row-progress, 0) * .2);
+    background: linear-gradient(90deg, transparent, rgb(232 176 154 / .13), transparent);
+    transform: scaleX(calc(.25 + var(--row-progress, 0) * .75));
+    transform-origin: left center;
+  }
+
+  .motion-ready .project-entry > * { position: relative; z-index: 1; }
+
+  .motion-ready .project-arrow {
+    transform: translateX(calc((1 - var(--row-progress, 0)) * -.75rem)) rotate(calc((1 - var(--row-progress, 0)) * -8deg));
+    transition: transform 180ms linear, color 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+
+  .motion-ready .project-entry:hover .project-arrow {
+    transform: translateX(.4rem);
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .motion-ready .button-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .motion-ready .button-primary::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 28%, rgb(255 255 255 / .34) 48%, transparent 68%);
+    transform: translateX(-125%);
+    transition: transform 620ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .motion-ready .button-primary:hover::after,
+  .motion-ready .button-primary:focus-visible::after {
+    transform: translateX(125%);
+  }
+
+  .motion-ready .contact-link svg,
+  .motion-ready .button svg,
+  .motion-ready .back-link svg {
+    transition: transform 300ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .motion-ready .contact-link:hover svg,
+  .motion-ready .button:hover svg,
+  .motion-ready .back-link:hover svg {
+    transform: translate(.25rem, -.15rem);
+  }
+}
+
+@media (max-width: 50rem) and (prefers-reduced-motion: no-preference) {
+  .motion-background-beam-surface { opacity: .62; animation-duration: 18s; }
+  .motion-background-light-surface { animation-duration: 20s; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .scroll-progress { display: none; }
 }

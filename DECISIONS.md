@@ -24,6 +24,9 @@
 | D20 | The public origin is supplied at build time through `PORTFOLIO_SITE_URL`; no domain is hard-coded | Implementation of D14 during Phase 08 |
 | D21 | Phase 09 explicitly requests browser and HTTP release verification; final-host checks require the selected target. Local checks of the new serving policy are permitted within this phase | Ahmed's Phase 09 request, 12 September 2026; scoped exception to D18 |
 | D22 | Prepare a deterministic static bundle, exact build-source snapshot, content-hash validators, and generated Nginx per-path policy while hosting remains unselected | Phase 09 preparation, 12 September 2026; does not select a host or publish the private review Site |
+| D23 | Allow a continuous, restrained transform/opacity animation only in the homepage hero accent words and eyebrow rule | Explicitly requested by Ahmed on 16 September 2026; narrow exception to the design spec's general prohibition on infinite ornamental animation |
+| D24 | Allow a continuous Ambient Studio background using isolated transform/opacity layers | Explicitly requested by Ahmed on 16 September 2026; narrow background exception that preserves reduced motion and avoids repaint-heavy properties |
+| D25 | Replace the subtle grid/orbit background with two clearly visible ambient light fields and one restrained diagonal beam | Confirmed by Ahmed on 16 September 2026 after the first continuous background was judged unclear and visually overcomplicated |
 
 ### D16 evidence and impact
 
@@ -61,3 +64,24 @@
 - Reason: with `PORTFOLIO_SITE_URL` unset the build stays in preview mode — `noindex,nofollow` on every page, no canonical, no social metadata, a `Disallow: /` robots.txt, and no sitemap. Supplying a valid https origin switches the five public routes to `index,follow` with canonical URLs and emits a sitemap that excludes demo and 404 routes. `check:static` verifies whichever mode is configured, so a half-configured build cannot ship. Demo documents stay `noindex` in both modes. This resolves how the domain is applied; it does not resolve which domain, which stays open under D14.
 
 When a decision changes, append its date, evidence, affected files/phases, and reason. Retain the previous rationale where it helps explain the change. Do not use this document to silently overrule a newer user instruction.
+
+### D23 evidence and impact
+
+- Date: 16 September 2026.
+- Evidence: Ahmed explicitly requested that the pictured homepage hero remain in continuous motion.
+- Affected work: the `#studio-heading` accent words and the small FULL-STACK DEVELOPMENT rule only.
+- Reason: preserve a lively focal point without returning to expensive page-wide repaint work. The exception uses compositor-friendly transforms/opacity, remains disabled by `prefers-reduced-motion`, and does not authorize continuous motion elsewhere.
+
+### D24 evidence and impact
+
+- Date: 16 September 2026.
+- Evidence: Ahmed explicitly requested a continuously animated background after approving the hero motion.
+- Affected work: the decorative portfolio-shell background only.
+- Reason: create an Ambient Studio atmosphere with slowly drifting copper/blue light, a floating grid/point field, and a rotating hairline orbit. Continuous animation stays on nested compositor layers, scroll movement stays on their outer wrappers, and all layers are omitted under `prefers-reduced-motion`.
+
+### D25 evidence and impact
+
+- Date: 16 September 2026.
+- Evidence: Ahmed said the grid/orbit version was not clear enough and asked for something visibly animated without becoming overdone.
+- Affected work: the decorative continuous background from D24; hero motion remains unchanged.
+- Reason: two larger copper/teal light fields and one diagonal beam communicate motion more clearly with fewer visual primitives. The rejected grid, point field, mask, and orbit are removed rather than layered underneath.

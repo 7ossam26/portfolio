@@ -28,7 +28,9 @@
 | D24 | Allow a continuous Ambient Studio background using isolated transform/opacity layers | Explicitly requested by Ahmed on 16 September 2026; narrow background exception that preserves reduced motion and avoids repaint-heavy properties |
 | D25 | Replace the subtle grid/orbit background with two clearly visible ambient light fields and one restrained diagonal beam | Confirmed by Ahmed on 16 September 2026 after the first continuous background was judged unclear and visually overcomplicated |
 | D26 | Vercel must run the repository-root `npm run build` and publish the merged root `dist/`, not the Astro workspace output | Production repair on 21 September 2026; the shell-only deployment omitted all four `/demos/{slug}/` applications |
-| D27 | Adopt a disciplined Cyber-Studio neon accent palette (cyan, coral/amber, mint, violet) across UI states, status badges, and ambient lighting | Confirmed by Ahmed on 21 September 2026 to elevate visual distinction while maintaining dark studio elegance and WCAG contrast |
+| D27 | Adopt a unified Solar Orange Studio palette across all UI states, status badges, and ambient lighting | Confirmed by Ahmed on 21 September 2026 |
+| D28 | Multi-layer ambient animated background (grid, organic orbs, horizon beam, cursor spotlight, floating embers) | Explicitly requested by Ahmed on 21 September 2026 |
+| D29 | Render all 4 projects as full 2-column featured cards on the homepage with Try Demo; elevate Try Demo to the hero top on case study pages | Explicitly requested by Ahmed on 21 September 2026 |
 
 ### D16 evidence and impact
 
@@ -108,3 +110,10 @@ When a decision changes, append its date, evidence, affected files/phases, and r
 - Evidence: Ahmed requested changing the background with good animation in the background.
 - Affected work: `apps/portfolio/src/scripts/motion.ts`, `apps/portfolio/src/styles/global.css`.
 - Reason: implement a high-end multi-layer animated background comprising: (1) a subtle cybernetic technical grid with dot intersections and gentle pulse masking, (2) multi-layer molten plasma aurora orbs with 3D organic keyframe drifts in solar orange and amber, (3) a sweeping horizon flare beam with chromatic highlights, (4) a butter-smooth 60fps cursor-tracking ambient spotlight (`pointermove` with RAF throttle), and (5) delicate warm micro-embers floating upward. Strictly honors WCAG readability and `prefers-reduced-motion: reduce`.
+
+### D29 evidence and impact
+
+- Date: 21 September 2026.
+- Evidence: Ahmed requested "try demo for autozain, roya, ramex outside like vertex erp system", "after i click on the one of those project try demo is the first thing in page", and provided an exact layout screenshot of the featured Vertex ERP card.
+- Affected work: `apps/portfolio/src/components/ProjectCard.astro`, `apps/portfolio/src/pages/index.astro`, `apps/portfolio/src/components/CaseStudy.astro`, `apps/portfolio/src/styles/global.css`.
+- Reason: (1) Render all four projects (Vertex ERP, AutoZain, Roya, Ramex) directly on the homepage as full featured 2-column cards matching the exact Vertex ERP presentation: title, project deck, distinction summary, key operational capabilities dl list, tech line, screenshot preview (`application-capture` with verified caption), and 3 action buttons: `[ Try demo > ]`, `[ Read case study -> ]`, and `[ View repository ↗ ]`. (2) Elevate "Try demo" to the very top of each case study page inside the hero section directly beneath the title and distinction, paired with a prominent scenario card, ensuring the interactive sample is the first thing users encounter upon opening a project.

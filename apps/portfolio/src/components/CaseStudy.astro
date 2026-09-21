@@ -19,6 +19,18 @@ const { project } = Astro.props;
       <p class="eyebrow">{project.domain.toUpperCase()}</p>
       <h1>{project.name}</h1>
       <p class="case-deck">{project.distinction}</p>
+      <div class="project-actions case-hero-actions">
+        {project.demoAvailable && (
+          <a class="button button-primary demo-launch" href={`#demo=${project.slug}`} data-demo-trigger={project.slug}>
+            Try {project.name} demo
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
+          </a>
+        )}
+        <a class="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+          View repository
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
+        </a>
+      </div>
     </div>
     <dl class="case-meta">
       <div><dt>Scope</dt><dd>{project.summary}</dd></div>
@@ -26,6 +38,17 @@ const { project } = Astro.props;
       <div><dt>Technology</dt><dd>{project.stack.join(' · ')}</dd></div>
     </dl>
   </header>
+
+  <aside class="demo-status case-top-demo" aria-labelledby="demo-status-heading">
+    <p class="eyebrow">{project.demoAvailable ? 'INTERACTIVE VIEW · SAMPLE DATA' : 'INTERACTIVE VIEW · NOT YET AVAILABLE'}</p>
+    <h2 id="demo-status-heading">A bounded sample-data scenario</h2>
+    <p>{project.demoSummary}</p>
+    {project.demoAvailable && (
+      <noscript>
+        <p class="demo-noscript">The interactive sample needs JavaScript. Everything below describes the same scenario without it.</p>
+      </noscript>
+    )}
+  </aside>
 
   {project.media?.map((media) => (
     <figure class="case-capture">
@@ -104,25 +127,6 @@ const { project } = Astro.props;
             </article>
           ))}
         </div>
-      </div>
-    </section>
-
-    <section class="case-section demo-status" aria-labelledby="demo-status-heading">
-      <p class="section-index">{project.contribution ? '05' : '04'}</p>
-      <div>
-        <p class="eyebrow">{project.demoAvailable ? 'INTERACTIVE VIEW · SAMPLE DATA' : 'INTERACTIVE VIEW · NOT YET AVAILABLE'}</p>
-        <h2 id="demo-status-heading">A bounded sample-data scenario</h2>
-        <p>{project.demoSummary}</p>
-        {project.demoAvailable && (
-          <a class="button button-primary demo-launch" href={`#demo=${project.slug}`} data-demo-trigger={project.slug}>
-            Try {project.name} demo
-          </a>
-        )}
-        {project.demoAvailable && (
-          <noscript>
-            <p class="demo-noscript">The interactive sample needs JavaScript. Everything above describes the same scenario without it.</p>
-          </noscript>
-        )}
       </div>
     </section>
   </div>

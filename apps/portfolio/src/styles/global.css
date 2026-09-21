@@ -100,6 +100,7 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .section-heading h2 { display: flex; align-items: center; gap: 1rem; font-size: 1rem; font-weight: 500; }
 .section-heading h2 > span { color: var(--orange-light); font: .75rem var(--mono); text-shadow: 0 0 8px var(--orange-light-dim); }
 .section-heading > p { color: var(--quiet); font-size: .875rem; line-height: 1.6; }
+.project-cards { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem); }
 .featured-project { position: relative; padding: clamp(1.5rem, 3vw, 2.75rem); background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px -10px var(--accent-dim); transition: border-color 240ms ease, box-shadow 240ms ease; }
 .featured-project:hover { border-color: rgba(255, 112, 67, 0.4); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 36px -8px var(--accent-glow); }
 /* Wrapping is a no-op at the widths this row was designed for, and it keeps the
@@ -188,10 +189,14 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .project-identity { min-width: 0; }
 .project-identity p { color: var(--quiet); font: .75rem/1.55 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .project-identity h3 { margin-top: .55rem; font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.15; font-weight: 500; letter-spacing: -.045em; transition: color 180ms ease; }
+.project-identity h3 a { color: inherit; text-decoration: none; transition: color 180ms ease; }
+.project-identity h3 a:hover { color: #fff; }
 .project-entry:hover .project-identity h3 { color: #fff; }
 .project-context { min-width: 0; }
 .project-context p { max-width: 36rem; color: var(--muted); font-size: 1rem; line-height: 1.75; text-wrap: pretty; }
-.project-context > span { display: inline-block; margin-top: .75rem; color: var(--accent); font-size: .8125rem; font-weight: 550; }
+.project-row-actions { display: flex; flex-wrap: wrap; gap: .625rem; margin-top: .875rem; }
+.project-row-actions .button { min-height: 2.625rem; padding: .5rem .875rem; font-size: .8125rem; gap: .5rem; }
+.project-row-actions .button svg { width: .9375rem; height: .9375rem; }
 .project-arrow { width: 3rem; height: 3rem; display: grid; place-items: center; border: 1px solid var(--control); border-radius: .375rem; color: var(--ink); transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
 .project-entry:hover .project-arrow { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 16px var(--accent-dim); }
 
@@ -234,6 +239,12 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .decision-list article { padding: clamp(1.25rem, 2.5vw, 2rem); background: var(--surface); border: 1px solid var(--line); border-radius: .375rem; }
 .decision-list .tradeoff { padding-top: 1rem; margin-top: 1.25rem; border-top: 1px solid var(--line); }
 .tradeoff span { display: block; margin-bottom: .4rem; color: var(--orange-light); font: .7rem/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.case-hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.case-hero-actions .button { min-height: 3.125rem; padding: .875rem 1.25rem; }
+.case-top-demo { margin-top: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: clamp(1.5rem, 3vw, 2.5rem); padding: clamp(1.25rem, 2.5vw, 1.75rem); background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; }
+.case-top-demo .eyebrow { margin-bottom: .5rem; color: var(--accent); }
+.case-top-demo h2 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 550; }
+.case-top-demo p { margin-top: .35rem; color: var(--muted); font-size: .875rem; line-height: 1.6; }
 .demo-status { margin-top: 1rem; padding-inline: clamp(1.25rem, 3vw, 2.25rem); background: #171c1d; border: 1px solid var(--line); border-radius: .5rem; }
 .demo-status .eyebrow { margin-bottom: .75rem; color: var(--accent); }
 .demo-status .demo-launch { width: fit-content; margin-top: 1.5rem; }

@@ -1,0 +1,83 @@
+---
+import type { ProjectContent } from '../content/projects';
+
+interface Props {
+  project: ProjectContent;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+
+const featuredStack = project.stack
+  .filter((item) => item !== 'Vite')
+  .map((item) => item === 'Node.js / Express' ? 'Node.js' : item);
+
+const featuredMedia = project.media?.[0];
+
+const projectDecks: Record<string, string> = {
+  vertex: 'From the cash register to production costing.',
+  autozain: 'Connecting marketplace buyers to dealership operations.',
+  roya: 'Production budgets that keep their history.',
+  ramex: 'Inventory that understands every roll.',
+};
+
+const deck = projectDecks[project.slug] || project.summary;
+const projectIndexString = String(index + 1).padStart(2, '0');
+---
+
+<article class="featured-project" aria-labelledby={`${project.slug}-heading`}>
+  <div class="feature-topline">
+    <span class="eyebrow">{projectIndexString} / {project.domain.toUpperCase()}</span>
+    <span class="production-label">In production</span>
+  </div>
+  <div class="feature-layout">
+    <div class="feature-copy">
+      <h3 id={`${project.slug}-heading`}>{project.name}</h3>
+      <p class="project-deck">{deck}</p>
+      <p class="project-description">{project.distinction}</p>
+      <dl class="project-evidence">
+        {project.capabilities.slice(1).map((capability) => (
+          <div><dt>{capability.label}</dt><dd>{capability.detail}</dd></div>
+        ))}
+      </dl>
+      <p class="tech-line">
+        {featuredStack.map((item, i) => (
+          <>{i > 0 && <span aria-hidden="true">·</span>}{item}</>
+        ))}
+      </p>
+      <div class="project-actions">
+        {project.demoAvailable && (
+          <a class="button button-primary" href={`#demo=${project.slug}`} data-demo-trigger={project.slug}>
+            Try demo
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
+          </a>
+        )}
+        <a class="button button-secondary" href={`/work/${project.slug}/`}>
+          Read case study
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
+        </a>
+        <a class="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+          View repository
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
+        </a>
+      </div>
+      <noscript>
+        <p class="demo-noscript">The interactive sample needs JavaScript. The case study describes the same scenario without it.</p>
+      </noscript>
+    </div>
+
+    {featuredMedia && (
+      <figure class="application-capture">
+        <img
+          src={featuredMedia.src}
+          width={featuredMedia.width}
+          height={featuredMedia.height}
+          alt={featuredMedia.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{featuredMedia.caption}</figcaption>
+      </figure>
+    )}
+  </div>
+</article>

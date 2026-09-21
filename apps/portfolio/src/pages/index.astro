@@ -2,9 +2,8 @@
 import ContactFooter from '../components/ContactFooter.astro';
 import Hero from '../components/Hero.astro';
 import Navigation from '../components/Navigation.astro';
-import ProjectRows from '../components/ProjectRows.astro';
-import VertexFeature from '../components/VertexFeature.astro';
-import { projectBySlug, projects } from '../content/projects';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../content/projects';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -14,8 +13,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="studio-wrap">
         <Navigation />
         <Hero />
-        <VertexFeature project={projectBySlug.vertex} />
-        <ProjectRows projects={projects.slice(1)} />
+        <div class="section-heading" id="selected-work">
+          <h2>Selected work <span>01—04</span></h2>
+          <p>Four systems, built for real operations.</p>
+        </div>
+        <div class="project-cards">
+          {projects.map((project, index) => (
+            <ProjectCard project={project} index={index} />
+          ))}
+        </div>
         <ContactFooter />
       </div>
     </section>

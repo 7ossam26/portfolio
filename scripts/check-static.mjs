@@ -6,6 +6,7 @@ import { SITE_URL_VARIABLE, indexableRoutes, resolveSiteUrl } from './site-confi
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const staticRoot = path.join(repositoryRoot, 'dist');
+const vercelConfig = JSON.parse(await readFile(path.join(repositoryRoot, 'vercel.json'), 'utf8'));
 const registry = JSON.parse(await readFile(path.join(
   repositoryRoot,
   'packages',
@@ -27,6 +28,20 @@ const renderedPages = await Promise.all(pages.map(async ([label, relativePath, t
   html: await readFile(path.join(staticRoot, relativePath), 'utf8'),
 })));
 const html = renderedPages[0].html;
+
+const expectedVercelConfig = {
+  framework: null,
+  buildCommand: 'npm run build',
+  outputDirectory: 'dist',
+  trailingSlash: true,
+};
+
+for (const [key, expected] of Object.entries(expectedVercelConfig)) {
+  if (vercelConfig[key] !== expected) {
+    throw new Error(`Vercel ${key} must be ${JSON.stringify(expected)} so the merged static output is deployed.`);
+  }
+}
+console.log('Verified Vercel deploys the merged root dist/ with trailing-slash routes.');
 
 const siteUrl = resolveSiteUrl();
 const publishedRoutes = new Set(indexableRoutes.map((route) => route.path));

@@ -1,11 +1,12 @@
 # Phase 09 release and handoff
 
-Prepared 12 September 2026. **Not published. No verified public URL exists.**
-The portfolio's public origin, hosting service, service identity, and deployment
-access have not been selected/supplied. The intended release is a public,
-unauthenticated portfolio, but no existing host audience has been changed. The
-private design-review Site remains a reference only. The GitHub remote identifies
-the source repository, not a hosting target.
+Prepared 12 September 2026. The immutable artifact below is historical and was not
+published. On 21 September 2026 Ahmed identified the current production target as
+`https://hossam-portfolio-five.vercel.app`. Unauthenticated inspection found an
+incomplete shell-only deployment there: the root responds, but every demo directory
+is absent and Vertex returns 404. A repository fix now configures Vercel to run the
+full root build and publish merged `dist/`; it still requires redeployment and remote
+verification. Exact Vercel deployment access/settings were not available here.
 
 ## Prepared source and artifact
 

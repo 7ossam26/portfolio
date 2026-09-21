@@ -15,7 +15,7 @@
 | D11 | Shareable static case studies and a lazy modal demo host | Planning default supporting hiring/freelance use |
 | D12 | First scenarios: Vertex production, AutoZain request handling, Roya budget impact, Ramex roll sale | Proposed bounded scope, to validate against source |
 | D13 | No full backend replicas, accounts, CMS, contact service, or analytics in V1 | Scope decision for a low-maintenance portfolio |
-| D14 | New site deployment target remains unselected | Unresolved, not a foundation blocker |
+| D14 | Use the existing Vercel project at `https://hossam-portfolio-five.vercel.app` as the public deployment target | Resolved 21 September 2026 from Ahmed's production defect report and the observed live deployment; exact deployment access/settings remain unverified |
 | D15 | AutoZain exact contribution is omitted until verified | Conservative content default |
 | D16 | Ramex V1 demonstrates a complete selected-roll sale, not a partial-roll quantity decrement | Changed 11 September 2026 after pinned-source audit; supersedes the partial-quantity detail proposed under D12 |
 | D17 | Support Node `>=22.19.0 <23` and pin `22.23.2` for builds | Changed 11 September 2026 after Phase 01 dependency resolution |
@@ -27,6 +27,7 @@
 | D23 | Allow a continuous, restrained transform/opacity animation only in the homepage hero accent words and eyebrow rule | Explicitly requested by Ahmed on 16 September 2026; narrow exception to the design spec's general prohibition on infinite ornamental animation |
 | D24 | Allow a continuous Ambient Studio background using isolated transform/opacity layers | Explicitly requested by Ahmed on 16 September 2026; narrow background exception that preserves reduced motion and avoids repaint-heavy properties |
 | D25 | Replace the subtle grid/orbit background with two clearly visible ambient light fields and one restrained diagonal beam | Confirmed by Ahmed on 16 September 2026 after the first continuous background was judged unclear and visually overcomplicated |
+| D26 | Vercel must run the repository-root `npm run build` and publish the merged root `dist/`, not the Astro workspace output | Production repair on 21 September 2026; the shell-only deployment omitted all four `/demos/{slug}/` applications |
 
 ### D16 evidence and impact
 

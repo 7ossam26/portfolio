@@ -193,3 +193,39 @@ This runtime is outside the pinned Node 22 release range, so the result is local
 development evidence rather than a replacement for pinned release preparation.
 Browser/visual QA was not run under D18. The immutable archive documented above
 predates this repair and must be regenerated after Ahmed's review before publication.
+
+## Post-deployment repair — Vercel omitted all demo builds (21 September 2026)
+
+Ahmed reported a production 404 for
+`/demos/vertex/?embedded=1&sessionId=...`. Unauthenticated HTTP inspection confirmed
+that the Vercel root served the current portfolio shell with the four demos marked
+available, while `/demos/vertex/`, `/demos/vertex/index.html`, and
+`/demos/vertex` all returned the styled 404. This rules out the query string and
+frame session token: the deployed artifact did not contain the demo entry document.
+
+The repository's full root build already builds each demo and stages it beneath the
+root `dist/demos/{slug}/`. The production symptom is therefore a deployment output
+mismatch: Vercel published the Astro workspace output instead of the merged root
+artifact. Added a root `vercel.json` that selects the framework-neutral root
+`npm run build`, publishes `dist`, and enables the directory-style trailing slash
+used by the route contract. `scripts/check-static.mjs` now verifies those four
+settings so a shell-only Vercel configuration cannot silently pass the production
+build again.
+
+Validation used the pinned release toolchain, Node `22.23.2` and npm `11.1.0`:
+
+- `npm run build` passed asset checks, the Astro shell build, all four demo
+  typechecks/builds, merged staging, and the complete static contract.
+- The staged output contains 52 files under `dist/demos/`, including every demo
+  `index.html` and the Vertex JavaScript/CSS assets.
+- A local static HTTP check returned 200 for the exact reported Vertex path with
+  `embedded=1` and its session ID, the referenced Vertex JavaScript asset, and the
+  standalone Vertex, AutoZain, Roya, and Ramex demo entry routes.
+- Browser automation was not run because D18 still reserves browser review for
+  Ahmed unless explicitly re-authorized.
+
+Production is not claimed repaired yet: no commit/push or Vercel redeploy occurred
+in this execution. After redeployment, verify the four remote demo routes and their
+assets. The observed production build also remains `noindex,nofollow`, serves the
+styled 404 at `/robots.txt`, and lacks the prepared CSP/embedding headers; those are
+separate Phase 09 publication gates and were not misreported as fixed here.

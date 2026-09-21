@@ -206,6 +206,22 @@ After receiving the selected origin, rebuild with that value and retain the prev
 archive. The test-only `PORTFOLIO_RELEASE_TEST=1` labels a metadata fixture as
 `test-fixture-not-for-deployment`; leave it unset for real preparation.
 
+### Selected Vercel target
+
+The current public target is `https://hossam-portfolio-five.vercel.app`. Keep the
+Vercel Project Root Directory at the repository root. The committed `vercel.json`
+then overrides framework auto-detection, runs the root `npm run build`, and publishes
+the merged root `dist/`. Do not configure Vercel to publish
+`apps/portfolio/dist`; that directory contains the shell but omits all four demo
+applications. `check:static` validates this repository-side deployment contract.
+
+Set `PORTFOLIO_SITE_URL` to the exact HTTPS origin in the Vercel Production
+environment before the release build. After deployment, directly check
+`/demos/{slug}/` and one hashed asset for every demo as well as the root/case-study
+routes. A successful shell response is not evidence that the merged demo output was
+published. Vercel header/cache parity with the policies below is still pending and
+must be implemented and verified separately.
+
 ### Optional separate Nginx static service
 
 The generated configuration is a portable serving option, not a selected host.
@@ -326,7 +342,9 @@ compared against ASCII — correct the test and say so in the validation report.
   Installing other engines and rerunning the same command does not close this gap;
   drive equivalent journeys/reflow/keyboard checks in those engines or record Ahmed's
   manual results/explicit exception.
-- **No deployed-host verification.** Headers, caching, TLS, and a fresh
-  unauthenticated visit remain unchecked until a target exists.
+- **Deployed-host verification is incomplete.** A 21 September unauthenticated
+  check confirmed HTTPS/root access but found the shell-only demo 404 defect and
+  missing release headers. Repeat full route, header, cache, and fresh-visitor
+  checks after the repaired Vercel build is deployed.
 - **No field metrics.** See `docs/portfolio/validation/performance.md` §8.
 - The pinned-runtime build gap is closed in Phase 09; see §0 and `validation/phase-09.md`.

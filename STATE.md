@@ -1,17 +1,17 @@
 # Portfolio implementation state
 
-Last updated: 16 September 2026 (post-Phase 09 motion repair)
+Last updated: 21 September 2026 (Vercel demo-output repair)
 
 ## Current position
 
 - Planning package: prepared.
 - Visual direction: Studio Dark, accepted by Ahmed.
 - Design reference: approved private Site snapshot and separate portable source export.
-- Current implementation phase: 09 — preparation complete; public publication blocked.
-- Remaining prompt: resume deployment/handoff steps in `docs/portfolio/prompts/09-release.md` after Ahmed supplies the target/access. There is no next feature phase.
+- Current implementation phase: 09 — production repair prepared locally; Vercel redeployment and remote verification pending.
+- Remaining prompt: finish the deployment/handoff checks in `docs/portfolio/prompts/09-release.md` after the repaired source is redeployed. There is no next feature phase.
 - Actual original-UI demos: Vertex, AutoZain, Roya, and Ramex ready.
-- Release status: **prepared baseline, not deployed.** Four actual demos are ready. A 16 September scroll-motion repair changes the portfolio shell after the prepared archive, so that archive is no longer the current release candidate and must be regenerated before publication. Public-host verification and Firefox/WebKit remain open; field metrics remain unavailable before traffic. Do not call the portfolio live or the release complete.
-- Public production domain: unresolved. The build now accepts it through `PORTFOLIO_SITE_URL` (D20); with the variable unset the artifact stays `noindex` with a `Disallow: /` robots.txt and no sitemap.
+- Release status: **an incomplete shell-only deployment is live on Vercel.** The root page responds, but the production artifact omits all four demo directories, so `/demos/vertex/` and the other demo entry points return 404. The repository repair is ready but not deployed or remotely verified. The earlier Phase 09 archive predates the motion and Vercel repairs and is not the current release candidate.
+- Public production origin: `https://hossam-portfolio-five.vercel.app` on Vercel (D14). `PORTFOLIO_SITE_URL` is not present in the observed build: the live pages remain `noindex,nofollow`, `/robots.txt` falls through to the styled 404, and no public canonical/sitemap is verified.
 
 ## Existing evidence
 
@@ -63,10 +63,10 @@ Last updated: 16 September 2026 (post-Phase 09 motion repair)
 ### Release-candidate gaps (block calling the release complete)
 
 - **Firefox and WebKit are unverified.** Phases 08/09 ran Chromium. Existing suites explicitly launch Chromium, so merely installing the other engines does not close this gap. Run actual equivalent reflow/keyboard/journey checks in those engines, record Ahmed's manual results, or obtain an explicit exception.
-- **Nothing is verified against a deployed host.** Effective CSP, `frame-ancestors`, `connect-src`, caching headers, TLS, and a fresh unauthenticated visit are unchecked. Requirements are written in `docs/portfolio/maintenance.md` §7; Phase 09 must inspect the real responses rather than assume the config applied.
+- **The deployed host is only partially checked.** On 21 September the Vercel root returned 200 over HTTPS, while `/demos/vertex/`, `/demos/vertex/index.html`, and `/demos/vertex` all returned the portfolio 404. The response lacked the prepared CSP/embedding policy. Repeat the complete remote route/header checks after redeployment.
 - **No field metrics.** LCP/INP/CLS at the 75th percentile need real traffic. Everything recorded is a lab proxy from one Windows workstation.
 - **Pinned-runtime build gap closed in Phase 09.** Portable Node `22.23.2` is installed locally and checksum-verified, and clean install/build/type/domain gates pass with npm `11.1.0`. System Node remains older; maintenance §0 gives the exact release commands.
-- **Publication is blocked.** Ahmed's actual public HTTPS origin, selected hosting service/portfolio service, and available deployment access are absent. Current archive is explicitly a preview with noindex, no sitemap, and no invented final canonical. No private review Site audience, client service, DNS, or external account was changed.
+- **Repair deployment is pending.** The public origin and Vercel host are now known, but no authenticated deployment setting or redeploy action was available in this execution. The repository now pins Vercel to the full root build and merged `dist/`; push/redeploy and remote verification remain required. No client service, DNS, or unrelated account was changed.
 
 ### Standing constraints
 
@@ -79,13 +79,14 @@ Last updated: 16 September 2026 (post-Phase 09 motion repair)
 
 ## Most recent execution
 
-- Phase: post-Phase 09 local repair — repeatable portfolio scroll motion.
-- Files/behavior changed: added `apps/portfolio/src/scripts/motion.ts`, loaded it from the base layout, and added progressive motion styling. Reveals replay on viewport re-entry; page progress, layered scroll-reactive background lighting/grid, scroll-linked parallax, project-row progression, section-line drawing, compact navigation, and control motion are included. No demo or content data changed.
-- Checks: system Node `24.11.1` / npm `11.6.2`; Astro check reports 0 diagnostics; complete `npm.cmd run build` passes the shell, four demo typechecks/builds, staging, assets, and static-output contract after the scroll-performance repair. Browser/visual/performance QA remains deferred under D18.
-- Release impact: the Phase 09 immutable archive remains historical evidence but predates this repair and is not the current source candidate. Regenerate it with pinned Node `22.23.2` / npm `11.1.0` after review.
+- Phase: post-Phase 09 production repair — Vercel omitted demo output.
+- Cause: the live deployment published the Astro shell workspace output rather than the repository-root merged output. The iframe URL and random `sessionId` were valid; the target files were absent from the deployment.
+- Files/behavior changed: added root `vercel.json` to select the framework-neutral root build, publish `dist/`, and preserve directory-style trailing-slash routes. The static gate now rejects a Vercel configuration that would stop deploying the merged artifact.
+- Checks: live unauthenticated HTTP narrowed the defect (root 200; all tested Vertex entry variants 404). With pinned Node `22.23.2` / npm `11.1.0`, the complete build passed and staged all four demos. Local HTTP checks returned 200 for the exact reported Vertex URL, its built JavaScript, and all four direct demo routes. Browser automation was not run under D18.
+- Release impact: source repair is complete locally, but production remains broken until the Git-connected Vercel project redeploys this revision from the repository root. Search metadata and Vercel security/header parity remain separate open release gates.
 - Validation: appended to `docs/portfolio/validation/phase-09.md`.
-- Blockers: visual approval is pending Ahmed's manual review; public origin/host/access remain missing; public-host, Firefox/WebKit, and field checks remain open.
-- Next action: Ahmed manually reviews the motion. Apply any focused correction, then regenerate the pinned release artifact when deployment target/access are supplied.
+- Blockers: repaired revision not yet deployed; Vercel project Root Directory/settings and `PORTFOLIO_SITE_URL` are not authenticated or verified; Firefox/WebKit and field checks remain open.
+- Next action: commit/push the repair, redeploy the Vercel project with repository Root Directory set to the repository root, then verify every `/demos/{slug}/` route and its assets remotely.
 
 ## Update format
 

@@ -98,6 +98,13 @@ When a decision changes, append its date, evidence, affected files/phases, and r
 ### D27 evidence and impact
 
 - Date: 21 September 2026.
-- Evidence: Ahmed requested adding neon and UI color with engineering opinion.
+- Evidence: Ahmed requested making the portfolio primary color exclusively orange, eliminating cyan, mint, and multi-color accents.
 - Affected work: `apps/portfolio/src/styles/global.css`.
-- Reason: establish a disciplined Cyber-Studio palette introducing Electric Cyan (`#00f2fe`) for technical telemetry and index numbers, Solar Coral / Amber (`#ff7043` / `#ffaa40`) for warm incandescent glows and primary actions, Neon Mint (`#00ffaa`) for live pulsing production status indicators, and Cyber Violet (`#818cf8`) for ambient light transitions. Preserves dark studio surfaces (`#111516`), crisp contrast, and reduced-motion compliance.
+- Reason: unify the entire portfolio around a pure, cohesive Studio Orange visual identity (`--accent: #ff7043`, `--orange-light: #ffaa40`). All interactive rings, hover states, indices, wordmark accent dot, live production indicators, and ambient light surfaces are consolidated into solar orange and warm amber tones, preserving obsidian dark studio surfaces (`#111516`), crisp contrast (WCAG AAA), and reduced-motion compliance.
+
+### D28 evidence and impact
+
+- Date: 21 September 2026.
+- Evidence: Ahmed requested changing the background with good animation in the background.
+- Affected work: `apps/portfolio/src/scripts/motion.ts`, `apps/portfolio/src/styles/global.css`.
+- Reason: implement a high-end multi-layer animated background comprising: (1) a subtle cybernetic technical grid with dot intersections and gentle pulse masking, (2) multi-layer molten plasma aurora orbs with 3D organic keyframe drifts in solar orange and amber, (3) a sweeping horizon flare beam with chromatic highlights, (4) a butter-smooth 60fps cursor-tracking ambient spotlight (`pointermove` with RAF throttle), and (5) delicate warm micro-embers floating upward. Strictly honors WCAG readability and `prefers-reduced-motion: reduce`.

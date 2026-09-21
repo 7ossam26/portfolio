@@ -42,21 +42,63 @@ if (motionQuery.matches) {
 
   const studio = document.querySelector<HTMLElement>('.studio');
   const ambientBackground = document.createElement('div');
-  const ambientLight = document.createElement('div');
-  const ambientBeam = document.createElement('div');
-  const ambientLightSurface = document.createElement('div');
-  const ambientBeamSurface = document.createElement('div');
-
   ambientBackground.className = 'motion-background';
-  ambientLight.className = 'motion-background-light';
-  ambientBeam.className = 'motion-background-beam';
-  ambientLightSurface.className = 'motion-background-light-surface';
-  ambientBeamSurface.className = 'motion-background-beam-surface';
   ambientBackground.setAttribute('aria-hidden', 'true');
-  ambientLight.append(ambientLightSurface);
+
+  // 1. Cybernetic studio grid
+  const ambientGrid = document.createElement('div');
+  ambientGrid.className = 'motion-background-grid';
+
+  // 2. Interactive cursor tracking spotlight
+  const ambientSpotlight = document.createElement('div');
+  ambientSpotlight.className = 'motion-background-spotlight';
+
+  // 3. Multi-layer molten plasma aurora orbs
+  const ambientOrbs = document.createElement('div');
+  ambientOrbs.className = 'motion-background-orbs';
+  const orb1 = document.createElement('div');
+  orb1.className = 'motion-orb motion-orb-1';
+  const orb2 = document.createElement('div');
+  orb2.className = 'motion-orb motion-orb-2';
+  const orb3 = document.createElement('div');
+  orb3.className = 'motion-orb motion-orb-3';
+  ambientOrbs.append(orb1, orb2, orb3);
+
+  // 4. Sweeping horizon beam
+  const ambientBeam = document.createElement('div');
+  ambientBeam.className = 'motion-background-beam';
+  const ambientBeamSurface = document.createElement('div');
+  ambientBeamSurface.className = 'motion-background-beam-surface';
   ambientBeam.append(ambientBeamSurface);
-  ambientBackground.append(ambientLight, ambientBeam);
+
+  // 5. Floating embers
+  const ambientEmbers = document.createElement('div');
+  ambientEmbers.className = 'motion-background-embers';
+  for (let i = 1; i <= 8; i++) {
+    const ember = document.createElement('span');
+    ember.className = `motion-ember motion-ember-${i}`;
+    ambientEmbers.append(ember);
+  }
+
+  ambientBackground.append(ambientGrid, ambientOrbs, ambientBeam, ambientSpotlight, ambientEmbers);
   studio?.prepend(ambientBackground);
+
+  // Interactive mouse pointer tracking for ambient spotlight
+  let pointerScheduled = false;
+  window.addEventListener(
+    'pointermove',
+    (event: PointerEvent) => {
+      if (pointerScheduled) return;
+      pointerScheduled = true;
+      requestAnimationFrame(() => {
+        ambientBackground.style.setProperty('--mouse-x', `${event.clientX}px`);
+        ambientBackground.style.setProperty('--mouse-y', `${event.clientY}px`);
+        ambientSpotlight.classList.add('is-active');
+        pointerScheduled = false;
+      });
+    },
+    { passive: true },
+  );
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -83,7 +125,7 @@ if (motionQuery.matches) {
     const pageProgress = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
 
     progress.style.transform = `scaleX(${pageProgress.toFixed(4)})`;
-    ambientLight.style.transform = `translate3d(${(pageProgress * 12).toFixed(2)}vw, ${(pageProgress * -18).toFixed(2)}vh, 0) rotate(${(-5 + pageProgress * 11).toFixed(2)}deg) scale(1.08)`;
+    ambientOrbs.style.transform = `translate3d(0, ${(pageProgress * -16).toFixed(2)}vh, 0) rotate(${(-3 + pageProgress * 6).toFixed(2)}deg)`;
     ambientBeam.style.transform = `translate3d(${(pageProgress * 3).toFixed(2)}rem, ${(pageProgress * -5).toFixed(2)}rem, 0) scale(1.04)`;
     nav?.toggleAttribute('data-scrolled', window.scrollY > 48);
 

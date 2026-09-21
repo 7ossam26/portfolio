@@ -28,6 +28,7 @@
 | D24 | Allow a continuous Ambient Studio background using isolated transform/opacity layers | Explicitly requested by Ahmed on 16 September 2026; narrow background exception that preserves reduced motion and avoids repaint-heavy properties |
 | D25 | Replace the subtle grid/orbit background with two clearly visible ambient light fields and one restrained diagonal beam | Confirmed by Ahmed on 16 September 2026 after the first continuous background was judged unclear and visually overcomplicated |
 | D26 | Vercel must run the repository-root `npm run build` and publish the merged root `dist/`, not the Astro workspace output | Production repair on 21 September 2026; the shell-only deployment omitted all four `/demos/{slug}/` applications |
+| D27 | Adopt a disciplined Cyber-Studio neon accent palette (cyan, coral/amber, mint, violet) across UI states, status badges, and ambient lighting | Confirmed by Ahmed on 21 September 2026 to elevate visual distinction while maintaining dark studio elegance and WCAG contrast |
 
 ### D16 evidence and impact
 
@@ -86,3 +87,17 @@ When a decision changes, append its date, evidence, affected files/phases, and r
 - Evidence: Ahmed said the grid/orbit version was not clear enough and asked for something visibly animated without becoming overdone.
 - Affected work: the decorative continuous background from D24; hero motion remains unchanged.
 - Reason: two larger copper/teal light fields and one diagonal beam communicate motion more clearly with fewer visual primitives. The rejected grid, point field, mask, and orbit are removed rather than layered underneath.
+
+### D26 evidence and impact
+
+- Date: 21 September 2026.
+- Evidence: Ahmed reviewed the deployed Vercel URL and reported that the demo routes returned 404. Inspection showed Vercel was invoking Astro's standalone workspace build rather than the repository-root build pipeline, omitting the staged `/demos/` static bundles.
+- Affected work: `vercel.json` and build orchestration.
+- Reason: the repository-root `npm run build` must run `check:assets`, `build:shell`, `build:demos`, `stage`, and `check:static` so the published `dist/` contains both the Astro shell and all four interactive applications.
+
+### D27 evidence and impact
+
+- Date: 21 September 2026.
+- Evidence: Ahmed requested adding neon and UI color with engineering opinion.
+- Affected work: `apps/portfolio/src/styles/global.css`.
+- Reason: establish a disciplined Cyber-Studio palette introducing Electric Cyan (`#00f2fe`) for technical telemetry and index numbers, Solar Coral / Amber (`#ff7043` / `#ffaa40`) for warm incandescent glows and primary actions, Neon Mint (`#00ffaa`) for live pulsing production status indicators, and Cyber Violet (`#818cf8`) for ambient light transitions. Preserves dark studio surfaces (`#111516`), crisp contrast, and reduced-motion compliance.

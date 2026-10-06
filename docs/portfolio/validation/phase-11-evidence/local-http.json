@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-06",
+  "scope": "Local Node HTTP server only; no browser or deployment testing",
+  "node": "v22.23.2",
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/realestate/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/heartguard/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/gym-app/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/arduino-projects/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/gesture-volume/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/digits-classifier/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/work/hospital-management/",
+      "status": 200,
+      "owner": true,
+      "previewIndexing": true,
+      "skipTargetExcludesNavigation": true
+    },
+    {
+      "route": "/Yousef_Fahim_Amin_CV.pdf",
+      "status": 200,
+      "verifiedSha256": "474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650"
+    },
+    {
+      "route": "/_assets/BaseLayout.BTER3aMn.css",
+      "status": 200,
+      "bytesMatch": true
+    },
+    {
+      "route": "/_assets/BaseLayout.astro_astro_type_script_index_0_lang.CcuZpbQC.js",
+      "status": 200,
+      "bytesMatch": true
+    },
+    {
+      "route": "/work/vertex/",
+      "status": 404
+    },
+    {
+      "route": "/work/autozain/",
+      "status": 404
+    },
+    {
+      "route": "/work/roya/",
+      "status": 404
+    },
+    {
+      "route": "/work/ramex/",
+      "status": 404
+    },
+    {
+      "route": "/demos/vertex/",
+      "status": 404
+    },
+    {
+      "route": "/demos/autozain/",
+      "status": 404
+    },
+    {
+      "route": "/demos/roya/",
+      "status": 404
+    },
+    {
+      "route": "/demos/ramex/",
+      "status": 404
+    },
+    {
+      "route": "/Ahmed_Hossam_CV.pdf",
+      "status": 404
+    },
+    {
+      "route": "/images/vertex/production-result-1440x900.png",
+      "status": 404
+    },
+    {
+      "route": "/archive/ahmed-public/Ahmed_Hossam_CV.pdf",
+      "status": 404
+    },
+    {
+      "route": "/missing-page/",
+      "status": 404
+    },
+    {
+      "route": "/_assets/missing.js",
+      "status": 404
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 404
+    }
+  ],
+  "passed": 25
+}

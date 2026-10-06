@@ -1,19 +1,18 @@
-import { access, cp, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { access, cp, rename, rm, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { SITE_URL_VARIABLE, indexableRoutes, resolveSiteUrl } from './site-config.mjs';
+import { activeDemoSlugs } from './portfolio-config.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const finalOutput = path.join(repositoryRoot, 'dist');
 const stagedOutput = path.join(repositoryRoot, `.dist-stage-${process.pid}`);
 const portfolioOutput = path.join(repositoryRoot, 'apps', 'portfolio', 'dist');
-const registry = JSON.parse(await readFile(path.join(
-  repositoryRoot,
-  'packages',
-  'demo-contract',
-  'demo-registry.json',
-), 'utf8'));
+
+if (activeDemoSlugs.length !== 0) {
+  throw new Error('A newly approved demo needs staging integration before publication.');
+}
 
 const exists = async (target) => {
   try {
@@ -63,21 +62,8 @@ await removeDirectory(stagedOutput);
 try {
   await cp(portfolioOutput, stagedOutput, { recursive: true, errorOnExist: true });
 
-  for (const entry of registry) {
-    if (!entry.available) continue;
-    const demoOutput = path.join(repositoryRoot, 'apps', `demo-${entry.slug}`, 'dist');
-    if (!(await exists(path.join(demoOutput, 'index.html')))) {
-      throw new Error(`Available demo output is missing its index: ${entry.slug}`);
-    }
-
-    const demoDestination = path.join(stagedOutput, 'demos', entry.slug);
-    if (await exists(demoDestination)) {
-      throw new Error(`Static output collision at demos/${entry.slug}.`);
-    }
-    await mkdir(path.dirname(demoDestination), { recursive: true });
-    await cp(demoOutput, demoDestination, { recursive: true, errorOnExist: true });
-    console.log(`Staged available demo output: ${entry.slug}`);
-  }
+  // Only the active Astro output is served. Original demo workspaces and old
+  // build directories remain outside this freshly staged artifact.
 
   // robots.txt and sitemap.xml follow the resolved public origin. In preview mode
   // the artifact refuses indexing outright rather than advertising a placeholder.
@@ -103,9 +89,6 @@ try {
     await writeFile(path.join(stagedOutput, 'robots.txt'), [
       'User-agent: *',
       'Allow: /',
-      '',
-      '# Sample-data demo applications are not search destinations.',
-      'Disallow: /demos/',
       '',
       `Sitemap: ${siteUrl}/sitemap.xml`,
       '',

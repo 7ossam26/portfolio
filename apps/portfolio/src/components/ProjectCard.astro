@@ -1,5 +1,6 @@
 ---
 import type { ProjectContent } from '../content/projects';
+import ProjectDiagram from './ProjectDiagram.astro';
 
 interface Props {
   project: ProjectContent;
@@ -8,27 +9,18 @@ interface Props {
 
 const { project, index } = Astro.props;
 
-const featuredStack = project.stack
-  .filter((item) => item !== 'Vite')
-  .map((item) => item === 'Node.js / Express' ? 'Node.js' : item);
+const featuredStack = project.stack;
 
 const featuredMedia = project.media?.[0];
 
-const projectDecks: Record<string, string> = {
-  vertex: 'From the cash register to production costing.',
-  autozain: 'Connecting marketplace buyers to dealership operations.',
-  roya: 'Production budgets that keep their history.',
-  ramex: 'Inventory that understands every roll.',
-};
-
-const deck = projectDecks[project.slug] || project.summary;
+const deck = project.summary;
 const projectIndexString = String(index + 1).padStart(2, '0');
 ---
 
 <article class="featured-project" aria-labelledby={`${project.slug}-heading`}>
   <div class="feature-topline">
     <span class="eyebrow">{projectIndexString} / {project.domain.toUpperCase()}</span>
-    <span class="production-label">In production</span>
+    <span class="project-kind">{index === 0 ? 'FEATURED PROJECT' : 'SELECTED PROJECT'}</span>
   </div>
   <div class="feature-layout">
     <div class="feature-copy">
@@ -52,7 +44,7 @@ const projectIndexString = String(index + 1).padStart(2, '0');
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
           </a>
         )}
-        <a class="button button-secondary" href={`/work/${project.slug}/`}>
+        <a class="button button-primary" href={`/work/${project.slug}/`}>
           Read case study
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
         </a>
@@ -61,12 +53,12 @@ const projectIndexString = String(index + 1).padStart(2, '0');
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
         </a>
       </div>
-      <noscript>
+      {project.demoAvailable && <noscript>
         <p class="demo-noscript">The interactive sample needs JavaScript. The case study describes the same scenario without it.</p>
-      </noscript>
+      </noscript>}
     </div>
 
-    {featuredMedia && (
+    {featuredMedia ? (
       <figure class="application-capture">
         <img
           src={featuredMedia.src}
@@ -78,6 +70,6 @@ const projectIndexString = String(index + 1).padStart(2, '0');
         />
         <figcaption>{featuredMedia.caption}</figcaption>
       </figure>
-    )}
+    ) : <ProjectDiagram project={project} compact />}
   </div>
 </article>

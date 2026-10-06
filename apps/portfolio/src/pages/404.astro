@@ -3,21 +3,22 @@ import ContactFooter from '../components/ContactFooter.astro';
 import Navigation from '../components/Navigation.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { projects } from '../content/projects';
+import { profile } from '../content/profile';
 ---
 
 <BaseLayout
-  title="Page not found — Ahmed Hossam"
-  description="The requested portfolio page could not be found. Return to Ahmed Hossam's selected software engineering work."
+  title={`Page not found — ${profile.name}`}
+  description={`The requested portfolio page could not be found. Return to ${profile.name}'s selected software engineering work.`}
   indexable={false}
 >
-  <main id="main-content">
-    <section class="studio" aria-label="Page not found">
-      <div class="studio-wrap">
-        <Navigation />
+  <div class="studio">
+    <div class="studio-wrap">
+      <Navigation />
+      <main id="main-content" tabindex="-1" aria-label="Page not found">
         <section class="not-found" aria-labelledby="not-found-heading">
           <p class="eyebrow">404 · PAGE NOT FOUND</p>
           <h1 id="not-found-heading">This path doesn’t lead to a project.</h1>
-          <p>The page may have moved, or the address may be incomplete. Ahmed’s selected work and contact details are still available from the portfolio.</p>
+          <p>The page may have moved, or the address may be incomplete. Yousef’s selected work and contact details are still available from the portfolio.</p>
           <a class="button button-primary" href="/#selected-work">
             Return to selected work
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg>
@@ -37,8 +38,8 @@ import { projects } from '../content/projects';
             </ul>
           </nav>
         </section>
-        <ContactFooter />
-      </div>
-    </section>
-  </main>
+      </main>
+      <ContactFooter />
+    </div>
+  </div>
 </BaseLayout>

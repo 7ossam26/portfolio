@@ -1,5 +1,31 @@
 # Portfolio decision log
 
+## Current branch decisions — `tantawy`, 6 October 2026
+
+- **D30 — Owner and scope:** The current user explicitly requested adapting the existing portfolio to **Yousef Fahim Amin** on the exact branch `tantawy`. His GitHub profile is `https://github.com/youseffahem`; his requested focus spans backend, AI/ML, and embedded systems. This supersedes historical owner/project/publication choices for this branch. Studio Dark and existing dependency versions remain.
+- **D31 — Evidence and presentation:** Use seven of Yousef's projects, led by RealEstate. Where the profile README differs from actual source, prefer the source and document the discrepancy in `docs/portfolio/yousef-source-audit.md`. Gym App is a Flutter prototype; HeartGuard is an educational model study. Retain the exact RealEstate collaborator credit “Ahmed” without inferring a surname or identity. Training is not employment; no language-proficiency level is published because the supplied CVs differ.
+- **D32 — Publication boundary:** No Yousef original-UI demo has been built or exercised. Publish case studies, repository links, and explicitly labeled architecture diagrams. Archive the previous public CV/screenshots and obsolete UI components outside the served tree; exclude all historical demo workspaces from build/staging/dev serving. Preserve their source and notices. This supersedes D04/D11/D12/D26/D29 where they require the original owner's projects or demos.
+- **D33 — CV and target:** Use the unchanged updated PDF from the user's supplied Drive folder, whose displayed name matches his confirmation. Serve it as `/Yousef_Fahim_Amin_CV.pdf`; verify SHA256 `474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650`. No public target for Yousef has been selected; D14 does not authorize using Ahmed's Vercel site. Keep preview indexing and leave the original Git remote unchanged. No push or deployment was requested.
+- **D34 — Validation:** The standing prohibition on unrequested browser QA remains. Default `npm run verify` runs type/build/static checks; historical browser suites must not run or be represented as validation of this branch. Source review and HTTP/file checks are distinct from visual, keyboard, accessibility, network, and performance browser evidence.
+
+### D35 — SpaceDrums source and scope (6 October 2026)
+
+The owner authorized an eighth case study before Phase 12, sourced exclusively from `https://github.com/youseffahem/air_drum_project`. The inspected public revision is `f5754e16c32632e506ed25f804755e8fbd358064`. After the source mismatch was raised, the owner confirmed that the fingertip version is local and unpushed and approved describing the public drumstick-endpoint implementation. Mention the local iteration only as **in development**, with no invented public revision or implementation claims. Supersedes D31's project count: retain RealEstate first and feature SpaceDrums second, followed by the existing work. No original-UI demo, metrics, physical acceptance, commit, push, deployment, or Phase 12 execution is authorized. Affects project content/evidence, case-study detail sections, homepage grouping, route manifest and source/validation documentation.
+
+### D36 — Scoped browser review authorization (6 October 2026)
+
+The owner explicitly requested an interactive desktop/mobile visual review before Phase 12 and allowed only obvious visual/functional fixes. This supersedes D34's deferral for this pass only. Keep the existing content/design; correct demonstrated anchor occlusion in CSS. Record actual browser coverage and unverified live reduced-motion/real-device coverage separately from Node checks. The request does not authorize Phase 12, a commit, push or publication. Future browser work still follows the owner's current authorization.
+
+### D37 — Phase 12 owner feedback (6 October 2026)
+
+The owner approved Phase 12 for final feedback and polishing only, specifically a shorter, scannable SpaceDrums case study that retains technical depth. Keep SpaceDrums second, the published drumstick-endpoint versus unpublished local fingertip distinction, repository-grounded claims, Studio Dark and the unchanged CV. Consolidate repeated explanations within the existing layout; no new product feature or design direction is authorized. Run non-browser checks and return for final manual approval. No subsequent phase, commit, push, deployment or publication is authorized by this scoped work.
+
+### D38 — Selected Work background refinement (6 October 2026)
+
+The owner requested a background-only refinement for Featured Projects / Selected Work: layered charcoal, restrained orange/brown ambience and approximately 5–10% subtle glass transparency. Scope the CSS to the existing homepage card group and its large cards; preserve layout, typography, spacing, content, motion, controls, other sections and Studio Dark. Use static gradients and background alpha, without new blur, particles, markup or global token changes. The referenced attachment was unavailable, so the written direction governs this pass. No branch creation, commit, push or publication is authorized.
+
+## Historical decisions
+
 | ID | Decision | Status/source |
 | --- | --- | --- |
 | D01 | Companies/agencies are primary; freelance clients are secondary | Confirmed by Ahmed |

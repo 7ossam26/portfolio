@@ -3,27 +3,40 @@ import ContactFooter from '../components/ContactFooter.astro';
 import Hero from '../components/Hero.astro';
 import Navigation from '../components/Navigation.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ProjectRows from '../components/ProjectRows.astro';
+import Background from '../components/Background.astro';
 import { projects } from '../content/projects';
+import { profile } from '../content/profile';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const featuredProjects = projects.filter((project) => project.featured);
+const furtherProjects = projects.filter((project) => !project.featured);
+const formatProjectIndex = (index: number) => String(index).padStart(2, '0');
 ---
 
 <BaseLayout>
-  <main id="main-content">
-    <section class="studio" aria-label="Ahmed Hossam portfolio">
-      <div class="studio-wrap">
-        <Navigation />
+  <div class="studio">
+    <div class="studio-wrap">
+      <Navigation />
+      <main id="main-content" tabindex="-1" aria-label={`${profile.name} portfolio`}>
         <Hero />
         <div class="section-heading" id="selected-work">
-          <h2>Selected work <span>01—04</span></h2>
-          <p>Four systems, built for real operations.</p>
+          <h2>Selected work <span>{formatProjectIndex(1)}—{formatProjectIndex(featuredProjects.length)}</span></h2>
+          <p>Backend, computer vision, applied ML, mobile, and embedded systems.</p>
         </div>
         <div class="project-cards">
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard project={project} index={index} />
           ))}
         </div>
-        <ContactFooter />
-      </div>
-    </section>
-  </main>
+        <div class="section-heading further-work-heading">
+          <h2>Further work <span>{formatProjectIndex(featuredProjects.length + 1)}—{formatProjectIndex(projects.length)}</span></h2>
+          <p>Computer vision, classifiers, and data structures.</p>
+        </div>
+        <ProjectRows projects={furtherProjects} startIndex={featuredProjects.length + 1} />
+        <Background />
+      </main>
+      <ContactFooter />
+    </div>
+  </div>
 </BaseLayout>

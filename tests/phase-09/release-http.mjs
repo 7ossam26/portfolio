@@ -5,6 +5,8 @@ import { createServer } from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inspectOutput, json, nginxConfig, sha256 } from '../../scripts/release-lib.mjs';
+import { indexableRoutes } from '../../scripts/site-config.mjs';
+import { portfolioCv, portfolioOwner, projectSlugs } from '../../scripts/portfolio-config.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const prepared = JSON.parse(await readFile(path.join(root, 'output/phase-09/prepared-release.json'), 'utf8'));
@@ -70,8 +72,8 @@ try {
       if (/\.pdf$/.test(file.path)) assert.equal(response.headers.get('content-type'), 'application/pdf');
     });
   }
-  const publicRoutes = ['/', ...['vertex', 'autozain', 'roya', 'ramex'].map((slug) => `/work/${slug}/`)];
-  const routes = [...publicRoutes, ...['vertex', 'autozain', 'roya', 'ramex'].map((slug) => `/demos/${slug}/`)];
+  const publicRoutes = indexableRoutes.map((route) => route.path);
+  const routes = publicRoutes;
   for (const route of routes) {
     const response = await request(route);
     const html = await response.text();
@@ -89,9 +91,9 @@ try {
   const home = await request('/');
   const homeBody = await home.text();
   check('contact-and-cv-links', () => {
-    assert.ok(homeBody.includes('mailto:'));
-    assert.ok(homeBody.includes('https://github.com/7ossam26'));
-    assert.ok(homeBody.includes('/Ahmed_Hossam_CV.pdf'));
+    assert.ok(homeBody.includes(`mailto:${portfolioOwner.email}`));
+    assert.ok(homeBody.includes(portfolioOwner.github));
+    assert.ok(homeBody.includes(`/${portfolioCv.path}`));
   });
   const conditional = await request('/', { headers: { 'If-None-Match': home.headers.get('etag') } });
   check('html-revalidation', () => {
@@ -115,13 +117,13 @@ try {
   check('immutable-revalidation', () => { assert.equal(assetConditional.status, 304); assert.equal(assetConditional.headers.get('cache-control'), immutable.cache); });
   const unsupportedMethod = await request('/', { method: 'POST' });
   check('static-only-methods', () => { assert.equal(unsupportedMethod.status, 405); assert.equal(unsupportedMethod.headers.get('cache-control'), 'no-store'); });
-  const directory = await request('/work/vertex');
-  check('directory-redirect', () => { assert.equal(directory.status, 301); assert.equal(directory.headers.get('location'), '/work/vertex/'); });
-  const head = await request('/Ahmed_Hossam_CV.pdf', { method: 'HEAD' });
+  const directory = await request(`/work/${projectSlugs[0]}`);
+  check('directory-redirect', () => { assert.equal(directory.status, 301); assert.equal(directory.headers.get('location'), `/work/${projectSlugs[0]}/`); });
+  const head = await request(`/${portfolioCv.path}`, { method: 'HEAD' });
   check('cv-head', () => { assert.equal(head.status, 200); assert.equal(head.headers.get('content-type'), 'application/pdf'); });
-  const cv = await request('/Ahmed_Hossam_CV.pdf', { headers: { Range: 'bytes=0-9' } });
+  const cv = await request(`/${portfolioCv.path}`, { headers: { Range: 'bytes=0-9' } });
   check('cv-range', () => { assert.equal(cv.status, 206); assert.match(cv.headers.get('content-range'), /^bytes 0-9\//); });
-  for (const route of ['/missing-page/', '/_assets/missing.js', '/demos/vertex/assets/missing.css', '/source.tar.gz', '/release.json', '/.env']) {
+  for (const route of ['/missing-page/', '/_assets/missing.js', '/demos/vertex/', '/demos/autozain/', '/demos/roya/', '/demos/ramex/', '/Ahmed_Hossam_CV.pdf', '/images/vertex/production-result-1440x900.png', '/source.tar.gz', '/release.json', '/.env']) {
     const response = await request(route);
     const body = await response.text();
     check(`missing/${route}`, () => {
@@ -138,9 +140,8 @@ try {
   check('publication-mode', () => {
     if (manifest.origin) {
       assert.ok(robotBody.includes(`Sitemap: ${manifest.origin}/sitemap.xml`));
-      assert.ok(robotBody.includes('Disallow: /demos/'));
       assert.equal(sitemap.status, 200);
-      assert.equal((sitemapBody.match(/<loc>/g) ?? []).length, 5);
+      assert.equal((sitemapBody.match(/<loc>/g) ?? []).length, publicRoutes.length);
       assert.ok(!sitemapBody.includes('/demos/') && !sitemapBody.includes('/404'));
     } else { assert.ok(robotBody.includes('Disallow: /')); assert.equal(sitemap.status, 404); }
   });
@@ -148,14 +149,8 @@ try {
     artifactSha256: prepared.sha256, node: process.version, checks, summary: { total: checks.length, passed: checks.length, failed: 0 } };
   await writeFile(path.join(root, 'output/phase-09/release-http.json'), json(report));
   console.log(`PASS ${checks.length} release HTTP checks (${report.scope})`);
-  if (process.env.PORTFOLIO_VERIFY_BROWSER === '1') {
-    for (const suite of ['demo-journeys', 'network-isolation']) {
-      execFileSync(process.execPath, [path.join(root, `tests/phase-08/${suite}.mjs`)], {
-        cwd: root, stdio: 'inherit', env: { ...process.env, PORTFOLIO_VERIFY_ORIGIN: origin,
-          PORTFOLIO_VERIFY_ARTIFACT_ROOT: path.join(root, 'output/phase-09/browser') },
-      });
-    }
-  }
+  // Browser review is deferred to the owner. This command verifies HTTP only;
+  // it must never dispatch the historical Ahmed/demo browser suites.
 } catch (error) {
   await writeFile(path.join(root, 'output/phase-09/release-http.json'), json({ origin, checks, error: error.stack, passed: false }));
   throw error;

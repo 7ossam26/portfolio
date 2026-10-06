@@ -1,3 +1,7 @@
+# Current ownership on `tantawy`
+
+This file preserves the original portfolio's evidence. For Yousef Fahim Amin, use `yousef-source-audit.md`, `apps/portfolio/src/content/profile.ts`, and `apps/portfolio/src/content/projects.ts`. None of the historical client roles below are attributed to Yousef.
+
 # Content, Evidence, and Source Ledger
 
 ## Evidence status

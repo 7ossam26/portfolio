@@ -1,5 +1,9 @@
 # Portfolio execution rules
 
+## Current branch scope — 6 October 2026
+
+On `tantawy`, the current user has requested adapting this portfolio to **Yousef Fahim Amin**, using his GitHub profile and supplied CV. Personalization is recorded in Phase 10; Phase 12 owner feedback and focused SpaceDrums editorial polishing are complete locally under `docs/portfolio/prompts/12-owner-feedback.md`. Await final owner approval; do not start further work automatically. Ahmed's project selection and deployment target below are historical: preserve their provenance, but exclude his identity, CV, client projects and demos from Yousef's published output. Keep Studio Dark, truthful evidence, dependency boundaries and the prohibition on unrequested browser QA. Do not deploy this branch to Ahmed's site.
+
 These instructions apply to the new Ahmed Hossam portfolio repository. Follow the user's current instructions and higher-priority environment rules. Merge this file with existing project guidance rather than overwriting unrelated instructions.
 
 ## Start every phase

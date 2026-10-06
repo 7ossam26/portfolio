@@ -1,5 +1,7 @@
 # Ahmed Hossam — Portfolio Master Plan
 
+> Historical baseline. On 6 October 2026 the current user requested a complete personalization for Yousef Fahim Amin on branch `tantawy`. `prompts/10-personalization.md` supersedes the owner, project selection, CV and deployment choices in this original plan for that branch. Its design and engineering constraints still apply.
+
 Version 1.0 · 10 September 2026 · Implementation handoff for Codex
 
 ## 1. The outcome

@@ -1,5 +1,7 @@
 # ابدأ من هنا — Portfolio Codex Implementation Pack
 
+> Current branch: `tantawy` now personalizes the portfolio for **Yousef Fahim Amin**. Start with `README.md`, `STATE.md`, and `docs/portfolio/prompts/10-personalization.md`. The original setup instructions below are historical; do not restart the Ahmed phases or publish to his host.
+
 يا Ya 7oss، دي الحزمة اللي هتستخدمها بنفس الـworkflow بتاعك: خطة كاملة، مراحل منفصلة، وPrompt جاهز لكل مرحلة. التصميم اللي وافقت عليه هو Studio Dark، والديموهات الأصلية لسه هتتنفّذ ضمن المراحل.
 
 ## تعمل إيه بالترتيب؟

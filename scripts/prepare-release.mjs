@@ -20,8 +20,18 @@ execFileSync(process.execPath, [npm, 'run', 'build'], { cwd: root, stdio: 'inher
 const origin = resolveSiteUrl();
 const output = await inspectOutput(path.join(root, 'dist'));
 const sourcePaths = git('ls-files', '--cached', '--others', '--exclude-standard', '-z').split('\0')
-  .filter((name) => /^(?:apps\/|packages\/|scripts\/|tests\/|package(?:-lock)?\.json$|\.nvmrc$|\.gitignore$|AGENTS\.md$|DECISIONS\.md$|design-reference\/studio-dark\/assets\/(?:Ahmed_Hossam_CV\.pdf|favicon\.svg)$)/.test(name)).sort();
-const sourceEntries = await Promise.all(sourcePaths.map(async (name) => [name, await readFile(path.join(root, name))]));
+  .filter((name) => /^(?:apps\/|packages\/|scripts\/|tests\/|archive\/|package(?:-lock)?\.json$|vercel\.json$|\.nvmrc$|\.gitignore$|AGENTS\.md$|DECISIONS\.md$)/.test(name)).sort();
+// `git ls-files --cached` also reports tracked paths deleted or moved in the
+// working tree. Archive the actual build inputs, including new untracked files
+// and preserved provenance; do not try to read obsolete indexed paths.
+const sourceEntries = (await Promise.all(sourcePaths.map(async (name) => {
+  try {
+    return [name, await readFile(path.join(root, name))];
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
+}))).filter((entry) => entry !== null);
 const sourceFiles = sourceEntries.map(([name, data]) => ({ path: name, sha256: sha256(data) }));
 const sourceArchive = gzipSync(tar(sourceEntries));
 const manifest = {

@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-10-06T17:01:47.009Z",
+  "method": "Node HTTP requests; no browser",
+  "sourceRevision": "f5754e16c32632e506ed25f804755e8fbd358064",
+  "mode": "preview",
+  "httpChecks": 17,
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 24780
+    },
+    {
+      "route": "/work/realestate/",
+      "status": 200,
+      "bytes": 7923
+    },
+    {
+      "route": "/work/spacedrums/",
+      "status": 200,
+      "bytes": 13227
+    },
+    {
+      "route": "/work/heartguard/",
+      "status": 200,
+      "bytes": 7460
+    },
+    {
+      "route": "/work/gym-app/",
+      "status": 200,
+      "bytes": 7062
+    },
+    {
+      "route": "/work/arduino-projects/",
+      "status": 200,
+      "bytes": 7197
+    },
+    {
+      "route": "/work/gesture-volume/",
+      "status": 200,
+      "bytes": 7083
+    },
+    {
+      "route": "/work/digits-classifier/",
+      "status": 200,
+      "bytes": 7188
+    },
+    {
+      "route": "/work/hospital-management/",
+      "status": 200,
+      "bytes": 7111
+    },
+    {
+      "route": "/Yousef_Fahim_Amin_CV.pdf",
+      "status": 200,
+      "bytes": 421463
+    },
+    {
+      "route": "/_assets/BaseLayout.BTER3aMn.css",
+      "status": 200,
+      "bytes": 43850
+    },
+    {
+      "route": "/_assets/BaseLayout.astro_astro_type_script_index_0_lang.CcuZpbQC.js",
+      "status": 200,
+      "bytes": 4884
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "bytes": 95
+    },
+    {
+      "route": "/work/spacedrums-fingertip/",
+      "status": 404,
+      "bytes": 4164
+    },
+    {
+      "route": "/demos/spacedrums/",
+      "status": 404,
+      "bytes": 4164
+    },
+    {
+      "route": "/.local-tools/spacedrums-source/src/spacedrums/app/play.py",
+      "status": 404,
+      "bytes": 4164
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 404,
+      "bytes": 4164
+    }
+  ],
+  "contentChecks": [
+    "All requested topics, sole repository URL, version separation and physical limits present",
+    "Case-study sections numbered 01 through 11 without duplicates",
+    "SpaceDrums is the second featured card; homepage ranges cover all eight projects"
+  ],
+  "cvSha256": "474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650"
+}

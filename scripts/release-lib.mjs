@@ -68,7 +68,7 @@ export function inspectHtml(html, demo) {
   const attributeHashes = [...new Set(attributes.map(hashSource))];
   const policy = [
     "default-src 'none'", "base-uri 'none'", "object-src 'none'", "form-action 'none'",
-    "frame-ancestors 'self'", `frame-src ${demo ? "'none'" : "'self'"}`,
+    "frame-ancestors 'self'", "frame-src 'none'",
     "connect-src 'none'", `script-src 'self' ${[...new Set(scriptHashes)].join(' ')}`.trim(),
     "script-src-attr 'none'", `style-src 'self' ${[...new Set(styleHashes)].join(' ')}`.trim(),
     `style-src-attr ${attributeHashes.length ? `'unsafe-hashes' ${attributeHashes.join(' ')}` : "'none'"}`,

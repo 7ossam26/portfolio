@@ -1,0 +1,45 @@
+---
+import { skillGroups, training } from '../content/profile';
+---
+<section class="background-section" id="background" aria-labelledby="background-heading">
+  <div class="section-heading">
+    <h2 id="background-heading">Background <span>BEHIND THE WORK</span></h2>
+    <p>Software, data, and the physical world.</p>
+  </div>
+  <div class="background-intro">
+    <h3>Understanding the system,<br />from the <em>inside out.</em></h3>
+    <div>
+      <p>I’m studying Computer Science at Modern Academy in Maadi, with an expected graduation in 2027. My projects connect what I learn across databases, machine learning, computer vision, mobile interfaces, and microcontrollers.</p>
+      <p>I’m interested in intelligent applications that bring these disciplines together: working with the data, building the interface, and understanding what happens underneath.</p>
+    </div>
+  </div>
+  <div class="skills-grid" aria-label="Technical skills">
+    {skillGroups.map((group, index) => (
+      <article class="skill-group">
+        <span class="eyebrow">0{index + 1}</span>
+        <h3>{group.name}</h3>
+        <p>{group.detail}</p>
+        <p class="skill-tools">{group.tools}</p>
+      </article>
+    ))}
+  </div>
+  <div class="learning-layout">
+    <section class="education-block" aria-labelledby="education-heading">
+      <p class="eyebrow">EDUCATION</p>
+      <h3 id="education-heading">B.Sc. Computer Science</h3>
+      <p>Modern Academy, Maadi</p>
+      <p class="education-period">2023–2027 · Expected graduation 2027</p>
+    </section>
+    <section class="training-block" aria-labelledby="training-heading">
+      <h3 id="training-heading">Training &amp; professional development</h3>
+      <ul class="training-list">
+        {training.map((item) => (
+          <li>
+            <div><h4>{item.program}</h4><p>{item.organization}</p>{item.certificate && <a class="text-link" href={item.certificate} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.organization} certificate`}>View certificate <span aria-hidden="true">↗</span></a>}</div>
+            <span class="training-period">{item.period}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</section>

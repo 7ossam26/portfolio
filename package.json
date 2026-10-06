@@ -1,8 +1,8 @@
 {
-  "name": "ahmed-hossam-portfolio",
+  "name": "yousef-fahim-amin-portfolio",
   "version": "0.0.0",
   "private": true,
-  "description": "Ahmed Hossam's static portfolio and isolated project demos.",
+  "description": "Yousef Fahim Amin's software engineering portfolio and project case studies.",
   "packageManager": "npm@11.1.0",
   "engines": {
     "node": ">=22.19.0 <23",
@@ -29,7 +29,8 @@
     "verify:network": "node tests/phase-08/network-isolation.mjs",
     "verify:performance": "node tests/phase-08/performance.mjs",
     "verify:lighthouse": "node tests/phase-08/lighthouse-audit.mjs",
-    "verify": "node tests/phase-08/run-all.mjs",
+    "test:motion": "node --test tests/phase-11/motion.test.mjs",
+    "verify": "npm run typecheck && npm run test:motion && npm run build",
     "release:prepare": "node scripts/prepare-release.mjs",
     "release:verify": "node tests/phase-09/release-http.mjs"
   },

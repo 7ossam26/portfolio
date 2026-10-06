@@ -1,5 +1,7 @@
 # Studio Dark — Design and UX Specification
 
+> Phase 10 retains Studio Dark's current orange/dark palette, typography, layout, and motion. On `tantawy`, replace the historical identity and project ordering below with Yousef Fahim Amin and his documented projects; use labeled architecture diagrams where no original application capture is available.
+
 Status: approved visual direction, with production implementation still to follow.
 
 ## Reference and fidelity

@@ -1,0 +1,106 @@
+{
+  "reviewDate": "2026-10-06",
+  "browser": "Codex in-app browser",
+  "method": "Interactive navigation, keyboard, viewport screenshots and DOM-backed inspection",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "width": 820,
+      "height": 1000
+    },
+    {
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "width": 650,
+      "height": 900
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 360,
+      "height": 800
+    }
+  ],
+  "anchorObservations": [
+    {
+      "docWidth": 1425,
+      "height": 1000,
+      "navBottom": 93.5999984741211,
+      "targetTop": 131.8000030517578,
+      "width": 1440,
+      "route": "/#selected-work"
+    },
+    {
+      "docWidth": 805,
+      "height": 1000,
+      "navBottom": 93.5999984741211,
+      "targetTop": 133,
+      "width": 820,
+      "route": "/#background"
+    },
+    {
+      "docWidth": 753,
+      "height": 1024,
+      "navBottom": 93.5999984741211,
+      "targetTop": 198.15000915527344,
+      "width": 768,
+      "route": "/#selected-work"
+    },
+    {
+      "docWidth": 345,
+      "height": 800,
+      "navBottom": 146.40000915527344,
+      "targetTop": 208.33750915527344,
+      "width": 360,
+      "route": "/#background"
+    },
+    {
+      "docWidth": 635,
+      "height": 900,
+      "navBottom": 169.60000610351562,
+      "targetTop": 198.0749969482422,
+      "width": 650,
+      "route": "/#selected-work"
+    },
+    {
+      "docWidth": 375,
+      "height": 844,
+      "navBottom": 146.40000915527344,
+      "scrollY": 6697.60009765625,
+      "targetTop": 223.8500061035156,
+      "width": 390,
+      "route": "/work/spacedrums/#current-status-heading",
+      "navigation": "fresh fragment navigation"
+    },
+    {
+      "docWidth": 375,
+      "height": 844,
+      "navBottom": 146.40000915527344,
+      "targetTop": 207.7375030517578,
+      "width": 390,
+      "route": "/#selected-work"
+    }
+  ],
+  "cvDownload": "C:/Users/jo/Downloads/Yousef_Fahim_Amin_CV.pdf",
+  "cvSha256": "474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650",
+  "spaceDrumsRepository": "https://github.com/youseffahem/air_drum_project",
+  "githubProfile": "https://github.com/youseffahem",
+  "consoleWarningsOrErrors": [],
+  "reducedMotion": {
+    "observedPreference": false,
+    "livePreferenceToggle": "Not available through exposed browser controls; not tested",
+    "sourceAndNodeRegression": "Reviewed; existing 10-test motion suite passed"
+  },
+  "images": "Homepage and SpaceDrums use labeled DOM diagrams; no raster images are present"
+}

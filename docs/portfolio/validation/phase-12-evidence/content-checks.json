@@ -1,0 +1,41 @@
+{
+  "phase": 12,
+  "method": "Non-browser source comparison and generated HTML/file inspection; one-off editorial validation, not a new application test suite.",
+  "projectOrder": [
+    "realestate",
+    "spacedrums",
+    "heartguard",
+    "gym-app",
+    "arduino-projects",
+    "gesture-volume",
+    "digits-classifier",
+    "hospital-management"
+  ],
+  "otherProjectRecordsUnchanged": true,
+  "spaceDrumsPreservedFields": [
+    "slug",
+    "name",
+    "domain",
+    "featured",
+    "summary",
+    "distinction",
+    "role",
+    "capabilities",
+    "flow",
+    "stack",
+    "repositoryUrl",
+    "demoAvailable"
+  ],
+  "numberedSections": {
+    "before": 11,
+    "after": 9
+  },
+  "articleWordCount": {
+    "before": 941,
+    "after": 671,
+    "method": "Whitespace-separated text tokens after removing tags/entities from the case-study article; excludes global navigation/footer."
+  },
+  "cvSha256": "474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650",
+  "previewVersionDistinctionAndSourceLink": "present in generated HTML",
+  "browserReview": "Not repeated in Phase 12; final owner review pending."
+}

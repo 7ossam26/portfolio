@@ -1,6 +1,8 @@
+import { projectSlugs } from './portfolio-config.mjs';
+
 // Single source of truth for the public origin.
 //
-// The domain is deliberately unresolved (DECISIONS.md D14). Until a real target
+// Yousef's domain is unresolved. Until a real target
 // is supplied through PORTFOLIO_SITE_URL, the build stays in preview mode:
 // no canonical URL, no social metadata, robots noindex, and a robots.txt that
 // disallows everything. Supplying the variable switches every one of those on.
@@ -37,8 +39,9 @@ export function resolveSiteUrl(environment = process.env) {
 /** Public routes that belong in a sitemap. Demo routes are deliberately excluded. */
 export const indexableRoutes = [
   { path: '/', changefreq: 'monthly', priority: '1.0' },
-  { path: '/work/vertex/', changefreq: 'monthly', priority: '0.8' },
-  { path: '/work/autozain/', changefreq: 'monthly', priority: '0.7' },
-  { path: '/work/roya/', changefreq: 'monthly', priority: '0.7' },
-  { path: '/work/ramex/', changefreq: 'monthly', priority: '0.7' },
+  ...projectSlugs.map((slug, index) => ({
+    path: `/work/${slug}/`,
+    changefreq: 'monthly',
+    priority: index === 0 ? '0.8' : '0.7',
+  })),
 ];

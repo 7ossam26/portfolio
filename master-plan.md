@@ -1,5 +1,7 @@
 # Ahmed Hossam — Portfolio Master Plan
 
+> Historical baseline. The current `tantawy` branch is Yousef Fahim Amin's portfolio. Follow `docs/portfolio/prompts/10-personalization.md` and `README.md`; the owner and project selection below are retained only as the original plan.
+
 Version 1.0 · 10 September 2026 · Implementation handoff for Codex
 
 ## 1. The outcome

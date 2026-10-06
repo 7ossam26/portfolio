@@ -59,6 +59,7 @@ svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-
 
 .skip-link { position: fixed; z-index: 100; top: -10rem; left: 1rem; padding: 1rem; background: var(--ink); color: var(--bg); }
 .skip-link:focus { top: 1rem; }
+#main-content:focus-visible { outline: 2px solid var(--accent); outline-offset: .25rem; }
 .studio-wrap { max-width: 90rem; padding-inline: clamp(1.25rem, 4.5vw, 4.5rem); margin-inline: auto; }
 .studio-nav { min-height: 6.625rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
 .identity { display: inline-flex; align-items: center; gap: 1.25rem; padding-block: .5rem; }
@@ -103,6 +104,17 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .project-cards { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem); }
 .featured-project { position: relative; padding: clamp(1.5rem, 3vw, 2.75rem); background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px -10px var(--accent-dim); transition: border-color 240ms ease, box-shadow 240ms ease; }
 .featured-project:hover { border-color: rgba(255, 112, 67, 0.4); box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 36px -8px var(--accent-glow); }
+/* Selected Work only: static ambient depth with 5–7% card transparency.
+   Background alpha leaves content opaque and preserves the existing motion. */
+#selected-work + .project-cards {
+  background:
+    radial-gradient(ellipse at 8% 12%, rgb(141 75 43 / .10), transparent 48%),
+    radial-gradient(ellipse at 92% 62%, rgb(112 62 39 / .08), transparent 48%),
+    linear-gradient(180deg, rgb(13 16 17 / .2), rgb(10 12 13 / .45));
+}
+#selected-work + .project-cards > .featured-project {
+  background: linear-gradient(135deg, rgb(29 33 35 / .93), rgb(18 22 24 / .95));
+}
 /* Wrapping is a no-op at the widths this row was designed for, and it keeps the
    nowrap status pill inside the card under text-only enlargement. */
 .feature-topline { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 2rem; }
@@ -151,10 +163,60 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .tech-line > span { color: #758487; }
 .project-actions { display: flex; flex-wrap: wrap; gap: .75rem; padding-top: 1.75rem; margin-top: auto; }
 
+/* Personal project evidence reuses the Studio Dark card and type hierarchy. */
+.project-kind { color: var(--orange-light); font: .75rem/1.6 var(--mono); letter-spacing: .06em; }
+.project-diagram { min-width: 0; align-self: center; padding: clamp(1.25rem, 3vw, 2rem); background: var(--bg); border: 1px solid var(--line); border-radius: .375rem; }
+.project-diagram-heading { padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); }
+.project-diagram-heading > p { margin-top: .5rem; font-size: 1.25rem; line-height: 1.4; }
+.project-diagram ol { list-style: none; display: grid; gap: 1rem; margin: 1.5rem 0; padding: 0; }
+.project-diagram li { min-width: 0; display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) 1rem; align-items: center; gap: 1rem; padding: 1.125rem; border: 1px solid var(--line); border-radius: .25rem; background: var(--surface); }
+.project-diagram li:nth-child(2) { border-color: var(--accent); background: var(--accent-subtle); }
+.project-diagram li > strong { min-width: 0; overflow-wrap: anywhere; font-size: 1rem; line-height: 1.6; font-weight: 500; }
+.project-diagram li > svg { width: 1rem; color: var(--accent); }
+.project-diagram li:last-child > svg { visibility: hidden; }
+.project-diagram figcaption { color: var(--quiet); font-size: .8125rem; line-height: 1.7; }
+.further-work-heading { margin-top: 3rem; }
+.background-section { padding-top: clamp(3rem, 7vw, 6rem); scroll-margin-top: 2rem; }
+.background-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); padding: 2rem 0 3rem; }
+.background-intro h3 { font-size: clamp(2rem, 3.5vw, 3.25rem); line-height: 1.2; font-weight: 500; letter-spacing: -.04em; }
+.background-intro em { font-family: Georgia, "Times New Roman", serif; color: var(--accent); font-weight: 400; }
+.background-intro p { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.background-intro p + p { margin-top: 1rem; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.skill-group { min-width: 0; padding-block: 1.5rem; border-top: 1px solid var(--line); }
+.skill-group > .eyebrow { color: var(--orange-light); }
+.skill-group h3 { margin-top: .75rem; font-size: 1.125rem; line-height: 1.5; font-weight: 500; }
+.skill-group p { margin-top: .75rem; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.skill-group .skill-tools { color: var(--quiet); font: .8125rem/1.9 var(--mono); }
+.learning-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: clamp(2rem, 5vw, 5rem); padding-top: 3rem; margin-top: 1rem; border-top: 1px solid var(--line); }
+.education-block, .training-block { min-width: 0; }
+.education-block h3, .training-block > h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 500; line-height: 1.4; }
+.education-block h3 { margin-top: 1rem; }
+.education-block p:not(.eyebrow) { margin-top: .75rem; color: var(--muted); line-height: 1.75; }
+.education-block .education-period { font: .8125rem/1.8 var(--mono); }
+.training-list { padding: 0; margin: 1.5rem 0 0; list-style: none; }
+.training-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 1.5rem; padding-block: 1.25rem; border-top: 1px solid var(--line); }
+.training-list li > div { min-width: 0; flex: 1 1 17rem; }
+.training-list h4 { font-size: 1rem; line-height: 1.6; font-weight: 500; }
+.training-list p { margin-top: .4rem; color: var(--muted); line-height: 1.7; }
+.training-list .text-link { padding-inline: 0; gap: .5rem; }
+.training-period { color: var(--quiet); font: .8125rem/1.8 var(--mono); }
+.project-scope { padding: clamp(1.25rem, 3vw, 2.25rem); margin-top: 2rem; border: 1px solid var(--line); border-radius: .5rem; background: var(--surface); }
+.project-scope h2 { margin-top: .5rem; font-size: 1.5rem; font-weight: 500; }
+.project-scope > p:last-child { max-width: 52rem; margin-top: 1rem; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+@media (max-width: 60rem) {
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .background-intro, .learning-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 40rem) {
+  .skills-grid { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .project-diagram li { grid-template-columns: minmax(0, 1fr); gap: .5rem; padding: .875rem; }
+  .project-diagram li > svg { display: none; }
+  .studio-nav nav { gap: 1rem; }
+}
+
 .workflow-figure { min-width: 0; align-self: stretch; padding: 1.75rem; background: var(--bg); border: 1px solid #303a3d; border-radius: .375rem; }
 .workflow-heading { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
-.vertex-mark { padding-right: .35rem; font-size: 2.5rem; font-weight: 650; letter-spacing: -.16em; }
-.vertex-mark > span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 .workflow-heading p { margin-top: .25rem; font-size: 1rem; line-height: 1.5; letter-spacing: -.015em; }
 .workflow-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; padding: 0; margin: 1.625rem 0; }
 .workflow-list > li { position: relative; display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem; align-items: center; gap: .875rem; padding: 1.125rem 1rem; border: 1px solid var(--line); border-radius: .25rem; }
@@ -195,7 +257,7 @@ h1 em { color: var(--accent); font-family: Georgia, "Times New Roman", serif; fo
 .project-context { min-width: 0; }
 .project-context p { max-width: 36rem; color: var(--muted); font-size: 1rem; line-height: 1.75; text-wrap: pretty; }
 .project-row-actions { display: flex; flex-wrap: wrap; gap: .625rem; margin-top: .875rem; }
-.project-row-actions .button { min-height: 2.625rem; padding: .5rem .875rem; font-size: .8125rem; gap: .5rem; }
+.project-row-actions .button { min-height: 2.75rem; padding: .5rem .875rem; font-size: .875rem; gap: .5rem; }
 .project-row-actions .button svg { width: .9375rem; height: .9375rem; }
 .project-arrow { width: 3rem; height: 3rem; display: grid; place-items: center; border: 1px solid var(--control); border-radius: .375rem; color: var(--ink); transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
 .project-entry:hover .project-arrow { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 16px var(--accent-dim); }
@@ -454,6 +516,14 @@ html.demo-host-open { overflow: hidden; scrollbar-gutter: auto; }
 /* Scroll motion is progressively enabled by scripts/motion.ts. The selectors
    are gated by .motion-ready so essential content remains visible without JS. */
 @media (prefers-reduced-motion: no-preference) {
+  /* Fragment and skip targets must clear the sticky navigation. Keep this on
+     the scrolling root so links to any heading receive the same protection. */
+  :root.motion-ready { scroll-padding-top: 7rem; }
+
+  /* Case-section reveals settle after native fragment alignment; allow for
+     their upward movement without increasing homepage anchor spacing. */
+  .motion-ready .case-section h2[id] { scroll-margin-top: 3rem; }
+
   .motion-ready body {
     background:
       linear-gradient(180deg, rgb(17 21 22 / .9), rgb(17 21 22 / .98)),
@@ -704,6 +774,14 @@ html.demo-host-open { overflow: hidden; scrollbar-gutter: auto; }
     transform: none;
   }
 
+  /* Keyboard focus must expose both nested reveal groups immediately. */
+  .motion-ready .motion-reveal:focus-within {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
   .motion-ready .motion-line {
     position: relative;
     border-top-color: transparent;
@@ -890,8 +968,14 @@ html.demo-host-open { overflow: hidden; scrollbar-gutter: auto; }
 }
 
 @media (max-width: 50rem) and (prefers-reduced-motion: no-preference) {
+  /* Tablet navigation can wrap into two rows before its mobile spacing applies. */
+  :root.motion-ready { scroll-padding-top: 12rem; }
   .motion-background-orbs { filter: blur(65px); }
   .motion-background-beam-surface { opacity: .62; animation-duration: 18s; }
+}
+
+@media (max-width: 37.5rem) and (prefers-reduced-motion: no-preference) {
+  :root.motion-ready { scroll-padding-top: 11rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

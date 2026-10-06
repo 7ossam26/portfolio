@@ -1,5 +1,7 @@
 # Maintenance guide
 
+> Historical guide for the original portfolio. On branch `tantawy`, start with the repository `README.md` and `validation/phase-10.md`. `npm run verify` now runs non-browser checks; zero demo workspaces are built/staged. Active content lives in `profile.ts` and `projects.ts`, publication routes/assets in `scripts/portfolio-config.mjs`. Old browser/release results do not validate this branch, and the original Vercel target is not Yousef's target.
+
 How to keep this portfolio current without re-reading every phase document. Written
 12 September 2026, updated during Phase 09 release preparation.
 

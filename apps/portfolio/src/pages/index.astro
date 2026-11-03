@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProjectRows from '../components/ProjectRows.astro';
 import Background from '../components/Background.astro';
+import WorkIndex from '../components/WorkIndex.astro';
 import { projects } from '../content/projects';
 import { profile } from '../content/profile';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -20,6 +21,7 @@ const formatProjectIndex = (index: number) => String(index).padStart(2, '0');
       <Navigation />
       <main id="main-content" tabindex="-1" aria-label={`${profile.name} portfolio`}>
         <Hero />
+        <WorkIndex />
         <div class="section-heading" id="selected-work">
           <h2>Selected work <span>{formatProjectIndex(1)}—{formatProjectIndex(featuredProjects.length)}</span></h2>
           <p>Interactive vision, model evaluation, and supporting software engineering.</p>

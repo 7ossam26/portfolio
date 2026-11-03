@@ -1,5 +1,18 @@
 # Studio Dark — Design and UX Specification
 
+> **Latest owner visual direction, 3 November 2026 (D41):** improve the layout, project palettes, logo and motion. This overrides the historical exact-layout, single-orange-project and no-continuous-project-animation restrictions below. Preserve the graphite Studio Dark frame, orange personal brand, typography contrast, source-supported content, dedicated academic background and reduced-motion behavior. The three featured projects remain Space Drums, HeartGuard AI and RealEstate; other studies stay compact.
+
+## Current project presentation
+
+- **Site-wide motion extension (D42):** add hero orbits/signals, ambient drift, navigation and control feedback, section-heading accents, skill/training choreography and footer movement. Decorative scenes run only in view; suspend animation and queued updates when the tab is hidden. Preserve the manual pause, OS preference and static fallback. This is authored behavior pending manual browser review.
+- Begin with the typographic introduction and a three-project jump index. Present each featured project as a distinct chapter with alternating desktop composition, large title/summary, concept illustration, clear source/case-study actions and compact supporting capabilities/architecture. Stack naturally on mobile.
+- Palettes: Space Drums violet/cyan; HeartGuard rose; RealEstate architectural blue; Gym lime; Arduino mint; gesture volume cyan; digits orchid; hospital management teal. Scope accents to each project's chapter, row and case study. Keep the shell dark and the personal identity orange.
+- Use the drawn YF monogram consistently in navigation/favicon. Author visuals as lightweight SVG with explicit conceptual captions; do not present them as screenshots, model outputs, clinical results or working demos.
+- Match movement to the subject: drum strikes/ripples, an illustrative heartbeat trace, floating architectural forms, activity arcs, circuit signals, gesture/volume bars, digit cells and connected records. Observe each illustration separately and pause its loop offscreen. Keep navigation and links available without motion.
+- Offer a Pause/Resume control, retain the choice within the browser tab when storage is available, and honor the OS reduced-motion setting. Native page transitions are progressive enhancement; preserve ordinary links when unsupported. No browser verification is implied by these authored rules.
+
+## Historical approved baseline
+
 > Phase 10 retains Studio Dark's current orange/dark palette, typography, layout, and motion. On `tantawy`, replace the historical identity and project ordering below with Yousef Fahim Amin and his documented projects; use labeled architecture diagrams where no original application capture is available.
 
 Status: approved visual direction, with production implementation still to follow.

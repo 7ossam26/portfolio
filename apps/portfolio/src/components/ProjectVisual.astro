@@ -1,0 +1,11 @@
+---
+import type { ProjectContent } from '../content/projects';
+import ProjectArtwork from './ProjectArtwork.astro';
+interface Props { project: ProjectContent; }
+const { project } = Astro.props;
+---
+<figure class="project-visual" data-project={project.slug}>
+  <div class="visual-topline"><span>PROJECT EXPLORATION</span><span aria-hidden="true">↗</span></div>
+  <div class="visual-stage"><ProjectArtwork slug={project.slug} /></div>
+  <figcaption><span>{project.name}</span>Concept illustration · not application footage</figcaption>
+</figure>

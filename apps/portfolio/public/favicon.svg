@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Yousef Fahim Amin</title><rect width="64" height="64" rx="14" fill="#111516"/><text x="10" y="42" font-family="Arial,sans-serif" font-size="34" font-weight="bold" fill="#ff7043">yf.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Yousef Fahim Amin — YF monogram</title>
+  <rect width="64" height="64" rx="12" fill="#111516" />
+  <g stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M22 4H8a4 4 0 0 0-4 4v14M42 60h14a4 4 0 0 0 4-4V42" stroke="#ff7043" stroke-width="1.4" />
+    <path d="m14 18 12 15 12-15M26 33v17" stroke="#f0f1ed" stroke-width="3.5" />
+    <path d="M39 49V31h13M40 18h13" stroke="#ff7043" stroke-width="3.5" />
+  </g>
+  <circle cx="53" cy="49" r="3" fill="#ff7043" />
+</svg>

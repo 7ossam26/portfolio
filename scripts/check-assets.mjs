@@ -14,10 +14,10 @@ if (entries.some((entry) => !entry.isFile())
 }
 
 const favicon = await readFile(path.join(publicRoot, 'favicon.svg'), 'utf8');
-if (!/<svg\b/i.test(favicon) || !/yf\./i.test(favicon)
+if (!/<svg\b/i.test(favicon) || !/Yousef Fahim Amin — YF monogram/.test(favicon)
   || /ah\.|Ahmed|Hossam|7ossam26/i.test(favicon)
   || /(?:https?:|<script\b|\bon\w+\s*=)/i.test(favicon.replace('http://www.w3.org/2000/svg', ''))) {
-  throw new Error('The local favicon must use Yousef’s yf. identity and contain no remote or executable content.');
+  throw new Error('The local favicon must use Yousef’s YF monogram identity and contain no remote or executable content.');
 }
 const cv = await readFile(path.join(publicRoot, portfolioCv.path));
 if (cv.subarray(0, 5).toString() !== '%PDF-'

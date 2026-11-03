@@ -93,7 +93,7 @@ try {
   check('contact-and-cv-links', () => {
     assert.ok(homeBody.includes(`mailto:${portfolioOwner.email}`));
     assert.ok(homeBody.includes(portfolioOwner.github));
-    assert.ok(homeBody.includes(`/${portfolioCv.path}`));
+    assert.ok(homeBody.includes(`href="${portfolioCv.viewUrl}"`));
   });
   const conditional = await request('/', { headers: { 'If-None-Match': home.headers.get('etag') } });
   check('html-revalidation', () => {

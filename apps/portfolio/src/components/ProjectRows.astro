@@ -1,5 +1,6 @@
 ---
 import type { ProjectContent } from '../content/projects';
+import ProjectArtwork from './ProjectArtwork.astro';
 
 interface Props {
   projects: readonly ProjectContent[];
@@ -11,9 +12,9 @@ const { projects, startIndex = 5 } = Astro.props;
 
 <div class="project-list" aria-label="More selected work">
   {projects.map((project, index) => (
-    <article>
+    <article data-project={project.slug}>
       <div class="project-entry">
-        <span class="project-number" aria-hidden="true">{String(index + startIndex).padStart(2, '0')}</span>
+        <div class="project-miniature" aria-hidden="true"><span class="project-number">{String(index + startIndex).padStart(2, '0')}</span><ProjectArtwork slug={project.slug} /></div>
         <div class="project-identity">
           <p>{project.domain}</p>
           <h3 id={`${project.slug}-title`}>

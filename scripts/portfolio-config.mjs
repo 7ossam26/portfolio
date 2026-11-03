@@ -24,5 +24,7 @@ export const activeDemoSlugs = Object.freeze([]);
 export const portfolioCv = Object.freeze({
   path: 'Yousef_Fahim_Amin_CV.pdf',
   sha256: '6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15',
+  // The site links only to the owner's public Drive copy (verified identical bytes).
+  viewUrl: 'https://drive.google.com/file/d/1HyJ6ZVG2oKNNknmskzUYkgvbSr7VIrm8/view?usp=drive_link',
 });
 export const publishedAssets = Object.freeze(['favicon.svg', portfolioCv.path]);

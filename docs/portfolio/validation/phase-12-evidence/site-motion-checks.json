@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-03",
+  "scope": "Additional site-wide motion after the completed project identity redesign",
+  "verification": {
+    "astroFiles": 22,
+    "astroDiagnostics": 0,
+    "motionTestsPassed": 18,
+    "pagesBuiltAndStaticallyChecked": 10
+  },
+  "changedExistingProductFiles": [
+    "apps/portfolio/src/components/Hero.astro",
+    "apps/portfolio/src/layouts/BaseLayout.astro",
+    "apps/portfolio/src/scripts/motion.ts"
+  ],
+  "addedProductFile": "apps/portfolio/src/styles/site-motion.css",
+  "allOtherExistingProductFilesUnchangedFromStartOfFollowup": true,
+  "dependencyInputsUnchanged": true,
+  "cvSHA256": "6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15",
+  "assets": [
+    {
+      "file": "BaseLayout.astro_astro_type_script_index_0_lang.4LpnB7Tx.js",
+      "bytes": 6884,
+      "gzipBytes": 2147
+    },
+    {
+      "file": "BaseLayout.pk5c0Y0X.css",
+      "bytes": 70693,
+      "gzipBytes": 14265
+    }
+  ],
+  "budget": "Emitted CSS and JS separately below 45 KiB gzip; file sizes only, no browser measurements",
+  "browserQA": "deferred",
+  "deployment": "not performed"
+}

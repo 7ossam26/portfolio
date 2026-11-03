@@ -2,6 +2,15 @@
 import { profile } from '../content/profile';
 ---
 <section class="studio-hero" aria-labelledby="studio-heading">
+  <div class="hero-ambient" aria-hidden="true">
+    <div class="hero-orbit-field">
+      <span class="hero-orbit hero-orbit-one"></span>
+      <span class="hero-orbit hero-orbit-two"></span>
+      <span class="hero-orbit hero-orbit-three"></span>
+      <span class="hero-orbit-core"></span>
+      {Array.from({ length: 6 }, (_, index) => <span class="hero-signal" style={`--signal-index:${index}`}></span>)}
+    </div>
+  </div>
   <div class="hero-main">
     <p class="eyebrow"><span class="small-rule"></span> APPLIED MACHINE LEARNING · COMPUTER VISION</p>
     <h1 id="studio-heading">
@@ -17,7 +26,7 @@ import { profile } from '../content/profile';
         Explore my work
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg>
       </a>
-      {profile.cvUrl ? <a class="button button-secondary" href={profile.cvUrl} download>Download CV <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"></path></svg></a> : <a class="button button-secondary" href="#background">My background <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg></a>}
+      {profile.cvUrl ? <a class="button button-secondary cv-open" href={profile.cvUrl} target="_blank" rel="noopener noreferrer">Open CV <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></a> : <a class="button button-secondary" href="#background">My background <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"></path></svg></a>}
     </div>
     <p class="location">Based in {profile.location} · Computer Science, Modern Academy</p>
   </div>

@@ -34,6 +34,22 @@ The owner's later Arabic correction explicitly forbids master's-study interest i
 
 The owner first requested comparison and a review-only proposal, then explicitly requested using the attached new CV instead of the old download. This supersedes D33's old checksum and the review-only boundary. Copy `D:/Yousef_Fahim_CV.pdf` unchanged to the existing `/Yousef_Fahim_Amin_CV.pdf` path; expected SHA256 is `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`. The comparison is documented; phone, GPA, classification and the document's declaration are not added to webpage HTML. The approved unchanged PDF retains its original contents. This authorizes local replacement, not a deployment or a host change.
 
+### D41 — Project-specific visual identities and richer motion (3 November 2026)
+
+The owner explicitly requested a stronger portfolio layout, colors that express each project, substantially richer animation/transitions and a much better logo. This supersedes D27's uniform orange project palette and D37/D38's layout/background-only restrictions for this bounded Phase 12 follow-up. Preserve the Studio Dark graphite frame, orange personal identity, serif/sans contrast and verified November content/order. Introduce a drawn YF monogram; give all eight projects scoped palettes and authored, explicitly labeled SVG concept illustrations. Use distinct visual chapters for the three featured studies, an early project index, compact further-work rows and section links in the case studies. Keep dedicated academic background.
+
+Motion includes viewport-aware project illustrations, reveals, parallax, hover feedback and progressive native page transitions. Provide a Pause/Resume control with optional tab-session persistence and honor runtime reduced-motion changes; the page remains readable without JavaScript or animation APIs. No animation framework or new dependency is needed. These conceptual visuals are not evidence of application execution, clinical performance, participant results or an original-UI demo. Validation remains non-browser, and delivery remains local on `tantawy`; no publication is authorized.
+
+Affected files: portfolio presentation components, scoped `project-identity.css`, motion controller/tests, favicon and its asset identity check. Content records, CV and dependencies remain unchanged. Actual checks and limitations are recorded in `docs/portfolio/validation/phase-12.md`.
+
+### D42 — Additional animation across the portfolio (3 November 2026)
+
+After D41's project-specific redesign, the owner explicitly requested much more animation for the portfolio generally. Extend the motion vocabulary to the introduction, ambient background, navigation, section headings, academic skills/training, controls and footer. Preserve content, project palettes/order, logo, local-only delivery and the unchanged CV. Keep animation optional, scene-aware and subordinate to the existing manual pause/OS preference; suspend work while the document is hidden and avoid touch-driven pointer effects. No framework or dependency changes, browser QA or publication are authorized. Affects `Hero.astro`, layout CSS imports, new `site-motion.css`, the existing motion controller and its lifecycle tests; validation is in the latest Phase 12 addendum.
+
+### D43 — View-only CV from the owner's Google Drive (3 November 2026)
+
+The owner asked to remove Download CV and keep only Open CV, pointing to `https://drive.google.com/file/d/1HyJ6ZVG2oKNNknmskzUYkgvbSr7VIrm8/view?usp=drive_link`. This supersedes D40's linked download, not its approved CV content. The Drive file is publicly reachable and byte-identical to the D40 PDF (SHA256 `6ee68528…0469d15`). Every Open CV link (hero, footer, case-study actions) opens in a new tab with `noopener noreferrer`. No page publishes a `download` link. The verified local PDF is still served unlinked at `/Yousef_Fahim_Amin_CV.pdf`, so existing release checks keep their target. Removing it needs a separate owner request. `portfolioCv.viewUrl` in `scripts/portfolio-config.mjs` is the single source for the link. The dev server binds to `127.0.0.1` because IPv4 clients could not reach the IPv6-only default.
+
 ## Historical decisions
 
 | ID | Decision | Status/source |

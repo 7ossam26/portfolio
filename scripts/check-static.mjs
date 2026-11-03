@@ -68,7 +68,8 @@ assert.ok(home.includes(portfolioOwner.name), 'The homepage must identify the ac
 for (const link of [`mailto:${portfolioOwner.email}`, portfolioOwner.github, portfolioOwner.linkedin]) {
   assert.ok(home.includes(`href="${link}"`), `Missing verified owner contact link: ${link}`);
 }
-assert.ok(home.includes(`href="/${portfolioCv.path}"`), 'The homepage must link to the verified owner CV.');
+const cvUrl = portfolioCv.viewUrl;
+assert.ok(home.includes(`href="${cvUrl}"`), 'The homepage must open the owner CV.');
 assert.ok(!/\bIn production\b/i.test(home), 'Repository evidence does not confirm a production deployment.');
 for (const slug of projectSlugs) {
   assert.ok(home.includes(`href="/work/${slug}/"`), `Homepage must link to case study ${slug}.`);
@@ -121,11 +122,18 @@ for (const [file, html] of pages) {
     assert.ok(!canonicalTag, `Preview/error page must not carry a canonical URL: ${file}`);
   }
 
+  let cvOpenLinks = 0;
   for (const tag of html.matchAll(/<(?:a|img|script|link)\b[^>]*>/gi)) {
     const source = tag[0];
+    // The owner chose a view-only CV link; no page offers a file download.
+    assert.ok(!/\sdownload(?=[\s=>/])/i.test(source), `Download links are not published: ${file}`);
     const ref = attribute(source, 'href') ?? attribute(source, 'src');
     if (!ref) continue;
     const value = decodeHtml(ref);
+    if (/^<a\b/i.test(source) && value === cvUrl) {
+      assert.equal(attribute(source, 'target'), '_blank', `Open CV must use a new tab: ${file}`);
+      cvOpenLinks += 1;
+    }
     assert.ok(!/^(?:javascript|data):/i.test(value), `Unexpected active/embedded reference in ${file}: ${value}`);
     if (value.startsWith('mailto:')) {
       assert.equal(value, `mailto:${portfolioOwner.email}`, `Unexpected email recipient in ${file}`);
@@ -158,6 +166,7 @@ for (const [file, html] of pages) {
       assert.ok(targetHtml?.includes(`id="${anchor}"`), `Broken local anchor in ${file}: ${value}`);
     }
   }
+  if (file === 'index.html') assert.ok(cvOpenLinks >= 1, 'The homepage must offer Open CV.');
 }
 
 const robots = await readFile(path.join(staticRoot, 'robots.txt'), 'utf8');

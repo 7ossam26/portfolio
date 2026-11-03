@@ -1,15 +1,20 @@
 ---
 import { profile } from '../content/profile';
 import { projects } from '../content/projects';
+import BrandMark from './BrandMark.astro';
 ---
 <header class="studio-nav">
   <a class="identity" href="/" aria-label={`${profile.name} home`}>
-    <span class="wordmark" aria-hidden="true">{profile.initials}<span>.</span></span>
+    <BrandMark />
     <span class="identity-name">{profile.name}<span>{profile.title}</span></span>
   </a>
   <nav aria-label="Main navigation">
     <a href="/#selected-work">Selected work <span>{String(projects.length).padStart(2, '0')}</span></a>
     <a href="/#background">Background</a>
+    <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false" hidden>
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" /></svg>
+      <span data-motion-label>Pause motion</span>
+    </button>
     <a class="nav-contact" href={`mailto:${profile.email}`}>
       Get in touch
       <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>

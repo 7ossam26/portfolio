@@ -2,6 +2,37 @@
 
 ## Current branch — Yousef Fahim Amin / `tantawy`, 3 November 2026
 
+Latest Phase 12 fix: **CV is view-only via Google Drive (D43)**. The owner reported a Download CV error, then asked to remove Download CV and make Open CV open their Drive link.
+
+- Download error cause: Internet Download Manager's Chrome extension captures PDFs and fetches them over IPv4, while `astro dev` listened only on IPv6 `::1`. `apps/portfolio/astro.config.mjs` now binds dev to `127.0.0.1`.
+- All Download CV links are removed. Hero, footer and every case study have one **Open CV** link to the owner's public Drive file, in a new tab with `noopener noreferrer`. The Drive file returned 200 without sign-in, and its bytes match the approved PDF (SHA256 `6ee68528…0469d15`). The local PDF stays served but unlinked.
+- `check-static.mjs` now rejects any `download` link and requires Open CV on the homepage with a new-tab target. The release HTTP test expects the Drive link.
+- `npm run verify` passed (Node 25.2.1 / npm 11.6.2 in this shell: **0 diagnostics, 18 motion tests, 10-page build/asset/static gates**). Built HTML and the running dev server emit only Drive Open CV links and zero `download` attributes. No browser QA, commit, push or deployment occurred. Clicking Open CV still needs manual confirmation.
+
+## Earlier same-day completion — site-wide motion
+
+Current phase: **12 — additional site-wide motion complete locally**. The owner separately requested much more animation across the portfolio after the project identity redesign.
+
+- Added decorative hero orbits/signals with bounded pointer/scroll depth, drifting grid and earlier visible embers, navigation underlines/logo pulse, button lift/arrow feedback, section title accents, skill sweeps, sequential education/training reveals, a scroll-filled training rail and contact/footer orbit/arrow/link animation. Scene-local loops pause offscreen; all animation freezes when the tab is hidden. Touch pointers do not drive the decorative field.
+- The existing Pause/Resume control and OS reduced-motion preference still govern the whole site. Hidden-tab handling cancels queued frame work, suspends scheduling and resumes with one fresh update; cleanup removes scene classes, properties and listeners. Content and ordinary links remain available without motion/JavaScript.
+- `npm run verify` passed: **22 Astro files, zero diagnostics; 18 motion tests; 10-page build/static/asset gates**. Final CSS-only focus-clearance adjustment rebuilt successfully. Snapshot comparison confirms only `Hero.astro`, `BaseLayout.astro` and `motion.ts` changed among existing product files, plus the new `site-motion.css`; project content, palettes, illustrations, CV and dependencies are preserved. Final gzip artifact sizes: CSS **14,265 bytes**, JS **2,147 bytes**; no runtime performance claim.
+- Evidence: newest addendum in `docs/portfolio/validation/phase-12.md` and `phase-12-evidence/site-motion-checks.json`; ignored logs/scripts under `.local-tools/site-motion/`. Local `dist/` is updated in preview indexing mode. No browser QA, visual/reflow/a11y/performance audit, commit, push, deployment or source-project execution occurred.
+- No implementation blocker remains. Manual browser review stays deferred. Next prompt: `docs/portfolio/prompts/12-owner-feedback.md`, only for owner-requested follow-up; no new phase.
+
+## Earlier same-day completion — project identities and layout
+
+Current phase: **12 — owner-requested layout, project identities, motion and logo redesign complete locally**. This latest same-day request supersedes earlier layout/palette/motion preservation restrictions, while retaining Studio Dark and the November content/CV decisions.
+
+- Reorganized the homepage into a large introduction, three-link project index, three visual project chapters, five illustrated further-work rows, academic background and contact. Featured order is still Space Drums → HeartGuard AI → RealEstate. Desktop chapters alternate composition; mobile rules stack the content.
+- Each of the eight projects has its own palette and authored SVG concept illustration, shared with its case study. Space Drums uses violet/percussion, HeartGuard rose/pulse, RealEstate blue/architecture; the five further studies use subject-specific artwork and accents. Illustrations are explicitly labeled as concepts, never original application captures or demos.
+- Replaced the plain initials with a drawn YF monogram in navigation and the matching favicon. Added chapter/section navigation, per-project illustrative loops, viewport reveals, subtle parallax, hover transitions and progressive native page transitions. A keyboard-operable Pause/Resume motion control remembers the choice within the tab; OS reduced motion remains authoritative. Illustration loops pause when their own container leaves view.
+- `npm run verify` passed under Node 22.23.2 / npm 11.1.0: **22 Astro files, zero diagnostics; 14 motion lifecycle tests; 10-page build and asset/static gates**. A final CSS-only correction was rebuilt successfully. **35 focused artifact/source checks passed**, including unchanged project/profile data, dependency inputs and exact CV checksum. Emitted CSS is 12,607 bytes gzip and JS 1,864 bytes gzip; these are file sizes, not runtime performance measurements.
+- Evidence: `docs/portfolio/validation/phase-12.md` (visual redesign addendum) and `docs/portfolio/validation/phase-12-evidence/design-artifact-checks.json`. Standalone SVG rasterizations were inspected using Sharp under ignored `.local-tools/visual-redesign/`; this was asset inspection, not browser/page rendering.
+- Final local artifact: root `dist/`, with preview indexing. No browser QA, visual/reflow/accessibility/performance pass, source-project execution, dependency installation, commit, push or deployment occurred. Manual browser review remains deferred; native page transitions depend on browser support. Branch/HEAD remain `tantawy` / `deb79e5215eab8f13e2838143d7f364fe9927306`.
+- No implementation blocker remains. Next prompt reference: `docs/portfolio/prompts/12-owner-feedback.md`, only for further owner-requested corrections. No additional phase is started.
+
+## Earlier same-day completion — academic/technical positioning
+
 Current phase: **12 — requested academic/technical positioning follow-up complete locally**. This section supersedes conflicting October positioning, order, source-version and CV entries below.
 
 - The short display name remains Yousef Fahim Amin. Dedicated academic background uses the full CV name, final-year status, full institution/location, 2023–2027 expected degree period, English instruction, revised coursework, academic interests, languages and training. These are stated CV facts, not independently verified credentials.

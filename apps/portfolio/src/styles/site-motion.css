@@ -1,0 +1,106 @@
+/* Optional, site-wide choreography. Content never depends on these effects. */
+.studio-hero { position: relative; isolation: isolate; }
+.hero-ambient { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .hero-ambient { display: block; position: absolute; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; mask-image: linear-gradient(90deg, transparent, #000 28%, #000 85%, transparent); }
+  .hero-orbit-field { position: absolute; width: clamp(20rem, 48vw, 40rem); aspect-ratio: 1; left: 27%; top: -18%; opacity: .5; transform: translate3d(calc(var(--pointer-drift-x, 0) * 12px), calc(var(--scroll-offset, 0) * -2rem + var(--pointer-drift-y, 0) * 10px), 0); transition: transform 500ms ease-out; }
+  .hero-orbit { position: absolute; inset: 12%; border: 1px solid rgb(255 170 64 / .25); border-radius: 50%; transform: rotate(-25deg) scaleY(.72); }
+  .hero-orbit::after { content: ''; position: absolute; top: 14%; left: 14%; width: .5rem; height: .5rem; border-radius: 50%; background: #ffc997; box-shadow: 0 0 16px var(--accent); }
+  .hero-orbit-one { animation: studio-orbit 22s linear infinite; }
+  .hero-orbit-two { inset: 20%; border-style: dashed; border-color: rgb(255 112 67 / .28); animation: studio-orbit 28s linear reverse infinite; }
+  .hero-orbit-three { inset: 31%; border-color: rgb(255 204 160 / .3); animation: studio-orbit 16s linear infinite; }
+  .hero-orbit-core { position: absolute; inset: 37%; border-radius: 50%; background: radial-gradient(circle, rgb(255 112 67 / .23), transparent 70%); animation: studio-core 5s ease-in-out infinite; }
+  .hero-signal { position: absolute; left: calc(12% + var(--signal-index) * 14%); top: calc(21% + var(--signal-index) * 7%); width: 2px; height: 2px; border-radius: 50%; background: #ffd4b6; box-shadow: 0 0 9px var(--accent); animation: studio-signal 6s ease-in-out calc(var(--signal-index) * -.9s) infinite; }
+  .motion-ready .hero-orbit, .motion-ready .hero-orbit-core, .motion-ready .hero-signal,
+  .motion-ready #studio-heading em, .motion-ready #studio-heading em::after,
+  .motion-ready .hero-main > .eyebrow .small-rule { animation-play-state: paused; }
+  .motion-ready .studio-hero.motion-visible .hero-orbit,
+  .motion-ready .studio-hero.motion-visible .hero-orbit-core,
+  .motion-ready .studio-hero.motion-visible .hero-signal,
+  .motion-ready .studio-hero.motion-visible #studio-heading em,
+  .motion-ready .studio-hero.motion-visible #studio-heading em::after,
+  .motion-ready .studio-hero.motion-visible .hero-main > .eyebrow .small-rule { animation-play-state: running; }
+
+  /* Move the existing spotlight as a layer instead of repainting its gradient. */
+  .motion-ready .motion-background-spotlight { inset: auto; left: 0; top: 0; width: 46rem; height: 46rem; margin: -23rem; background: radial-gradient(circle, rgb(255 112 67 / .14), rgb(255 170 64 / .05) 42%, transparent 70%); transform: translate3d(var(--mouse-x, 50vw), var(--mouse-y, 35vh), 0); will-change: transform, opacity; }
+  .motion-ready .motion-background-grid { inset: -2rem; animation: studio-grid-drift 16s ease-in-out infinite alternate; }
+  .motion-ready .motion-background-beam-surface { animation-duration: 12s; }
+  .motion-ready .motion-ember { animation-delay: -7s; }
+  .motion-ready .motion-ember:nth-child(even) { animation-delay: -12s; }
+
+  .motion-ready .studio-nav nav > a { position: relative; }
+  .motion-ready .studio-nav nav > a::after { content: ''; position: absolute; height: 1px; bottom: .2rem; inset-inline: 0; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 300ms ease; }
+  .motion-ready .studio-nav nav > a:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+  .motion-ready .studio-nav .nav-contact::after { inset-inline: 1rem; bottom: .45rem; }
+  .motion-ready .brand-point { transform-box: fill-box; transform-origin: center; animation: studio-beacon 4s ease-in-out infinite paused; }
+  .motion-ready .studio-nav.motion-visible .brand-point { animation-play-state: running; }
+  .motion-ready .button { transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 280ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1); }
+  .motion-ready .button:is(:hover, :focus-visible) { transform: translateY(-3px); box-shadow: 0 .6rem 1.75rem var(--accent-dim); }
+  .motion-ready .button:active { transform: translateY(1px) scale(.985); }
+  .motion-ready .hero-links .button-primary svg { animation: studio-arrow-drop 2.6s ease-in-out infinite paused; }
+  .motion-ready .studio-hero.motion-visible .hero-links .button-primary svg { animation-play-state: running; }
+  .motion-ready .button-secondary svg { transition: transform 350ms ease; }
+  .motion-ready a[download]:is(:hover, :focus-visible) svg { transform: translateY(3px); }
+  .motion-ready .cv-open:is(:hover, :focus-visible) svg { transform: translate(2px, -2px); }
+  .motion-ready .text-link, .motion-ready .case-contents a { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 1px; background-position: left calc(100% - .3rem); background-repeat: no-repeat; transition: color 240ms ease, background-size 350ms ease; }
+  .motion-ready .text-link:is(:hover, :focus-visible), .motion-ready .case-contents a:is(:hover, :focus-visible) { background-size: 100% 1px; }
+
+  .motion-ready .section-heading h2 { position: relative; }
+  .motion-ready .section-heading h2::after { content: ''; position: absolute; left: 0; bottom: -.6rem; width: 2.25rem; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 800ms cubic-bezier(.22, 1, .36, 1) 150ms; }
+  .motion-ready .section-heading.motion-visible h2::after { transform: scaleX(1); }
+  .motion-ready .section-heading h2 > span { display: inline-block; transition: transform 600ms ease, opacity 600ms ease; }
+  .motion-ready .section-heading:not(.motion-visible) h2 > span { transform: translateX(.75rem); opacity: .4; }
+  .motion-ready .case-section .section-index { transition: color 600ms ease, transform 650ms ease; }
+  .motion-ready .case-section:not(.motion-visible) .section-index { transform: translateY(1rem); }
+  .motion-ready .case-section.motion-visible .section-index { color: var(--accent); }
+  .motion-ready .skill-group { position: relative; isolation: isolate; }
+  .motion-ready .skill-group::before { content: ''; position: absolute; z-index: -1; inset: 0 -.75rem; border-radius: .375rem; background: linear-gradient(150deg, var(--accent-subtle), transparent 75%); opacity: 0; transform: scale(.97); transition: opacity 350ms ease, transform 450ms ease; }
+  .motion-ready .skill-group:is(:hover, :focus-within)::before { opacity: 1; transform: scale(1); }
+  .motion-ready .skill-group::after { content: ''; position: absolute; top: -1px; left: 0; width: 25%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: studio-skill-sweep 8s ease-in-out infinite paused; }
+  .motion-ready .skill-group.motion-visible::after { animation-play-state: running; }
+  .motion-ready .skill-group:nth-child(2)::after { animation-delay: -2.6s; }
+  .motion-ready .skill-group:nth-child(3)::after { animation-delay: -5.2s; }
+  .motion-ready .skill-group h3 { transition: color 250ms ease, transform 350ms ease; }
+  .motion-ready .skill-group:hover h3 { color: var(--accent); transform: translateX(.25rem); }
+  .motion-ready .training-list { position: relative; padding-left: 1.5rem; }
+  .motion-ready .training-list::before, .motion-ready .training-list::after { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--line); }
+  .motion-ready .training-list::after { background: linear-gradient(var(--accent), #ffbf83); transform: scaleY(var(--section-progress, 0)); transform-origin: top; transition: transform 120ms linear; }
+  .motion-ready .training-list > li { position: relative; }
+  .motion-ready .training-list > li::before { content: ''; position: absolute; top: 1.8rem; left: -1.75rem; width: .55rem; height: .55rem; border-radius: 50%; border: 1px solid var(--accent); background: var(--bg); transform: scale(.5); transition: transform 500ms ease, background-color 500ms ease; }
+  .motion-ready .training-list > li.motion-visible::before { background: var(--accent); transform: scale(1); }
+
+  .motion-ready .studio-footer { position: relative; isolation: isolate; }
+  .motion-ready .studio-footer::before { content: ''; position: absolute; z-index: -1; width: 27rem; aspect-ratio: 1; left: -4rem; top: -3rem; border: 1px dashed rgb(255 170 64 / .18); border-radius: 50%; animation: studio-contact-orbit 40s linear infinite paused; }
+  .motion-ready .studio-footer::after { content: ''; position: absolute; z-index: -1; width: 18rem; aspect-ratio: 1; left: .5rem; top: 1rem; border: 1px solid rgb(255 112 67 / .12); border-top-color: rgb(255 170 64 / .5); border-radius: 50%; animation: studio-contact-orbit 24s linear reverse infinite paused; }
+  .motion-ready .studio-footer.motion-visible::before, .motion-ready .studio-footer.motion-visible::after { animation-play-state: running; }
+  .motion-ready .contact-link { position: relative; transition: color 250ms ease, letter-spacing 450ms ease; }
+  .motion-ready .contact-link::after { content: ''; position: absolute; bottom: -.15rem; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform 650ms ease; }
+  .motion-ready .contact-link:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+  .motion-ready .contact-link:is(:hover, :focus-visible) { letter-spacing: -.045em; }
+  .motion-ready .contact-link svg { animation: studio-contact-arrow 4s ease-in-out infinite paused; }
+  .motion-ready .studio-footer.motion-visible .contact-link svg { animation-play-state: running; }
+  .motion-ready .contact-details > a { transition: color 250ms ease, transform 320ms ease; }
+  .motion-ready .contact-details > a:is(:hover, :focus-visible) { color: var(--accent); transform: translateX(-4px); }
+
+  /* Freeze every loop while backgrounded, including pre-existing project art. */
+  :root.motion-backgrounded *, :root.motion-backgrounded *::before, :root.motion-backgrounded *::after { animation-play-state: paused !important; }
+  @keyframes studio-orbit { from { transform: rotate(-25deg) scaleY(.72) rotate(0deg); } to { transform: rotate(-25deg) scaleY(.72) rotate(360deg); } }
+  @keyframes studio-core { 50% { transform: scale(1.45); opacity: .5; } }
+  @keyframes studio-signal { 0%, 100% { opacity: .15; transform: translate3d(0, 0, 0); } 50% { opacity: .8; transform: translate3d(8px, -25px, 0); } }
+  @keyframes studio-grid-drift { from { transform: translate3d(-12px, -8px, 0); opacity: .5; } to { transform: translate3d(12px, 8px, 0); opacity: .8; } }
+  @keyframes studio-beacon { 50% { transform: scale(.72); opacity: .55; } }
+  @keyframes studio-arrow-drop { 0%, 45%, 100% { transform: translateY(0); } 65% { transform: translateY(3px); } 80% { transform: translateY(-1px); } }
+  @keyframes studio-skill-sweep { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: .8; } 80% { opacity: .8; } 100% { transform: translateX(300%); opacity: 0; } }
+  @keyframes studio-contact-orbit { to { transform: rotate(360deg); } }
+  @keyframes studio-contact-arrow { 50% { transform: translate(4px, -4px); } }
+}
+
+@media (max-width: 50rem) and (prefers-reduced-motion: no-preference) {
+  .hero-orbit-field { left: 10%; top: -5%; opacity: .35; }
+  .motion-ready .motion-background-spotlight { display: none; }
+}
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .motion-ready .motion-background-spotlight { display: none; }
+  .motion-ready .button:hover { transform: none; }
+}

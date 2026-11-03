@@ -1,5 +1,113 @@
 # Phase 12 — Owner feedback and final local handoff
 
+## November follow-up — view-only CV from Google Drive (D43)
+
+Date: **3 November 2026 (Africa/Cairo)**. After the download fix below, the owner asked to remove Download CV entirely. Open CV must open `https://drive.google.com/file/d/1HyJ6ZVG2oKNNknmskzUYkgvbSr7VIrm8/view?usp=drive_link`.
+
+- `portfolioCv.viewUrl` (`scripts/portfolio-config.mjs`) is the single link source. `profile.cvUrl` uses it, and `cvFilename` is removed. Hero, footer and case-study actions each render one Open CV link with `target="_blank" rel="noopener noreferrer"`. All Download CV markup and the temporary `.cv-links` layout CSS are removed.
+- `check-static.mjs` rejects any `download` attribute and requires the homepage to link to the Drive URL with a new-tab target. External-link rules still enforce HTTPS and `noopener noreferrer`. `tests/phase-09/release-http.mjs` expects the Drive link. Its local-PDF HEAD/range checks remain because the verified PDF is still served, unlinked.
+
+| Check | Actual result |
+| --- | --- |
+| Drive link, unauthenticated HTTP | View page 200 `text/html`, no sign-in redirect. The file export returns 64,495 bytes, `%PDF-1.4`, SHA256 `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15` (identical to the approved CV). |
+| `npm run verify` (Node 25.2.1 / npm 11.6.2) | Passed: 0 errors/warnings/hints; 18 motion tests; asset check; 10 pages; static gate including the no-download rule. |
+| Built `dist/` and running dev server | `/` and `/work/spacedrums/` contain only Drive Open CV links (two per page) and zero `download` attributes. The dev server reflected the change after reload. |
+
+No browser click-through or visual check occurred. Drive's own viewer and sharing settings are outside this repository; if the file's sharing changes, visitors will see Google's access page.
+
+## November follow-up — CV download error and Open CV
+
+Date: **3 November 2026 (Africa/Cairo)**. The owner reported that Download CV showed an error. They re-attached `Hassoun_CV.pdf` and asked for an option that opens the CV instead of downloading it. This is a bounded Phase 12 correction on `tantawy`. The D43 entry above supersedes the paired Open/Download links described here.
+
+### Diagnosis
+
+- Attached CV versus published copy: identical (64,495 bytes, SHA256 `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`). The PDF was not replaced or rewritten.
+- The owner's running `astro dev` listened only on `[::1]:4321`. Over IPv6 it returned the PDF correctly, but an IPv4 request to `127.0.0.1:4321` was refused.
+- Internet Download Manager is installed. Its Chrome integration extension is present in four Chrome profiles, and its capture list includes `PDF`. A captured download is fetched by IDM itself over IPv4, which explains the error. This is a diagnosis from the installed configuration; the browser click was not reproduced.
+
+### Delivered behavior
+
+- `astro.config.mjs` sets `server.host` to `127.0.0.1`, so `localhost` downloads also work for external download managers. Production and preview hosting are unchanged.
+- Hero: a CV pair, **Open CV** and **Download CV**, sits below Explore my work. The footer and every case study also offer **Open CV** beside Download CV. Open CV loads the same verified URL in a new tab, so the browser's PDF viewer displays it. A small hover arrow cue respects existing motion gating.
+- `check-static.mjs` requires every page to have equal counts of Open CV and Download CV links, with new-tab/noopener on Open CV. It also corrects the existing download assertion (`attribute()` returns `undefined`, not `null`). That bug made the previously uncommitted `?v=` download check fail on every link.
+
+### Validation
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify` (shell runtime Node 25.2.1 / npm 11.6.2, outside the declared Node 22 engine range) | Passed: 0 errors/warnings/hints; 18 motion tests; asset check; 10 pages built; static gate verified every local link and the CV pairing. |
+| Dev server HTTP after automatic config restart | `127.0.0.1:4321` and `localhost:4321` both return 200 `application/pdf`, 64,495 bytes, exact SHA256. |
+| Built `dist/` via `scripts/preview-static.mjs` on port 4399 | Same 200/type/size/checksum, no `Content-Disposition`. Homepage and `/work/spacedrums/` each emit two Open CV and two Download CV links. |
+
+No browser automation, rendering, IDM click-through, visual/reflow or accessibility run occurred. The manual owner check remains: click both CV actions on a narrow and a wide window. IDM may still capture Open CV because PDF is in its capture list; removing PDF from that list lets Chrome display it.
+
+Next prompt reference: [`../prompts/12-owner-feedback.md`](../prompts/12-owner-feedback.md), only for further owner-requested corrections.
+
+## November follow-up — additional site-wide motion
+
+Date: **3 November 2026 (Africa/Cairo)**. The owner requested much more animation across the portfolio after the project identity redesign. Earlier uncommitted work is preserved on `tantawy`; this is another bounded Phase 12 addendum.
+
+### Delivered behavior
+
+- Decorative hero rings, orbiting nodes and drifting signals, with bounded pointer depth and scroll movement; existing hero accent/arrow animation is gated by hero visibility.
+- Ambient grid drift, faster beam cycle, initially active embers and a spotlight moved with transforms instead of a changing gradient center. Spotlight is hidden on narrow/coarse-pointer presentations; touch events do not drive pointer effects.
+- Navigation underlines, a pulsing logo point, button lift/press states, download/directional icon feedback, link underlines and section-title accents.
+- Skill-card light sweeps and hover emphasis, sequential education/training reveals, a rail that fills with training-section scroll progress, and footer rings/contact-arrow/link feedback. Footer decoration does not clip focus outlines.
+- Scene-local loops pause outside the viewport. Document visibility handling freezes all CSS loops, cancels queued pointer/scroll frames, suppresses hidden-tab scheduling and resumes with one fresh layout update. Manual pause and runtime reduced-motion cleanup still restore the static presentation.
+
+### Validation
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify`, existing Node 22.23.2 / npm 11.1.0 | Passed. 22 Astro files, zero errors/warnings/hints; 18 motion tests; 10-page asset/build/static checks. |
+| Added behavior coverage | Hidden-tab cancel/resume, pausing while hidden, bounded pointer drift with touch suppression, training-rail progress/clamping. Node DOM/event doubles; not browser execution. |
+| Final `npm run build` | Passed after the CSS-only footer focus-clearance adjustment. All local links, anchors, assets, active-owner and preview-indexing gates pass; historical demos remain excluded. |
+| Before/after snapshot comparison | Only three existing product files changed: `Hero.astro`, `BaseLayout.astro`, `motion.ts`. Added `site-motion.css`. All other existing source/public files, including project content/palettes/artwork and CV, match the start of this follow-up. Package inputs remain unchanged. |
+| CV checksum | Built PDF still matches `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`. |
+| Emitted artifact size | CSS 14,265 bytes gzip; JS 2,147 bytes gzip. Both remain within the 45 KiB file budget; no runtime performance or transfer measurement. |
+| `git diff --check` | Passed. |
+
+Evidence: [site-motion checks](phase-12-evidence/site-motion-checks.json). Ignored logs and utilities: `.local-tools/site-motion/verify.log`, `final-build.log`, `source-before.json`, `check-artifact.mjs`.
+
+No browser automation/preview, website render, visual/reflow approval, real keyboard/a11y run, runtime performance/network audit, source-project execution, commit, push or deployment occurred. Existing browser evidence does not validate this animation. Root `dist/` contains the updated local artifact in preview indexing mode; manual browser review remains deferred.
+
+Next prompt reference: [`../prompts/12-owner-feedback.md`](../prompts/12-owner-feedback.md), only for further owner-requested corrections. No additional phase is started.
+
+## November follow-up — layout, project identities, animation and YF monogram
+
+Date: **3 November 2026 (Africa/Cairo)**. Owner-requested visual redesign on `tantawy`, starting from clean HEAD `deb79e5215eab8f13e2838143d7f364fe9927306`. This is bounded Phase 12 work; the prior same-day content/CV decisions remain in force.
+
+### Delivered behavior
+
+- A clearer homepage progression: typographic introduction → three-project jump index → visual project chapters → compact illustrated further work → dedicated academic background → contact. The three featured projects retain their approved order and alternate text/visual placement on wide screens.
+- Eight scoped palettes and eight authored SVG concepts, reused in the corresponding case studies. Violet drum pads/sticks/ripples for Space Drums, rose heart/trace for HeartGuard, architectural blue buildings for RealEstate; activity, circuit, hand/volume, digit and connected-record motifs for the remaining studies. Captioned as concept illustrations, never application footage or completed demos.
+- A custom geometric YF monogram replaces the old plain `yf.` initials in navigation and favicon. The favicon asset guard now recognizes this identity while retaining remote/executable-content and historical-owner exclusions.
+- Subject-specific animation, staggered reveals, scroll parallax, project-colored hover/line transitions, a project jump index and case-study section links. Native cross-document transitions are conditional enhancement with ordinary-link fallback. The conditional `@view-transition` rule and same-origin behavior were checked against the [CSSWG editor's draft, section 8.3](https://drafts.csswg.org/css-view-transitions-2/#at-view-transition-rule); this is not browser support verification.
+- A Pause/Resume motion button with optional tab-session persistence, runtime OS preference support and static failure fallback. Each illustration's observer state gates its loop independently, including inside a tall visible chapter. New illustrations introduce no camera, audio, model execution or external asset requests.
+
+### Validation performed
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify`, existing Node 22.23.2 / npm 11.1.0 | Passed; no install or dependency changes. |
+| Astro check | 22 files; zero errors, warnings or hints. |
+| Node motion tests | 14 passed, including four new behavior checks for manual pause/resume cleanup, cross-page session preference + OS precedence, unavailable storage and independent illustration visibility. DOM/event doubles only. |
+| Final `npm run build` after scoped CSS correction | Passed; 10 pages, asset allowlist, internal links/anchors/assets, active owner and preview indexing gates. Historical demo payloads remain excluded. |
+| Focused artifact/source checks | 35 passed; [machine-readable evidence](phase-12-evidence/design-artifact-checks.json). Project order, anchors, labels, all eight study presentations, academic background, restricted wording, unchanged project/profile/package files and exact CV SHA256 verified. |
+| Static payload sizes | Emitted CSS 12,607 bytes gzip; JS 1,864 bytes gzip. Homepage HTML 37,187 raw / 8,259 gzip bytes. These are file compression measurements, not observed transfer, rendering or performance scores. |
+| Standalone SVG inspection | All eight illustrations and the monogram rasterized with the already-installed Sharp library and visually inspected as assets. No browser, website screenshot or page render. |
+| `git diff --check` | Passed. |
+
+Ignored local utility/artifacts: `.local-tools/visual-redesign/artifact-checks.mjs`, `artwork-contact-sheet.png`, `monogram.png`. Product components: `BrandMark.astro`, `ProjectArtwork.astro`, `ProjectVisual.astro`, `WorkIndex.astro`, updated navigation/cards/rows/case-study/layout/homepage and `project-identity.css`. The existing content records, source evidence, CV bytes, dependency versions and original application boundaries are unchanged.
+
+### Limits and handoff
+
+No browser automation, preview review, responsive/reflow approval, keyboard browser run, accessibility audit, runtime animation/performance/network measurement or deployment check was performed. Earlier browser evidence does not validate this layout. Native page transitions depend on browser support; final visual/reflow approval remains for manual review. Concept artwork does not validate the referenced applications or experiments.
+
+The complete local artifact is in root `dist/`, retaining `noindex,nofollow`, disallow-all robots and no canonical/sitemap. No commit, push, host change or deployment occurred. No implementation blocker remains for this request.
+
+Next prompt reference: [`../prompts/12-owner-feedback.md`](../prompts/12-owner-feedback.md), only for explicitly requested follow-up. Stop here; no additional phase is started.
+
 ## November follow-up — revised positioning and authorized CV replacement
 
 Date: **3 November 2026 (Africa/Cairo)**. All edits are on `tantawy`, starting at clean HEAD `deb79e5215eab8f13e2838143d7f364fe9927306`. This is additional owner-authorized Phase 12 work, not automatic execution of another phase. It supersedes the October order/version/CV details preserved below.

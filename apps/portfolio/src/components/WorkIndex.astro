@@ -1,0 +1,12 @@
+---
+import { projects } from '../content/projects';
+const featured = projects.filter(project => project.featured);
+const labels = ['Vision & interaction', 'Learning & evaluation', 'Backend & architecture'];
+---
+<nav class="work-index" aria-label="Featured project index">
+  {featured.map((project, index) => <a href={`#project-${project.slug}`} data-project={project.slug}>
+    <span class="index-number">0{index + 1}</span>
+    <span class="index-copy"><small>{labels[index]}</small><strong>{project.name}</strong></span>
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10" /></svg>
+  </a>)}
+</nav>

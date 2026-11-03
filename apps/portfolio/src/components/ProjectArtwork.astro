@@ -1,0 +1,71 @@
+---
+import type { ProjectSlug } from '../content/projects';
+interface Props { slug: ProjectSlug; }
+const { slug } = Astro.props;
+const pads = [{x: 88, y: 194}, {x: 218, y: 164}, {x: 348, y: 164}, {x: 478, y: 194}];
+---
+<svg class="project-artwork" viewBox="0 0 640 360" aria-hidden="true" focusable="false">
+  {slug === 'spacedrums' && <>
+    <ellipse class="art-orbit" cx="320" cy="205" rx="267" ry="110" />
+    <ellipse class="art-orbit art-orbit-inner" cx="320" cy="205" rx="205" ry="76" />
+    <path class="art-faint" d="M72 100V74h26M542 74h26v26M72 264v26h26M542 290h26v-26" />
+    {pads.map((pad, i) => <g class="drum-pad" style={`--i:${i}`}>
+      <ellipse class="pad-depth" cx={pad.x} cy={pad.y + 16} rx="51" ry="22" />
+      <ellipse class="pad-face" cx={pad.x} cy={pad.y} rx="51" ry="22" />
+      <ellipse class="pad-wave" cx={pad.x} cy={pad.y} rx="51" ry="22" />
+      <path class="art-faint" d={`M${pad.x} ${pad.y + 41}v17`} />
+    </g>)}
+    <g class="drum-stick stick-left"><path d="m185 77 54 74" /><circle cx="239" cy="151" r="5" /></g>
+    <g class="drum-stick stick-right"><path d="m407 65-48 86" /><circle cx="359" cy="151" r="5" /></g>
+    <g class="art-equalizer">{Array.from({length: 19}, (_, i) => <path style={`--i:${i}`} d={`M${230+i*10} 306v-${10+(i*17)%32}`} />)}</g>
+  </>}
+  {slug === 'heartguard' && <>
+    <g class="heart-grid">{[100,140,180,220,260].map(y => <path d={`M65 ${y}h510`} />)}{[100,180,260,340,420,500].map(x => <path d={`M${x} 75v210`} />)}</g>
+    <circle class="art-orbit" cx="320" cy="178" r="120" />
+    <g class="heart-shape"><path d="M320 253c-24-19-91-61-91-112 0-44 58-64 91-20 33-44 91-24 91 20 0 51-67 93-91 112Z" /></g>
+    <path class="pulse-track" d="M65 181h122l20-22 25 41 34-18h24l17-50 23 103 24-72 20 18h201" />
+    <path class="pulse-trace" pathLength="100" d="M65 181h122l20-22 25 41 34-18h24l17-50 23 103 24-72 20 18h201" />
+    <g class="art-points">{[125,165,475,515].map((x,i) => <circle style={`--i:${i}`} cx={x} cy={i%2 ? 262 : 98} r="5" />)}</g>
+  </>}
+  {slug === 'realestate' && <>
+    <path class="city-ground" d="m55 267 247-130 282 129-247 78Z" />
+    <g class="city-building building-back"><path d="m346 126 65-32 65 32v113l-65 32-65-32Z" /><path d="m346 126 65 32 65-32M411 158v113" /></g>
+    <g class="city-building building-left"><path d="m144 187 66-33 66 33v93l-66 33-66-33Z" /><path d="m144 187 66 33 66-33M210 220v93" /></g>
+    <g class="city-building building-front"><path d="m250 125 70-35 70 35v166l-70 35-70-35Z" /><path d="m250 125 70 35 70-35M320 160v166" />
+      {[184,214,244,274].map(y => <path class="building-window" d={`m267 ${y-18} 34 17m36-1 34-17`} />)}
+    </g>
+    <g class="city-pin"><path d="M320 37c-22 0-29 26 0 49 29-23 22-49 0-49Z" /><circle cx="320" cy="56" r="6" /></g>
+    <path class="city-route" pathLength="100" d="m72 268 138 64 111-48 168 8 73-35" />
+  </>}
+  {slug === 'gym-app' && <>
+    <rect class="device-frame" x="233" y="35" width="174" height="290" rx="27" /><path class="art-faint" d="M298 53h44M303 307h34" />
+    <circle class="art-orbit" cx="320" cy="164" r="57" />
+    <circle class="activity-ring" cx="320" cy="164" r="57" pathLength="100" />
+    <path class="art-solid" d="m289 164 21 20 39-41" />
+    <g class="art-equalizer">{[34,58,40,71,52].map((height,i) => <path style={`--i:${i}`} d={`M${280+i*20} 283v-${height}`} />)}</g>
+  </>}
+  {slug === 'arduino-projects' && <>
+    <rect class="circuit-board" x="240" y="105" width="160" height="150" rx="12" />
+    <rect class="art-faint" x="280" y="145" width="80" height="70" rx="5" />
+    {[0,1,2,3].map(i => <g class="circuit-path" style={`--i:${i}`}>
+      <path pathLength="100" d={`M240 ${128+i*33}h-${30+i*15}v${i<2 ? -55 : 55}h-55M400 ${128+i*33}h${30+i*15}v${i<2 ? -55 : 55}h55`} />
+      <circle cx={155-i*15} cy={128+i*33+(i<2 ? -55 : 55)} r="6" /><circle cx={485+i*15} cy={128+i*33+(i<2 ? -55 : 55)} r="6" />
+    </g>)}
+    <path class="art-solid" d="m304 179 10 10 22-24" />
+  </>}
+  {slug === 'gesture-volume' && <>
+    <g class="gesture-hand"><path d="m230 278-32-75c-8-22 12-33 24-12l19 31V105c0-22 25-22 25 0v74-104c0-22 26-22 26 0v101-83c0-22 25-22 25 0v87-59c0-22 25-22 25 0v104c0 40-12 61-24 70" />
+      <circle class="tracking-point" cx="253" cy="106" r="9" /><circle class="tracking-point" cx="210" cy="195" r="9" /><path class="gesture-distance" d="m210 195 43-89" /></g>
+    <g class="volume-levels">{[34,60,86,112,138].map((height,i) => <rect style={`--i:${i}`} x={388+i*24} y={244-height} width="12" height={height} rx="4" />)}</g>
+  </>}
+  {slug === 'digits-classifier' && <>
+    <g class="digit-matrix">{['11111','00001','00010','00100','01000','01000','01000'].flatMap((row,y) => [...row].map((cell,x) => <rect class:list={[cell === '1' && 'digit-active']} style={`--i:${x+y}`} x={140+x*25} y={88+y*25} width="17" height="17" rx="3" />))}</g>
+    <path class="art-faint" d="M287 175h58m-12-12 12 12-12 12" />
+    <g class="classifier-nodes">{[110,180,250].map((y,i) => <g style={`--i:${i}`}><path d={`M355 180 410 ${y}h64`} /><circle cx="490" cy={y} r="13" /></g>)}</g>
+  </>}
+  {slug === 'hospital-management' && <>
+    <rect class="hospital-core" x="258" y="118" width="124" height="124" rx="18" />
+    <path class="art-solid" d="M320 151v58m-29-29h58" />
+    {[{x:145,y:90},{x:495,y:90},{x:145,y:270},{x:495,y:270}].map((point,i) => <g class="hospital-node" style={`--i:${i}`}><path d={`M${point.x} ${point.y}H320v${point.y<180 ? 28 : -28}`} /><rect x={point.x-27} y={point.y-27} width="54" height="54" rx="10" /><circle cx={point.x} cy={point.y-5} r="7" /><path d={`M${point.x-12} ${point.y+13}q12-16 24 0`} /></g>)}
+  </>}
+</svg>

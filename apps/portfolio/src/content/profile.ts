@@ -1,3 +1,5 @@
+import { portfolioCv } from '../../../../scripts/portfolio-config.mjs';
+
 /** Self-reported background from the CV supplied on 3 November 2026; project skills from inspected source. */
 export const profile = {
   name: 'Yousef Fahim Amin',
@@ -11,7 +13,8 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/yousef-fahem/',
   social: 'https://x.com/YousefFahem0',
   description: 'Yousef Fahim Amin — final-year Computer Science undergraduate focused on applied machine learning, model evaluation, and interactive computer vision.',
-  cvUrl: '/Yousef_Fahim_Amin_CV.pdf' as string | null,
+  // Opens the owner's public Google Drive copy of the CV in a new tab.
+  cvUrl: portfolioCv.viewUrl as string | null,
 };
 
 export const skillGroups = [

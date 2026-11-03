@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-03",
+  "method": "Node file/source checks and standalone SVG rasterization; no browser or page rendering",
+  "checks": [
+    {
+      "name": "All eight projects have distinct authored palettes",
+      "passed": true
+    },
+    {
+      "name": "Featured order remains Space Drums, HeartGuard AI, RealEstate",
+      "passed": true
+    },
+    {
+      "name": "All three project jump links target present chapter IDs",
+      "passed": true
+    },
+    {
+      "name": "Academic background and supplied full name remain present",
+      "passed": true
+    },
+    {
+      "name": "spacedrums: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "spacedrums: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "spacedrums: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "heartguard: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "heartguard: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "heartguard: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "realestate: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "realestate: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "realestate: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "gym-app: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "gym-app: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "gym-app: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "arduino-projects: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "arduino-projects: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "arduino-projects: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "gesture-volume: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "gesture-volume: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "gesture-volume: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "digits-classifier: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "digits-classifier: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "digits-classifier: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "hospital-management: illustrated and labeled case study with section navigation",
+      "passed": true
+    },
+    {
+      "name": "hospital-management: static content has CV, source link and accessible motion control",
+      "passed": true
+    },
+    {
+      "name": "hospital-management: restricted personal wording stays out of HTML",
+      "passed": true
+    },
+    {
+      "name": "apps/portfolio/src/content/projects.ts: unchanged from HEAD",
+      "passed": true
+    },
+    {
+      "name": "apps/portfolio/src/content/profile.ts: unchanged from HEAD",
+      "passed": true
+    },
+    {
+      "name": "package.json: unchanged from HEAD",
+      "passed": true
+    },
+    {
+      "name": "package-lock.json: unchanged from HEAD",
+      "passed": true
+    },
+    {
+      "name": "apps/portfolio/package.json: unchanged from HEAD",
+      "passed": true
+    },
+    {
+      "name": "Published CV bytes unchanged",
+      "passed": true
+    },
+    {
+      "name": "Emitted CSS and JS each stay below the 45 KiB gzip source budget",
+      "passed": true
+    }
+  ],
+  "assets": [
+    {
+      "file": "BaseLayout.8yAH9b-j.css",
+      "bytes": 60759,
+      "gzipBytes": 12607
+    },
+    {
+      "file": "BaseLayout.astro_astro_type_script_index_0_lang.n8NOcWgx.js",
+      "bytes": 5499,
+      "gzipBytes": 1864
+    }
+  ],
+  "cssGzip": 12607,
+  "jsGzip": 1864,
+  "homepage": {
+    "bytes": 37187,
+    "gzipBytes": 8259
+  },
+  "browserQA": "deferred",
+  "deployment": "not performed"
+}

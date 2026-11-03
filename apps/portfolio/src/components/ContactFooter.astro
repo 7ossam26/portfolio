@@ -11,9 +11,9 @@ import { profile } from '../content/profile';
   </div>
   <div class="contact-details">
     <a href={`mailto:${profile.email}`}>{profile.email}</a>
-    {profile.cvUrl && <a href={profile.cvUrl} download>
-      Download CV
-      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"></path></svg>
+    {profile.cvUrl && <a class="cv-open" href={profile.cvUrl} target="_blank" rel="noopener noreferrer">
+      Open CV
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
     </a>}
     <a href={profile.github} target="_blank" rel="noopener noreferrer">
       GitHub

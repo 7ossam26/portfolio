@@ -8,6 +8,11 @@ const site = resolveSiteUrl();
 export default defineConfig({
   output: 'static',
   ...(site ? { site } : {}),
+  // Plain `localhost` binds only IPv6 ::1 on this Windows setup, which IPv4-only
+  // clients such as external download managers cannot reach.
+  server: {
+    host: '127.0.0.1',
+  },
   build: {
     assets: '_assets',
   },

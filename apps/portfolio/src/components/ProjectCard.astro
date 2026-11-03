@@ -1,6 +1,7 @@
 ---
 import type { ProjectContent } from '../content/projects';
 import ProjectDiagram from './ProjectDiagram.astro';
+import ProjectVisual from './ProjectVisual.astro';
 
 interface Props {
   project: ProjectContent;
@@ -17,7 +18,7 @@ const deck = project.summary;
 const projectIndexString = String(index + 1).padStart(2, '0');
 ---
 
-<article class="featured-project" aria-labelledby={`${project.slug}-heading`}>
+<article class="featured-project" data-project={project.slug} id={`project-${project.slug}`} aria-labelledby={`${project.slug}-heading`}>
   <div class="feature-topline">
     <span class="eyebrow">{projectIndexString} / {project.domain.toUpperCase()}</span>
     <span class="project-kind">{index === 0 ? 'FEATURED PROJECT' : 'SELECTED PROJECT'}</span>
@@ -27,11 +28,6 @@ const projectIndexString = String(index + 1).padStart(2, '0');
       <h3 id={`${project.slug}-heading`}>{project.name}</h3>
       <p class="project-deck">{deck}</p>
       <p class="project-description">{project.distinction}</p>
-      <dl class="project-evidence">
-        {project.capabilities.slice(1).map((capability) => (
-          <div><dt>{capability.label}</dt><dd>{capability.detail}</dd></div>
-        ))}
-      </dl>
       <p class="tech-line">
         {featuredStack.map((item, i) => (
           <>{i > 0 && <span aria-hidden="true">·</span>}{item}</>
@@ -70,6 +66,14 @@ const projectIndexString = String(index + 1).padStart(2, '0');
         />
         <figcaption>{featuredMedia.caption}</figcaption>
       </figure>
-    ) : <ProjectDiagram project={project} compact />}
+    ) : <ProjectVisual project={project} />}
+  </div>
+  <div class="project-chapter-bottom">
+    <dl class="project-evidence">
+      {project.capabilities.slice(1).map((capability) => (
+        <div><dt>{capability.label}</dt><dd>{capability.detail}</dd></div>
+      ))}
+    </dl>
+    <ProjectDiagram project={project} compact />
   </div>
 </article>

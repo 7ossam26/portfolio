@@ -1,0 +1,240 @@
+/* Space scene (D45): the hero composed around Saturn, orbiting motes, a pointer-parallax
+   star field with glowing dust, and project index cards that glow in their own colours.
+   Static layout and decoration work without JavaScript; movement is motion-gated. */
+
+/* ---------- Hero composition: headline | Saturn | introduction ---------- */
+/* Decorative orbits may extend past the hero; clip them without creating a scroll
+   container, so the sticky navigation keeps working. */
+.studio { overflow-x: clip; }
+.studio-hero {
+  grid-template-areas: "main stage aside";
+  grid-template-columns: minmax(0, 1.25fr) minmax(11rem, .8fr) minmax(18rem, 1fr);
+}
+.hero-main { grid-area: main; }
+.hero-aside { grid-area: aside; }
+#studio-heading { font-size: clamp(3.1rem, 5.4vw, 5.75rem); }
+.hero-saturn {
+  --saturn-size: clamp(11rem, 19vw, 18.5rem);
+  --orbit-field: min(calc(var(--saturn-size) * 2.4), calc(100vw - 2.5rem));
+  grid-area: stage;
+  position: relative;
+  z-index: -1;
+  width: var(--saturn-size);
+  height: calc(var(--saturn-size) * .8);
+  align-self: center;
+  justify-self: center;
+  pointer-events: none;
+}
+
+/* Orbits share the planet's centre. Motes ride inclined ellipses whose minor radius
+   always clears the planet disc; at rest they sit at an orbit end. */
+.hero-orbit-field {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--orbit-field); aspect-ratio: 1;
+  transform: translate(-50%, -50%) translate3d(calc(var(--pointer-drift-x, 0) * 14px), calc(var(--scroll-offset, 0) * -1.5rem + var(--pointer-drift-y, 0) * 10px), 0);
+}
+.hero-orbit { position: absolute; inset: 0; transform: rotate(var(--orbit-angle)); }
+.hero-orbit-1 { --orbit-r: calc(var(--orbit-field) * .5); --orbit-k: .36; --orbit-angle: -26deg; --orbit-period: 34s; }
+.hero-orbit-2 { --orbit-r: calc(var(--orbit-field) * .4); --orbit-k: .42; --orbit-angle: -16deg; --orbit-period: 22s; }
+.hero-orbit-3 { --orbit-r: calc(var(--orbit-field) * .3); --orbit-k: .5; --orbit-angle: -32deg; --orbit-period: 14s; }
+.hero-orbit-path {
+  position: absolute; left: 50%; top: 50%;
+  width: calc(var(--orbit-r) * 2); height: calc(var(--orbit-r) * 2); margin: calc(var(--orbit-r) * -1);
+  border: 1px solid rgb(255 170 64 / .24); border-radius: 50%;
+  transform: scaleY(var(--orbit-k));
+  -webkit-mask-image: linear-gradient(100deg, transparent 2%, #000 30%, #000 72%, transparent 98%);
+  mask-image: linear-gradient(100deg, transparent 2%, #000 30%, #000 72%, transparent 98%);
+}
+.hero-orbit-2 .hero-orbit-path { border-style: dashed; border-color: rgb(255 140 80 / .34); }
+.hero-orbit-3 .hero-orbit-path { border-color: rgb(255 205 160 / .18); }
+.hero-mote { position: absolute; left: 50%; top: 50%; transform: translate3d(calc(var(--orbit-r) * var(--mote-rest, 1)), 0, 0); }
+.hero-orbit-2 .hero-mote:nth-child(3) { --mote-rest: -1; --mote-phase: calc(var(--orbit-period) / -2); }
+.hero-orbit-3 .hero-mote { --mote-rest: -1; --mote-phase: -9s; }
+.hero-mote-y { position: absolute; left: 0; top: 0; }
+.hero-mote-dot {
+  position: absolute; width: .45rem; height: .45rem; margin: -.225rem; border-radius: 50%;
+  background: #ffd8b0;
+  box-shadow: 0 0 .5rem #ff7043, 0 0 1.1rem rgb(255 140 70 / .6);
+}
+.hero-orbit-3 .hero-mote-dot { width: .3rem; height: .3rem; margin: -.15rem; }
+
+@media (max-width: 68.75rem) {
+  .studio-hero { grid-template-areas: "main stage" "main aside"; grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 1fr); }
+  #studio-heading { font-size: clamp(3.1rem, 6.6vw, 6.25rem); }
+  .hero-saturn { --saturn-size: clamp(11rem, 21vw, 14.5rem); }
+}
+@media (max-width: 50rem) {
+  .studio-hero { grid-template-areas: "main" "stage" "aside"; grid-template-columns: minmax(0, 1fr); }
+  .hero-saturn { --saturn-size: clamp(11rem, 44vw, 14rem); }
+}
+
+/* ---------- Project index cards: each glows in its own colour ---------- */
+.work-index { gap: clamp(.75rem, 1.6vw, 1.25rem); border-block: 0; }
+.work-index > a, .work-index > a + a { border: 1px solid color-mix(in srgb, var(--project-color) 24%, var(--line)); }
+.work-index > a {
+  overflow: hidden;
+  border-radius: .75rem;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--project-color) 10%, transparent), transparent 58%), rgb(21 25 29 / .86);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .04);
+}
+.work-index > a::after { bottom: 0; box-shadow: 0 0 .75rem var(--accent); }
+.work-index svg { width: 1.75rem; height: 1.75rem; stroke-width: 1.5; }
+.work-index a:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--project-color) 62%, var(--line));
+  background: linear-gradient(140deg, color-mix(in srgb, var(--project-color) 16%, transparent), transparent 62%), rgb(23 28 33 / .92);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-color) 18%, transparent),
+    0 .9rem 2.5rem -1.2rem color-mix(in srgb, var(--project-color) 60%, transparent),
+    0 0 2.25rem -.6rem color-mix(in srgb, var(--project-color) 32%, transparent);
+}
+.featured-project:hover {
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / .2), 0 0 3rem -1rem color-mix(in srgb, var(--project-color) 45%, transparent);
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .hero-orbit-field { transition: transform 500ms ease-out; }
+  .motion-ready .hero-mote { animation: saturn-flow-mote-x var(--orbit-period) ease-in-out var(--mote-phase, 0s) infinite; }
+  .motion-ready .hero-mote-y { animation: saturn-flow-mote-y var(--orbit-period) ease-in-out calc(var(--mote-phase, 0s) - var(--orbit-period) / 4) infinite; }
+  .motion-ready .hero-mote-dot { animation: saturn-flow-mote-depth var(--orbit-period) ease-in-out calc(var(--mote-phase, 0s) - var(--orbit-period) / 4) infinite; }
+  .motion-ready .hero-orbit-2 .hero-orbit-path { animation: saturn-flow-orbit-dash 80s linear infinite; }
+  .hero-orbit-path { transition: border-color 500ms ease; }
+  .hero-saturn:has(.saturn:not([data-saturn="idle"])) .hero-orbit-path { border-color: rgb(255 180 100 / .42); }
+  .hero-saturn:has(.saturn[data-saturn="over"]) .hero-orbit-path { border-color: rgb(255 200 130 / .6); }
+
+  .work-index > a { transition: background 280ms ease, border-color 280ms ease, box-shadow 380ms ease, transform 420ms cubic-bezier(.22, 1, .36, 1); }
+  .work-index svg { transition: transform 420ms cubic-bezier(.22, 1, .36, 1), filter 420ms ease; }
+  .work-index a:is(:hover, :focus-visible) { transform: translateY(-3px); }
+  .work-index a:hover svg { transform: scale(1.12); filter: drop-shadow(0 0 .35rem var(--accent)); }
+  .featured-project { transition: border-color 280ms ease, box-shadow 420ms ease; }
+
+  /* Background: a faint nebula lane, three star depths that follow the pointer, glowing
+     dust and occasional shooting stars. Created by motion.ts inside .motion-background. */
+  .motion-nebula {
+    position: absolute; inset: -20%;
+    background:
+      linear-gradient(112deg, transparent 36%, rgb(52 74 92 / .1) 44%, rgb(34 52 68 / .2) 50%, rgb(52 74 92 / .08) 56%, transparent 64%),
+      radial-gradient(ellipse 40% 30% at 8% 82%, rgb(255 112 67 / .1), transparent 70%),
+      radial-gradient(ellipse 30% 25% at 96% 8%, rgb(255 140 70 / .07), transparent 70%);
+    animation: space-nebula-drift 48s ease-in-out infinite alternate;
+  }
+  .motion-stars { position: absolute; inset: 0; }
+  .motion-star-layer {
+    position: absolute; inset: -3rem;
+    background-repeat: repeat;
+    transform: translate3d(calc(var(--pointer-nx, 0) * var(--star-depth) * -1px), calc(var(--pointer-ny, 0) * var(--star-depth) * -1px), 0);
+    transition: transform 1.8s cubic-bezier(.16, 1, .3, 1);
+  }
+  .motion-star-far { --star-depth: 6; opacity: .85; }
+  .motion-star-mid { --star-depth: 13; }
+  .motion-star-twinkle { --star-depth: 13; animation: space-twinkle 5.5s ease-in-out infinite alternate; }
+  .motion-star-near { --star-depth: 24; }
+  .motion-star-far {
+    background-image:
+      radial-gradient(1.12px 1.12px at 64px 132px, rgb(255 244 230 / 0.47) 0 45%, transparent 100%),
+      radial-gradient(1.11px 1.11px at 229px 15px, rgb(255 244 230 / 0.45) 0 45%, transparent 100%),
+      radial-gradient(1px 1px at 238px 5px, rgb(255 255 255 / 0.56) 0 45%, transparent 100%),
+      radial-gradient(1.19px 1.19px at 204px 23px, rgb(255 226 200 / 0.46) 0 45%, transparent 100%),
+      radial-gradient(1.09px 1.09px at 121px 77px, rgb(255 244 230 / 0.33) 0 45%, transparent 100%),
+      radial-gradient(1px 1px at 43px 95px, rgb(255 226 200 / 0.52) 0 45%, transparent 100%),
+      radial-gradient(1.06px 1.06px at 8px 6px, rgb(226 236 255 / 0.33) 0 45%, transparent 100%),
+      radial-gradient(1.01px 1.01px at 204px 44px, rgb(226 236 255 / 0.61) 0 45%, transparent 100%),
+      radial-gradient(0.87px 0.87px at 210px 55px, rgb(226 236 255 / 0.53) 0 45%, transparent 100%),
+      radial-gradient(0.87px 0.87px at 153px 66px, rgb(255 244 230 / 0.62) 0 45%, transparent 100%),
+      radial-gradient(1.13px 1.13px at 197px 181px, rgb(255 255 255 / 0.49) 0 45%, transparent 100%),
+      radial-gradient(0.97px 0.97px at 165px 107px, rgb(255 226 200 / 0.57) 0 45%, transparent 100%),
+      radial-gradient(0.91px 0.91px at 70px 225px, rgb(255 226 200 / 0.35) 0 45%, transparent 100%),
+      radial-gradient(0.89px 0.89px at 156px 92px, rgb(255 226 200 / 0.38) 0 45%, transparent 100%);
+    background-size: 263px 241px;
+  }
+  .motion-star-mid {
+    background-image:
+      radial-gradient(1.33px 1.33px at 410px 238px, rgb(255 255 255 / 0.58) 0 45%, transparent 100%),
+      radial-gradient(1.41px 1.41px at 404px 267px, rgb(255 226 200 / 0.65) 0 45%, transparent 100%),
+      radial-gradient(1.31px 1.31px at 301px 122px, rgb(255 226 200 / 0.51) 0 45%, transparent 100%),
+      radial-gradient(1.3px 1.3px at 291px 90px, rgb(255 226 200 / 0.8) 0 45%, transparent 100%),
+      radial-gradient(1.1px 1.1px at 207px 71px, rgb(255 226 200 / 0.72) 0 45%, transparent 100%),
+      radial-gradient(1.32px 1.32px at 302px 11px, rgb(255 255 255 / 0.71) 0 45%, transparent 100%),
+      radial-gradient(1.3px 1.3px at 157px 202px, rgb(255 244 230 / 0.69) 0 45%, transparent 100%),
+      radial-gradient(1.33px 1.33px at 345px 95px, rgb(255 255 255 / 0.69) 0 45%, transparent 100%);
+    background-size: 431px 389px;
+  }
+  .motion-star-twinkle {
+    background-image:
+      radial-gradient(1.24px 1.24px at 172px 56px, rgb(255 226 200 / 0.74) 0 45%, transparent 100%),
+      radial-gradient(1.16px 1.16px at 103px 421px, rgb(226 236 255 / 0.77) 0 45%, transparent 100%),
+      radial-gradient(1.16px 1.16px at 135px 132px, rgb(226 236 255 / 0.88) 0 45%, transparent 100%),
+      radial-gradient(1.34px 1.34px at 217px 23px, rgb(255 244 230 / 0.74) 0 45%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 90px 218px, rgb(255 255 255 / 0.68) 0 45%, transparent 100%),
+      radial-gradient(1.16px 1.16px at 199px 199px, rgb(255 255 255 / 0.83) 0 45%, transparent 100%),
+      radial-gradient(1.19px 1.19px at 139px 407px, rgb(226 236 255 / 0.88) 0 45%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 7px 347px, rgb(226 236 255 / 0.58) 0 45%, transparent 100%);
+    background-size: 389px 431px;
+  }
+  .motion-star-near {
+    background-image:
+      radial-gradient(1.97px 1.97px at 227px 357px, rgb(255 255 255 / 0.82) 0 45%, transparent 100%),
+      radial-gradient(6.3px 6.3px at 227px 357px, rgb(255 190 140 / .12), transparent 100%),
+      radial-gradient(2.02px 2.02px at 490px 230px, rgb(255 244 230 / 0.81) 0 45%, transparent 100%),
+      radial-gradient(6.46px 6.46px at 490px 230px, rgb(255 190 140 / .12), transparent 100%),
+      radial-gradient(2.04px 2.04px at 130px 98px, rgb(255 244 230 / 0.78) 0 45%, transparent 100%),
+      radial-gradient(6.53px 6.53px at 130px 98px, rgb(255 190 140 / .12), transparent 100%),
+      radial-gradient(1.63px 1.63px at 537px 493px, rgb(226 236 255 / 0.81) 0 45%, transparent 100%),
+      radial-gradient(5.22px 5.22px at 537px 493px, rgb(255 190 140 / .12), transparent 100%),
+      radial-gradient(1.8px 1.8px at 258px 504px, rgb(255 255 255 / 0.93) 0 45%, transparent 100%),
+      radial-gradient(5.76px 5.76px at 258px 504px, rgb(255 190 140 / .12), transparent 100%),
+      radial-gradient(1.9px 1.9px at 7px 10px, rgb(255 255 255 / 0.79) 0 45%, transparent 100%),
+      radial-gradient(6.08px 6.08px at 7px 10px, rgb(255 190 140 / .12), transparent 100%);
+    background-size: 647px 593px;
+  }
+  .motion-dust {
+    position: absolute; border-radius: 50%;
+    background: #ffc996;
+    box-shadow: 0 0 6px rgb(255 112 67 / .8), 0 0 12px rgb(255 140 70 / .45);
+    opacity: .5;
+    animation: space-dust-float 12s ease-in-out infinite alternate;
+  }
+  .motion-dust:nth-child(1) { left: 38.44%; top: 66.03%; width: 2.62px; height: 2.62px; animation-duration: 9.87s; animation-delay: -8.8s; }
+  .motion-dust:nth-child(2) { left: 45.37%; top: 20.74%; width: 2.75px; height: 2.75px; animation-duration: 15.29s; animation-delay: -7.34s; }
+  .motion-dust:nth-child(3) { left: 17.29%; top: 59.7%; width: 2.72px; height: 2.72px; animation-duration: 12.6s; animation-delay: -2.75s; }
+  .motion-dust:nth-child(4) { left: 45.53%; top: 58.47%; width: 2.8px; height: 2.8px; animation-duration: 9.44s; animation-delay: -10.56s; }
+  .motion-dust:nth-child(5) { left: 67.27%; top: 54.33%; width: 2.26px; height: 2.26px; animation-duration: 9.71s; animation-delay: -7.81s; }
+  .motion-dust:nth-child(6) { left: 54.29%; top: 66.2%; width: 2.34px; height: 2.34px; animation-duration: 13.03s; animation-delay: -6.68s; }
+  .motion-dust:nth-child(7) { left: 58.12%; top: 12.87%; width: 2.62px; height: 2.62px; animation-duration: 12.99s; animation-delay: -6.42s; }
+  .motion-dust:nth-child(8) { left: 51.66%; top: 35.97%; width: 3.18px; height: 3.18px; animation-duration: 10.07s; animation-delay: -8.07s; }
+  .motion-dust:nth-child(9) { left: 79.46%; top: 27.46%; width: 1.82px; height: 1.82px; animation-duration: 11.25s; animation-delay: -8.81s; }
+  .motion-dust:nth-child(10) { left: 64.11%; top: 20.45%; width: 1.91px; height: 1.91px; animation-duration: 9.93s; animation-delay: -9.25s; }
+  .motion-dust:nth-child(11) { left: 80.19%; top: 18.74%; width: 1.48px; height: 1.48px; animation-duration: 10.28s; animation-delay: -11s; }
+  .motion-dust:nth-child(12) { left: 31.19%; top: 33.65%; width: 3.12px; height: 3.12px; animation-duration: 12.58s; animation-delay: -2.91s; }
+  .motion-shooting-star {
+    position: absolute; width: 9rem; height: 1px; border-radius: 1px;
+    background: linear-gradient(90deg, #fff, rgb(255 210 170 / .85) 25%, transparent);
+    box-shadow: 0 0 6px rgb(255 170 100 / .6);
+    opacity: 0;
+    animation: space-shooting-star 15s ease-in infinite;
+  }
+  .motion-shooting-star-1 { top: 13%; right: 16%; }
+  .motion-shooting-star-2 { top: 34%; left: 9%; animation-duration: 23s; animation-delay: -9s; }
+
+  @keyframes saturn-flow-mote-x {
+    0%, 100% { transform: translate3d(var(--orbit-r), 0, 0); }
+    50% { transform: translate3d(calc(var(--orbit-r) * -1), 0, 0); }
+  }
+  @keyframes saturn-flow-mote-y {
+    0%, 100% { transform: translate3d(0, calc(var(--orbit-r) * var(--orbit-k) * -1), 0); }
+    50% { transform: translate3d(0, calc(var(--orbit-r) * var(--orbit-k)), 0); }
+  }
+  @keyframes saturn-flow-mote-depth { 0%, 100% { transform: scale(.55); opacity: .35; } 50% { transform: scale(1.15); opacity: 1; } }
+  @keyframes saturn-flow-orbit-dash { from { transform: scaleY(var(--orbit-k)) rotate(0deg); } to { transform: scaleY(var(--orbit-k)) rotate(360deg); } }
+  @keyframes space-nebula-drift { from { transform: translate3d(-2%, 1%, 0); } to { transform: translate3d(2%, -1%, 0); } }
+  @keyframes space-twinkle { from { opacity: .25; } to { opacity: 1; } }
+  @keyframes space-dust-float { from { transform: translate3d(0, 0, 0); opacity: .3; } to { transform: translate3d(10px, -16px, 0); opacity: .85; } }
+  @keyframes space-shooting-star {
+    0%, 88% { opacity: 0; transform: rotate(-28deg) translate3d(0, 0, 0); }
+    90% { opacity: 1; }
+    97%, 100% { opacity: 0; transform: rotate(-28deg) translate3d(-18rem, 0, 0); }
+  }
+}
+
+@media (max-width: 50rem) and (prefers-reduced-motion: no-preference) {
+  .motion-star-near, .motion-shooting-star-2 { display: none; }
+}

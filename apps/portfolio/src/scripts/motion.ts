@@ -1,11 +1,104 @@
 type SaturnState = 'idle' | 'near' | 'over';
+type Point = { x: number; y: number };
+
+interface Saturn {
+  root: HTMLElement;
+  /** Element whose `saturn-flow-*` loops follow this planet's tempo (hero: planet + orbits). */
+  scope: HTMLElement;
+  /** Untransformed anchor box in viewport coordinates; drift and hover act on children. */
+  box: { x: number; y: number; size: number } | null;
+  state: SaturnState;
+  energy: number;
+  driftX: number;
+  driftY: number;
+  /** Ring-plane rotation in degrees, matching the `--saturn-angle` in use. */
+  angle: number;
+}
 
 /** Ring-plane flattening shared with saturn.css (`scaleY(.3)`) and the hover geometry. */
 const SATURN_RING_TILT = 0.3;
-/** Playback multipliers for Saturn's continuous `saturn-flow-*` loops. */
+/** Resting ring angle of the hero planet; matches the `--saturn-angle` default in saturn.css. */
+const HERO_SATURN_ANGLE = -20;
+/** Playback multipliers for the continuous `saturn-flow-*` loops. */
 const SATURN_TEMPO: Record<SaturnState, number> = { idle: 1, near: 2.2, over: 4.5 };
+const SATURN_VARIABLES = ['--saturn-near', '--saturn-pull-x', '--saturn-pull-y', '--saturn-turn-x', '--saturn-turn-y', '--saturn-tip-x', '--saturn-tip-y'];
 
 const clamp = (value: number, min = -1, max = 1): number => Math.min(max, Math.max(min, value));
+
+const createSaturn = (root: HTMLElement, angle: number, scope: HTMLElement = root): Saturn => (
+  { root, scope, box: null, state: 'idle', energy: 0, driftX: 0, driftY: 0, angle }
+);
+
+function measureSaturn(saturn: Saturn): void {
+  const rect = saturn.root.getBoundingClientRect();
+  saturn.box = Number.isFinite(rect.left) && Number.isFinite(rect.top) && rect.width > 0
+    ? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, size: rect.width }
+    : null;
+}
+
+function setSaturnState(saturn: Saturn, state: SaturnState): void {
+  if (state === saturn.state) return;
+  saturn.state = state;
+  saturn.root.dataset.saturn = state;
+  // Accelerate the running loops in place instead of restarting them.
+  if (typeof saturn.scope.getAnimations !== 'function') return;
+  saturn.scope.getAnimations({ subtree: true }).forEach((animation) => {
+    if (!('animationName' in animation) || !String(animation.animationName).startsWith('saturn-flow')) return;
+    if (typeof animation.updatePlaybackRate === 'function') animation.updatePlaybackRate(SATURN_TEMPO[state]);
+    else animation.playbackRate = SATURN_TEMPO[state];
+  });
+}
+
+function releaseSaturn(saturn: Saturn): void {
+  saturn.energy = 0;
+  if (saturn.state === 'idle') return;
+  SATURN_VARIABLES.forEach((name) => saturn.root.style.removeProperty(name));
+  setSaturnState(saturn, 'idle');
+}
+
+/** Classifies the pointer against the planet disc, the flattened ring ellipse and the proximity field. */
+function updateSaturn(saturn: Saturn, pointer: Point | null): void {
+  if (!pointer || !saturn.box) {
+    releaseSaturn(saturn);
+    return;
+  }
+  const { size } = saturn.box;
+  const dx = pointer.x - (saturn.box.x + saturn.driftX);
+  const dy = pointer.y - (saturn.box.y + saturn.driftY);
+  const angle = saturn.angle * Math.PI / 180;
+  const along = dx * Math.cos(angle) + dy * Math.sin(angle);
+  const across = dy * Math.cos(angle) - dx * Math.sin(angle);
+  const distance = Math.hypot(dx, dy);
+  const planetRadius = size * .21;
+  const ringRadius = size * .485;
+  const fieldRadius = size * 1.05;
+  // The hit area follows the planet's visible swell (CSS scales it by up to
+  // 1.08 × 1.07), which also keeps the state steady on an edge.
+  const grow = saturn.state === 'over' ? 1.15 : 1 + saturn.energy * .08;
+  const onPlanet = distance <= planetRadius * grow;
+  const onRings = (along / (ringRadius * grow)) ** 2
+    + (across / (ringRadius * SATURN_RING_TILT * grow)) ** 2 <= 1;
+  const next: SaturnState = onPlanet || onRings ? 'over'
+    : distance <= fieldRadius * (saturn.state === 'idle' ? 1 : 1.08) ? 'near' : 'idle';
+  if (next === 'idle') {
+    releaseSaturn(saturn);
+    return;
+  }
+  const energy = next === 'over' ? 1 : clamp(1 - (distance - planetRadius) / (fieldRadius - planetRadius), 0, 1);
+  saturn.energy = energy;
+  const reachX = clamp(dx / fieldRadius);
+  const reachY = clamp(dy / fieldRadius);
+  const { style } = saturn.root;
+  style.setProperty('--saturn-near', energy.toFixed(3));
+  style.setProperty('--saturn-pull-x', (reachX * 26 * energy).toFixed(2));
+  style.setProperty('--saturn-pull-y', (reachY * 20 * energy).toFixed(2));
+  style.setProperty('--saturn-turn-x', (-reachY * 14 * energy).toFixed(2));
+  style.setProperty('--saturn-turn-y', (reachX * 18 * energy).toFixed(2));
+  // The hero label follows the pointer, relative to the planet's centre.
+  style.setProperty('--saturn-tip-x', dx.toFixed(2));
+  style.setProperty('--saturn-tip-y', dy.toFixed(2));
+  setSaturnState(saturn, next);
+}
 
 /** Optional motion must leave the portfolio readable when disabled or unavailable. */
 function startMotion(): () => void {
@@ -79,155 +172,45 @@ function startMotion(): () => void {
     ambientBackground.setAttribute('aria-hidden', 'true');
     cleanups.push(() => ambientBackground.remove());
 
-    const ambientGrid = document.createElement('div');
-    ambientGrid.className = 'motion-background-grid';
-    const ambientSpotlight = document.createElement('div');
-    ambientSpotlight.className = 'motion-background-spotlight';
-    const ambientOrbs = document.createElement('div');
-    ambientOrbs.className = 'motion-background-orbs';
-    for (let i = 1; i <= 3; i++) {
-      const orb = document.createElement('div');
-      orb.className = `motion-orb motion-orb-${i}`;
-      ambientOrbs.append(orb);
-    }
-
-    const ambientBeam = document.createElement('div');
-    ambientBeam.className = 'motion-background-beam';
-    const ambientBeamSurface = document.createElement('div');
-    ambientBeamSurface.className = 'motion-background-beam-surface';
-    ambientBeam.append(ambientBeamSurface);
-
-    const ambientEmbers = document.createElement('div');
-    ambientEmbers.className = 'motion-background-embers';
-    for (let i = 1; i <= 8; i++) {
-      const ember = document.createElement('span');
-      ember.className = `motion-ember motion-ember-${i}`;
-      ambientEmbers.append(ember);
-    }
-
-    // Saturn: decorative layers inside the fixed background. Content stays above
-    // it, so hover is derived from pointer geometry rather than DOM hit-testing.
-    const layer = (className: string, parent: HTMLElement): HTMLElement => {
-      const node = document.createElement('div');
+    const layer = (className: string, parent: HTMLElement, tag = 'div'): HTMLElement => {
+      const node = document.createElement(tag);
       node.className = className;
       parent.append(node);
       return node;
     };
-    const saturn = document.createElement('div');
-    saturn.className = 'saturn';
-    saturn.dataset.saturn = 'idle';
-    const saturnLean = layer('saturn-lean', layer('saturn-float', layer('saturn-drift', saturn)));
-    layer('saturn-halo', saturnLean);
-    layer('saturn-corona', saturnLean);
-    const saturnTilt = layer('saturn-tilt', saturnLean);
-    // Rings and shockwaves are split at the major axis: the far half is drawn
-    // behind the planet and the near half in front of it.
-    const addWaves = (side: 'back' | 'front'): void => {
-      const waves = layer(`saturn-waves saturn-waves-${side}`, saturnTilt);
-      for (let i = 0; i < 3; i++) layer('saturn-wave', waves).style.setProperty('--wave-index', String(i));
-    };
-    const addRings = (side: 'back' | 'front'): void => {
-      const rings = layer(`saturn-rings saturn-rings-${side}`, saturnTilt);
-      ['saturn-ring-bands', 'saturn-ring-flow saturn-ring-flow-inner', 'saturn-ring-flow saturn-ring-flow-outer', 'saturn-ring-arc']
-        .forEach((name) => layer(name, rings));
-    };
-    addWaves('back');
-    addRings('back');
-    const saturnPlanet = layer('saturn-planet', saturnTilt);
-    ['saturn-bands', 'saturn-ignite', 'saturn-shade'].forEach((name) => layer(name, saturnPlanet));
-    addRings('front');
-    addWaves('front');
-    [18, 162, 206, 334].forEach((degrees, index) => {
-      const glint = layer('saturn-glint', saturnTilt);
-      const radians = degrees * Math.PI / 180;
-      glint.style.setProperty('left', `${(50 + Math.cos(radians) * 40).toFixed(2)}%`);
-      glint.style.setProperty('top', `${(50 + Math.sin(radians) * 40 * SATURN_RING_TILT).toFixed(2)}%`);
-      glint.style.setProperty('--glint-index', String(index));
-    });
-    [1, 2].forEach((moon) => layer('saturn-moon-body', layer('saturn-moon-y', layer(`saturn-moon saturn-moon-${moon}`, saturnTilt))));
-    const saturnSparks = layer('saturn-sparks', saturnLean);
-    for (let i = 0; i < 16; i++) {
-      const radians = (i / 16) * Math.PI * 2 + (i % 3) * .13;
-      const spark = layer('saturn-spark', saturnSparks);
-      spark.style.setProperty('--sx', Math.cos(radians).toFixed(3));
-      spark.style.setProperty('--sy', (Math.sin(radians) * .42).toFixed(3));
-      spark.style.setProperty('--sd', (.62 + ((i * 5) % 7) * .045).toFixed(3));
-      spark.style.setProperty('--spark-delay', `${(-((i * 7) % 16) * .11).toFixed(2)}s`);
-    }
-    layer('saturn-burst', saturnLean);
-    layer('saturn-ping', saturnLean);
-
-    ambientBackground.append(ambientGrid, ambientOrbs, ambientBeam, saturn, ambientSpotlight, ambientEmbers);
+    // Paint order: nebula, light, stars, the ambient Saturn, then the pointer glow and embers.
+    layer('motion-nebula', ambientBackground);
+    const ambientOrbs = layer('motion-background-orbs', ambientBackground);
+    for (let i = 1; i <= 3; i++) layer(`motion-orb motion-orb-${i}`, ambientOrbs);
+    const ambientBeam = layer('motion-background-beam', ambientBackground);
+    layer('motion-background-beam-surface', ambientBeam);
+    // Three star depths follow the pointer at different distances; dust rides the nearest.
+    const stars = layer('motion-stars', ambientBackground);
+    ['far', 'mid', 'twinkle'].forEach((depth) => layer(`motion-star-layer motion-star-${depth}`, stars));
+    const nearStars = layer('motion-star-layer motion-star-near', stars);
+    for (let i = 0; i < 12; i++) layer('motion-dust', nearStars, 'span');
+    // The ambient planet is cloned from inert markup so both planets share one source.
+    const ambientSaturnRoot = (document.querySelector<HTMLTemplateElement>('template[data-saturn-template]')
+      ?.content.firstElementChild?.cloneNode(true) ?? null) as HTMLElement | null;
+    if (ambientSaturnRoot) ambientBackground.append(ambientSaturnRoot);
+    const ambientSpotlight = layer('motion-background-spotlight', ambientBackground);
+    const ambientEmbers = layer('motion-background-embers', ambientBackground);
+    for (let i = 1; i <= 8; i++) layer(`motion-ember motion-ember-${i}`, ambientEmbers, 'span');
+    for (let i = 1; i <= 2; i++) layer(`motion-shooting-star motion-shooting-star-${i}`, ambientBackground);
     studio.prepend(ambientBackground);
 
-    let pointer: { x: number; y: number } | null = null;
-    let saturnBox: { x: number; y: number; size: number } | null = null;
-    let saturnState: SaturnState = 'idle';
-    let saturnEnergy = 0;
-    let saturnDriftX = 0;
-    let saturnDriftY = 0;
-    let saturnAngle = -24;
-    const saturnVariables = ['--saturn-near', '--saturn-pull-x', '--saturn-pull-y', '--saturn-turn-x', '--saturn-turn-y'];
+    // Saturn planets react to pointer geometry, not DOM hover: content stays above them.
+    const saturns: Saturn[] = [];
+    const heroSaturnRoot = document.querySelector<HTMLElement>('.hero-saturn .saturn');
+    if (heroSaturnRoot) {
+      saturns.push(createSaturn(heroSaturnRoot, HERO_SATURN_ANGLE, document.querySelector<HTMLElement>('.hero-saturn') ?? heroSaturnRoot));
+    }
+    const ambientSaturn = ambientSaturnRoot ? createSaturn(ambientSaturnRoot, -24) : null;
+    if (ambientSaturn) saturns.push(ambientSaturn);
+    // The hero planet is static markup: return it to its resting pose on cleanup.
+    cleanups.push(() => saturns.forEach(releaseSaturn));
 
-    const setSaturnState = (state: SaturnState): void => {
-      if (state === saturnState) return;
-      saturnState = state;
-      saturn.dataset.saturn = state;
-      // Accelerate the running loops in place instead of restarting them.
-      if (typeof saturn.getAnimations !== 'function') return;
-      saturn.getAnimations({ subtree: true }).forEach((animation) => {
-        if (!('animationName' in animation) || !String(animation.animationName).startsWith('saturn-flow')) return;
-        if (typeof animation.updatePlaybackRate === 'function') animation.updatePlaybackRate(SATURN_TEMPO[state]);
-        else animation.playbackRate = SATURN_TEMPO[state];
-      });
-    };
-
-    const releaseSaturn = (): void => {
-      saturnEnergy = 0;
-      if (saturnState === 'idle') return;
-      saturnVariables.forEach((name) => saturn.style.removeProperty(name));
-      setSaturnState('idle');
-    };
-
-    const updateSaturn = (): void => {
-      if (!pointer || !saturnBox) {
-        releaseSaturn();
-        return;
-      }
-      const { size } = saturnBox;
-      const dx = pointer.x - (saturnBox.x + saturnDriftX);
-      const dy = pointer.y - (saturnBox.y + saturnDriftY);
-      const angle = saturnAngle * Math.PI / 180;
-      const along = dx * Math.cos(angle) + dy * Math.sin(angle);
-      const across = dy * Math.cos(angle) - dx * Math.sin(angle);
-      const distance = Math.hypot(dx, dy);
-      const planetRadius = size * .21;
-      const ringRadius = size * .485;
-      const fieldRadius = size * 1.05;
-      // The hit area follows the planet's visible swell (CSS scales it by up to
-      // 1.08 × 1.07), which also keeps the state steady on an edge.
-      const grow = saturnState === 'over' ? 1.15 : 1 + saturnEnergy * .08;
-      const onPlanet = distance <= planetRadius * grow;
-      const onRings = (along / (ringRadius * grow)) ** 2
-        + (across / (ringRadius * SATURN_RING_TILT * grow)) ** 2 <= 1;
-      const next: SaturnState = onPlanet || onRings ? 'over'
-        : distance <= fieldRadius * (saturnState === 'idle' ? 1 : 1.08) ? 'near' : 'idle';
-      if (next === 'idle') {
-        releaseSaturn();
-        return;
-      }
-      const energy = next === 'over' ? 1 : clamp(1 - (distance - planetRadius) / (fieldRadius - planetRadius), 0, 1);
-      saturnEnergy = energy;
-      const reachX = clamp(dx / fieldRadius);
-      const reachY = clamp(dy / fieldRadius);
-      saturn.style.setProperty('--saturn-near', energy.toFixed(3));
-      saturn.style.setProperty('--saturn-pull-x', (reachX * 26 * energy).toFixed(2));
-      saturn.style.setProperty('--saturn-pull-y', (reachY * 20 * energy).toFixed(2));
-      saturn.style.setProperty('--saturn-turn-x', (-reachY * 14 * energy).toFixed(2));
-      saturn.style.setProperty('--saturn-turn-y', (reachX * 18 * energy).toFixed(2));
-      setSaturnState(next);
-    };
-
+    let pointer: Point | null = null;
     const onPointerMove = (event: PointerEvent): void => {
       if (!active || document.hidden || event.pointerType === 'touch') return;
       pointer = { x: event.clientX, y: event.clientY };
@@ -236,22 +219,26 @@ function startMotion(): () => void {
         pointerFrame = null;
         if (!active) return;
         if (pointer) {
+          const reachX = clamp((pointer.x / Math.max(window.innerWidth, 1) - .5) * 2).toFixed(3);
+          const reachY = clamp((pointer.y / Math.max(window.innerHeight, 1) - .5) * 2).toFixed(3);
           ambientBackground.style.setProperty('--mouse-x', `${pointer.x}px`);
           ambientBackground.style.setProperty('--mouse-y', `${pointer.y}px`);
+          ambientBackground.style.setProperty('--pointer-nx', reachX);
+          ambientBackground.style.setProperty('--pointer-ny', reachY);
           ambientSpotlight.classList.add('is-active');
-          heroField?.style.setProperty('--pointer-drift-x', clamp((pointer.x / Math.max(window.innerWidth, 1) - .5) * 2).toFixed(3));
-          heroField?.style.setProperty('--pointer-drift-y', clamp((pointer.y / Math.max(window.innerHeight, 1) - .5) * 2).toFixed(3));
+          heroField?.style.setProperty('--pointer-drift-x', reachX);
+          heroField?.style.setProperty('--pointer-drift-y', reachY);
         }
-        updateSaturn();
+        saturns.forEach((saturn) => updateSaturn(saturn, pointer));
       });
     };
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     cleanups.push(() => window.removeEventListener('pointermove', onPointerMove));
-    // Leaving the window (no related target) releases Saturn immediately.
+    // Leaving the window (no related target) releases both planets immediately.
     const onPointerOut = (event: PointerEvent): void => {
       if (!active || event.relatedTarget) return;
       pointer = null;
-      updateSaturn();
+      saturns.forEach((saturn) => updateSaturn(saturn, null));
     };
     window.addEventListener('pointerout', onPointerOut, { passive: true });
     cleanups.push(() => window.removeEventListener('pointerout', onPointerOut));
@@ -292,24 +279,25 @@ function startMotion(): () => void {
     const updateScrollMotion = (): void => {
       scrollFrame = null;
       if (!active || document.hidden) return;
-      // Saturn's anchor box is untransformed; drift and hover act on its children.
-      const saturnRect = saturn.getBoundingClientRect();
-      saturnBox = Number.isFinite(saturnRect.left) && Number.isFinite(saturnRect.top) && saturnRect.width > 0
-        ? { x: saturnRect.left + saturnRect.width / 2, y: saturnRect.top + saturnRect.height / 2, size: saturnRect.width }
-        : null;
+      // Read the planets' anchor boxes before this frame writes any styles.
+      saturns.forEach(measureSaturn);
       const viewportHeight = Math.max(window.innerHeight, 1);
       const scrollRange = Math.max(root.scrollHeight - viewportHeight, 1);
       const pageProgress = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
       progress.style.transform = `scaleX(${pageProgress.toFixed(4)})`;
-      // Saturn rises and its rings open slightly as the visitor reads down the page.
-      saturnDriftX = -pageProgress * window.innerWidth * .04;
-      saturnDriftY = -pageProgress * viewportHeight * .34;
-      saturnAngle = -24 + pageProgress * 12;
-      saturn.style.setProperty('--saturn-drift-x', `${saturnDriftX.toFixed(1)}px`);
-      saturn.style.setProperty('--saturn-drift-y', `${saturnDriftY.toFixed(1)}px`);
-      saturn.style.setProperty('--saturn-angle', `${saturnAngle.toFixed(2)}deg`);
-      // A stationary pointer can still meet the planet as it drifts.
-      if (pointer) updateSaturn();
+      if (ambientSaturn) {
+        // The ambient planet rises, opens its rings and steps back once the hero scrolls away.
+        ambientSaturn.driftX = -pageProgress * window.innerWidth * .04;
+        ambientSaturn.driftY = -pageProgress * viewportHeight * .34;
+        ambientSaturn.angle = -24 + pageProgress * 12;
+        const { style } = ambientSaturn.root;
+        style.setProperty('--saturn-drift-x', `${ambientSaturn.driftX.toFixed(1)}px`);
+        style.setProperty('--saturn-drift-y', `${ambientSaturn.driftY.toFixed(1)}px`);
+        style.setProperty('--saturn-angle', `${ambientSaturn.angle.toFixed(2)}deg`);
+        style.setProperty('--saturn-presence', (.28 - .06 * clamp(window.scrollY / (viewportHeight * .6), 0, 1)).toFixed(3));
+      }
+      // A stationary pointer can still meet a planet as the page moves.
+      if (pointer) saturns.forEach((saturn) => updateSaturn(saturn, pointer));
       ambientOrbs.style.transform = `translate3d(0, ${(pageProgress * -16).toFixed(2)}vh, 0) rotate(${(-3 + pageProgress * 6).toFixed(2)}deg)`;
       ambientBeam.style.transform = `translate3d(${(pageProgress * 3).toFixed(2)}rem, ${(pageProgress * -5).toFixed(2)}rem, 0) scale(1.04)`;
       nav?.toggleAttribute('data-scrolled', window.scrollY > 48);

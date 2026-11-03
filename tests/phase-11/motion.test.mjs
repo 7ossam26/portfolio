@@ -72,13 +72,19 @@ function setup(options = {}) {
   const training = element('training-list');
   const toggle = Object.assign(element('motion-toggle'), eventTarget());
   const label = element();
+  const heroStage = element('hero-saturn');
+  const heroSaturn = element('saturn saturn--hero');
+  heroSaturn.dataset.saturn = 'idle';
+  heroStage.append(heroSaturn);
+  const saturnTemplate = { content: { firstElementChild: { cloneNode: () => Object.assign(element('saturn saturn--ambient'), { dataset: { saturn: 'idle' } }) } } };
   const storage = options.storage ?? new Map();
   root.append(body);
   body.append(studio);
   studio.append(nav, heading, divider, feature, row);
   feature.append(visual);
   heading.append(hero, training);
-  hero.append(heroField);
+  hero.append(heroStage);
+  heroStage.append(heroField);
   nav.append(toggle);
   const selectors = new Map([
     ['.studio', studio], ['.studio-nav', nav], ['.featured-project', feature],
@@ -86,6 +92,7 @@ function setup(options = {}) {
     ['.section-heading', divider], ['.project-entry', row],
     ['.project-visual', visual], ['[data-motion-toggle]', toggle], ['[data-motion-label]', label],
     ['.studio-hero', hero], ['.hero-orbit-field', heroField], ['.training-list', training],
+    ['.hero-saturn', heroStage], ['.hero-saturn .saturn', heroSaturn], ['template[data-saturn-template]', saturnTemplate],
   ]);
   const document = Object.assign(eventTarget(), {
     documentElement: root, body, hidden: options.hidden ?? false,
@@ -156,6 +163,8 @@ function setup(options = {}) {
     assert.equal(heroField.style.getPropertyValue('--pointer-drift-x'), '');
     assert.equal(heroField.style.getPropertyValue('--pointer-drift-y'), '');
     assert.equal(training.style.getPropertyValue('--section-progress'), '');
+    assert.equal(heroSaturn.dataset.saturn, 'idle');
+    for (const name of ['--saturn-near', '--saturn-pull-x', '--saturn-tip-x']) assert.equal(heroSaturn.style.getPropertyValue(name), '');
     assert.equal(hero.classList.contains('motion-visible'), false);
     assert.equal(nav.classList.contains('motion-visible'), false);
     assert.deepEqual(body.children, [studio]);
@@ -165,7 +174,7 @@ function setup(options = {}) {
     assert.equal(document.count('visibilitychange'), 0);
     assert.ok(observers.every((observer) => observer.disconnected));
   };
-  return { root, studio, nav, feature, heading, row, visual, hero, heroField, training, document, toggle, label, storage, preference, window, observers, frames,
+  return { root, studio, nav, feature, heading, row, visual, hero, heroField, heroSaturn, training, document, toggle, label, storage, preference, window, observers, frames,
     preferenceChange, flushFrames, assertStatic };
 }
 
@@ -320,6 +329,9 @@ test('touch input does not move the decorative field and pointer drift remains b
   page.flushFrames();
   assert.equal(page.heroField.style.getPropertyValue('--pointer-drift-x'), '1.000');
   assert.equal(page.heroField.style.getPropertyValue('--pointer-drift-y'), '-1.000');
+  const background = page.studio.children[0];
+  assert.equal(background.style.getPropertyValue('--pointer-nx'), '1.000', 'star parallax uses the same bounded reach');
+  assert.equal(background.style.getPropertyValue('--pointer-ny'), '-1.000');
   page.toggle.emit('click');
   page.assertStatic();
 });
@@ -340,7 +352,8 @@ function findSaturn(page) {
   const background = page.studio.children[0];
   assert.equal(background.classList.contains('motion-background'), true);
   const saturn = background.children.find((node) => node.classList.contains('saturn'));
-  assert.ok(saturn, 'Saturn is created inside the decorative background');
+  assert.ok(saturn, 'the ambient Saturn is cloned into the decorative background');
+  assert.equal(saturn.classList.contains('saturn--ambient'), true);
   return saturn;
 }
 
@@ -419,6 +432,7 @@ test('Saturn rises with page progress and re-evaluates a resting pointer as it d
   page.window.emit('scroll');
   page.flushFrames();
   assert.equal(saturn.style.getPropertyValue('--saturn-angle'), '-24.00deg');
+  assert.equal(saturn.style.getPropertyValue('--saturn-presence'), '0.280');
   page.window.emit('pointermove', { clientX: 1000, clientY: 500, pointerType: 'mouse' });
   page.flushFrames();
   assert.equal(saturn.dataset.saturn, 'over');
@@ -429,6 +443,7 @@ test('Saturn rises with page progress and re-evaluates a resting pointer as it d
   assert.equal(saturn.style.getPropertyValue('--saturn-drift-x'), '-48.0px');
   assert.equal(saturn.style.getPropertyValue('--saturn-drift-y'), '-204.0px');
   assert.equal(saturn.style.getPropertyValue('--saturn-angle'), '-12.00deg');
+  assert.equal(saturn.style.getPropertyValue('--saturn-presence'), '0.220', 'the ambient planet steps back once the hero has scrolled away');
   assert.equal(saturn.dataset.saturn, 'near', 'the planet moved out from under a stationary pointer');
   page.toggle.emit('click');
   page.assertStatic();
@@ -441,4 +456,34 @@ test('Saturn stays idle and harmless when its layout box is unavailable', () => 
   page.flushFrames();
   assert.equal(saturn.dataset.saturn, 'idle');
   assert.equal(page.root.classList.contains('motion-ready'), true);
+});
+
+test('the hero Saturn is the main interactive planet: it escalates, carries its label and rests on cleanup', () => {
+  const page = setup();
+  const ambient = findSaturn(page);
+  const hero = page.heroSaturn;
+  // Hero planet: centre (600, 200), size 200 → planet radius 42, field 210, rings at −20°.
+  hero.getBoundingClientRect = () => ({ left: 500, top: 100, width: 200, height: 200 });
+  page.window.emit('scroll');
+  page.flushFrames();
+  assert.equal(hero.style.getPropertyValue('--saturn-angle'), '', 'the hero keeps its authored angle');
+  const move = (clientX, clientY) => {
+    page.window.emit('pointermove', { clientX, clientY, pointerType: 'mouse' });
+    page.flushFrames();
+  };
+
+  move(750, 200);
+  assert.equal(hero.dataset.saturn, 'near');
+  assert.equal(hero.style.getPropertyValue('--saturn-tip-x'), '150.00');
+  assert.equal(hero.style.getPropertyValue('--saturn-tip-y'), '0.00');
+  move(610, 215);
+  assert.equal(hero.dataset.saturn, 'over');
+  assert.equal(hero.style.getPropertyValue('--saturn-tip-x'), '10.00', 'the label follows the pointer across the planet');
+  assert.equal(hero.style.getPropertyValue('--saturn-tip-y'), '15.00');
+  assert.equal(ambient.dataset.saturn, 'idle', 'planets classify the pointer independently');
+
+  page.toggle.emit('click');
+  page.assertStatic();
+  page.toggle.emit('click');
+  assert.equal(hero.dataset.saturn, 'idle', 'resuming starts from rest until the pointer moves');
 });

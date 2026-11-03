@@ -54,6 +54,20 @@ The owner asked to remove Download CV and keep only Open CV, pointing to `https:
 
 The owner asked for Saturn in the background with powerful animation: a strong reaction when the mouse comes close and a more intense one when it is directly over the planet, while fitting the existing design. Saturn is added as one more decorative layer of the fixed D42 ambient background. It uses the Studio orange/amber palette as a dark, backlit planet so text crossing it stays readable at rest. Its rings are split at the major axis to pass behind and in front of the planet. At rest it has flowing ring particles, rotating cloud bands, two moons on inclined orbits, glints, a breathing halo, a gentle float and scroll-linked rise and ring opening. Pointer geometry, not DOM hover, drives three states, because all content stays above it. **Near** (within about one Saturn width) gives magnetic pull and lean, halo/rays, ring shockwaves, a racing ring comet, some sparks and about 2.2× loop speed. **Over** (on the planet or rings) gives a flare, surging waves, full sparks, ignited atmosphere/rim and about 4.5× speed. Touch never drives it. It exists only while motion runs, so the manual pause, OS reduced motion and hidden-tab suspension still govern it. It uses the existing scroll and pointer frames and adds no new loop, dependency or content change. This supersedes the historical no-mouse-follow/no-ornamental-loop guidance for this layer only. Affects `motion.ts`, new `saturn.css`, the layout import and the motion lifecycle tests.
 
+### D45 — Saturn as the hero centerpiece in a space scene (3 November 2026)
+
+The owner supplied a mockup and notes. Saturn becomes the central interactive element with glowing rings and 3D detail. It moves and reacts to proximity, with a strong glow on hover. Orbits and glowing particles move at different speeds. Stars and particles respond subtly to the mouse. Project cards glow on hover in their own colours. Fonts and white/orange contrast are unchanged, and animation stays subtle while browsing and intensifies during interaction.
+
+Implementation:
+- **Hero:** wide screens use three zones (headline | Saturn | introduction). The desktop headline size is reduced to make room. On tablets Saturn sits above the introduction; on phones, between the headline and the introduction.
+- **Hero planet:** a lit planet in its own text-free grid area, with orbits and motes centred on it and a "Saturn · Computer Vision" label that follows the pointer while over it. It is static markup, shown still when motion is paused or reduced.
+- **Background planet:** the D44 planet now shares one `Saturn.astro` source through a `<template>`. It is lit but deliberately distant (resting opacity 0.28 → 0.22), so text crossing it stays readable. The mockup's brighter background planet was not reproduced for that reason.
+- **Background:** the D28 technical grid is replaced by three pointer-parallax star depths, glowing dust, two occasional shooting stars and a faint nebula lane.
+- **Project index:** links become separate cards with a glow and subject glyph in each project's colour. Featured chapters gain a subtle colour glow on hover.
+- **Not adopted from the mockup:** carousel controls; the "Model & Architecture" label (the source-reviewed "Backend & architecture" stays); other cosmetic differences.
+
+Content, project order, dependencies and the CV are unchanged. Affects `Saturn.astro`, `Hero.astro`, `WorkIndex.astro`, `BaseLayout.astro`, `motion.ts`, `saturn.css`, new `space-scene.css`, removed rules in `site-motion.css`/`global.css`, and the motion tests.
+
 ## Historical decisions
 
 | ID | Decision | Status/source |

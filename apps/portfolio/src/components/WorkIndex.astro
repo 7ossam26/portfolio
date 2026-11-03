@@ -2,11 +2,18 @@
 import { projects } from '../content/projects';
 const featured = projects.filter(project => project.featured);
 const labels = ['Vision & interaction', 'Learning & evaluation', 'Backend & architecture'];
+// Decorative subject glyphs in each project's colour; the arrow remains the fallback.
+const glyphs: Record<string, string> = {
+  spacedrums: 'M3 12h1.5M6.5 9v6M10 5v14M13.5 8v8M17 10v4M20.5 12h.5',
+  heartguard: 'M2 12h4.5l2-5 4 10 3-7 1.5 2H22',
+  realestate: 'M12 3 3 7.5l9 4.5 9-4.5L12 3ZM3 12l9 4.5 9-4.5M3 16.5 12 21l9-4.5',
+};
+const arrow = 'M7 17 17 7M7 7h10v10';
 ---
 <nav class="work-index" aria-label="Featured project index">
   {featured.map((project, index) => <a href={`#project-${project.slug}`} data-project={project.slug}>
     <span class="index-number">0{index + 1}</span>
     <span class="index-copy"><small>{labels[index]}</small><strong>{project.name}</strong></span>
-    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10" /></svg>
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d={glyphs[project.slug] ?? arrow} /></svg>
   </a>)}
 </nav>

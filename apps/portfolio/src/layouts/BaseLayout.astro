@@ -1,9 +1,11 @@
 ---
+import Saturn from '../components/Saturn.astro';
 import { profile } from '../content/profile';
 import '../styles/global.css';
 import '../styles/project-identity.css';
 import '../styles/site-motion.css';
 import '../styles/saturn.css';
+import '../styles/space-scene.css';
 
 interface Props {
   title?: string;
@@ -56,6 +58,8 @@ const robots = siteUrl && indexable ? 'index,follow' : 'noindex,nofollow';
   <body>
     <a class="skip-link" href="#main-content">Skip to portfolio</a>
     <slot />
+    <!-- Inert source for the background Saturn, cloned only while motion runs. -->
+    <template data-saturn-template><Saturn variant="ambient" /></template>
     <script>
       import '../scripts/motion.ts';
     </script>

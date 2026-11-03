@@ -1,0 +1,56 @@
+---
+/**
+ * Decorative Saturn (D44/D45). The hero instance is static markup that animates only
+ * while motion runs; the ambient instance is cloned from a <template> into the fixed
+ * background by motion.ts. Per-element values live in saturn.css (nth-child rules), so
+ * the markup carries no inline styles for the release CSP.
+ */
+interface Props {
+  variant: 'hero' | 'ambient';
+}
+
+const { variant } = Astro.props;
+const ringLayers = [
+  'saturn-ring-glow',
+  'saturn-ring-bands',
+  'saturn-ring-flow saturn-ring-flow-inner',
+  'saturn-ring-flow saturn-ring-flow-outer',
+  'saturn-ring-arc',
+];
+const count = (length: number) => Array.from({ length }, (_, index) => index);
+---
+<div class={`saturn saturn--${variant}`} data-saturn="idle" aria-hidden="true">
+  <div class="saturn-drift">
+    <div class="saturn-float">
+      <div class="saturn-lean">
+        <div class="saturn-halo"></div>
+        <div class="saturn-corona"></div>
+        <div class="saturn-tilt">
+          <div class="saturn-waves saturn-waves-back">{count(3).map(() => <div class="saturn-wave"></div>)}</div>
+          <div class="saturn-rings saturn-rings-back">{ringLayers.map((name) => <div class={name}></div>)}</div>
+          <div class="saturn-planet">
+            <div class="saturn-bands"></div>
+            <div class="saturn-ring-shadow"></div>
+            <div class="saturn-ignite"></div>
+            <div class="saturn-shade"></div>
+          </div>
+          <div class="saturn-rings saturn-rings-front">{ringLayers.map((name) => <div class={name}></div>)}</div>
+          <div class="saturn-waves saturn-waves-front">{count(3).map(() => <div class="saturn-wave"></div>)}</div>
+          <div class="saturn-glints">{count(4).map(() => <span class="saturn-glint"></span>)}</div>
+          {[1, 2].map((moon) => (
+            <div class={`saturn-moon saturn-moon-${moon}`}><div class="saturn-moon-y"><div class="saturn-moon-body"></div></div></div>
+          ))}
+        </div>
+        <div class="saturn-sparks">{count(16).map(() => <span class="saturn-spark"></span>)}</div>
+        <div class="saturn-burst"></div>
+        <div class="saturn-ping"></div>
+      </div>
+    </div>
+  </div>
+  {variant === 'hero' && (
+    <div class="saturn-tip">
+      <span class="saturn-tip-icon"></span>
+      <span class="saturn-tip-copy"><strong>Saturn</strong><small>Computer Vision</small></span>
+    </div>
+  )}
+</div>

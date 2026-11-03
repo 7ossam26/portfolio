@@ -2,6 +2,8 @@
 
 ## Latest visual follow-up — 3 November 2026
 
+From the owner's mockup (D45), Saturn becomes the hero centerpiece in a headline | Saturn | introduction composition. Orbiting motes, pointer-parallax stars, dust and shooting stars, and project-coloured card glows complete the scene. Keep fonts and white/orange contrast, quiet motion while browsing, the distant background planet's readability limit and source-reviewed labels. Verify without a browser, record the addendum and stop.
+
 The owner added a pointer-reactive Saturn to the ambient background (D44): strong animation when the mouse is close, more intense directly over it, within Studio Dark. Keep it decorative and beneath content, never touch-driven, governed by pause/reduced motion/hidden-tab handling, and dim at rest. Verify without a browser, record the addendum and stop.
 
 The subsequent owner request extends richer animation to the **whole portfolio**, including hero, background, navigation, headings, academic section, controls and footer (D42). Preserve the completed project identities and content; maintain pause/reduced-motion support, viewport gating and hidden-tab suspension. Continue local non-browser verification and stop after recording this addendum.

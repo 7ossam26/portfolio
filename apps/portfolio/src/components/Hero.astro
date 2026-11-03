@@ -1,15 +1,20 @@
 ---
 import { profile } from '../content/profile';
+import Saturn from './Saturn.astro';
 ---
 <section class="studio-hero" aria-labelledby="studio-heading">
-  <div class="hero-ambient" aria-hidden="true">
+  <div class="hero-saturn" aria-hidden="true">
     <div class="hero-orbit-field">
-      <span class="hero-orbit hero-orbit-one"></span>
-      <span class="hero-orbit hero-orbit-two"></span>
-      <span class="hero-orbit hero-orbit-three"></span>
-      <span class="hero-orbit-core"></span>
-      {Array.from({ length: 6 }, (_, index) => <span class="hero-signal" style={`--signal-index:${index}`}></span>)}
+      {[1, 2, 3].map((orbit) => (
+        <div class={`hero-orbit hero-orbit-${orbit}`}>
+          <span class="hero-orbit-path"></span>
+          {Array.from({ length: orbit === 2 ? 2 : 1 }, () => (
+            <span class="hero-mote"><span class="hero-mote-y"><span class="hero-mote-dot"></span></span></span>
+          ))}
+        </div>
+      ))}
     </div>
+    <Saturn variant="hero" />
   </div>
   <div class="hero-main">
     <p class="eyebrow"><span class="small-rule"></span> APPLIED MACHINE LEARNING · COMPUTER VISION</p>

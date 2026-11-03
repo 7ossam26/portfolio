@@ -1,30 +1,16 @@
 /* Optional, site-wide choreography. Content never depends on these effects. */
 .studio-hero { position: relative; isolation: isolate; }
-.hero-ambient { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .motion-ready .hero-ambient { display: block; position: absolute; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; mask-image: linear-gradient(90deg, transparent, #000 28%, #000 85%, transparent); }
-  .hero-orbit-field { position: absolute; width: clamp(20rem, 48vw, 40rem); aspect-ratio: 1; left: 27%; top: -18%; opacity: .5; transform: translate3d(calc(var(--pointer-drift-x, 0) * 12px), calc(var(--scroll-offset, 0) * -2rem + var(--pointer-drift-y, 0) * 10px), 0); transition: transform 500ms ease-out; }
-  .hero-orbit { position: absolute; inset: 12%; border: 1px solid rgb(255 170 64 / .25); border-radius: 50%; transform: rotate(-25deg) scaleY(.72); }
-  .hero-orbit::after { content: ''; position: absolute; top: 14%; left: 14%; width: .5rem; height: .5rem; border-radius: 50%; background: #ffc997; box-shadow: 0 0 16px var(--accent); }
-  .hero-orbit-one { animation: studio-orbit 22s linear infinite; }
-  .hero-orbit-two { inset: 20%; border-style: dashed; border-color: rgb(255 112 67 / .28); animation: studio-orbit 28s linear reverse infinite; }
-  .hero-orbit-three { inset: 31%; border-color: rgb(255 204 160 / .3); animation: studio-orbit 16s linear infinite; }
-  .hero-orbit-core { position: absolute; inset: 37%; border-radius: 50%; background: radial-gradient(circle, rgb(255 112 67 / .23), transparent 70%); animation: studio-core 5s ease-in-out infinite; }
-  .hero-signal { position: absolute; left: calc(12% + var(--signal-index) * 14%); top: calc(21% + var(--signal-index) * 7%); width: 2px; height: 2px; border-radius: 50%; background: #ffd4b6; box-shadow: 0 0 9px var(--accent); animation: studio-signal 6s ease-in-out calc(var(--signal-index) * -.9s) infinite; }
-  .motion-ready .hero-orbit, .motion-ready .hero-orbit-core, .motion-ready .hero-signal,
+  /* The hero's Saturn and orbits are styled in saturn.css and space-scene.css (D45). */
   .motion-ready #studio-heading em, .motion-ready #studio-heading em::after,
   .motion-ready .hero-main > .eyebrow .small-rule { animation-play-state: paused; }
-  .motion-ready .studio-hero.motion-visible .hero-orbit,
-  .motion-ready .studio-hero.motion-visible .hero-orbit-core,
-  .motion-ready .studio-hero.motion-visible .hero-signal,
   .motion-ready .studio-hero.motion-visible #studio-heading em,
   .motion-ready .studio-hero.motion-visible #studio-heading em::after,
   .motion-ready .studio-hero.motion-visible .hero-main > .eyebrow .small-rule { animation-play-state: running; }
 
   /* Move the existing spotlight as a layer instead of repainting its gradient. */
   .motion-ready .motion-background-spotlight { inset: auto; left: 0; top: 0; width: 46rem; height: 46rem; margin: -23rem; background: radial-gradient(circle, rgb(255 112 67 / .14), rgb(255 170 64 / .05) 42%, transparent 70%); transform: translate3d(var(--mouse-x, 50vw), var(--mouse-y, 35vh), 0); will-change: transform, opacity; }
-  .motion-ready .motion-background-grid { inset: -2rem; animation: studio-grid-drift 16s ease-in-out infinite alternate; }
   .motion-ready .motion-background-beam-surface { animation-duration: 12s; }
   .motion-ready .motion-ember { animation-delay: -7s; }
   .motion-ready .motion-ember:nth-child(even) { animation-delay: -12s; }
@@ -85,10 +71,6 @@
 
   /* Freeze every loop while backgrounded, including pre-existing project art. */
   :root.motion-backgrounded *, :root.motion-backgrounded *::before, :root.motion-backgrounded *::after { animation-play-state: paused !important; }
-  @keyframes studio-orbit { from { transform: rotate(-25deg) scaleY(.72) rotate(0deg); } to { transform: rotate(-25deg) scaleY(.72) rotate(360deg); } }
-  @keyframes studio-core { 50% { transform: scale(1.45); opacity: .5; } }
-  @keyframes studio-signal { 0%, 100% { opacity: .15; transform: translate3d(0, 0, 0); } 50% { opacity: .8; transform: translate3d(8px, -25px, 0); } }
-  @keyframes studio-grid-drift { from { transform: translate3d(-12px, -8px, 0); opacity: .5; } to { transform: translate3d(12px, 8px, 0); opacity: .8; } }
   @keyframes studio-beacon { 50% { transform: scale(.72); opacity: .55; } }
   @keyframes studio-arrow-drop { 0%, 45%, 100% { transform: translateY(0); } 65% { transform: translateY(3px); } 80% { transform: translateY(-1px); } }
   @keyframes studio-skill-sweep { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: .8; } 80% { opacity: .8; } 100% { transform: translateX(300%); opacity: 0; } }
@@ -97,7 +79,6 @@
 }
 
 @media (max-width: 50rem) and (prefers-reduced-motion: no-preference) {
-  .hero-orbit-field { left: 10%; top: -5%; opacity: .35; }
   .motion-ready .motion-background-spotlight { display: none; }
 }
 @media (hover: none) and (prefers-reduced-motion: no-preference) {

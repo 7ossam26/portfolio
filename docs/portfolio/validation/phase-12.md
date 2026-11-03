@@ -1,5 +1,35 @@
 # Phase 12 — Owner feedback and final local handoff
 
+## November follow-up — Saturn hero centerpiece and space scene (D45)
+
+Date: **3 November 2026 (Africa/Cairo)**. The owner supplied a mockup and notes to make Saturn the main interactive element, add mouse-responsive stars/particles and orbits, and give project cards a colour glow. Animation stays subtle while browsing and intensifies during interaction. Base: commit `211db9f` (D44).
+
+### Delivered behavior
+
+- **Hero composition:** wide screens show headline | Saturn | introduction. To fit, the desktop headline is `clamp(3.1rem, 5.4vw, 5.75rem)`, smaller than before; fonts and colours are unchanged. Tablets place Saturn above the introduction; phones place it between the headline and the introduction. An `overflow-x: clip` on `.studio` keeps orbits from causing horizontal scroll without breaking the sticky navigation.
+- **Hero Saturn:** a lit planet with banded clouds, a terminator, the rings' shadow, glowing C/B/A/F rings with the Cassini division and two-speed ring particles. Three inclined orbits around it carry four glowing motes at 14/22/34 s, and the dashed orbit flows. At rest the motion is quiet: float, ring/band drift, moons and motes.
+  - **Near:** pull and lean, rays, ring shockwaves, a ring comet, some sparks and about 2.2× speed for the planet *and* its orbits; the orbit lines brighten.
+  - **Over:** a flare, surging waves, full sparks, an ignited atmosphere and rim, a stronger glow, about 4.5× speed, and a "Saturn · Computer Vision" label centred below the pointer.
+  - It is static markup, so pause/reduced motion show it still rather than removing it, and its loops pause while the hero is off-screen.
+- **Background planet:** it now comes from the same `Saturn.astro` source via an inert `<template>`. It is lit but deliberately distant: resting opacity is 0.28, falling to 0.22 after the hero, and it brightens only when the pointer is near. It is hidden on phones.
+- **Background:** the D28 technical grid is replaced by three star depths shifting 6/13/24 px with the pointer (one twinkling), 12 glowing dust motes on the nearest layer, two occasional shooting stars and a faint slate nebula lane. Orange orbs, beam, embers and spotlight remain.
+- **Project cards:** the three index links are separate cards in their project colour with subject glyphs (waveform, pulse, layers). On hover they glow and lift in their own colour, and featured chapters gain a subtle colour glow. Labels stay as source-reviewed.
+- **Not adopted from the mockup:** carousel arrows/dots (there are only three featured projects); "Model & Architecture" for RealEstate (the reviewed label "Backend & architecture" stays); the play icon and heading-underline variations.
+
+### Validation
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify` (pinned portable Node 22.23.2 / npm 11.6.2) | Passed: **23 Astro files**, 0 errors/warnings/hints; **22 motion tests**; asset check; 10 pages built; static gate. |
+| Lifecycle tests (Node DOM doubles, not a browser) | Updated for the template-cloned background planet and static hero planet. Static checks now require the hero planet back at rest with no interaction variables. New: the hero planet escalates near → over independently of the background planet, its label tracks the pointer, and it rests after pause/resume. Star parallax variables are bounded. Resting presence is 0.28 → 0.22 with scroll. |
+| Built output | Homepage: one hero stage (aria-hidden, **no inline style attributes**, which avoids the release CSP's attribute hashing), two Saturn instances in markup (hero + template) and four motes. Case studies: template only. Grid/old orbit rules are absent from the CSS. The new hero grid rules follow the global rules at every breakpoint. CSS 19,232 B, JS 3,251 B, homepage HTML 9,012 B gzip (zlib 9): file sizes only. |
+| Inputs | Content, project files, dependency inputs and the CV (SHA256 `6ee68528…0469d15`) are unchanged. `git diff --check` passed. |
+| Background-planet contrast (calculation) | At the top of the page, the brightest highlight gives primary 8.23:1, muted 4.66:1, quiet 3.27:1; after the hero, 9.74 / 5.52 / 3.87:1. A brighter 0.7 presence like the mockup would drop muted text to about 1.1:1, so it was rejected. The hero planet has its own text-free grid area; only its thin orbits, motes and halo extend behind text. |
+
+Evidence: [saturn-scene-checks.json](phase-12-evidence/saturn-scene-checks.json). Ignored local evidence: `.local-tools/saturn-scene/verify.log` and `contrast.json`; the deterministic star/dust/spark generator is in the session scratchpad.
+
+No browser rendering, visual comparison with the mockup, frame-rate/performance measurement, reflow, 200% zoom or accessibility run occurred. The composition at real viewport sizes, the planet's look, orbit placement and card glow still need the owner's manual review (`npm run dev`). The effects need modern CSS (`:has`, `mask-image`, conic gradients, `color-mix`, `overflow: clip`, `var()` in keyframes). Older engines degrade to the static layout with fewer effects. No commit, push or deployment occurred.
+
 ## November follow-up — pointer-reactive Saturn (D44)
 
 Date: **3 November 2026 (Africa/Cairo)**. The owner asked for Saturn in the background with powerful animation: strong when the mouse comes close, more intense when it is directly over it, and fitting the existing design. This is a bounded Phase 12 addendum on `tantawy`.

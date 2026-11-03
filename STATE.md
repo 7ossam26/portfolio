@@ -2,7 +2,14 @@
 
 ## Current branch — Yousef Fahim Amin / `tantawy`, 3 November 2026
 
-Latest Phase 12 follow-up: **pointer-reactive Saturn in the ambient background (D44)**.
+Latest Phase 12 follow-up: **Saturn hero centerpiece and space scene (D45)**, uncommitted on top of `211db9f`.
+
+- From the owner's mockup, the hero is now headline | lit interactive Saturn with orbiting motes | introduction (stacked on tablet/phone). The background planet shares one `Saturn.astro` source but is deliberately distant (0.28 → 0.22) for readability. The grid is replaced by pointer-parallax stars, dust, shooting stars and a nebula lane. The project index cards glow in their own colours. Hovering the hero planet shows a "Saturn · Computer Vision" label. Content, order, dependencies and the CV are unchanged.
+- `npm run verify` passed on pinned Node 22.23.2 / npm 11.6.2: **23 Astro files, 0 diagnostics; 22 motion tests; 10-page build/static gates**. CSS 19,232 B and JS 3,251 B gzip. No browser QA, visual comparison, performance check, commit, push or deployment occurred. Evidence: newest `phase-12.md` addendum and `phase-12-evidence/saturn-scene-checks.json`.
+
+## Earlier same-day follow-up — background Saturn (D44, committed as `211db9f`)
+
+Phase 12 follow-up: **pointer-reactive Saturn in the ambient background (D44)**.
 
 - Saturn is a dark, backlit amber planet in the fixed background, on the right, beneath all content. It has two-speed ring particles, rotating bands, two inclined moons, glints, a breathing halo and a float, and rises as the page scrolls. **Near** the pointer it leans and is pulled toward it, with shockwaves, a ring comet, rays, sparks and about 2.2× loop speed. **Over** the planet or rings it adds a flare, surging waves, full sparks, ignited atmosphere and about 4.5× speed. Touch never drives it. Pause, reduced motion and hidden-tab handling govern it like the rest of the background. No new loop, dependency or content change.
 - `npm run verify` passed on pinned Node 22.23.2 / npm 11.6.2: **22 Astro files, 0 diagnostics; 21 motion tests (3 new Saturn tests); 10-page build/static gates**. Only `BaseLayout.astro` and `motion.ts` changed, plus the new `saturn.css` and the tests. CSS is 16,523 bytes gzip and JS 3,344 bytes gzip. At the brightest idle points, quiet metadata text crossing Saturn falls to about 3.2:1; primary and muted text stay above 4.5:1 by calculation.

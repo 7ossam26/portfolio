@@ -1,5 +1,7 @@
 # Yousef portfolio — source and claim audit
 
+> The [3 November 2026 review](academic-positioning-review.md) supersedes personal-background, CV, featured-order and skill-positioning choices below, and adds a deeper HeartGuard methodology review. Earlier observations remain historical evidence; they are not combined with the latest CV as independently verified credentials.
+
 Audit date: 6 October 2026. Scope: replace the portfolio owner's public content with Yousef's identity and work while retaining the Studio Dark presentation. The user's exact requested display name, **Yousef Fahim Amin**, overrides the spelling used in older repository materials. The current request supersedes the historical Ahmed project selection; it does not authorize changes to any referenced project repository or publication to Ahmed's host.
 
 ## Evidence method

@@ -1,4 +1,4 @@
-export const projectSlugs = ['realestate', 'spacedrums', 'heartguard', 'gym-app', 'arduino-projects', 'gesture-volume', 'digits-classifier', 'hospital-management'] as const;
+export const projectSlugs = ['spacedrums', 'heartguard', 'realestate', 'gym-app', 'arduino-projects', 'gesture-volume', 'digits-classifier', 'hospital-management'] as const;
 
 export type ProjectSlug = (typeof projectSlugs)[number];
 
@@ -51,6 +51,78 @@ export interface ProjectContent {
 
 export const projects = [
   {
+    slug: 'spacedrums',
+    name: 'Space Drums',
+    domain: 'Computer vision & motion prediction',
+    featured: true,
+    summary: 'A webcam drumming application with fingertip and drumstick interaction, plus separate offline motion-prediction experiments.',
+    distinction: 'Implemented interaction and model experiments are documented separately from physical measurements that remain unresolved.',
+    problem: 'A webcam drum kit must locate the striking point, distinguish a deliberate downstroke from idle motion, and trigger one sound per strike. The research question is whether causal prediction can reduce action-to-sound latency without unacceptable false hits or timing error.',
+    solution: 'Space Drums, called airDrums in my CV, connects webcam perception, pad geometry, duplicate-hit suppression and local sample playback. Its reactive application and offline prediction experiments have separate evidence and limits.',
+    role: 'Project development',
+    contribution: 'My development and integration work spans capture, perception, strike geometry, calibration, audio, replay diagnostics and focused tests, alongside the offline model-training and evaluation pipeline.',
+    capabilities: [
+      { label: 'Three interaction modes', detail: 'The application implements bare index-fingertip tracking, image-supported ordinary-stick endpoints, and colour-based red-tip tracking.' },
+      { label: 'Webcam application', detail: 'Four-pad and seven-piece layouts, classic and GPU-rendered AR views, calibration and recorded-sample playback.' },
+      { label: 'Offline model experiments', detail: 'LightGBM GBDT and PyTorch GRU/TCN pipelines explore motion prediction using synthetic and developer data, without a demonstrated physical latency benefit.' },
+    ],
+    decisions: [
+      { title: 'Keep measured interaction separate from prediction', detail: 'OpenCV supplies frames; MediaPipe supports hand perception, with a different endpoint estimator for each mode. Measured downward crossings, rebound re-arming and per-hand commit checks drive the application. Product geometry accepts reactive Arm A only.', tradeoff: 'The learned models can be evaluated through research code, but they do not drive strikes in the webcam application.' },
+      { title: 'Separate rendering, audio and calibration evidence', detail: 'A bounded capture queue feeds the decision loop; committed strikes enter a scheduler and callback mixer. The OpenGL AR view has a classic-view fallback. Automatic calibration fits and checks four-pad layouts; the seven-piece developer layout can be adjusted and saved.', tradeoff: 'A developer-tuned layout is not population validation. Software timestamps and reported audio-stream latency do not measure physical action-to-sound delay.' },
+    ],
+    details: [
+      { id: 'offline-experiments', title: 'Offline GBDT, GRU & TCN experiments', paragraphs: [
+        'LightGBM trains a flattened-window GBDT baseline with strike, time-to-impact and displacement outputs. PyTorch implements a unidirectional GRU and a causal, dilated-convolution TCN. Training and replay evaluation code compare prediction with reactive and rule-based baselines.',
+        'The evaluation framework separates participant groups, selects operating points on validation data, and measures false/missed hits, timing error and trajectory error. The intended participant comparison remains pending; no model winner or generalization result is claimed.',
+      ] },
+      { id: 'data-and-evidence', title: 'Synthetic and developer evidence', paragraphs: [
+        'Available evidence consists of synthetic fixtures, scripted rehearsals and developer recordings. Synthetic participant identifiers are not real participants; README animations are scripted illustrations. These materials exercise the software and evaluation pipeline, not a completed participant study.',
+        'Source tests cover causality, geometry, repeated-hit suppression, calibration and audio behavior. The repository reports developer runs and test results; models, tests, camera and speakers were not rerun for this portfolio.',
+      ] },
+      { id: 'audio-provenance', title: 'Audio and model provenance', paragraphs: [
+        'Playback uses hash-checked local samples and a polyphonic mixer. The Oramics TR-505 recordings and Alexander Holm’s Salamander Drumkit are third-party assets, as are the pretrained MediaPipe models. Motion-derived loudness is an intensity proxy, not a physical force measurement.',
+      ] },
+      { id: 'open-research', title: 'Open measurements & research questions', paragraphs: [
+        'Independent physical strike accuracy, all-pad reliability and externally measured action-to-sound latency remain unresolved. The saved evaluation report has no confirmatory participant result or validated external timing method.',
+        'The next research steps are independently labelled strokes, evaluation beyond developer data, and controlled reactive-versus-predictive comparisons with external audio timing. Whether prediction improves latency while controlling false hits remains an open question.',
+      ] },
+    ],
+    flow: ['Webcam frames', 'Fingertip or stick perception', 'Measured strike & commit', 'Local samples & visual feedback'],
+    demoSummary: 'Source reviewed at revision e1964f4a. This case study describes implemented code and saved evidence; no webcam application or prediction service is embedded here.',
+    stack: ['Python', 'OpenCV', 'MediaPipe', 'PyTorch', 'LightGBM', 'OpenGL', 'sounddevice', 'pytest'],
+    repositoryUrl: 'https://github.com/youseffahem/air_drum_project',
+    demoAvailable: false,
+  },
+  {
+    slug: 'heartguard',
+    name: 'HeartGuard AI',
+    domain: 'Applied machine learning & evaluation',
+    featured: true,
+    summary: 'An educational comparison of classifiers and feature subsets on the UCI Heart Disease dataset, with a Streamlit interface.',
+    distinction: 'PCA, recursive feature elimination and saved model results make modeling choices inspectable, including the limits of the evaluation.',
+    problem: 'A classification study needs to explain which features and evaluation choices produced its results. HeartGuard compares model families and feature representations, then exposes saved outputs through an interface.',
+    capabilities: [
+      { label: 'Model comparison', detail: 'Logistic Regression, Decision Tree, Random Forest and SVM are compared on original and reduced feature sets.' },
+      { label: 'PCA & feature selection', detail: 'Notebooks explore principal components, RFE and feature importance, including XGBoost for feature analysis.' },
+      { label: 'Streamlit interface', detail: 'A form displays saved model metrics and calls a selected estimator for predictions. This is an educational interface using a public research dataset.' },
+    ],
+    decisions: [
+      { title: 'Inspect evaluation at each stage', detail: 'The supervised notebook uses stratified 80/20 splits and five-fold stratified cross-validation. Parameter search uses cross-validated F1; saved outputs include accuracy, F1 and ROC-AUC.', tradeoff: 'Scaling, PCA and feature selection are fitted before downstream splits in the notebooks, exposing estimates to data leakage. Fold-contained preprocessing and selection are needed for a stronger evaluation.' },
+      { title: 'Make saved-model selection explicit', detail: 'The Streamlit code selects the estimator with the highest saved test F1. Current metadata selects Logistic Regression with original features, rather than the Random Forest result described in the historical profile.', tradeoff: 'Using test F1 for selection biases a final assessment. The interface also lacks the matching scaling step used during training; inference consistency requires correction and validation.' },
+    ],
+    details: [
+      { id: 'evaluation-limits', title: 'Evaluation limits & next steps', paragraphs: [
+        'The notebooks and saved artifacts support a study of model comparison, not a clinical performance claim. Results were not independently reproduced, and no headline accuracy figure is presented here.',
+        'A stronger follow-up would fit preprocessing and feature selection inside training folds, reserve an untouched final test set, and export one preprocessing-plus-estimator pipeline for the interface. External-cohort evaluation remains outside the current evidence.',
+      ] },
+    ],
+    flow: ['Public research data', 'PCA, RFE & model comparison', 'Saved evaluation artifacts', 'Streamlit interface'],
+    demoSummary: 'Educational project, not a medical device. Notebook and interface limitations are stated above; no clinical validity or hosted prediction service is claimed.',
+    stack: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'Streamlit', 'Matplotlib'],
+    repositoryUrl: 'https://github.com/youseffahem/Hearts_Disease_Project',
+    demoAvailable: false,
+  },
+  {
     slug: 'realestate',
     name: 'RealEstate',
     domain: 'Backend & relational data',
@@ -76,78 +148,10 @@ export const projects = [
     demoAvailable: false,
   },
   {
-    slug: 'spacedrums',
-    name: 'SpaceDrums',
-    domain: 'Computer vision & interactive audio',
-    featured: true,
-    summary: 'A webcam-based virtual-drumming prototype that connects MediaPipe hand tracking and measured drumstick endpoints to a four-pad kit.',
-    distinction: 'The published implementation follows visible drumstick motion through strike detection, repeat-hit checks, and local sample playback.',
-    problem: 'A webcam drum kit must locate the striking point, separate downstrokes from idle or sideways motion, choose a pad, and avoid repeated hits during one stroke.',
-    solution: 'Hand landmarks guide visible drumstick-endpoint detection. Measured downward crossings map to a two-by-two kit, with a calibration flow and local drum-sample playback.',
-    role: 'Project development',
-    contribution: 'My development and integration work spans capture, hand/stick perception, pad geometry, strike validation and audio, alongside calibration, replay diagnostics and focused tests.',
-    capabilities: [
-      { label: 'Hand tracking & computer vision', detail: 'MediaPipe hand landmarks provide grip references for an image-based search along the drumstick. The current product accepts visible endpoints and rejects missing or uncertain evidence.' },
-      { label: 'Four virtual drum zones', detail: 'Crash/Ride, Hi-Hat, Snare, and Tom 1 form a two-by-two kit. Every pad accepts either hand in the geometry rules; the mirrored display is separate from camera-space geometry.' },
-      { label: 'Measured strike detection', detail: 'Downward travel across a pad’s top edge creates a strike candidate. Rebound re-arming and per-hand commit checks suppress repeated hits from one uninterrupted stroke.' },
-    ],
-    decisions: [
-      { title: 'Architecture & computer vision', detail: 'OpenCV frames feed the MediaPipe Tasks Hand Landmarker. After region-of-interest coordinate conversion, hand assignment uses handedness and wrist continuity; ambiguous assignments lower confidence. Grip references guide image search, axis fitting and endpoint checks. Only current-frame, image-supported stick endpoints are admitted; missing, clipped or uncertain evidence is rejected without guessing stick length. The play entry point connects perception to calibration, measured strikes, commit checks and audio.', tradeoff: 'The product uses reactive detection. Experimental prediction models remain a separate research path, without a validated predictive feature claimed.' },
-      { title: 'Real-time processing', detail: 'A bounded capture queue feeds the perception/strike loop; a separate audio callback mixes scheduled samples. Monotonic timestamps and session diagnostics track processing, dropped frames and audio health.', tradeoff: 'Software timing supports diagnostics but does not establish physical action-to-sound latency or a frame-rate guarantee.' },
-    ],
-    details: [
-      { id: 'calibration', title: 'Calibration', paragraphs: [
-        'MediaPipe pose landmarks provide a standing body reference. Measured strokes fit all four pads jointly; further strokes verify the layout. A failed fit or verification requests a retry and stops active audio.',
-        'An explicitly selected developer mode uses a fixed guide, bypassing incomplete reach calibration and recording that calibration has not passed.',
-      ] },
-      { id: 'audio-pipeline', title: 'Audio pipeline', paragraphs: [
-        'Committed strikes trigger hash-checked local samples through a time-targeted scheduler and polyphonic mixer. Overlapping voices and late events are handled explicitly; motion-derived intensity controls volume as a proxy, not a physical force measurement.',
-        'The recorded TR-505 samples come from the third-party Oramics collection; I did not record them.',
-      ] },
-      { id: 'testing', title: 'Testing', paragraphs: [
-        'Source tests cover pad mapping, independent/simultaneous hand events, negative trajectories, repeat-hit suppression, missing observations, calibration rejection, causality, scheduling and mixing. Synthetic fixtures and replay tests check software behavior, not physical strike accuracy.',
-        'Tests and reports were inspected; the SpaceDrums suite, camera and speakers were not run for this portfolio.',
-      ] },
-      { id: 'current-status', title: 'Current status & next steps', paragraphs: [
-        'The published drumstick-endpoint implementation remains a developer prototype. Its latest documented live run records Crash/Ride events reaching the audio mixer; audibility, intended-hit matching and all-four-pad physical acceptance remain unverified.',
-        'The newer local fingertip iteration is in development. It is unpublished, and its code has not been inspected for this case study.',
-        'Next steps: independently checked endpoint/stroke labels, improved endpoint reliability, reachable calibration, physical validation of repeated/simultaneous audible strikes, and independent action-to-sound timing.',
-      ] },
-    ],
-    flow: ['Webcam frames', 'Hands & stick endpoints', 'Stroke & commit checks', 'Scheduled drum samples'],
-    demoSummary: 'Based on air_drum_project at revision f5754e16, plus the owner-confirmed status of the local iteration. No camera application or playable demo is embedded here.',
-    stack: ['Python', 'OpenCV', 'MediaPipe', 'NumPy', 'sounddevice', 'pytest'],
-    repositoryUrl: 'https://github.com/youseffahem/air_drum_project',
-    demoAvailable: false,
-  },
-  {
-    slug: 'heartguard',
-    name: 'HeartGuard AI',
-    domain: 'Applied machine learning',
-    featured: true,
-    summary: 'An educational machine learning study of the UCI Heart Disease dataset with a Streamlit interface.',
-    distinction: 'Compare model families and feature sets through saved results, then inspect the selected estimator through a separate interface.',
-    problem: 'A classification experiment needs more than one accuracy figure. This study follows preprocessing, feature selection, model comparison, clustering, and parameter search so the effect of each modeling choice can be examined.',
-    capabilities: [
-      { label: 'Model comparison', detail: 'Logistic Regression, Decision Tree, Random Forest, and SVM are compared across original and reduced feature sets.' },
-      { label: 'Feature analysis', detail: 'PCA, feature importance measures, and recursive elimination produce separate artifacts for inspecting what each selection method retains.' },
-      { label: 'Research interface', detail: 'A Streamlit form loads a committed estimator and displays its recorded metrics alongside the model output. The project uses a public research dataset.' },
-    ],
-    decisions: [
-      { title: 'Keep experiment outputs inspectable', detail: 'Notebook stages save feature matrices, result tables, model metadata, and serialized estimators. The interface reads those artifacts rather than retraining on each request.', tradeoff: 'Saved artifacts make the experiment easier to inspect, but their feature definitions and preprocessing must remain aligned with inference.' },
-      { title: 'Make model selection explicit', detail: 'The interface selects the saved estimator with the highest recorded test F1. The saved metadata selects Logistic Regression on the original feature set.', tradeoff: 'Selecting against a small held-out set can bias reported performance. The results describe a baseline study and do not establish clinical validity.' },
-    ],
-    flow: ['Public research data', 'Features & model study', 'Saved artifacts', 'Streamlit interface'],
-    demoSummary: 'An educational research project, not a medical device. Its results were not independently reproduced for this portfolio. The workflow diagram describes the repository architecture; no prediction service is connected.',
-    stack: ['Python', 'scikit-learn', 'Pandas', 'NumPy', 'Streamlit', 'Matplotlib'],
-    repositoryUrl: 'https://github.com/youseffahem/Hearts_Disease_Project',
-    demoAvailable: false,
-  },
-  {
     slug: 'gym-app',
     name: 'Gym App',
     domain: 'Flutter & mobile interfaces',
-    featured: true,
+    featured: false,
     summary: 'A Flutter interface prototype for browsing exercises and workout routines.',
     distinction: 'Simple exercise and workout models connect searchable lists to focused detail screens.',
     problem: 'Exercise information and routine contents should be easy to browse on a phone. This project explores that navigation through a small Flutter application with separate home, exercise, workout, login, and profile screens.',
@@ -170,7 +174,7 @@ export const projects = [
     slug: 'arduino-projects',
     name: 'Arduino Projects',
     domain: 'Embedded C/C++ & electronics',
-    featured: true,
+    featured: false,
     summary: 'A collection of five Arduino experiments spanning buttons, LEDs, PWM, game logic, and soil sensing.',
     distinction: 'Small sketches make the path from physical input to an output signal explicit.',
     problem: 'Embedded programming connects code to changing electrical inputs. These exercises explore that connection through a controlled LED, strobe, light dimmer, memory game, and plant monitor, each with its own source and documentation.',

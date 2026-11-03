@@ -1,5 +1,7 @@
 # Ahmed Hossam — Portfolio Master Plan
 
+> Current `tantawy` follow-up: [Phase 12](prompts/12-owner-feedback.md) and [3 November positioning review](academic-positioning-review.md) govern Yousef's applied-ML/CV focus, academic background, three featured projects and approved CV replacement. Master's interest is excluded from webpage copy. No deployment is requested.
+
 > Historical baseline. On 6 October 2026 the current user requested a complete personalization for Yousef Fahim Amin on branch `tantawy`. `prompts/10-personalization.md` supersedes the owner, project selection, CV and deployment choices in this original plan for that branch. Its design and engineering constraints still apply.
 
 Version 1.0 · 10 September 2026 · Implementation handoff for Codex

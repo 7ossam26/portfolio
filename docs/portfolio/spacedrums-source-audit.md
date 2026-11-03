@@ -1,5 +1,7 @@
 # SpaceDrums — published source audit
 
+> Historical 6 October audit. The [3 November source review](academic-positioning-review.md#space-drums) pins the newer public revision `e1964f4a198cbbf916b1bf891b84077c7f318b3f`, including fingertip/red-tip modes, seven-piece layouts, AR rendering and inspected offline models. It supersedes this record's unpublished-fingertip and four-pad-only description; physical-evidence limits still apply. Public title: **Space Drums**.
+
 Reviewed 6 October 2026 for a bounded portfolio update before Phase 12. The only SpaceDrums source repository inspected was [youseffahem/air_drum_project](https://github.com/youseffahem/air_drum_project), public `main` at **`f5754e16c32632e506ed25f804755e8fbd358064`**. GitHub API, the public tree, `git ls-remote`, and a local read-only source checkout agreed on this revision. Only `main` was advertised as a branch at review time. No alternative SpaceDrums repository was used.
 
 ## Version clarification

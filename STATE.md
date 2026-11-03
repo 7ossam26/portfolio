@@ -1,6 +1,20 @@
 # Portfolio implementation state
 
-## Current branch — Yousef Fahim Amin / `tantawy`
+## Current branch — Yousef Fahim Amin / `tantawy`, 3 November 2026
+
+Current phase: **12 — requested academic/technical positioning follow-up complete locally**. This section supersedes conflicting October positioning, order, source-version and CV entries below.
+
+- The short display name remains Yousef Fahim Amin. Dedicated academic background uses the full CV name, final-year status, full institution/location, 2023–2027 expected degree period, English instruction, revised coursework, academic interests, languages and training. These are stated CV facts, not independently verified credentials.
+- The latest owner correction removes master's-study interest from all webpage text and explicitly approves replacing the downloadable CV. The public PDF now matches `D:/Yousef_Fahim_CV.pdf` exactly: 64,495 bytes, SHA256 `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`. Existing download URLs are preserved. The PDF's original content remains unchanged; phone, GPA, classification and declaration are not copied into HTML.
+- Primary positioning is applied machine learning and computer vision, with exactly three featured cards: **Space Drums → HeartGuard AI → RealEstate**. All five other projects and their routes remain available as compact rows. Studio Dark, CSS, motion and dependencies are unchanged.
+- Space Drums now uses inspected public revision `e1964f4a198cbbf916b1bf891b84077c7f318b3f`, which implements fingertip, ordinary-stick and red-tip modes, multiple kit layouts and AR rendering. Offline LightGBM GBDT and PyTorch GRU/TCN code is separated from the reactive webcam application, synthetic/developer evidence and unresolved participant/physical measurements. The October unpublished-fingertip description is obsolete.
+- HeartGuard's unchanged source revision was reviewed more deeply: PCA/RFE, four classifier families, stratified splits/CV, saved metrics and Streamlit are documented, along with preprocessing leakage, test-F1 model selection and missing inference scaling. Unsupported profile accuracy is excluded. No source code was changed or model executed.
+- `npm run verify` passed under Node 22.23.2 / npm 11.1.0: 18 Astro files with zero diagnostics, 10 motion tests, 10-page build and asset/static/reference/indexing gates. Another 28 focused non-browser artifact/HTTP checks passed, including the new PDF's served bytes, absence of master's/private-field text in HTML, project order, retained source links and unchanged other project content. `git diff --check` passed.
+- Evidence: `docs/portfolio/academic-positioning-review.md`, `docs/portfolio/validation/phase-12.md` (November addendum), and `docs/portfolio/validation/phase-12-evidence/academic-content-checks.json`. Full verify log and one-off check scripts remain ignored under `.local-tools/academic-review/`.
+- Root `dist/` contains the current local artifact in preview indexing mode. No browser QA, new visual/a11y/performance claims, project training/tests/hardware execution, commit, push or deployment occurred. All reference checkouts remain clean. Branch and HEAD remain `tantawy` / `deb79e5215eab8f13e2838143d7f364fe9927306`.
+- No implementation blocker remains for this request. Manual reading/reflow review is deferred; existing browser evidence does not validate the new text. No additional phase is authorized. Next prompt reference: `docs/portfolio/prompts/12-owner-feedback.md`, only if the owner requests further corrections.
+
+## Earlier branch state — 6 October 2026
 
 Updated: **6 October 2026**. Current phase: **12 — owner feedback and focused polishing complete locally; final manual approval pending**. This section supersedes the historical state below.
 

@@ -1,5 +1,47 @@
 # Phase 12 — Owner feedback and final local handoff
 
+## November follow-up — revised positioning and authorized CV replacement
+
+Date: **3 November 2026 (Africa/Cairo)**. All edits are on `tantawy`, starting at clean HEAD `deb79e5215eab8f13e2838143d7f364fe9927306`. This is additional owner-authorized Phase 12 work, not automatic execution of another phase. It supersedes the October order/version/CV details preserved below.
+
+### Delivered behavior
+
+- The homepage now leads with applied machine learning and computer vision, with exactly three featured cards: Space Drums, HeartGuard AI, RealEstate. Five further projects remain accessible as concise rows, and every prior case-study route and repository destination is retained.
+- Dedicated academic background uses the new CV's full name, final-year undergraduate status, full institution/location, degree period, English instruction, coursework, interests, languages and training. The short display name remains. Skills distinguish actual project use from CV-listed familiarity; PyTorch and LightGBM were checked in implementation.
+- The latest Arabic correction is applied: **no master's-interest statement appears in webpage text**. The owner explicitly approved replacing the CV download, superseding the initial review-only request. The stable PDF URL now serves the exact attachment (64,495 bytes; SHA256 `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`). The PDF was not rewritten. Phone, GPA, classification and the declaration are absent from HTML.
+- Space Drums now reflects public source `e1964f4a`: three interaction modes, four-pad/seven-piece layouts and AR rendering, with the reactive application clearly separated from offline GBDT/GRU/TCN code, synthetic/developer data and unresolved physical/participant research. Public title is consistently Space Drums; airDrums appears once as the CV alias.
+- HeartGuard now explains PCA/RFE, model comparison, stratified splits/CV and the Streamlit interface, alongside observed leakage, test-based selection and missing inference scaling. Historical headline accuracy is excluded. These are documented limitations, not fixes to the read-only project.
+- Existing Studio Dark CSS/motion, dependencies/lockfile, all six other case-study records (except two homepage-feature flags), RealEstate collaborator credit and demo exclusions are unchanged.
+
+The CV comparison, pinned revisions, claim mapping and discrepancy decisions are in [academic-positioning-review.md](../academic-positioning-review.md). Updated guidance/state: `AGENTS.md`, `STATE.md`, D39/D40, current Phase 12 prompt, README, and historical-audit notices.
+
+### Checks performed
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify` with existing Node 22.23.2 / npm 11.1.0 | Passed, no dependency installation. |
+| Astro check | 18 files; 0 errors, warnings or hints. |
+| Existing Node motion tests | 10 passed; none failed/skipped. Not browser evidence. |
+| Build, assets and static validation | 10 pages; all local links, anchors, assets, owner metadata and preview indexing checks passed. |
+| Focused generated-output and HTTP inspection | 28 checks passed; [machine-readable evidence](phase-12-evidence/academic-content-checks.json). |
+| Privacy/wording/order | No master's text, phone, GPA, classification or declaration in any HTML; exactly three featured projects in order; one CV alias; new background, skill boundaries and methodology limits rendered. |
+| CV content and delivery | Attachment, public source, built artifact and HTTP response match exactly; response is 200 with `application/pdf`. All ten pages use the stable download URL. |
+| Route/error HTTP checks | Homepage, eight studies and explicit 404 document served; nonexistent JS returned 404. The temporary loopback-only server was stopped. No browser was opened. |
+| Preservation | Other case-study records and repository URLs preserved; package inputs, stylesheet and motion source unchanged. Old and new source checkouts remain clean. |
+| `git diff --check` | Passed after preserving the repository's LF line endings. |
+
+Local ignored scripts/logs: `.local-tools/academic-review/final-checks.mjs`, `verify.log`, and PDF page renders under `pdf/`. The one-off privacy assertion was narrowed from the generic word “classification” (which correctly appears in ML prose) to the CV's academic-classification wording; the final 28 checks passed. No permanent implementation-mirroring test suite was added.
+
+### Limitations and handoff
+
+No browser automation/preview review, visual/reflow approval, accessibility or performance audit was performed. Earlier browser evidence is historical and does not validate this new text. No referenced model was deserialized/trained/run; no source application tests, hardware, database setup, migrations or seeds were executed. PDF inspection is document review, not browser QA. Credentials and experimental claims remain attributed, not independently verified.
+
+Local implementation is complete. Root `dist/` remains `noindex,nofollow` with disallow-all robots and no canonical/sitemap. No commit, push, deployment, new host selection or remote change occurred. Owner manual reading/reflow review remains deferred.
+
+Next prompt reference: [`../prompts/12-owner-feedback.md`](../prompts/12-owner-feedback.md), only for another explicitly requested correction. No next phase is started automatically.
+
+## Historical October Phase 12 record
+
 Date: **6 October 2026 (Africa/Cairo)**. Branch: `tantawy`. The owner approved final polishing, specifically a shorter SpaceDrums case study with the technical depth and version distinction preserved. No further phase or publication was authorized.
 
 ## Exact changes

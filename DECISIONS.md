@@ -24,6 +24,16 @@ The owner approved Phase 12 for final feedback and polishing only, specifically 
 
 The owner requested a background-only refinement for Featured Projects / Selected Work: layered charcoal, restrained orange/brown ambience and approximately 5–10% subtle glass transparency. Scope the CSS to the existing homepage card group and its large cards; preserve layout, typography, spacing, content, motion, controls, other sections and Studio Dark. Use static gradients and background alpha, without new blur, particles, markup or global token changes. The referenced attachment was unavailable, so the written direction governs this pass. No branch creation, commit, push or publication is authorized.
 
+### D39 — Applied ML/CV and academic background (3 November 2026)
+
+The owner's new CV and explicit source hierarchy supersede D30/D31/D35/D37 where they retain broad backend-first positioning, older personal details, project order or the unpublished-fingertip distinction. Lead with applied machine learning and computer vision for academic reviewers and technical recruiters. Feature Space Drums, HeartGuard AI, RealEstate in that order; keep the remaining five studies compact. Retain the short name, put the full CV name and self-reported education/training/languages in dedicated academic background, and separate project-supported skills from CV-listed familiarity. Source review pins Space Drums at `e1964f4a198cbbf916b1bf891b84077c7f318b3f` and keeps offline experiments/data distinct from unresolved physical research outcomes. HeartGuard notebook methodology and its limitations are now explicit. See `docs/portfolio/academic-positioning-review.md`.
+
+The owner's later Arabic correction explicitly forbids master's-study interest in website copy. Keep academic interests without an admission, enrollment or master's-intent statement. Preserve Studio Dark and dependency choices; no browser QA, commit, push or deployment is authorized.
+
+### D40 — Explicit CV replacement approval (3 November 2026)
+
+The owner first requested comparison and a review-only proposal, then explicitly requested using the attached new CV instead of the old download. This supersedes D33's old checksum and the review-only boundary. Copy `D:/Yousef_Fahim_CV.pdf` unchanged to the existing `/Yousef_Fahim_Amin_CV.pdf` path; expected SHA256 is `6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15`. The comparison is documented; phone, GPA, classification and the document's declaration are not added to webpage HTML. The approved unchanged PDF retains its original contents. This authorizes local replacement, not a deployment or a host change.
+
 ## Historical decisions
 
 | ID | Decision | Status/source |

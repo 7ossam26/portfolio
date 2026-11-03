@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-03",
+  "branch": "tantawy",
+  "kind": "Non-browser generated-artifact and local HTTP checks",
+  "browser": "Not run",
+  "results": [
+    {
+      "name": "Exactly three featured projects in the requested order",
+      "result": "pass",
+      "evidence": [
+        "spacedrums",
+        "heartguard",
+        "realestate"
+      ]
+    },
+    {
+      "name": "Academic identity and background",
+      "result": "pass"
+    },
+    {
+      "name": "No master study statement in any generated HTML",
+      "result": "pass"
+    },
+    {
+      "name": "No private CV fields or declaration copied into HTML",
+      "result": "pass"
+    },
+    {
+      "name": "Consistent Space Drums title with one CV alias",
+      "result": "pass"
+    },
+    {
+      "name": "Project-supported PyTorch/LightGBM distinct from CV familiarity",
+      "result": "pass"
+    },
+    {
+      "name": "Current Space Drums implementation and research limits survive rendering",
+      "result": "pass"
+    },
+    {
+      "name": "HeartGuard includes methodology and actual limitations, without old headline accuracy",
+      "result": "pass"
+    },
+    {
+      "name": "Six other project records preserved apart from two featured flags",
+      "result": "pass"
+    },
+    {
+      "name": "Project repository destinations unchanged",
+      "result": "pass"
+    },
+    {
+      "name": "Dependency, style and motion inputs unchanged",
+      "result": "pass"
+    },
+    {
+      "name": "Attachment, public download and built CV are identical",
+      "result": "pass",
+      "evidence": {
+        "sha256": "6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15",
+        "bytes": 64495
+      }
+    },
+    {
+      "name": "All ten pages retain the same CV download URL",
+      "result": "pass"
+    },
+    {
+      "name": "No dependency/source repository edits",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/spacedrums/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/heartguard/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/realestate/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/gym-app/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/arduino-projects/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/gesture-volume/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/digits-classifier/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /work/hospital-management/",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP /404.html",
+      "result": "pass"
+    },
+    {
+      "name": "Local HTTP download returns the approved attachment as PDF",
+      "result": "pass",
+      "evidence": {
+        "sha256": "6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15",
+        "bytes": 64495
+      }
+    },
+    {
+      "name": "Missing asset does not return successful fallback",
+      "result": "pass"
+    },
+    {
+      "name": "Branch and base revision preserved",
+      "result": "pass"
+    },
+    {
+      "name": "No whitespace errors",
+      "result": "pass"
+    }
+  ]
+}

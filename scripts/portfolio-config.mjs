@@ -9,9 +9,9 @@ export const portfolioOwner = Object.freeze({
 });
 
 export const projectSlugs = Object.freeze([
-  'realestate',
   'spacedrums',
   'heartguard',
+  'realestate',
   'gym-app',
   'arduino-projects',
   'gesture-volume',
@@ -23,6 +23,6 @@ export const projectSlugs = Object.freeze([
 export const activeDemoSlugs = Object.freeze([]);
 export const portfolioCv = Object.freeze({
   path: 'Yousef_Fahim_Amin_CV.pdf',
-  sha256: '474d6fdbd294d6de8a4aa8b7ab5324e4d08386d18446e47200c79131917f2650',
+  sha256: '6ee685289ba4a19049e7313611b449d0f41486708c75179dbca7f777c0469d15',
 });
 export const publishedAssets = Object.freeze(['favicon.svg', portfolioCv.path]);

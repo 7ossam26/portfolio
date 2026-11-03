@@ -1,6 +1,6 @@
 # Yousef Fahim Amin — Portfolio
 
-Yousef's software engineering portfolio, personalized on branch `tantawy` from the existing Studio Dark portfolio. It covers backend development, applied machine learning, computer vision, mobile interfaces, and embedded systems.
+Yousef's portfolio on branch `tantawy`, preserving the existing Studio Dark design. It focuses on applied machine learning and computer vision for academic reviewers and technical recruiters, with dedicated academic background and source-supported project evidence.
 
 ## Run locally
 
@@ -22,8 +22,8 @@ npm run preview:all
 ## Content
 
 - `apps/portfolio/src/content/profile.ts`: identity, contacts, CV path, skills, and training data.
-- `apps/portfolio/src/components/Background.astro`: introduction and education presentation.
-- `apps/portfolio/src/content/projects.ts`: eight project records and case studies; RealEstate leads, followed by SpaceDrums. Featured flags select five full cards, with three further projects below.
+- `apps/portfolio/src/components/Background.astro`: academic background, interests, project-supported skills and CV-listed familiarity.
+- `apps/portfolio/src/content/projects.ts`: eight project records; Space Drums, HeartGuard AI and RealEstate form the three featured cards, with five compact further-work rows.
 - `apps/portfolio/src/content/project-evidence.server.ts`: internal source revisions and limits.
 - `scripts/portfolio-config.mjs`: active route/asset manifest and verified CV checksum.
 - `docs/portfolio/yousef-source-audit.md`: profile-versus-source review and conservative content decisions.
@@ -31,16 +31,17 @@ npm run preview:all
 - `docs/portfolio/validation/phase-11.md`: review corrections and their non-browser validation.
 - `docs/portfolio/spacedrums-source-audit.md` and `docs/portfolio/validation/phase-11-spacedrums.md`: the bounded SpaceDrums addition, source evidence and local checks before Phase 12.
 - `docs/portfolio/validation/phase-11-visual-review.md`: the subsequently authorized interactive browser review, anchor fixes, screenshots and remaining live reduced-motion coverage gap.
-- `docs/portfolio/validation/phase-12.md`: completed owner-feedback polishing, shorter SpaceDrums case study, validation and final manual approval handoff.
+- `docs/portfolio/validation/phase-12.md`: owner feedback, including the November positioning follow-up and its non-browser validation.
+- `docs/portfolio/academic-positioning-review.md`: latest CV comparison, source hierarchy, discrepancy resolutions and project audit.
 
 The build produces the homepage, eight case studies, and a 404 page. Project diagrams are labeled explanations. No original-UI demos have been implemented for Yousef's projects; the build excludes the previous owner's demos entirely.
 
-SpaceDrums is grounded in the public drumstick-endpoint implementation at revision `f5754e16c32632e506ed25f804755e8fbd358064` of `youseffahem/air_drum_project`. The owner also described an unpushed local fingertip iteration that is still in development; it was not independently inspected and has no invented public branch or commit link. Source, test-presence, attribution, and physical-validation limits are recorded in the source audit.
+Space Drums is grounded in revision `e1964f4a198cbbf916b1bf891b84077c7f318b3f` of `youseffahem/air_drum_project`. The source implements fingertip, ordinary-stick and red-tip modes, multiple layouts and an AR view. Offline LightGBM/PyTorch experiments are separate from the reactive application; synthetic/developer data do not establish participant results or physical latency improvements. HeartGuard's case study describes PCA/RFE, model comparison, the interface and observed evaluation limitations.
 
-The unchanged CV is copied from the supplied public Drive folder. Skills and background come from that document and the supplied GitHub profile. Where profile claims conflict with project source, public copy follows the source. Education and training are not presented as employment.
+At the owner's explicit follow-up request, the download now serves the unchanged `D:/Yousef_Fahim_CV.pdf` attachment under the existing local URL. The latest CV supplies stated personal background; implementation and saved artifacts supply technical evidence. None is independently verified credentials. Master's-study interest is omitted from website copy; the approved PDF retains its original content. Phone, GPA, classification and the declaration are not copied into HTML.
 
 ## Publishing
 
 Without `PORTFOLIO_SITE_URL`, the artifact stays `noindex` and has no canonical or sitemap. A public build requires Yousef's selected HTTPS origin. The existing Git remote belongs to the original portfolio; this work neither changes it nor publishes to its Vercel project.
 
-Original demos, notices, and historical phase records remain for provenance. Previous public assets and obsolete components are retained under `archive/` and are never staged into `dist/`. Historical plans describe the original owner; Phase 10 governs this branch.
+Original demos, notices, and historical phase records remain for provenance. Previous public assets and obsolete components are retained under `archive/` and are never staged into `dist/`. Historical plans describe the original owner; the current Phase 12 prompt and D39/D40 govern this follow-up.

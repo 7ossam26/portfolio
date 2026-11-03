@@ -2,6 +2,8 @@
 
 ## Latest visual follow-up — 3 November 2026
 
+The owner added a pointer-reactive Saturn to the ambient background (D44): strong animation when the mouse is close, more intense directly over it, within Studio Dark. Keep it decorative and beneath content, never touch-driven, governed by pause/reduced motion/hidden-tab handling, and dim at rest. Verify without a browser, record the addendum and stop.
+
 The subsequent owner request extends richer animation to the **whole portfolio**, including hero, background, navigation, headings, academic section, controls and footer (D42). Preserve the completed project identities and content; maintain pause/reduced-motion support, viewport gating and hidden-tab suspension. Continue local non-browser verification and stop after recording this addendum.
 
 The owner explicitly requests improved portfolio organization, individual project palettes, much richer project animation/transitions and a redesigned logo. Implement within Studio Dark on `tantawy`, preserving the November applied-ML/CV positioning, Space Drums → HeartGuard AI → RealEstate order, dedicated academic background, existing project evidence and unchanged CV. The request supersedes earlier layout/color/motion preservation restrictions. Use truthful, labeled concept artwork where no application captures exist, retain static/keyboard access and reduced motion, and keep dependencies bounded. Follow D41 and the design-spec addendum. Verify without a browser, record the Phase 12 addendum and stop; no push, publication or next phase.

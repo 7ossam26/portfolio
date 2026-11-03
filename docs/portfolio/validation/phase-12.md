@@ -1,5 +1,32 @@
 # Phase 12 — Owner feedback and final local handoff
 
+## November follow-up — pointer-reactive Saturn (D44)
+
+Date: **3 November 2026 (Africa/Cairo)**. The owner asked for Saturn in the background with powerful animation: strong when the mouse comes close, more intense when it is directly over it, and fitting the existing design. This is a bounded Phase 12 addendum on `tantawy`.
+
+### Delivered behavior
+
+- **Placement:** Saturn is a decorative layer of the fixed ambient background, between the beam and the cursor spotlight, beneath all content. It sits on the right, partly past the viewport edge. As the page scrolls it rises about a third of the viewport, and its rings open from −24° to −12°.
+- **Look:** Saturn uses the Studio orange/amber palette as a dark, backlit sphere with an amber rim and drifting cloud bands. The rings have C/B/A bands, a Cassini gap and an F ring. They are split at the major axis, so the far half passes behind the planet and the near half in front.
+- **At rest:** two particle layers shear at different speeds, the cloud bands rotate, and two moons follow inclined orbits with depth scaling and never cross the planet disc. Ring glints, a breathing halo and a slow float complete the idle motion.
+- **Near** (pointer within about one Saturn width): Saturn is pulled and leans toward the pointer and swells with proximity. A ping, light rays, rhythmic ring-plane shockwaves, a racing ring comet and occasional sparks appear, a brighter atmosphere fades in, and the continuous loops run about 2.2× faster in place.
+- **Over** (pointer on the planet or its rings): a one-shot flare, surging shockwaves, the full spark field, a pulsing ignited atmosphere and rim, and about 4.5× loop speed. Hysteresis follows the planet's visible swell, so the state does not flicker on an edge.
+- **Lifecycle:** proximity is computed from pointer geometry inside the existing pointer frame and re-evaluated in the existing scroll frame, so a resting pointer reacts as Saturn drifts. No new animation loop is added. Leaving the window releases Saturn. Touch input never drives it. Saturn exists only while motion runs, so Pause, OS reduced motion and cleanup remove it, and hidden tabs freeze it with the rest of the background. If its layout box is unavailable, it stays idle. Narrow layouts show a smaller, quieter Saturn.
+
+### Validation
+
+| Check | Actual result |
+| --- | --- |
+| `npm run verify` (pinned portable Node 22.23.2 with npm 11.6.2) | Passed: 22 Astro files, 0 errors/warnings/hints; **21 motion tests** (18 existing + 3 new); asset check; 10 pages built; static gate. |
+| New Saturn lifecycle tests (Node DOM doubles, not a browser) | Escalation through idle → near (`0.357` energy at 300 px) → over, with hysteresis at the planet edge and the rings as part of the target. Only `saturn-flow-*` loops change speed (1 → 2.2 → 4.5 → 1); release on window exit; touch ignored. Scroll drift/angle reach −48 px / −204 px / −12° at the page end, and a resting pointer re-evaluates as Saturn moves. An unavailable layout box stays idle. Cleanup removes Saturn and the new `pointerout` listener. |
+| Built output | 76 Saturn selectors and 14 keyframes in the emitted CSS; the minified clip insets, `scale` and time-calc delays are intact. No Saturn markup in static HTML. CSS 16,523 bytes and JS 3,344 bytes gzip (zlib level 9): file sizes only, within the 45 KiB budgets. |
+| Source/dependency comparison | Against the before-edit hash snapshot, only `BaseLayout.astro` (one import) and `motion.ts` changed, plus the new `saturn.css`. Content, project files, dependency inputs and the CV (SHA256 `6ee68528…0469d15`) are unchanged. `git diff --check` passed. |
+| Idle contrast upper bound (calculation, not a browser audit) | Brightest idle Saturn colours composited over `#111516`. Planet highlight: primary 8.08:1, muted 4.58:1, quiet 3.21:1. Ring peak: primary 8.68:1, muted 4.91:1, quiet 3.45:1. Small quiet metadata crossing these thin bright points falls below 4.5:1. Near/over states are intentionally brighter, while the pointer is there. |
+
+Evidence: [saturn-checks.json](phase-12-evidence/saturn-checks.json). Ignored local evidence: `.local-tools/saturn/verify.log`, `source-before.json` and `contrast.json`.
+
+No browser rendering, visual review, frame-rate/performance measurement, reflow or accessibility run occurred. Whether Saturn's composition, intensity and position look right with the live page still needs the owner's manual review in a browser (`npm run dev`). Behavior depends on modern CSS support (`mask-image`, conic gradients, individual `scale`, `var()` in keyframes) and on Web Animations `updatePlaybackRate` for the speed-up. Without the speed-up, the state effects still apply. No commit, push or deployment occurred.
+
 ## November follow-up — view-only CV from Google Drive (D43)
 
 Date: **3 November 2026 (Africa/Cairo)**. After the download fix below, the owner asked to remove Download CV entirely. Open CV must open `https://drive.google.com/file/d/1HyJ6ZVG2oKNNknmskzUYkgvbSr7VIrm8/view?usp=drive_link`.

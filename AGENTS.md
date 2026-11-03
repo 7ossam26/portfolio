@@ -10,6 +10,8 @@ The later 3 November owner request explicitly authorizes a better layout, indivi
 
 The subsequent same-day request also authorizes richer animation across the whole portfolio (D42), with pause/reduced-motion support, viewport-aware loops and hidden-tab suspension. Keep the other content, validation and publication boundaries above.
 
+A further same-day request adds a pointer-reactive Saturn to the ambient background (D44), escalating near and over the planet. Keep it decorative, beneath content, never touch-driven and governed by the same pause/reduced-motion/hidden-tab rules.
+
 ## Start every phase
 
 - Read `docs/portfolio/master-plan.md`, the current phase prompt, `STATE.md`, and `DECISIONS.md`.

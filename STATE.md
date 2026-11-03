@@ -2,7 +2,15 @@
 
 ## Current branch — Yousef Fahim Amin / `tantawy`, 3 November 2026
 
-Latest Phase 12 fix: **CV is view-only via Google Drive (D43)**. The owner reported a Download CV error, then asked to remove Download CV and make Open CV open their Drive link.
+Latest Phase 12 follow-up: **pointer-reactive Saturn in the ambient background (D44)**.
+
+- Saturn is a dark, backlit amber planet in the fixed background, on the right, beneath all content. It has two-speed ring particles, rotating bands, two inclined moons, glints, a breathing halo and a float, and rises as the page scrolls. **Near** the pointer it leans and is pulled toward it, with shockwaves, a ring comet, rays, sparks and about 2.2× loop speed. **Over** the planet or rings it adds a flare, surging waves, full sparks, ignited atmosphere and about 4.5× speed. Touch never drives it. Pause, reduced motion and hidden-tab handling govern it like the rest of the background. No new loop, dependency or content change.
+- `npm run verify` passed on pinned Node 22.23.2 / npm 11.6.2: **22 Astro files, 0 diagnostics; 21 motion tests (3 new Saturn tests); 10-page build/static gates**. Only `BaseLayout.astro` and `motion.ts` changed, plus the new `saturn.css` and the tests. CSS is 16,523 bytes gzip and JS 3,344 bytes gzip. At the brightest idle points, quiet metadata text crossing Saturn falls to about 3.2:1; primary and muted text stay above 4.5:1 by calculation.
+- No browser QA, visual or performance check, commit, push or deployment occurred. The owner should review Saturn's look and intensity with `npm run dev`. Evidence is in the newest `phase-12.md` addendum and `phase-12-evidence/saturn-checks.json`. Next prompt reference: `docs/portfolio/prompts/12-owner-feedback.md`, only for owner-requested follow-up.
+
+## Earlier same-day fix — view-only CV
+
+Phase 12 fix: **CV is view-only via Google Drive (D43)**. The owner reported a Download CV error, then asked to remove Download CV and make Open CV open their Drive link.
 
 - Download error cause: Internet Download Manager's Chrome extension captures PDFs and fetches them over IPv4, while `astro dev` listened only on IPv6 `::1`. `apps/portfolio/astro.config.mjs` now binds dev to `127.0.0.1`.
 - All Download CV links are removed. Hero, footer and every case study have one **Open CV** link to the owner's public Drive file, in a new tab with `noopener noreferrer`. The Drive file returned 200 without sign-in, and its bytes match the approved PDF (SHA256 `6ee68528…0469d15`). The local PDF stays served but unlinked.

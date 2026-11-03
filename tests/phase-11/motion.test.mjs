@@ -160,7 +160,7 @@ function setup(options = {}) {
     assert.equal(nav.classList.contains('motion-visible'), false);
     assert.deepEqual(body.children, [studio]);
     assert.deepEqual(studio.children, [nav, heading, divider, feature, row]);
-    for (const event of ['scroll', 'resize', 'pointermove']) assert.equal(window.count(event), 0);
+    for (const event of ['scroll', 'resize', 'pointermove', 'pointerout']) assert.equal(window.count(event), 0);
     assert.equal(frames.size, 0);
     assert.equal(document.count('visibilitychange'), 0);
     assert.ok(observers.every((observer) => observer.disconnected));
@@ -232,7 +232,7 @@ test('the visitor can pause pending motion, keep content visible, and resume wit
   assert.equal(page.root.classList.contains('motion-ready'), true);
   assert.equal(page.root.classList.contains('motion-paused'), false);
   assert.equal(page.label.textContent, 'Pause motion');
-  for (const event of ['scroll', 'resize', 'pointermove']) assert.equal(page.window.count(event), 1);
+  for (const event of ['scroll', 'resize', 'pointermove', 'pointerout']) assert.equal(page.window.count(event), 1);
   assert.equal(page.toggle.count('click'), 1);
 });
 
@@ -334,4 +334,111 @@ test('the training rail fills as its section scrolls into view and clamps at bot
   }
   page.preferenceChange(false);
   page.assertStatic();
+});
+
+function findSaturn(page) {
+  const background = page.studio.children[0];
+  assert.equal(background.classList.contains('motion-background'), true);
+  const saturn = background.children.find((node) => node.classList.contains('saturn'));
+  assert.ok(saturn, 'Saturn is created inside the decorative background');
+  return saturn;
+}
+
+// Saturn geometry used below: centre (1000, 500), size 400 → planet radius 84,
+// ring radius 194 (flattened to 30%), proximity field 420; rings tilted −24° at the top of the page.
+const TILT = -24 * Math.PI / 180;
+const acrossRings = (distance) => [1000 - Math.sin(TILT) * distance, 500 + Math.cos(TILT) * distance];
+const alongRings = (distance) => [1000 + Math.cos(TILT) * distance, 500 + Math.sin(TILT) * distance];
+
+test('Saturn intensifies as the pointer approaches, peaks over the planet or rings, and releases on exit', () => {
+  const page = setup();
+  const saturn = findSaturn(page);
+  assert.equal(saturn.dataset.saturn, 'idle');
+  const animations = [
+    { animationName: 'saturn-flow-spin', rate: 1, updatePlaybackRate(rate) { this.rate = rate; } },
+    { animationName: 'saturn-flow-moon-x', playbackRate: 1 },
+    { animationName: 'saturn-burst', rate: 1, updatePlaybackRate(rate) { this.rate = rate; } },
+  ];
+  saturn.getAnimations = () => animations;
+  saturn.getBoundingClientRect = () => ({ left: 800, top: 300, width: 400, height: 400 });
+  page.window.scrollY = 0;
+  page.window.emit('scroll');
+  page.flushFrames();
+  const move = ([clientX, clientY], pointerType = 'mouse') => {
+    page.window.emit('pointermove', { clientX, clientY, pointerType });
+    page.flushFrames();
+  };
+  const tempo = () => [animations[0].rate, animations[1].playbackRate, animations[2].rate];
+
+  move([100, 100]);
+  assert.equal(saturn.dataset.saturn, 'idle');
+  assert.equal(saturn.style.getPropertyValue('--saturn-near'), '');
+
+  move([700, 500]);
+  assert.equal(saturn.dataset.saturn, 'near');
+  assert.equal(saturn.style.getPropertyValue('--saturn-near'), '0.357');
+  assert.ok(Number(saturn.style.getPropertyValue('--saturn-pull-x')) < 0, 'Saturn is drawn toward a pointer on its left');
+  assert.ok(Number(saturn.style.getPropertyValue('--saturn-turn-y')) < 0);
+  assert.deepEqual(tempo(), [2.2, 2.2, 1], 'only the continuous flow loops accelerate');
+
+  move(acrossRings(95));
+  assert.equal(saturn.dataset.saturn, 'near', 'just beyond the planet edge is close, not over');
+  assert.equal(saturn.style.getPropertyValue('--saturn-near'), '0.967');
+
+  move([1000, 500]);
+  assert.equal(saturn.dataset.saturn, 'over');
+  assert.equal(saturn.style.getPropertyValue('--saturn-near'), '1.000');
+  assert.deepEqual(tempo(), [4.5, 4.5, 1]);
+
+  move(acrossRings(95));
+  assert.equal(saturn.dataset.saturn, 'over', 'the swollen planet keeps the pointer over it');
+  move(acrossRings(105));
+  assert.equal(saturn.dataset.saturn, 'near');
+  move(alongRings(170));
+  assert.equal(saturn.dataset.saturn, 'over', 'the rings are part of the hover target');
+
+  move([1000, 500], 'touch');
+  page.window.emit('pointerout', {});
+  assert.equal(saturn.dataset.saturn, 'idle', 'leaving the window releases Saturn');
+  for (const name of ['--saturn-near', '--saturn-pull-x', '--saturn-pull-y', '--saturn-turn-x', '--saturn-turn-y']) {
+    assert.equal(saturn.style.getPropertyValue(name), '');
+  }
+  assert.deepEqual(tempo(), [1, 1, 1]);
+
+  move([1000, 500], 'touch');
+  assert.equal(saturn.dataset.saturn, 'idle', 'touch never drives Saturn');
+  page.preferenceChange(false);
+  page.assertStatic();
+});
+
+test('Saturn rises with page progress and re-evaluates a resting pointer as it drifts', () => {
+  const page = setup();
+  const saturn = findSaturn(page);
+  saturn.getBoundingClientRect = () => ({ left: 800, top: 300, width: 400, height: 400 });
+  page.window.scrollY = 0;
+  page.window.emit('scroll');
+  page.flushFrames();
+  assert.equal(saturn.style.getPropertyValue('--saturn-angle'), '-24.00deg');
+  page.window.emit('pointermove', { clientX: 1000, clientY: 500, pointerType: 'mouse' });
+  page.flushFrames();
+  assert.equal(saturn.dataset.saturn, 'over');
+
+  page.window.scrollY = 7400;
+  page.window.emit('scroll');
+  page.flushFrames();
+  assert.equal(saturn.style.getPropertyValue('--saturn-drift-x'), '-48.0px');
+  assert.equal(saturn.style.getPropertyValue('--saturn-drift-y'), '-204.0px');
+  assert.equal(saturn.style.getPropertyValue('--saturn-angle'), '-12.00deg');
+  assert.equal(saturn.dataset.saturn, 'near', 'the planet moved out from under a stationary pointer');
+  page.toggle.emit('click');
+  page.assertStatic();
+});
+
+test('Saturn stays idle and harmless when its layout box is unavailable', () => {
+  const page = setup();
+  const saturn = findSaturn(page);
+  page.window.emit('pointermove', { clientX: 1000, clientY: 500, pointerType: 'mouse' });
+  page.flushFrames();
+  assert.equal(saturn.dataset.saturn, 'idle');
+  assert.equal(page.root.classList.contains('motion-ready'), true);
 });
